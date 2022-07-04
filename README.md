@@ -199,6 +199,14 @@ Route::get('/rota2', function (){
 
 - 39 Rota de contingência (fallback)
 
+```
+Route::fallback(function () {
+    echo 'A Rota não existe - <a href="'. route('site.index') .'">Voltar</a>';
+});
+
+```
+
+
 [Voltar ao Índice](#indice)
 
 ---

@@ -8,6 +8,6 @@ class SobrenosController extends Controller
 {
     public function sobrenos()
     {
-        return 'Sobre Nós';
+        return view('site.sobrenos');
     }
 }

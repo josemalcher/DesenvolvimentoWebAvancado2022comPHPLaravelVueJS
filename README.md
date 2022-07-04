@@ -175,6 +175,28 @@ Route::prefix('/app')->group(function () {
 ```
 
 - 38 Redirecionamento de rotas
+
+```php
+Route::get('/rota1', function (){
+    echo 'ROTA 1';
+})->name('site.rota1');
+
+//Route::get('/rota2', function (){
+//    echo 'ROTA 2;
+//})->name('site.rota2');
+Route::redirect('/rota2', '/rota1');
+```
+
+```php
+Route::get('/rota1', function (){
+    echo 'ROTA 1';
+})->name('site.rota1');
+
+Route::get('/rota2', function (){
+    return redirect()->route('site.rota1');
+})->name('site.rota2');
+```
+
 - 39 Rota de contingência (fallback)
 
 [Voltar ao Índice](#indice)

@@ -144,6 +144,36 @@ Route::prefix('/app')->group(function () {
 ```
 
 - 37 Nomeando rotas
+
+```php
+Route::get('/', 'PrincipalController@principal')->name('site.index');
+Route::get('/sobre-nos', 'SobrenosController@sobrenos')->name('site.sobrenos');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
+
+Route::get('/login', 'ContatoController@contato')->name('site.login');
+
+Route::prefix('/app')->group(function () {
+    Route::get('/clientes', function (){return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores',  function (){return 'Fornecedores';})->name('app.fornecedores');
+    Route::get('/produtos',  function (){return 'Produtos';})->name('app.produtos');
+});
+```
+
+```php
+<ul>
+    <li>
+        <a href="{{route('site.index')}}">Principal</a>
+    </li>
+    <li>
+        <a href="{{route('site.sobrenos')}}">Sobre Nós</a>
+    </li>
+    <li>
+        <a href="{{route('site.contato')}}">Contato</a>
+    </li>
+</ul>
+
+```
+
 - 38 Redirecionamento de rotas
 - 39 Rota de contingência (fallback)
 

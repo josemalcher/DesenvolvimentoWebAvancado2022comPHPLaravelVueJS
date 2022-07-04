@@ -26,3 +26,14 @@ Route::get('/sobre-nos', function () {
 Route::get('/', 'PrincipalController@principal');
 Route::get('/sobre-nos', 'SobrenosController@sobrenos');
 Route::get('/contato', 'ContatoController@contato');
+
+Route::get(
+    '/contato/{nome}/{categoria_id}',
+    function (
+        string $nome = 'Desconhecido',
+        int    $categoria_id = 1 // 1- 'informação'
+    ) {
+        echo "Nome: " . $nome . ' Categoria = ' . $categoria_id;
+    })
+        ->where('categoria_id', '[0-9+]')
+        ->where('nome', '[A-Za-z]+');

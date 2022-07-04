@@ -98,6 +98,21 @@ $ composer global require laravel/installer
 - 31 Enviando parâmetros
 - 32 Parâmetros opcionais e valores padrões
 - 33 Tratando parâmetros de rotas com expressões regulares
+
+```php
+Route::get(
+    '/contato/{nome}/{categoria_id}',
+    function (
+        string $nome = 'Desconhecido',
+        int    $categoria_id = 1 // 1- 'informação'
+    ) {
+        echo "Nome: " . $nome . ' Categoria = ' . $categoria_id;
+    })
+        ->where('categoria_id', '[0-9+]')
+        ->where('nome', '[A-Za-z]+');
+
+```
+
 - 34 Super Gestão - Criando o menu de navegação
 - 35 Super Gestão - Implementando as rotas login, clientes, fornecedores e produtos
 - 36 Agrupando rotas

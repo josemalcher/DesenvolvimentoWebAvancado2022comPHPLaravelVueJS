@@ -114,8 +114,35 @@ Route::get(
 ```
 
 - 34 Super Gestão - Criando o menu de navegação
+
+```
+$ php artisan route:list
++--------+----------+-------------------------------+------+----------------------------------------------------+------------+
+| Domain | Method   | URI                           | Name | Action                                             | Middleware |
++--------+----------+-------------------------------+------+----------------------------------------------------+------------+
+|        | GET|HEAD | /                             |      | App\Http\Controllers\PrincipalController@principal | web        |
+|        | GET|HEAD | api/user                      |      | Closure                                            | api        |
+|        |          |                               |      |                                                    | auth:api   |
+|        | GET|HEAD | contato                       |      | App\Http\Controllers\ContatoController@contato     | web        |
+|        | GET|HEAD | contato/{nome}/{categoria_id} |      | Closure                                            | web        |
+|        | GET|HEAD | sobre-nos                     |      | App\Http\Controllers\SobrenosController@sobrenos   | web        |
++--------+----------+-------------------------------+------+----------------------------------------------------+------------+
+
+
+```
+
 - 35 Super Gestão - Implementando as rotas login, clientes, fornecedores e produtos
 - 36 Agrupando rotas
+
+```php
+Route::prefix('/app')->group(function () {
+    Route::get('/clientes', function (){return 'Clientes';});
+    Route::get('/fornecedores',  function (){return 'Fornecedores';});
+    Route::get('/produtos',  function (){return 'Produtos';});
+
+});
+```
+
 - 37 Nomeando rotas
 - 38 Redirecionamento de rotas
 - 39 Rota de contingência (fallback)

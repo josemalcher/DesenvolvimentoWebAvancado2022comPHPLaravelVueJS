@@ -38,7 +38,15 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte2">2 - [WINDOWS] - Preparando-se para o desenvolvimento</a>
 
+7. Iniciando um projeto Laravel (Via Composer)
 
+```
+$ composer config -g repo.packagists composer https://packagist.org
+
+$ composer config -g github-protocols https ssh
+
+$ composer global require laravel/installer
+```
 
 [Voltar ao Índice](#indice)
 
@@ -65,7 +73,20 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte5">5 - Introdução as Rotas, Controllers e Views</a>
 
+- 23 Iniciando o projeto
 
+```
+ composer create-project --prefer-dist laravel/laravel:^7.0 app_super_gestao
+
+```
+
+- 24 Produtividade com Artisan Console
+- 25 Rotas (Routes) - Introdução
+- 26 Super Gestão - Implementando as rotas principal, sobre-nos e contato
+- 27 Controladores (Controllers) - Introdução
+- 28 Super Gestão - Implementando os controladores principal, sobre-nos e contato
+- 29 Visualizações (Views) - Introdução
+- 30 Super Gestão - Implementando as visualizações principal, sobre-nos e contato
 
 [Voltar ao Índice](#indice)
 
@@ -74,7 +95,15 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte6">6 - Avançando com Rotas (Routes)</a>
 
-
+- 31 Enviando parâmetros
+- 32 Parâmetros opcionais e valores padrões
+- 33 Tratando parâmetros de rotas com expressões regulares
+- 34 Super Gestão - Criando o menu de navegação
+- 35 Super Gestão - Implementando as rotas login, clientes, fornecedores e produtos
+- 36 Agrupando rotas
+- 37 Nomeando rotas
+- 38 Redirecionamento de rotas
+- 39 Rota de contingência (fallback)
 
 [Voltar ao Índice](#indice)
 
@@ -83,7 +112,36 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte7">7 - Avançando com Controladores (Controllers) e Visualizações (Views)</a>
 
-
+- 40 Encaminhando parâmetros da rota para o controlador
+- 41 Encaminhando parâmetros do controlador para visualização
+- 42 Sintaxe Blade
+- 43 Blade - Incluíndo comentários e blocos PHP puros
+- 44 Extra - Adicionando a extensão VSCode Laravel-Blade
+- 45 Blade - @if/@else
+- 46 Blade - @unless
+- 47 Blade - @isset
+- 48 Blade - @empty
+- 49 Extra - Operador condicional ternário
+- 50 Blade - Operador condicional de valor default (??)
+- 51 Blade - @switch/case
+- 52 Blade - @for
+- 53 Blade - @while
+- 54 Blade - @foreach
+- 55 Blade - @forelse
+- 56 Blade - Escapando a tag de impressão do Blade
+- 57 Blade - Variável loop
+- 58 Super Gestão - Melhorando o visual
+- 59 O que são assets?
+- 60 Adicionando assets as views (helper asset)
+- 61 Adicionando arquivos CSS externos as páginas web
+- 62 Blade - Template com @extends, @section e @yield parte 1
+- 63 Blade - Template com @extends, @section e @yield parte 2
+- 64 Blade - Realizando include de views (@include)
+- 65 Super Gestão - Enviando o formulário de contato
+- 66 Enviando o formulário de contato via POST
+- 67 Entendendo o token @csrf
+- 68 Blade - Componentes (@component)
+- 69 Blade - Enviando parâmetros para componentes
 
 [Voltar ao Índice](#indice)
 
@@ -92,7 +150,56 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte8">8 - Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM</a>
 
-
+- 70 Criando o Model SiteContato
+- 71 Implementando a migration SiteContato
+- 72 Dica - Resolvendo problema do php artisan migrate
+- 73 Configurando o BD SQLite e executando as migrations
+- 74 [WINDOWS] SGBD MySQL - Download e Instalação
+- 75 [LINUX] SGBD MySQL - Download e Instalação
+- 76 [OSX] SGBD MySQL - Download e Instalação
+- 77 Conectando-se ao SGBD MySQL via MySQL Workbench
+- 78 Criando a base de dados da aplicação e configurando a conexão (.env)
+- 79 Migration - Executando as migrações
+- 80 Migration - Criando e executando a migration fornecedores
+- 81 Migration - Adicionando campos a uma tabela
+- 82 Migration - Métodos up e down
+- 83 Migration - Modificadores Nullable e Default
+- 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
+- 85 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
+- 86 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
+- 87 Migration - Modificador After
+- 88 Migration - Comandos Status, Reset, Refresh e Fresh
+- 89 Entendendo o Eloquent ORM
+- 90 Tinker - Introdução
+- 91 Eloquent - Inserindo registros
+- 92 Eloquent - Ajustando o nome da tabela no Model para um correto ORM
+- 93 Eloquent - Inserindo registros com Create e Fillable
+- 94 Eloquent - Selecionando registros com all()
+- 95 Eloquent - Selecionando registros com find()
+- 96 Eloquent - Selecionando registros com where()
+- 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()
+- 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
+- 99 Eloquent - Selecionando registros com dois ou mais Wheres
+- 100 Eloquent - Selecionando registros com orWhere()
+- 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()
+- 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
+- 103 Eloquent - Selecionando registros com whereColumn()
+- 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
+- 105 Eloquent - Ordenando registros
+- 106 Eloquent - Introdução as Collections
+- 107 Eloquent - Collection first, last e reverse
+- 108 Eloquent - Collection toArray e toJson
+- 109 Eloquent - Collection pluck
+- 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
+- 111 Eloquent - Atualizando registros (save)
+- 112 Eloquent - Atualizando registros (fill e save)
+- 113 Eloquent - Atualizando registros (where e update)
+- 114 Eloquent - Deletando registros (delete e destroy)
+- 115 Eloquent - Deletando registros com SoftDelete
+- 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
+- 117 Seeders parte 1
+- 118 Seeders parte 2
+- 119 Factories (semeando tabelas em massa com a dependência Faker)
 
 [Voltar ao Índice](#indice)
 
@@ -101,7 +208,21 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte9">9 - Trabalhando com formulários</a>
 
-
+- 120 Entendendo o objeto Request
+- 121 Gravando os dados do formulário no banco de dados
+- 122 Validação de campos obrigatórios (required)
+- 123 Validação de quantidades mínimas e máximas de caracteres (min e max)
+- 124 Repopulando o formulário (Request Old Input) parte 1
+- 125 Repopulando o formulário (Request Old Input) parte 2
+- 126 Ajustando o formulário de contato na rota principal
+- 127 Refactoring do projeto Super Gestão parte 1
+- 128 Refactoring do projeto Super Gestão parte 2
+- 129 Validação de campos e-mail
+- 130 Persistindo dados e redirecionando a rota
+- 131 Validação de campos únicos (unique)
+- 132 Customizando a apresentação dos erros de validação parte 1
+- 133 Customizando a apresentação dos erros de validação parte 2
+- 134 Customizando as mensagens de feedback de validação
 
 [Voltar ao Índice](#indice)
 
@@ -110,7 +231,16 @@ https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
 
 ## <a name="parte10">10 - Middlewares</a>
 
-
+- 135 Introdução aos Middlewares
+- 136 Criando meu primeiro middleware
+- 137 Criando o model LogAcesso e sua migration
+- 138 Implementando middlewares no método construtor dos controllers
+- 139 Implementando um middleware para todas as rotas
+- 140 Apelidando middlewares
+- 141 Encadeamento de middlewares (criando um middleware de autenticação)
+- 142 Adicionando middlewares a um grupo de rotas
+- 143 Passando parâmetros para o middleware
+- 144 Manipulando a resposta de uma requisição via middleware
 
 [Voltar ao Índice](#indice)
 

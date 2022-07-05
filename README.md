@@ -231,6 +231,29 @@ class TesteController extends Controller
 ```
 
 - 41 Encaminhando parâmetros do controlador para visualização
+
+```php
+class TesteController extends Controller
+{
+    public function teste(int $p1, int $p2)
+    {
+        // return view('site.teste', ['x'=>$p1, 'y' => $p2]);
+        // return view('site.teste', compact('p1', 'p2'));
+        return view('site.teste')
+            ->with('p1', $p1)
+            ->with('p2', $p2);
+    }
+}
+```
+
+```php
+<p>Calculo</p>
+<p>P1 = {{$p1}}</p>
+<p>P2 = {{$p2}}</p>
+<p>SOMA = {{$p1 + $p2}}</p>
+```
+
+
 - 42 Sintaxe Blade
 - 43 Blade - Incluíndo comentários e blocos PHP puros
 - 44 Extra - Adicionando a extensão VSCode Laravel-Blade

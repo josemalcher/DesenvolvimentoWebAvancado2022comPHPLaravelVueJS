@@ -215,6 +215,21 @@ Route::fallback(function () {
 ## <a name="parte7">7 - Avançando com Controladores (Controllers) e Visualizações (Views)</a>
 
 - 40 Encaminhando parâmetros da rota para o controlador
+
+```php
+Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
+```
+
+```php
+class TesteController extends Controller
+{
+    public function teste(int $p1,int  $p2)
+    {
+        echo "A Soma de $p1 + $p2 é: " . ($p1 + $p2);
+    }
+}
+```
+
 - 41 Encaminhando parâmetros do controlador para visualização
 - 42 Sintaxe Blade
 - 43 Blade - Incluíndo comentários e blocos PHP puros

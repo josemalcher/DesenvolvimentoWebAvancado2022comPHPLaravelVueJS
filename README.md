@@ -359,6 +359,11 @@ class FornecedorController extends Controller
 ```
 
 - 49 Extra - Operador condicional ternário
+
+```php
+ isset($fornecedores[0]['cnpj']) ? 'CNPJ INFORMADO' : 'CNPJ não Informado';
+```
+
 - 50 Blade - Operador condicional de valor default (??)
 - 51 Blade - @switch/case
 - 52 Blade - @for

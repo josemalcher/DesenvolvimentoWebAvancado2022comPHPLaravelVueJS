@@ -13,11 +13,14 @@
 @endphp
 
 @isset($fornecedores)
-<p>Fornecedor: {{$fornecedores[1]['nome']}}</p>
-<p>Status: {{$fornecedores[1]['status']}}</p>
+<p>Fornecedor: {{$fornecedores[0]['nome']}}</p>
+<p>Status: {{$fornecedores[0]['status']}}</p>
 
-@isset($fornecedores[1]['cnpj'])
-    <p>CNPJ: {{$fornecedores[1]['cnpj']}}</p>
+@isset($fornecedores[0]['cnpj'])
+    CNPJ: {{$fornecedores[0]['cnpj']}}
+    @empty($fornecedores[0]['cnpj']) {{-- Vazio = '', 0, 0.0, '0', null, false, array(), $var --}}
+         VAZIO (SEM DADOS)
+    @endempty
 @endisset
 
 @endisset

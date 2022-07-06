@@ -342,6 +342,22 @@ class FornecedorController extends Controller
 
 
 - 48 Blade - @empty
+
+```php
+@isset($fornecedores)
+<p>Fornecedor: {{$fornecedores[0]['nome']}}</p>
+<p>Status: {{$fornecedores[0]['status']}}</p>
+
+@isset($fornecedores[0]['cnpj'])
+    CNPJ: {{$fornecedores[0]['cnpj']}}
+    @empty($fornecedores[0]['cnpj']) {{-- Vazio = '', 0, 0.0, '0', null, false, array(), $var --}}
+         VAZIO (SEM DADOS)
+    @endempty
+@endisset
+
+@endisset
+```
+
 - 49 Extra - Operador condicional ternário
 - 50 Blade - Operador condicional de valor default (??)
 - 51 Blade - @switch/case

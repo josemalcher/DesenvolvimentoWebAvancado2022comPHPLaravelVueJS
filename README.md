@@ -289,6 +289,20 @@ class TesteController extends Controller
 ``` 
  
 - 46 Blade - @unless
+
+```php
+<p>Fornecedor: {{$fornecedores[0]['nome']}}</p>
+<p>Status: {{$fornecedores[0]['status']}}</p>
+
+@if(!($fornecedores[0]['status'] == 'S') )
+    <p>Fornecedor Inativo</p>
+@endif
+@unless($fornecedores[0]['status'] == 'S') {{--Se o retorno da condição for false--}}
+    <p>Fornecedor Inativo UNLESS</p>
+@endunless
+
+```
+
 - 47 Blade - @isset
 - 48 Blade - @empty
 - 49 Extra - Operador condicional ternário

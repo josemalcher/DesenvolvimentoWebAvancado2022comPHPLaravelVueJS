@@ -16,11 +16,22 @@
     <p>Fornecedor: {{$fornecedores[1]['nome']}}</p>
     <p>Status: {{$fornecedores[1]['status']}}</p>
     <p>CNPJ: {{$fornecedores[1]['cnpj'] ?? 'Dado não preenchido' }}</p>
-<!--
-    $variavel testada não estiver definida (isset)
-    ou
-    $variavel testada não possuir o valor null
- -->
+    <p>Telefones: {{$fornecedores[1]['ddd'] ?? ''}} {{$fornecedores[1]['telefone'] ?? ''}}</p>
+    <p>
+    @switch($fornecedores[1]['ddd'])
+        @case('11')
+            São Paulo - SP
+        @break
+        @case('32')
+            Juis de Fora - MG
+            @break
+        @case('91')
+            Belém - PA
+            @break
+        @default
+        Estado não identificado
+    @endswitch
+    </p>
 
 @endisset
 

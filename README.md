@@ -376,6 +376,27 @@ class FornecedorController extends Controller
 ```
 
 - 51 Blade - @switch/case
+
+```php
+    <p>Telefones: {{$fornecedores[1]['ddd'] ?? ''}} {{$fornecedores[1]['telefone'] ?? ''}}</p>
+    <p>
+    @switch($fornecedores[1]['ddd'])
+        @case('11')
+            São Paulo - SP
+        @break
+        @case('32')
+            Juis de Fora - MG
+            @break
+        @case('91')
+            Belém - PA
+            @break
+        @default
+        Estado não identificado
+    @endswitch
+    </p>
+
+```
+
 - 52 Blade - @for
 - 53 Blade - @while
 - 54 Blade - @foreach

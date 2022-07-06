@@ -256,8 +256,38 @@ class TesteController extends Controller
 
 - 42 Sintaxe Blade
 - 43 Blade - Incluíndo comentários e blocos PHP puros
+
+```php
+
+<h3>FORNECEDOR</h3>
+
+{{-- COMENTARIOS.... --}}
+
+{{ 'Texto de teste' }}
+
+<?= 'Testo de teste igual ao de cima'?>
+
+@php
+    // comentario vário
+    echo 'Texto dentro do PHP
+    '
+@endphp
+
+``` 
+
 - 44 Extra - Adicionando a extensão VSCode Laravel-Blade
 - 45 Blade - @if/@else
+
+```php
+@if(count($fornecedores) > 0 && count($fornecedores) < 10)
+    <h3>Existe alguns fornecedores cadastrados</h3>
+@elseif(count($fornecedores)> 10)
+    <h3>Existem varios fornecedores cadastrados</h3>
+@else
+    <h3>Nenhum fornecedor Cadastrados</h3>
+@endif
+``` 
+ 
 - 46 Blade - @unless
 - 47 Blade - @isset
 - 48 Blade - @empty

@@ -436,6 +436,19 @@ class FornecedorController extends Controller
 ```
 
 - 55 Blade - @forelse
+
+```php
+    @forelse($fornecedores as $indice => $fornecedor)
+        <p>Fornecedor: {{$fornecedor['nome']}}</p>
+        <p>Status: {{$fornecedor['status']}}</p>
+        <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
+        <hr>
+    @empty
+        <p>Não existe fornecedores Cadastrados!!!!</p>
+    @endforelse
+```
+
 - 56 Blade - Escapando a tag de impressão do Blade
 - 57 Blade - Variável loop
 - 58 Super Gestão - Melhorando o visual

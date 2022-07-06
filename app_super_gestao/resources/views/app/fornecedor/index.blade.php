@@ -7,11 +7,14 @@
 
 @isset($fornecedores)
 
-    @foreach($fornecedores as $indice => $fornecedor)
+    @forelse($fornecedores as $indice => $fornecedor)
         <p>Fornecedor: {{$fornecedor['nome']}}</p>
         <p>Status: {{$fornecedor['status']}}</p>
         <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
         <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
         <hr>
-    @endforeach
+    @empty
+        <p>Não existe fornecedores Cadastrados!!!!</p>
+    @endforelse
+
 @endisset

@@ -7,13 +7,11 @@
 
 @isset($fornecedores)
 
-    @php $i = 0 @endphp
-    @while(isset($fornecedores[$i]))
-        <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
-        <p>Status: {{$fornecedores[$i]['status']}}</p>
-        <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
-        <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
+    @foreach($fornecedores as $indice => $fornecedor)
+        <p>Fornecedor: {{$fornecedor['nome']}}</p>
+        <p>Status: {{$fornecedor['status']}}</p>
+        <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
         <hr>
-        @php $i++ @endphp
-    @endwhile
+    @endforeach
 @endisset

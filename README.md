@@ -424,6 +424,17 @@ class FornecedorController extends Controller
 ```
 
 - 54 Blade - @foreach
+
+```php
+    @foreach($fornecedores as $indice => $fornecedor)
+        <p>Fornecedor: {{$fornecedor['nome']}}</p>
+        <p>Status: {{$fornecedor['status']}}</p>
+        <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
+        <hr>
+    @endforeach
+```
+
 - 55 Blade - @forelse
 - 56 Blade - Escapando a tag de impressão do Blade
 - 57 Blade - Variável loop

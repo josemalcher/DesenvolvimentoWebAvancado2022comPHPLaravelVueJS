@@ -365,6 +365,16 @@ class FornecedorController extends Controller
 ```
 
 - 50 Blade - Operador condicional de valor default (??)
+
+```php
+    <p>CNPJ: {{$fornecedores[1]['cnpj'] ?? 'Dado não preenchido' }}</p>
+<!--
+    $variavel testada não estiver definida (isset)
+    ou
+    $variavel testada não possuir o valor null
+ -->
+```
+
 - 51 Blade - @switch/case
 - 52 Blade - @for
 - 53 Blade - @while

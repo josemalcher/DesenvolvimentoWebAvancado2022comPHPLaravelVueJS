@@ -13,15 +13,14 @@
 @endphp
 
 @isset($fornecedores)
-<p>Fornecedor: {{$fornecedores[0]['nome']}}</p>
-<p>Status: {{$fornecedores[0]['status']}}</p>
-
-@isset($fornecedores[0]['cnpj'])
-    CNPJ: {{$fornecedores[0]['cnpj']}}
-    @empty($fornecedores[0]['cnpj']) {{-- Vazio = '', 0, 0.0, '0', null, false, array(), $var --}}
-         VAZIO (SEM DADOS)
-    @endempty
-@endisset
+    <p>Fornecedor: {{$fornecedores[1]['nome']}}</p>
+    <p>Status: {{$fornecedores[1]['status']}}</p>
+    <p>CNPJ: {{$fornecedores[1]['cnpj'] ?? 'Dado não preenchido' }}</p>
+<!--
+    $variavel testada não estiver definida (isset)
+    ou
+    $variavel testada não possuir o valor null
+ -->
 
 @endisset
 

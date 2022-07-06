@@ -304,6 +304,43 @@ class TesteController extends Controller
 ```
 
 - 47 Blade - @isset
+
+```php
+class FornecedorController extends Controller
+{
+    public function index()
+    {
+        //$fornecedores = ['Fornecedor 1'];
+        $fornecedores = [
+            0 => [
+                'nome' => 'Fornecedor 1',
+                'status' => 'N',
+                'cnpj' => '00.000.000/000-00'
+            ],
+            1 => [
+                'nome' => 'Fornecedor 2',
+                'status' => 'N'
+            ]
+        ];
+        return view('app.fornecedor.index', compact('fornecedores'));
+    }
+}
+```
+
+```php
+@isset($fornecedores)
+<p>Fornecedor: {{$fornecedores[1]['nome']}}</p>
+<p>Status: {{$fornecedores[1]['status']}}</p>
+
+@isset($fornecedores[1]['cnpj'])
+    <p>CNPJ: {{$fornecedores[1]['cnpj']}}</p>
+@endisset
+
+@endisset
+
+```
+
+
 - 48 Blade - @empty
 - 49 Extra - Operador condicional ternário
 - 50 Blade - Operador condicional de valor default (??)

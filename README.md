@@ -398,6 +398,17 @@ class FornecedorController extends Controller
 ```
 
 - 52 Blade - @for
+
+```php
+    @for($i = 0; isset($fornecedores[$i]); $i++)
+    <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
+    <p>Status: {{$fornecedores[$i]['status']}}</p>
+    <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
+    <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
+    <hr>
+    @endfor
+```
+
 - 53 Blade - @while
 - 54 Blade - @foreach
 - 55 Blade - @forelse

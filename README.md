@@ -450,7 +450,51 @@ class FornecedorController extends Controller
 ```
 
 - 56 Blade - Escapando a tag de impressão do Blade
+
+```php
+     <p>Fornecedor: @{{$fornecedor['nome']}}</p>
+```
+
 - 57 Blade - Variável loop
+
+```bash
+{#280 ▼
+  +"iteration": 1
+  +"index": 0
+  +"remaining": 2
+  +"count": 3
+  +"first": true
+  +"last": false
+  +"odd": true
+  +"even": false
+  +"depth": 1
+  +"parent": null
+}
+```
+
+```php
+@forelse($fornecedores as $indice => $fornecedor)
+        <strong>Total de Interação {{$loop->count}}</strong>
+        <br>
+        <strong>Interação Atual: {{$loop->iteration}}</strong>
+
+        <p>Fornecedor: {{$fornecedor['nome']}}</p>
+        <p>Status: {{$fornecedor['status']}}</p>
+        <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
+
+        @if($loop->first)
+            Primeira interação do LOOP
+        @endif
+        @if($loop->last)
+            Ultima interação do loop
+        @endif
+        <hr>
+    @empty
+        <p>Não existe fornecedores Cadastrados!!!!</p>
+    @endforelse
+```
+
 - 58 Super Gestão - Melhorando o visual
 - 59 O que são assets?
 - 60 Adicionando assets as views (helper asset)

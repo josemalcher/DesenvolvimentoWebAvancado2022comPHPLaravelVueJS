@@ -410,6 +410,19 @@ class FornecedorController extends Controller
 ```
 
 - 53 Blade - @while
+
+```php
+ @php $i = 0 @endphp
+    @while(isset($fornecedores[$i]))
+        <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
+        <p>Status: {{$fornecedores[$i]['status']}}</p>
+        <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
+        <hr>
+        @php $i++ @endphp
+    @endwhile
+```
+
 - 54 Blade - @foreach
 - 55 Blade - @forelse
 - 56 Blade - Escapando a tag de impressão do Blade

@@ -6,11 +6,14 @@
 @endphp
 
 @isset($fornecedores)
-    @for($i = 0; isset($fornecedores[$i]); $i++)
-    <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
-    <p>Status: {{$fornecedores[$i]['status']}}</p>
-    <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
-    <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
-    <hr>
-    @endfor
+
+    @php $i = 0 @endphp
+    @while(isset($fornecedores[$i]))
+        <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
+        <p>Status: {{$fornecedores[$i]['status']}}</p>
+        <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
+        <hr>
+        @php $i++ @endphp
+    @endwhile
 @endisset

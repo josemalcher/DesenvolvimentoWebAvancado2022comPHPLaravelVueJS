@@ -554,6 +554,14 @@ class FornecedorController extends Controller
 ## <a name="parte8">8 - Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM</a>
 
 - 70 Criando o Model SiteContato
+
+```
+$ php artisan make:model SiteContato -m
+Model created successfully.
+Created Migration: 2022_07_07_131143_create_site_contatos_table
+
+```
+
 - 71 Implementando a migration SiteContato
 - 72 Dica - Resolvendo problema do php artisan migrate
 - 73 Configurando o BD SQLite e executando as migrations

@@ -771,6 +771,53 @@ Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.06 seconds)
 ```
 
 - 85 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
+
+```php
+class CreateUnidadesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('unidades', function (Blueprint $table) {
+            $table->id();
+            $table->string('unidade', 5); // cm, mm, kg
+            $table->string('descricao', 30);
+            $table->timestamps();
+        });
+
+        // ADICIONAR o relacionamento com a tabela produtos
+        Schema::table('produtos', function (Blueprint $table) {
+            $table->unsignedBigInteger('unidade_id');
+            $table->foreign('unidade_id')->references('id')->on('unidades');
+        });
+
+        // Adicionar o relacionamento com a tabela produto_detalhes
+        Schema::table('produto_detalhes', function (Blueprint $table) {
+            $table->unsignedBigInteger('unidade_id');
+            $table->foreign('unidade_id')->references('id')->on('unidades');
+        });
+    }
+    public function down()
+    {
+        // REMOVER o relacionamento com a tabela produto_detalhes
+        Schema::table('produto_detalhes', function (Blueprint $table) {
+            // remover a FK
+            $table->dropForeign('produto_detalhes_unidade_id_foreign');// [table]_[coluna]_foreign
+            //remover a coluna unidade_id
+            $table->dropColumn('unidade_id');
+        });
+
+        // REMOVER o relacionamento com a tabela produtos
+        Schema::table('produtos', function (Blueprint $table) {
+            // remover a FK
+            $table->dropForeign('produtos_unidade_id_foreign');// [table]_[coluna]_foreign
+            //remover a coluna unidade_id
+            $table->dropColumn('unidade_id');
+        });
+
+        Schema::dropIfExists('unidades');
+    }
+```
+
 - 86 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
 - 87 Migration - Modificador After
 - 88 Migration - Comandos Status, Reset, Refresh e Fresh

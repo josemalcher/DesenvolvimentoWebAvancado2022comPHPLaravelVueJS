@@ -598,6 +598,30 @@ Vlw João Moraski.
 ```
 
 - 73 Configurando o BD SQLite e executando as migrations
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravelcursolaravel2022
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+```bash
+$ php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (0.03 seconds)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (0.03 seconds)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (0.02 seconds)
+Migrating: 2022_07_07_131143_create_site_contatos_table
+Migrated:  2022_07_07_131143_create_site_contatos_table (0.02 seconds)
+
+```
+
 - 74 [WINDOWS] SGBD MySQL - Download e Instalação
 - 75 [LINUX] SGBD MySQL - Download e Instalação
 - 76 [OSX] SGBD MySQL - Download e Instalação
@@ -605,6 +629,37 @@ Vlw João Moraski.
 - 78 Criando a base de dados da aplicação e configurando a conexão (.env)
 - 79 Migration - Executando as migrações
 - 80 Migration - Criando e executando a migration fornecedores
+
+```bash
+$ php artisan make:model Fornecedor 
+Model created successfully.
+```
+
+```bash
+$ php artisan make:migration create_fornecedores_table
+Created Migration: 2022_07_07_181055_create_fornecedores_table
+```
+
+
+```php
+class CreateFornecedoresTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('fornecedores', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome', 50);
+            $table->timestamps();
+        });
+    }
+```
+
+```bash
+$ php artisan migrate
+Migrating: 2022_07_07_181055_create_fornecedores_table
+Migrated:  2022_07_07_181055_create_fornecedores_table (0.02 seconds)
+```
+
 - 81 Migration - Adicionando campos a uma tabela
 - 82 Migration - Métodos up e down
 - 83 Migration - Modificadores Nullable e Default

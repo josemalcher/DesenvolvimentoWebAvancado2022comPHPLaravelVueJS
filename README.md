@@ -683,6 +683,26 @@ Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.03 seconds)
 
 
 - 82 Migration - Métodos up e down
+
+```
+Up   - php artisan migrade - Mais antiga para a mais atual
+DOWN - php artisan migrade:rollback - da mais atual para a mais antiga
+```
+
+```
+$ php artisan migrate:rollback
+Rolling back: 2022_07_07_181950_alter_fornecedores_novas_colunas
+```
+
+````
+$ php artisan migrate:rollback --step=2
+Rolling back: 2022_07_07_181950_alter_fornecedores_novas_colunas
+Rolled back:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.01 seconds)
+Rolling back: 2022_07_07_181055_create_fornecedores_table
+Rolled back:  2022_07_07_181055_create_fornecedores_table (0.01 seconds)
+
+````
+
 - 83 Migration - Modificadores Nullable e Default
 - 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
 - 85 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)

@@ -661,6 +661,27 @@ Migrated:  2022_07_07_181055_create_fornecedores_table (0.02 seconds)
 ```
 
 - 81 Migration - Adicionando campos a uma tabela
+
+```php
+class AlterFornecedoresNovasColunas extends Migration
+{
+    public function up()
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->string('uf', 2);
+            $table->string('email', 150);
+        });
+    }
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_07_181950_alter_fornecedores_novas_colunas
+Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.03 seconds)
+
+```
+
+
 - 82 Migration - Métodos up e down
 - 83 Migration - Modificadores Nullable e Default
 - 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)

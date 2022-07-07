@@ -508,6 +508,44 @@ class FornecedorController extends Controller
 - 68 Blade - Componentes (@component)
 - 69 Blade - Enviando parâmetros para componentes
 
+```php
+{{$slot}}
+<form action="{{route('site.contato')}}" method="post">
+    @csrf
+    <input name="nome" type="text" placeholder="Nome" class="{{ $classe }}">
+    <br>
+    <input name="telefone" type="text" placeholder="Telefone" class="{{ $classe }}">
+    <br>
+    <input name="email" type="text" placeholder="E-mail" class="{{ $classe }}">
+    <br>
+    <select name="motivo_contato" class="{{ $classe }}">
+        <option value="">Qual o motivo do contato?</option>
+        <option value="1">Dúvida</option>
+        <option value="2">Elogio</option>
+        <option value="3">Reclamação</option>
+    </select>
+    <br>
+    <textarea name="mensagem" class="{{ $classe }}">Preencha aqui a sua mensagem</textarea>
+    <br>
+    <button type="submit" class="{{ $classe }}">ENVIAR</button>
+</form>
+
+```
+
+```php
+            <div class="contato-principal">
+                @component('site.layout._component.form_contato', ['classe' => 'borda-preta'])
+                    <p>A nossa equipe vai analisar sua mensagem</p>
+                    <p>Tempo de resposta 48h</p>
+                @endcomponent
+            </div>
+```
+
+```php
+    @component('site.layout._component.form_contato', ['classe' => 'borda-branca'])
+    @endcomponent
+```
+
 [Voltar ao Índice](#indice)
 
 ---

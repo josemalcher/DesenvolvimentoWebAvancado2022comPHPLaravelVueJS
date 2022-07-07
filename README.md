@@ -563,6 +563,24 @@ Created Migration: 2022_07_07_131143_create_site_contatos_table
 ```
 
 - 71 Implementando a migration SiteContato
+
+```php
+class CreateSiteContatosTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('site_contatos', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome', 50);
+            $table->string('telefone', 20);
+            $table->string('email', 80);
+            $table->integer('motivo_contato');
+            $table->text('mensagem');
+        });
+    }
+```
+
 - 72 Dica - Resolvendo problema do php artisan migrate
 - 73 Configurando o BD SQLite e executando as migrations
 - 74 [WINDOWS] SGBD MySQL - Download e Instalação

@@ -733,6 +733,43 @@ class CreateProdutosTable extends Migration
 
 
 - 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
+
+```
+$ php artisan make:migration create_produto_detalhes_table
+Created Migration: 2022_07_07_190957_create_produto_detalhes_table
+
+```
+
+```php
+class CreateProdutoDetalhesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('produto_detalhes', function (Blueprint $table) {
+
+            //COLUNAS
+            $table->id();
+            $table->unsignedBigInteger('produto_id');
+            $table->float('comprimento', 8,2);
+            $table->float('largura', 8,2);
+            $table->float('altura', 8,2);
+            $table->timestamps();
+
+            //CONSTRAINT
+            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->unique('produto_id');
+
+        });
+    }
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_07_190957_create_produto_detalhes_table
+Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.06 seconds)
+
+```
+
 - 85 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
 - 86 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
 - 87 Migration - Modificador After

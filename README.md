@@ -877,6 +877,39 @@ class AjusteProdutosFiliais extends Migration
 ```
 
 - 87 Migration - Modificador After
+
+```
+$ php artisan make:migration after_fornecedores_nova_coluna_site_com_after
+Created Migration: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
+
+```
+
+```php
+class AfterFornecedoresNovaColunaSiteComAfter extends Migration
+{
+    public function up()
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->string('site', 150)->after('nome')->nullable()->default('#');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->dropColumn('site');
+        });
+    }
+}
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
+Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.04 seconds)
+
+```
+
 - 88 Migration - Comandos Status, Reset, Refresh e Fresh
 - 89 Entendendo o Eloquent ORM
 - 90 Tinker - Introdução

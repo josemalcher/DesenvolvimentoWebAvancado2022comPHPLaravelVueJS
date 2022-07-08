@@ -953,6 +953,42 @@ $ php artisan migrate:fresh
 - 89 Entendendo o Eloquent ORM
 - 90 Tinker - Introdução
 - 91 Eloquent - Inserindo registros
+
+```
+>>> $contato = new \App\SiteContato();                                                                                                                                                                                  
+=> App\SiteContato {#3420}
+
+>>> $contato->nome = 'Jose';                                                                                                                                                                                            
+=> "Jose"
+
+>>> $contato->telefone = '(91) 0000-1111';                                                                                                                                                                              
+=> "(91) 0000-1111"
+
+>>> $contato->email = 'jose@josemalcher.net';                                                                                                                                                                           
+=> "jose@josemalcher.net"
+
+>>> $contato->motivo_contato = 1;                                                                                                                                                                                       
+=> 1
+
+>>> $contato->mensagem = 'Gostaria de mais informações';                                                                                                                                                                
+=> "Gostaria de mais informações"
+
+>>> print_r($contato->getAttributes());                                                                                                                                                                                 
+Array
+(
+    [nome] => Jose
+    [telefone] => (91) 0000-1111
+    [email] => jose@josemalcher.net
+    [motivo_contato] => 1
+    [mensagem] => Gostaria de mais informações
+)
+=> true
+
+>>> $contato->save();                                                                                                                                                                                                   
+=> true
+
+```
+
 - 92 Eloquent - Ajustando o nome da tabela no Model para um correto ORM
 - 93 Eloquent - Inserindo registros com Create e Fillable
 - 94 Eloquent - Selecionando registros com all()

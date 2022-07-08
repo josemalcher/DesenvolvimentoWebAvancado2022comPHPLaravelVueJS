@@ -911,6 +911,45 @@ Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.04
 ```
 
 - 88 Migration - Comandos Status, Reset, Refresh e Fresh
+
+```
+$ php artisan migrate:status
++------+-----------------------------------------------------------------+-------+
+| Ran? | Migration                                                       | Batch |
++------+-----------------------------------------------------------------+-------+
+| Yes  | 2014_10_12_000000_create_users_table                            | 1     |
+| Yes  | 2014_10_12_100000_create_password_resets_table                  | 1     |
+| Yes  | 2019_08_19_000000_create_failed_jobs_table                      | 1     |
+| Yes  | 2022_07_07_131143_create_site_contatos_table                    | 1     |
+| Yes  | 2022_07_07_181055_create_fornecedores_table                     | 2     |
+| Yes  | 2022_07_07_181950_alter_fornecedores_novas_colunas              | 2     |
+| Yes  | 2022_07_07_185435_create_produtos_table                         | 3     |
+| Yes  | 2022_07_07_190957_create_produto_detalhes_table                 | 4     |
+| Yes  | 2022_07_07_194454_create_unidades_table                         | 4     |
+| Yes  | 2022_07_08_144404_ajuste_produtos_filiais                       | 4     |
+| Yes  | 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after | 5     |
++------+-----------------------------------------------------------------+-------+
+
+```
+
+Comamando que apaga todo o banco, rollback de todas as migrações:
+
+```
+$ php artisan migrate:reset
+```
+
+Comando faz roolback e em seguida migrate. Recriar 
+```
+$ php artisan migrate:refresh
+
+```
+
+Faz o DROP de todos os objetos do DB + o migrate para recriar os objetos
+```
+$ php artisan migrate:fresh
+
+```
+
 - 89 Entendendo o Eloquent ORM
 - 90 Tinker - Introdução
 - 91 Eloquent - Inserindo registros

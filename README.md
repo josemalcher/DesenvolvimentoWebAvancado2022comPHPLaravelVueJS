@@ -1033,6 +1033,32 @@ Array
 
 
 - 93 Eloquent - Inserindo registros com Create e Fillable
+
+```php
+class Fornecedor extends Model
+{
+    protected $table = 'fornecedores';
+
+    protected $fillable = ['nome', 'site', 'uf', 'email'];
+}
+
+```
+
+```
+>>> \App\Fornecedor::create(['nome'=>'Fornecedor Fill', 'site'=> 'www.teste.com', 'uf'=> 'SP', 'email'=> 'teste@teste.com']);                                                                                           
+=> App\Fornecedor {#3425
+     nome: "Fornecedor Fill",
+     site: "www.teste.com",
+     uf: "SP",
+     email: "teste@teste.com",
+     updated_at: "2022-07-08 21:16:28",
+     created_at: "2022-07-08 21:16:28",
+     id: 2,
+   }
+
+
+```
+
 - 94 Eloquent - Selecionando registros com all()
 - 95 Eloquent - Selecionando registros com find()
 - 96 Eloquent - Selecionando registros com where()

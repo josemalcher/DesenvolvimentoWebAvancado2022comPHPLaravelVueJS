@@ -819,6 +819,63 @@ class CreateUnidadesTable extends Migration
 ```
 
 - 86 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
+
+```
+$ php artisan make:migration ajuste_produtos_filiais
+Created Migration: 2022_07_08_144404_ajuste_produtos_filiais
+
+```
+
+```php
+class AjusteProdutosFiliais extends Migration
+{
+    public function up()
+    {
+        // CRIANDO tabela filiais
+        Schema::create('filiais', function (Blueprint $table) {
+            $table->id();
+            $table->string('filial', 30);
+            $table->timestamps();
+        });
+
+        // TABELA PRODUTO_FILIAIS
+        Schema::create('produto_filiais', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('filial_id');
+            $table->unsignedBigInteger('produto_id');
+            $table->decimal('preco_venda', 8, 2);
+            $table->integer('estoque_minimo');
+            $table->integer('estoque_maximo');
+
+            $table->timestamps();
+
+            // foreignKey (constraints)
+            $table->foreign('filial_id')->references('id')->on('filiais');
+            $table->foreign('produto_id')->references('id')->on('produtos');
+
+        });
+
+        // REMOVENDO colunas da tabela Produtos
+        Schema::table('produtos', function (Blueprint $table) {
+            $table->dropColumn(['preco_venda', 'estoque_minimo', 'estoque_maximo']);
+        });
+
+    }
+    public function down()
+    {
+        Schema::table('protudos', function (Blueprint $table) {
+            $table->decimal('preco_venda', 8, 2);
+            $table->integer('estoque_minimo');
+            $table->integer('estoque_maximo');
+        });
+
+        Schema::dropIfExists('produto_filiais');
+        Schema::dropIfExists('filiais');
+    }
+}
+```
+
 - 87 Migration - Modificador After
 - 88 Migration - Comandos Status, Reset, Refresh e Fresh
 - 89 Entendendo o Eloquent ORM

@@ -990,6 +990,48 @@ Array
 ```
 
 - 92 Eloquent - Ajustando o nome da tabela no Model para um correto ORM
+
+```php
+// fornecedors
+// fornecedores
+class Fornecedor extends Model
+{
+    protected $table = 'fornecedores';
+}
+```
+
+```
+>>> $f2 = new \App\Fornecedor();                                                                                                                                                                                        
+=> App\Fornecedor {#4209}
+
+>>> $f2->nome = 'Fornecedor teste1';                                                                                                                                                                                    
+=> "Fornecedor teste1"
+
+>>> $f2->site= 'www.fornecedor.com';                                                                                                                                                                                    
+=> "www.fornecedor.com"
+
+>>> $f2->uf = 'PA';                                                                                                                                                                                                     
+=> "PA"
+
+>>> $f2->email = 'contato@fornecedor.com';                                                                                                                                                                              
+=> "contato@fornecedor.com"
+
+>>> print_r($f2->getattributes())                                                                                                                                                                                       
+Array
+(
+    [nome] => Fornecedor teste1
+    [site] => www.fornecedor.com
+    [uf] => PA
+    [email] => contato@fornecedor.com
+)
+=> true
+
+>>> $f2->save()                                                                                                                                                                                                         
+=> true
+
+```
+
+
 - 93 Eloquent - Inserindo registros com Create e Fillable
 - 94 Eloquent - Selecionando registros com all()
 - 95 Eloquent - Selecionando registros com find()

@@ -1279,6 +1279,43 @@ Array
 ```
 
 - 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+>>> $contatos = SiteContato::whereBetween('id', [3,6])->get();                                                                                                                                                          
+=> Illuminate\Database\Eloquent\Collection {#4385
+     all: [
+       App\SiteContato {#4132
+         id: 3,
+         created_at: null,
+         updated_at: null,
+         nome: "Rosa",
+         telefone: "(33) 92222-3333",
+         email: "rosa@contato.com.br",
+         motivo_contato: 1,
+         mensagem: "Quando custa essa aplicação?",
+       },
+//.....
+```
+
+```
+>>> $contatos = SiteContato::whereNotBetween('id', [3,6])->get();                                                                                                                                                       
+=> Illuminate\Database\Eloquent\Collection {#4390
+     all: [
+       App\SiteContato {#4384
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+
+```
+
+
 - 99 Eloquent - Selecionando registros com dois ou mais Wheres
 - 100 Eloquent - Selecionando registros com orWhere()
 - 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()

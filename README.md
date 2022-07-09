@@ -1317,6 +1317,15 @@ Array
 
 
 - 99 Eloquent - Selecionando registros com dois ou mais Wheres
+
+```
+>>> $contatos = SiteContato::where('nome', '<>', 'Fernando')->whereIn('motivo_contato', [1,2])->whereBetween('created_at', ['2022-07-08 00:00:00', '2020-07-08 00:00:00'])->get();                                      
+=> Illuminate\Database\Eloquent\Collection {#3447
+     all: [],
+   }
+
+```
+
 - 100 Eloquent - Selecionando registros com orWhere()
 - 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()
 - 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora

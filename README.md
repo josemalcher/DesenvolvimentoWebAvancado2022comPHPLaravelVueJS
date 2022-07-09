@@ -1163,6 +1163,68 @@ Array
 ```
 
 - 96 Eloquent - Selecionando registros com where()
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+>>> $contatos = SiteContato::where('id', '>', 1);                                                                                                                                                                       
+=> Illuminate\Database\Eloquent\Builder {#3458}
+
+>>> $contatos = SiteContato::where('id', '>', 1)->get();                                                                                                                                                                
+=> Illuminate\Database\Eloquent\Collection {#3764
+     all: [],
+   }
+
+>>> $contatos = SiteContato::where('id', '>=', 1)->get();                                                                                                                                                               
+=> Illuminate\Database\Eloquent\Collection {#4236
+     all: [
+       App\SiteContato {#3460
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+>>> $contatos = SiteContato::where('nome', 'Jose')->get();                                                                                                                                                              
+=> Illuminate\Database\Eloquent\Collection {#4325
+     all: [
+       App\SiteContato {#4132
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+>>> $contatos = SiteContato::where('mensagem','like', '%informações%')->get();                                                                                                                                          
+=> Illuminate\Database\Eloquent\Collection {#4327
+     all: [
+       App\SiteContato {#4384
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+
+```
+
 - 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()
 - 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
 - 99 Eloquent - Selecionando registros com dois ou mais Wheres

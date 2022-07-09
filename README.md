@@ -1346,6 +1346,45 @@ Array
 ```
 
 - 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()
+
+```
+>>> $contatos = SiteContato::whereNull('updated_at')->get();                                                                                                                                                            
+=> Illuminate\Database\Eloquent\Collection {#4408
+     all: [
+       App\SiteContato {#4382
+         id: 2,
+         created_at: null,
+         updated_at: null,
+         nome: "João",
+         telefone: "(88) 91111-2222",
+         email: "joao@contato.com.br",
+         motivo_contato: 3,
+         mensagem: "É muito difícil localizar a opção de listar todos os produtos",
+       },
+// ....
+```
+
+```
+>>> $contatos = SiteContato::whereNotNull('updated_at')->get();                                                                                                                                                         
+=> Illuminate\Database\Eloquent\Collection {#4383
+     all: [
+       App\SiteContato {#3458
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+
+```
+
+
 - 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
 - 103 Eloquent - Selecionando registros com whereColumn()
 - 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas

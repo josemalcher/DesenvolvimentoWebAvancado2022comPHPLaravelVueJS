@@ -1060,6 +1060,66 @@ class Fornecedor extends Model
 ```
 
 - 94 Eloquent - Selecionando registros com all()
+
+```
+>>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> $fornecedores = Fornecedor::all();                                                                                                                                                                                  
+=> Illuminate\Database\Eloquent\Collection {#3433
+     all: [
+       App\Fornecedor {#3421
+         id: 1,
+         nome: "Fornecedor teste1",
+         site: "www.fornecedor.com",
+         created_at: "2022-07-08 21:10:52",
+         updated_at: "2022-07-08 21:10:52",
+         uf: "PA",
+         email: "contato@fornecedor.com",
+       },
+       App\Fornecedor {#3420
+         id: 2,
+         nome: "Fornecedor Fill",
+         site: "www.teste.com",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-08 21:16:28",
+         uf: "SP",
+         email: "teste@teste.com",
+       },
+     ],
+   }
+
+```
+
+```
+>>> print_r($fornecedores->toArray());                                                                                                                                                                                  
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [nome] => Fornecedor teste1
+            [site] => www.fornecedor.com
+            [created_at] => 2022-07-08T21:10:52.000000Z
+            [updated_at] => 2022-07-08T21:10:52.000000Z
+            [uf] => PA
+            [email] => contato@fornecedor.com
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [nome] => Fornecedor Fill
+            [site] => www.teste.com
+            [created_at] => 2022-07-08T21:16:28.000000Z
+            [updated_at] => 2022-07-08T21:16:28.000000Z
+            [uf] => SP
+            [email] => teste@teste.com
+        )
+
+)
+=> true
+
+```
+
 - 95 Eloquent - Selecionando registros com find()
 - 96 Eloquent - Selecionando registros com where()
 - 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()

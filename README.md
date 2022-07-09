@@ -1485,6 +1485,36 @@ Array
 
 
 - 103 Eloquent - Selecionando registros com whereColumn()
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+>>> $contatos = SiteContato::whereColumn('created_at', 'updated_at')->get()                                                                                                                                             
+=> Illuminate\Database\Eloquent\Collection {#4385
+     all: [
+       App\SiteContato {#4382
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+b
+```
+
+```
+>>> $contatos = SiteContato::whereColumn('created_at','<>', 'updated_at')->get()                                                                                                                                        
+=> Illuminate\Database\Eloquent\Collection {#4412
+     all: [],
+   }
+
+```
+
+
 - 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
 - 105 Eloquent - Ordenando registros
 - 106 Eloquent - Introdução as Collections

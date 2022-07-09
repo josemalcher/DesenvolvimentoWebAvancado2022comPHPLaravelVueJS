@@ -1226,6 +1226,58 @@ Array
 ```
 
 - 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+>>> $contatos = SiteContato::whereIn('motivo_contato', [1,3]);                                                                                                                                                          
+=> Illuminate\Database\Eloquent\Builder {#4237}
+
+>>> $contatos = SiteContato::whereIn('motivo_contato', [1,3])->get();                                                                                                                                                   
+=> Illuminate\Database\Eloquent\Collection {#4386
+     all: [
+       App\SiteContato {#4327
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+// ...
+```
+
+```
+>>> $contatos = SiteContato::whereNotIn('motivo_contato', [1,3])->get();                                                                                                                                                
+=> Illuminate\Database\Eloquent\Collection {#4389
+     all: [
+       App\SiteContato {#4382
+         id: 5,
+         created_at: null,
+         updated_at: null,
+         nome: "André",
+         telefone: "(88) 95555-6666",
+         email: "andre@contato.com.br",
+         motivo_contato: 2,
+         mensagem: "Parabéns pela ferramenta, estou obtendo ótimos resultados!",
+       },
+       App\SiteContato {#4383
+         id: 7,
+         created_at: null,
+         updated_at: null,
+         nome: "Helena",
+         telefone: "(11) 97777-8888",
+         email: "helena@contato.com.br",
+         motivo_contato: 2,
+         mensagem: "Consigo controlar toda a minha empresa de modo fácil e prático.",
+       },
+     ],
+   }
+
+
+```
+
 - 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
 - 99 Eloquent - Selecionando registros com dois ou mais Wheres
 - 100 Eloquent - Selecionando registros com orWhere()

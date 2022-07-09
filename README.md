@@ -1327,6 +1327,24 @@ Array
 ```
 
 - 100 Eloquent - Selecionando registros com orWhere()
+
+```
+>>> $contatos = SiteContato::where('nome', '<>', 'Fernando')->orWhereIn('motivo_contato', [1,2])->orWhereBetween('created_at', ['2022-07-08 00:00:00', '2020-07-08 00:00:00'])->get();                                  
+=> Illuminate\Database\Eloquent\Collection {#4385
+     all: [
+       App\SiteContato {#4390
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+// ....
+```
+
 - 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()
 - 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
 - 103 Eloquent - Selecionando registros com whereColumn()

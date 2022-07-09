@@ -1121,6 +1121,47 @@ Array
 ```
 
 - 95 Eloquent - Selecionando registros com find()
+
+```
+>>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> $fornecedores2 = Fornecedor::find(2);                                                                                                                                                                               
+=> App\Fornecedor {#3423
+     id: 2,
+     nome: "Fornecedor Fill",
+     site: "www.teste.com",
+     created_at: "2022-07-08 21:16:28",
+     updated_at: "2022-07-08 21:16:28",
+     uf: "SP",
+     email: "teste@teste.com",
+   }
+
+>>> $fornecedores2 = Fornecedor::find([1,2]);                                                                                                                                                                           
+=> Illuminate\Database\Eloquent\Collection {#3449
+     all: [
+       App\Fornecedor {#3417
+         id: 1,
+         nome: "Fornecedor teste1",
+         site: "www.fornecedor.com",
+         created_at: "2022-07-08 21:10:52",
+         updated_at: "2022-07-08 21:10:52",
+         uf: "PA",
+         email: "contato@fornecedor.com",
+       },
+       App\Fornecedor {#3444
+         id: 2,
+         nome: "Fornecedor Fill",
+         site: "www.teste.com",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-08 21:16:28",
+         uf: "SP",
+         email: "teste@teste.com",
+       },
+     ],
+   }
+
+
+```
+
 - 96 Eloquent - Selecionando registros com where()
 - 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()
 - 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()

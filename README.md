@@ -1386,6 +1386,104 @@ Array
 
 
 - 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
+
+```
+>>> $contatos = SiteContato::whereDate('created_at', '2022-07-08')->get()                                                                                                                                               
+=> Illuminate\Database\Eloquent\Collection {#4394
+     all: [
+       App\SiteContato {#4382
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+```
+
+```
+>>> $contatos = SiteContato::whereDay('created_at', '08')->get()                                                                                                                                                        
+=> Illuminate\Database\Eloquent\Collection {#4416
+     all: [
+       App\SiteContato {#3416
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+```
+
+```
+>>> $contatos = SiteContato::whereMonth('created_at', '07')->get()                                                                                                                                                      
+=> Illuminate\Database\Eloquent\Collection {#4392
+     all: [
+       App\SiteContato {#4398
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+```
+
+```
+>>> $contatos = SiteContato::whereYear('created_at', '2022')->get()                                                                                                                                                     
+=> Illuminate\Database\Eloquent\Collection {#4387
+     all: [
+       App\SiteContato {#4404
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+```
+
+```
+>>> $contatos = SiteContato::whereTime('created_at', '=', '21:01:42')->get()                                                                                                                                            
+=> Illuminate\Database\Eloquent\Collection {#4395
+     all: [
+       App\SiteContato {#3458
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+     ],
+   }
+
+
+```
+
+
 - 103 Eloquent - Selecionando registros com whereColumn()
 - 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
 - 105 Eloquent - Ordenando registros

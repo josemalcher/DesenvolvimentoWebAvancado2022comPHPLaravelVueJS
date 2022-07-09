@@ -1516,6 +1516,18 @@ b
 
 
 - 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
+
+```
+>>> $contatos = SiteContato::where(function($query){$query->where('nome', 'Jorge')->orWhere('nome', 'Ana');})
+                           ->where(function($query){$query->whereIn('motivo_contato', [1,2])->orWhere('id', [4,6]);})
+                           ->get();         
+=> Illuminate\Database\Eloquent\Collection {#4402
+     all: [],
+   }
+
+
+```
+
 - 105 Eloquent - Ordenando registros
 - 106 Eloquent - Introdução as Collections
 - 107 Eloquent - Collection first, last e reverse

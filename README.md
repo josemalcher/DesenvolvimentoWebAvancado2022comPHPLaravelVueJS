@@ -1529,6 +1529,57 @@ b
 ```
 
 - 105 Eloquent - Ordenando registros
+
+```
+>>> use \App\SiteContato;       
+>>> $contato = SiteContato::all();                                                                                                                                                                                      
+=> Illuminate\Database\Eloquent\Collection {#4358
+     all: [
+       App\SiteContato {#4359
+         id: 1,
+         created_at: "2022-07-08 21:01:42",
+         updated_at: "2022-07-08 21:01:42",
+         nome: "Jose",
+         telefone: "(91) 0000-1111",
+         email: "jose@josemalcher.net",
+         motivo_contato: 1,
+         mensagem: "Gostaria de mais informações",
+       },
+//....
+```
+
+```
+>>> $contato = SiteContato::orderBy('nome', 'asc')->get();                                                                                                                                                              
+=> Illuminate\Database\Eloquent\Collection {#4367
+     all: [
+       App\SiteContato {#4368
+         id: 6,
+         created_at: null,
+         updated_at: null,
+         nome: "Ana",
+         telefone: "(33) 96666-7777",
+         email: "ana@contato.com.br",
+         motivo_contato: 3,
+         mensagem: "Não gostei muito das cores, consigo mudar de tema?",
+       },
+// .....
+
+>>> $contato = SiteContato::orderBy('motivo_contato')->orderBy('nome')->get();                                                                                                                                          
+=> Illuminate\Database\Eloquent\Collection {#3739
+     all: [
+       App\SiteContato {#3418
+         id: 4,
+         created_at: null,
+         updated_at: null,
+         nome: "Fernando",
+         telefone: "(11) 94444-5555",
+         email: "fernando@contato.com.br",
+         motivo_contato: 1,
+         mensagem: "Como consigo criar multiplos usuários para minha empresa?",
+       },
+// .....
+```
+
 - 106 Eloquent - Introdução as Collections
 - 107 Eloquent - Collection first, last e reverse
 - 108 Eloquent - Collection toArray e toJson

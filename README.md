@@ -1717,7 +1717,51 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 ```
 
 - 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
+
+    - [https://laravel.com/docs/7.x/collections](https://laravel.com/docs/7.x/collections)
+
 - 111 Eloquent - Atualizando registros (save)
+
+```
+>>> use \App\Fornecedor;
+                                                                                                                                                                                                
+>>> $fornecedor = Fornecedor::find(1);                                                                                                                                                                                  
+=> App\Fornecedor {#3416
+     id: 1,
+     nome: "Fornecedor teste1",
+     site: "www.fornecedor.com",
+     created_at: "2022-07-08 21:10:52",
+     updated_at: "2022-07-08 21:10:52",
+     uf: "PA",
+     email: "contato@fornecedor.com",
+   }
+
+>>> $fornecedor->nome = 'Fornecedor 123';                                                                                                                                                                               
+=> "Fornecedor 123"
+
+>>> $fornecedor->site = 'www.fornecedor123.com';                                                                                                                                                                        
+=> "www.fornecedor123.com"
+
+>>> $fornecedor->email = 'fornecedor123@fornecedor123.com';                                                                                                                                                             
+=> "fornecedor123@fornecedor123.com"
+
+>>> $fornecedor->save();                                                                                                                                                                                                
+=> true
+
+>>> $fornecedor = Fornecedor::find(1);                                                                                                                                                                                  
+=> App\Fornecedor {#4375
+     id: 1,
+     nome: "Fornecedor 123",
+     site: "www.fornecedor123.com",
+     created_at: "2022-07-08 21:10:52",
+     updated_at: "2022-07-11 00:55:31",
+     uf: "PA",
+     email: "fornecedor123@fornecedor123.com",
+   }
+
+
+```
+
 - 112 Eloquent - Atualizando registros (fill e save)
 - 113 Eloquent - Atualizando registros (where e update)
 - 114 Eloquent - Deletando registros (delete e destroy)

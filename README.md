@@ -1674,6 +1674,48 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 
 - 109 Eloquent - Collection pluck
+
+```
+>>> SiteContato::all()->pluck('email');                                                                                                                                                                                 
+=> Illuminate\Support\Collection {#4358
+     all: [
+       "jose@josemalcher.net",
+       "joao@contato.com.br",
+       "rosa@contato.com.br",
+       "fernando@contato.com.br",
+       "andre@contato.com.br",
+       "ana@contato.com.br",
+       "helena@contato.com.br",
+     ],
+   }
+
+>>> SiteContato::all()->pluck('email')->toArray();                                                                                                                                                                      
+=> [
+     "jose@josemalcher.net",
+     "joao@contato.com.br",
+     "rosa@contato.com.br",
+     "fernando@contato.com.br",
+     "andre@contato.com.br",
+     "ana@contato.com.br",
+     "helena@contato.com.br",
+   ]
+
+>>> SiteContato::all()->pluck('email','nome');                                                                                                                                                                          
+=> Illuminate\Support\Collection {#4364
+     all: [
+       "Jose" => "jose@josemalcher.net",
+       "João" => "joao@contato.com.br",
+       "Rosa" => "rosa@contato.com.br",
+       "Fernando" => "fernando@contato.com.br",
+       "André" => "andre@contato.com.br",
+       "Ana" => "ana@contato.com.br",
+       "Helena" => "helena@contato.com.br",
+     ],
+   }
+
+
+```
+
 - 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 - 111 Eloquent - Atualizando registros (save)
 - 112 Eloquent - Atualizando registros (fill e save)

@@ -1582,6 +1582,70 @@ b
 
 - 106 Eloquent - Introdução as Collections
 - 107 Eloquent - Collection first, last e reverse
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+>>> $contato = SiteContato::where('id', '>', 3);                                                                                                                                                                        
+=> Illuminate\Database\Eloquent\Builder {#4373}
+
+>>> $contato = SiteContato::where('id', '>', 3)->get();                                                                                                                                                                 
+=> Illuminate\Database\Eloquent\Collection {#3739
+     all: [
+       App\SiteContato {#4146
+         id: 4,
+         created_at: null,
+         updated_at: null,
+         nome: "Fernando",
+         telefone: "(11) 94444-5555",
+         email: "fernando@contato.com.br",
+         motivo_contato: 1,
+         mensagem: "Como consigo criar multiplos usuários para minha empresa?",
+       },
+// .....
+```
+
+```
+>>> $contato->first();                                                                                                                                                                                                  
+=> App\SiteContato {#4146
+     id: 4,
+     created_at: null,
+     updated_at: null,
+     nome: "Fernando",
+     telefone: "(11) 94444-5555",
+     email: "fernando@contato.com.br",
+     motivo_contato: 1,
+     mensagem: "Como consigo criar multiplos usuários para minha empresa?",
+   }
+
+>>> $contato->last();                                                                                                                                                                                                   
+=> App\SiteContato {#4354
+     id: 7,
+     created_at: null,
+     updated_at: null,
+     nome: "Helena",
+     telefone: "(11) 97777-8888",
+     email: "helena@contato.com.br",
+     motivo_contato: 2,
+     mensagem: "Consigo controlar toda a minha empresa de modo fácil e prático.",
+   }
+
+>>> $contato->reverse();                                                                                                                                                                                                
+=> Illuminate\Database\Eloquent\Collection {#4366
+     all: [
+       3 => App\SiteContato {#4354
+         id: 7,
+         created_at: null,
+         updated_at: null,
+         nome: "Helena",
+         telefone: "(11) 97777-8888",
+         email: "helena@contato.com.br",
+         motivo_contato: 2,
+         mensagem: "Consigo controlar toda a minha empresa de modo fácil e prático.",
+       },
+// .....
+```
+
+
 - 108 Eloquent - Collection toArray e toJson
 - 109 Eloquent - Collection pluck
 - 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection

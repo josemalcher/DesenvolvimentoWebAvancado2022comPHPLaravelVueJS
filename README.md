@@ -1870,6 +1870,74 @@ class Fornecedor extends Model
 
 
 - 115 Eloquent - Deletando registros com SoftDelete
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Fornecedor extends Model
+{
+    use SoftDeletes;
+
+    protected $table = 'fornecedores';
+    protected $fillable = ['nome', 'site', 'uf', 'email'];
+}
+
+```
+
+```
+$ php artisan make:migration alter_fornecedores_nova_coluna_softdelete
+Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
+
+```
+
+```php
+ public function up()
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+    }
+    public function down()
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+    }
+```
+
+```
+>>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> $fornecedor = Fornecedor::find(2)                                                                                                                                                                                   
+=> App\Fornecedor {#3442
+     id: 2,
+     nome: "FORNECEDOR TESTE",
+     site: "www.teste.com.br",
+     created_at: "2022-07-08 21:16:28",
+     updated_at: "2022-07-11 01:11:35",
+     uf: "SP",
+     email: "teste@teste.com",
+     deleted_at: null,
+   }
+
+>>> $fornecedor->delete();                                                                                                                                                                                              
+=> true
+
+>>> $fornecedor = Fornecedor::find(2)                                                                                                                                                                                   
+=> null
+
+
+```
+
+```
+>>> $fornecedor->forceDelete();  // força o delete, apagar o registro
+```
+
+
 - 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
 - 117 Seeders parte 1
 - 118 Seeders parte 2

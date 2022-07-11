@@ -1647,6 +1647,32 @@ b
 
 
 - 108 Eloquent - Collection toArray e toJson
+
+```
+>>> SiteContato::all()->toArray();                                                                                                                                                                                      
+=> [
+     [
+       "id" => 1,
+       "created_at" => "2022-07-08T21:01:42.000000Z",
+       "updated_at" => "2022-07-08T21:01:42.000000Z",
+       "nome" => "Jose",
+       "telefone" => "(91) 0000-1111",
+       "email" => "jose@josemalcher.net",
+       "motivo_contato" => 1,
+       "mensagem" => "Gostaria de mais informações",
+     ],
+// ......
+```
+
+```
+>>> SiteContato::all()->toJson();                                                                                                                                                                                       
+=> "[{"id":1,"created_at":"2022-07-08T21:01:42.000000Z","updated_at":"2022-07-08T21:01:42.000000Z","nome":"Jose","telefone":"(91) 0000-1111","email":"jose@josemalcher.net","motivo_contato":1,"mensagem":"Gostaria de m
+ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"Jo\u00e3o","telefone":"(88) 91111-2222","email":"joao@contato.com.br","motivo_contato":3,"mensagem":"\u00c9 muito dif\u00edcil localizar
+ a op\u00e7\u00e3o de listar todos os produtos"},
+ // .....
+```
+
+
 - 109 Eloquent - Collection pluck
 - 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 - 111 Eloquent - Atualizando registros (save)

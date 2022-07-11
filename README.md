@@ -1835,6 +1835,40 @@ class Fornecedor extends Model
 ```
 
 - 114 Eloquent - Deletando registros (delete e destroy)
+
+```
+>>> use \App\SiteContato;                                                                                                                                                                                               
+
+>>> $contato = SiteContato::find(4);                                                                                                                                                                                    
+=> App\SiteContato {#4209
+     id: 4,
+     created_at: null,
+     updated_at: null,
+     nome: "Fernando",
+     telefone: "(11) 94444-5555",
+     email: "fernando@contato.com.br",
+     motivo_contato: 1,
+     mensagem: "Como consigo criar multiplos usuários para minha empresa?",
+   }
+
+>>> $contato->delete();                                                                                                                                                                                                 
+=> true
+
+```
+
+```
+>>> SiteContato::where('id', 7)->delete();                                                                                                                                                                              
+=> 1
+
+```
+
+```
+>>> SiteContato::destroy(5);                                                                                                                                                                                            
+=> 1
+
+```
+
+
 - 115 Eloquent - Deletando registros com SoftDelete
 - 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
 - 117 Seeders parte 1

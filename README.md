@@ -2034,6 +2034,94 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 
 
 - 117 Seeders parte 1
+
+```
+$ php artisan migrate:fresh
+Dropped all tables successfully.
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (0.03 seconds)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (0.02 seconds)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (0.01 seconds)
+Migrating: 2022_07_07_131143_create_site_contatos_table
+Migrated:  2022_07_07_131143_create_site_contatos_table (0.01 seconds)
+Migrating: 2022_07_07_181055_create_fornecedores_table
+Migrated:  2022_07_07_181055_create_fornecedores_table (0.01 seconds)
+Migrating: 2022_07_07_181950_alter_fornecedores_novas_colunas
+Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.02 seconds)
+Migrating: 2022_07_07_185435_create_produtos_table
+Migrated:  2022_07_07_185435_create_produtos_table (0.01 seconds)
+Migrating: 2022_07_07_190957_create_produto_detalhes_table
+Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.05 seconds)
+Migrating: 2022_07_07_194454_create_unidades_table
+Migrated:  2022_07_07_194454_create_unidades_table (0.11 seconds)
+Migrating: 2022_07_08_144404_ajuste_produtos_filiais
+Migrated:  2022_07_08_144404_ajuste_produtos_filiais (0.11 seconds)
+Migrating: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
+Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.02 seconds)
+Migrating: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
+Migrated:  2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete (0.02 seconds)
+```
+
+```
+$ php artisan make:seeder FornecedorSeeder
+Seeder created successfully.
+
+```
+
+```php
+class FornecedorSeeder extends Seeder
+{
+    public function run()
+    {
+        //instanciando o objeto
+        $fornecedor = new Fornecedor();
+        $fornecedor->nome = 'Fornecedor 100';
+        $fornecedor->site = 'fornecedor100.com.br';
+        $fornecedor->uf = 'CE';
+        $fornecedor->email = 'contato@fornecedor100.com.br';
+        $fornecedor->save();
+
+        //o método create (atenção para o atributo fillable da classe)
+        Fornecedor::create([
+            'nome' => 'Fornecedor 200',
+            'site' => 'fornecedor200.com.br',
+            'uf' => 'RS',
+            'email' => 'contato@fornecedor200.com.br'
+        ]);
+
+        //insert (sem tratamento do laravel)
+        DB::table('fornecedores')->insert([
+            'nome' => 'Fornecedor 300',
+            'site' => 'fornecedor300.com.br',
+            'uf' => 'SP',
+            'email' => 'contato@fornecedor300.com.br'
+        ]);   //
+    }
+}
+```
+
+```php
+class DatabaseSeeder extends Seeder
+{
+    public function run()
+    {
+        // $this->call(UserSeeder::class);
+        $this->call(FornecedorSeeder::class);
+    }
+}
+```
+
+```
+$ php artisan db:seed
+Seeding: FornecedorSeeder
+Seeded:  FornecedorSeeder (0.03 seconds)
+Database seeding completed successfully.
+
+```
+
 - 118 Seeders parte 2
 - 119 Factories (semeando tabelas em massa com a dependência Faker)
 

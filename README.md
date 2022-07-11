@@ -1803,6 +1803,37 @@ class Fornecedor extends Model
 
 
 - 113 Eloquent - Atualizando registros (where e update)
+
+```
+>>> Fornecedor::whereIn('id', [1,2])->get();                                                                                                                                                                            
+=> Illuminate\Database\Eloquent\Collection {#4361
+     all: [
+       App\Fornecedor {#4390
+         id: 1,
+         nome: "Fornecedor 123",
+         site: "www.fornecedor123.com",
+         created_at: "2022-07-08 21:10:52",
+         updated_at: "2022-07-11 00:55:31",
+         uf: "PA",
+         email: "fornecedor123@fornecedor123.com",
+       },
+       App\Fornecedor {#3416
+         id: 2,
+         nome: "FORNECEDOR 321",
+         site: "www.fornece312.com",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-11 01:07:26",
+         uf: "SP",
+         email: "teste@teste.com",
+       },
+     ],
+   }
+
+>>> Fornecedor::whereIn('id', [1,2])->update(['nome'=> 'FORNECEDOR TESTE', 'site'=> 'www.teste.com.br']);                                                                                                               
+=> 2
+
+```
+
 - 114 Eloquent - Deletando registros (delete e destroy)
 - 115 Eloquent - Deletando registros com SoftDelete
 - 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete

@@ -1939,6 +1939,100 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 
 
 - 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
+
+```
+>>> Fornecedor::withTrashed()->get();                                                                                                                                                                                   
+=> Illuminate\Database\Eloquent\Collection {#3448
+     all: [
+       App\Fornecedor {#3449
+         id: 1,
+         nome: "FORNECEDOR TESTE",
+         site: "www.teste.com.br",
+         created_at: "2022-07-08 21:10:52",
+         updated_at: "2022-07-11 01:11:35",
+         uf: "PA",
+         email: "fornecedor123@fornecedor123.com",
+         deleted_at: null,
+       },
+       App\Fornecedor {#3450
+         id: 2,
+         nome: "FORNECEDOR TESTE",
+         site: "www.teste.com.br",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-11 15:01:20",
+         uf: "SP",
+         email: "teste@teste.com",
+         deleted_at: "2022-07-11 15:01:20",
+       },
+     ],
+   }
+
+```
+
+```
+>>> Fornecedor::onlyTrashed()->get();                                                                                                                                                                                   
+=> Illuminate\Database\Eloquent\Collection {#3413
+     all: [
+       App\Fornecedor {#3423
+         id: 2,
+         nome: "FORNECEDOR TESTE",
+         site: "www.teste.com.br",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-11 15:01:20",
+         uf: "SP",
+         email: "teste@teste.com",
+         deleted_at: "2022-07-11 15:01:20",
+       },
+     ],
+   }
+
+```
+
+```
+>>> $fornecedor = Fornecedor::withTrashed()->get();                                                                                                                                                                     
+=> Illuminate\Database\Eloquent\Collection {#3430
+     all: [
+       App\Fornecedor {#3439
+         id: 1,
+         nome: "FORNECEDOR TESTE",
+         site: "www.teste.com.br",
+         created_at: "2022-07-08 21:10:52",
+         updated_at: "2022-07-11 01:11:35",
+         uf: "PA",
+         email: "fornecedor123@fornecedor123.com",
+         deleted_at: null,
+       },
+       App\Fornecedor {#3454
+         id: 2,
+         nome: "FORNECEDOR TESTE",
+         site: "www.teste.com.br",
+         created_at: "2022-07-08 21:16:28",
+         updated_at: "2022-07-11 15:01:20",
+         uf: "SP",
+         email: "teste@teste.com",
+         deleted_at: "2022-07-11 15:01:20",
+       },
+// .....
+
+>>> $fornecedor[1]->restore();                                                                                                                                                                                          
+=> true
+
+>>> $fornecedor = Fornecedor::find(2);                                                                                                                                                                                  
+=> App\Fornecedor {#3459
+     id: 2,
+     nome: "FORNECEDOR TESTE",
+     site: "www.teste.com.br",
+     created_at: "2022-07-08 21:16:28",
+     updated_at: "2022-07-11 15:10:49",
+     uf: "SP",
+     email: "teste@teste.com",
+     deleted_at: null,
+   }
+
+
+```
+
+
 - 117 Seeders parte 1
 - 118 Seeders parte 2
 - 119 Factories (semeando tabelas em massa com a dependência Faker)

@@ -2129,7 +2129,7 @@ $ php artisan make:seeder SiteContatoSeeder
 Seeder created successfully.
 ```
 
-```
+```php
 class SiteContatoSeeder extends Seeder
 {
     public function run()
@@ -2153,6 +2153,41 @@ Database seeding completed successfully.
 ```
 
 - 119 Factories (semeando tabelas em massa com a dependência Faker)
+
+```
+$ php artisan make:factory SiteContatoFactory --model=SiteContato
+Factory created successfully.
+
+```
+
+```php
+$factory->define(SiteContato::class, function (Faker $faker) {
+    return [
+        'nome' => $faker->name,
+        'telefone' => $faker->tollFreePhoneNumber,
+        'email' => $faker->unique()->email,
+        'motivo_contato' => $faker->numberBetween(1,3),
+        'mensagem' => $faker->text(200)
+    ];
+});
+```
+
+```php
+class SiteContatoSeeder extends Seeder
+{
+    public function run()
+    {
+        factory(SiteContato::class, 100)->create();
+    }
+}
+```
+
+```
+$ php artisan db:seed --class=SiteContatoSeeder
+Database seeding completed successfully.
+
+```
+
 
 [Voltar ao Índice](#indice)
 

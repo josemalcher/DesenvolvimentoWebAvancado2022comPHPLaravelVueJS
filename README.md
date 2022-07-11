@@ -1763,6 +1763,45 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 ```
 
 - 112 Eloquent - Atualizando registros (fill e save)
+
+```
+>>> $fornecedor2 = Fornecedor::find(2);                                                                                                                                                                                 
+=> App\Fornecedor {#4364
+     id: 2,
+     nome: "Fornecedor Fill",
+     site: "www.teste.com",
+     created_at: "2022-07-08 21:16:28",
+     updated_at: "2022-07-08 21:16:28",
+     uf: "SP",
+     email: "teste@teste.com",
+   }
+
+>>> $fornecedor2->fill(['nome'=> 'FORNECEDOR 321', 'site' => 'www.fornece312.com']);                                                                                                                                    
+=> App\Fornecedor {#4364
+     id: 2,
+     nome: "FORNECEDOR 321",
+     site: "www.fornece312.com",
+     created_at: "2022-07-08 21:16:28",
+     updated_at: "2022-07-08 21:16:28",
+     uf: "SP",
+     email: "teste@teste.com",
+   }
+
+>>> $fornecedor2->save();                                                                                                                                                                                               
+=> true
+
+```
+
+```php
+class Fornecedor extends Model
+{
+    protected $table = 'fornecedores';
+
+    protected $fillable = ['nome', 'site', 'uf', 'email'];
+}
+```
+
+
 - 113 Eloquent - Atualizando registros (where e update)
 - 114 Eloquent - Deletando registros (delete e destroy)
 - 115 Eloquent - Deletando registros com SoftDelete

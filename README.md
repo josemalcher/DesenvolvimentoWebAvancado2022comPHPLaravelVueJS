@@ -2123,6 +2123,35 @@ Database seeding completed successfully.
 ```
 
 - 118 Seeders parte 2
+
+```
+$ php artisan make:seeder SiteContatoSeeder
+Seeder created successfully.
+```
+
+```
+class SiteContatoSeeder extends Seeder
+{
+    public function run()
+    {
+        //
+        $contato = new SiteContato();
+        $contato->nome = 'Sistema SG';
+        $contato->telefone = '(11) 99999-8888';
+        $contato->email = 'contato@sg.com.br';
+        $contato->motivo_contato = 1;
+        $contato->mensagem = 'Seja bem-vindo ao sistema Super Gestão';
+        $contato->save();
+    }
+}
+```
+
+```
+$ php artisan db:seed --class=SiteContatoSeeder
+Database seeding completed successfully.
+
+```
+
 - 119 Factories (semeando tabelas em massa com a dependência Faker)
 
 [Voltar ao Índice](#indice)

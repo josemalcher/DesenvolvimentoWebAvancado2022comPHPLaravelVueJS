@@ -2198,6 +2198,50 @@ Database seeding completed successfully.
 
 - 120 Entendendo o objeto Request
 - 121 Gravando os dados do formulário no banco de dados
+
+```php
+class SiteContato extends Model
+{
+    protected $fillable = ['nome', 'telefone', 'email', 'motivo_contato', 'mensagem'];
+}
+```
+
+```php
+class ContatoController extends Controller
+{
+    public function contato(Request $request)
+    {
+        /*
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        echo $request->input('nome');
+        echo '<br>';
+        echo $request->input('email');
+        */
+        /*
+        $contato = new SiteContato();
+        $contato->nome = $request->input('nome');
+        $contato->telefone = $request->input('telefone');
+        $contato->email = $request->input('email');
+        $contato->motivo_contato = $request->input('motivo_contato');
+        $contato->mensagem = $request->input('mensagem');
+
+        // print_r($contato->getAttributes());
+        $contato->save();
+        */
+
+        $contato = new SiteContato();
+        $contato->create($request->all());
+        // $contato->save();
+        // print_r($contato->getAttributes());
+
+        return view('site.contato', ['titulo' => 'Contato (teste)']);
+    }
+}
+
+```
+
 - 122 Validação de campos obrigatórios (required)
 - 123 Validação de quantidades mínimas e máximas de caracteres (min e max)
 - 124 Repopulando o formulário (Request Old Input) parte 1

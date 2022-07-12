@@ -2463,6 +2463,17 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
 ```
 
 - 132 Customizando a apresentação dos erros de validação parte 1
+
+```php
+@if($errors->any())
+    <div style="position:absolute; top:0px; width:100%; background:red">
+        @foreach($errors->all() as $erro)
+            {{$erro}} <br>
+        @endforeach
+    </div>
+@endif
+```
+
 - 133 Customizando a apresentação dos erros de validação parte 2
 - 134 Customizando as mensagens de feedback de validação
 

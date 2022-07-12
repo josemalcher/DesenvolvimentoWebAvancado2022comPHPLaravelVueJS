@@ -2390,6 +2390,58 @@ class ContatoController extends Controller
 
 
 - 128 Refactoring do projeto Super Gestão parte 2
+
+```
+$ php artisan make:migration alter_table_site_contatos_add_fk_motivo_contatos
+Created Migration: 2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos
+
+```
+
+```php
+class AlterTableSiteContatosAddFkMotivoContatos extends Migration
+{
+    public function up()
+    {
+        // adicionando a coluna motivo_contatos_id
+        Schema::table('site_contatos', function (Blueprint $table) {
+            $table->unsignedBigInteger('motivo_contatos_id');
+        });
+
+        //atribuindo motivo_contato para a nova coluna motivo_contatos_id
+        DB::statement('update site_contatos set motivo_contatos_id = motivo_contato');
+
+        // criando a fk e removendo a coluna motivo_contato
+        Schema::table('site_contatos', function (Blueprint $table) {
+            $table->foreign('motivo_contatos_id')->references('id')->on('motivo_contatos');
+            $table->dropColumn('motivo_contato');
+        });
+    }
+    public function down()
+    {
+        // criar a coluna motivo_contato e removendo a fk
+        Schema::table('site_contatos', function (Blueprint $table) {
+            $table->integer('motivo_contato');
+            $table->dropForeign('site_contatos_motivo_contatos_id_foreign');
+        });
+
+        // atribuindo motivo_contatos_id para a coluna motivo_contato
+        DB::statement('update site_contatos set motivo_contato = motivo_contatos_id');
+
+        // removendo a coluna motivo_contatos_id
+        Schema::table('site_contatos', function (Blueprint $table) {
+            $table->dropColumn('motivo_contatos_id');
+        });
+    }
+}
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos
+Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0.18 seconds)
+
+```
+
 - 129 Validação de campos e-mail
 - 130 Persistindo dados e redirecionando a rota
 - 131 Validação de campos únicos (unique)

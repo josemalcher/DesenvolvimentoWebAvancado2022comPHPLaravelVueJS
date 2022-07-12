@@ -2301,6 +2301,94 @@ class ContatoController extends Controller
 
 - 126 Ajustando o formulário de contato na rota principal
 - 127 Refactoring do projeto Super Gestão parte 1
+
+```
+$ php artisan make:model MotivoContato -m
+Model created successfully.
+Created Migration: 2022_07_12_211142_create_motivo_contatos_table
+
+```
+
+```php
+class CreateMotivoContatosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('motivo_contatos', function (Blueprint $table) {
+            $table->id();
+            $table->string('motivo_contato', 20);
+            $table->timestamps();
+        });
+        /*
+        MotivoContato::create(['Dúvida']);
+        MotivoContato::create(['Elogio']);
+        MotivoContato::create(['Reclamação']);
+        */
+    }
+
+```
+
+```
+$php artisan make:seeder MotivoContatoSeeder
+Seeder created successfully.
+```
+
+```php
+class MotivoContatoSeeder extends Seeder
+{
+    public function run()
+    {
+        MotivoContato::create(['motivo_contato'=>'Dúvida']);
+        MotivoContato::create(['motivo_contato'=>'Elogio']);
+        MotivoContato::create(['motivo_contato'=>'Reclamação']);
+    }
+}
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_12_211142_create_motivo_contatos_table
+Migrated:  2022_07_12_211142_create_motivo_contatos_table (0.02 seconds)
+```
+
+```
+$ php artisan db:seed --class=MotivoContatoSeeder
+Database seeding completed successfully.
+
+```
+
+```php
+class ContatoController extends Controller
+{
+    public function contato(Request $request)
+    {
+        /*$motivo_contatos = [
+             '1' => 'Dúvida',
+             '2' => 'Elogio',
+             '3' => 'Reclamação'
+         ];*/
+        $motivo_contatos = MotivoContato::all();
+        return view('site.contato', ['titulo' => 'Contato (teste)', 'motivo_contatos' => $motivo_contatos]);
+    }
+
+```
+
+```php
+    <select name="motivo_contato" class="{{ $classe }}">
+        <option value="">Qual o motivo do contato?</option>
+
+        @foreach($motivo_contatos as $key => $motivo_contato)
+            <option value="{{$motivo_contato->id}}" {{ old('motivo_contato') == $motivo_contato->id ? 'selected' : '' }}>{{$motivo_contato->motivo_contato}}</option>
+        @endforeach
+    </select>
+```
+
+
 - 128 Refactoring do projeto Super Gestão parte 2
 - 129 Validação de campos e-mail
 - 130 Persistindo dados e redirecionando a rota

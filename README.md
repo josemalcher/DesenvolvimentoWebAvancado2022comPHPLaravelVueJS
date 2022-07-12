@@ -2445,6 +2445,23 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
 - 129 Validação de campos e-mail
 - 130 Persistindo dados e redirecionando a rota
 - 131 Validação de campos únicos (unique)
+
+```php
+ public function salvar(Request $request)
+    {
+        //realizar a validação dos dados do formulário recebidos no request
+        $request->validate([
+            'nome' => 'required|min:3|max:40|unique:site_contatos', // <============
+            'telefone' => 'required',
+            'email' => 'email',
+            'motivo_contatos_id' => 'required',
+            'mensagem' => 'required|max:2000'
+        ]);
+        SiteContato::create($request->all());
+        return redirect()->route('site.index');
+    }
+```
+
 - 132 Customizando a apresentação dos erros de validação parte 1
 - 133 Customizando a apresentação dos erros de validação parte 2
 - 134 Customizando as mensagens de feedback de validação

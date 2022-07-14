@@ -2882,6 +2882,15 @@ php artisan route:list
 ```
 
 - 142 Adicionando middlewares a um grupo de rotas
+
+```php
+Route::middleware( 'autenticacao')->prefix('/app')->group(function () {
+    Route::get('/clientes', function () {return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
+    Route::get('/produtos', function () {return 'Produtos';})->name('app.produtos');
+});
+```
+
 - 143 Passando parâmetros para o middleware
 - 144 Manipulando a resposta de uma requisição via middleware
 

@@ -2892,6 +2892,41 @@ Route::middleware( 'autenticacao')->prefix('/app')->group(function () {
 ```
 
 - 143 Passando parâmetros para o middleware
+
+```
+Route::middleware( 'autenticacao:padrao,visitante')
+  ->prefix('/app')->group(function () {
+    Route::get('/clientes', function () {return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
+    Route::get('/produtos', function () {return 'Produtos';})->name('app.produtos');
+});
+```
+
+```php
+class AutenticacaoMiddleware
+{
+    public function handle($request, Closure $next, $metodo_autenticacao, $perfil)
+    {
+
+        echo $metodo_autenticacao . ' - ' . $perfil . '<br>';
+
+        if ($metodo_autenticacao == 'padrao') {
+            echo 'verificar o usuário e senha no banco <br>';
+        }
+        if ($metodo_autenticacao == 'ldap') {
+            echo 'verificar se o usuário e senha no AD <br>';
+        }
+
+        if (false) {
+            return $next($request);
+        } else {
+            return Response('Acesso negado! Rota existe autenticação');
+        }
+    }
+}
+```
+
+
 - 144 Manipulando a resposta de uma requisição via middleware
 
 [Voltar ao Índice](#indice)

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\LogAcessMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +23,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/sobre-nos', function () {
     return "Sobre Nós";
 });*/
-Route::get('/', 'PrincipalController@principal')->name('site.index');
+/*Route::get('/', 'PrincipalController@principal')
+    ->name('site.index')
+    ->middleware(LogAcessoMiddleware::class);*/
+Route::middleware(LogAcessMiddleware::class)
+    ->get('/', 'PrincipalController@principal')
+    ->name('site.index');
+
+
 Route::get('/sobre-nos', 'SobrenosController@sobrenos')->name('site.sobrenos');
 
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');

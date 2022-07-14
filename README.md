@@ -2563,6 +2563,41 @@ public function salvar(Request $request)
 
 - 135 Introdução aos Middlewares
 - 136 Criando meu primeiro middleware
+
+```
+$ php artisan make:middleware LogAcessMiddleware
+Middleware created successfully.
+
+```
+
+```php
+Route::middleware(LogAcessMiddleware::class)
+    ->get('/', 'PrincipalController@principal')
+    ->name('site.index');
+
+```
+
+```php
+class LogAcessMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        // $request - Manipular
+        // return $next($request);
+        //response - Manipular
+        return Response('Middleware e parei nele');
+    }
+}
+```
+
+
 - 137 Criando o model LogAcesso e sua migration
 - 138 Implementando middlewares no método construtor dos controllers
 - 139 Implementando um middleware para todas as rotas

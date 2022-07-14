@@ -30,7 +30,8 @@ Route::get('/sobre-nos', function () {
     ->get('/', 'PrincipalController@principal')
     ->name('site.index');*/
 Route::get('/', 'PrincipalController@principal')
-    ->name('site.index');
+    ->name('site.index')
+    ->middleware('log.acesso');
 
 Route::get('/sobre-nos', 'SobrenosController@sobrenos')->name('site.sobrenos');
 

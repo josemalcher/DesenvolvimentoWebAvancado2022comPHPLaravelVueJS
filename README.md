@@ -2929,6 +2929,31 @@ class AutenticacaoMiddleware
 
 - 144 Manipulando a resposta de uma requisição via middleware
 
+```php
+class LogAcessMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        $ip = $request->server->get('REMOTE_ADDR');
+        $rota = $request->getRequestUri();
+        LogAcesso::create(['log'=> "IP $ip requisitou a rorta $rota"]);
+        // return Response($ip);
+
+        $resposta = $next($request);
+        $resposta->setStatusCode(201, 'O status da resposata e o texto da resposta foram modificados!!');
+        // dd($resposta);
+    }
+```
+
+```
+  #version: "1.1"
+  #statusCode: 201
+  #statusText: "O status da resposata e o texto da resposta foram modificados!!"
+  #charset: null
+  +original: Illuminate\View\View {#278 ▶}
+  +exception: null
+```
+
 [Voltar ao Índice](#indice)
 
 ---

@@ -2743,6 +2743,144 @@ class SobrenosController extends Controller
 
 
 - 141 Encadeamento de middlewares (criando um middleware de autenticação)
+
+```
+$ php artisan make:Middleware AutenticacaoMiddleware
+Middleware created successfully.
+```
+
+```php
+class AutenticacaoMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        if (true) {
+            return $next($request);
+        } else {
+            return Response('Acesso negado! Rota existe autenticação');
+        }
+    }
+}
+```
+
+```php
+    protected $routeMiddleware = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'log.acesso'=> \App\Http\Middleware\LogAcessMiddleware::class,
+        'autenticacao'=> \App\Http\Middleware\AutenticacaoMiddleware::class,
+    ];
+}
+```
+
+```php
+use App\Http\Middleware\LogAcessMiddleware;
+use App\Http\Middleware\AutenticacaoMiddleware;
+
+Route::prefix('/app')->group(function () {
+    Route::middleware('log.acesso', 'autenticacao')
+        ->get('/clientes', function () {return 'Clientes';})
+        ->name('app.clientes');
+    Route::middleware('log.acesso', 'autenticacao')
+        ->get('/fornecedores', 'FornecedorController@index')
+        ->name('app.fornecedores');
+    Route::middleware('log.acesso', 'autenticacao')
+        ->get('/produtos', function () {return 'Produtos';})
+        ->name('app.produtos');
+});
+
+```
+
+```
+php artisan route:list
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+| Domain | Method   | URI                   | Name             | Action                                             | Middleware   |
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+|        | GET|HEAD | /                     | site.index       | App\Http\Controllers\PrincipalController@principal | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        | GET|HEAD | api/user              |                  | Closure                                            | api          |
+|        |          |                       |                  |                                                    | auth:api     |
+|        | GET|HEAD | app/clientes          | app.clientes     | Closure                                            | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | app/fornecedores      | app.fornecedores | App\Http\Controllers\FornecedorController@index    | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | app/produtos          | app.produtos     | Closure                                            | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | contato               | site.contato     | App\Http\Controllers\ContatoController@contato     | web          |
+|        | POST     | contato               | site.contato     | App\Http\Controllers\ContatoController@salvar      | web          |
+|        | GET|HEAD | login                 | site.login       | App\Http\Controllers\ContatoController@contato     | web          |
+|        | GET|HEAD | sobre-nos             | site.sobrenos    | App\Http\Controllers\SobrenosController@sobrenos   | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        | GET|HEAD | teste/{p1}/{p2}       | teste            | App\Http\Controllers\TesteController@teste         | web          |
+|        | GET|HEAD | {fallbackPlaceholder} |                  | Closure                                            | web          |
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+
+```
+
+```php
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LogAcessMiddleware::class
+        ],
+```
+
+```php
+Route::prefix('/app')->group(function () {
+    Route::middleware( 'autenticacao')
+        ->get('/clientes', function () {return 'Clientes';})
+        ->name('app.clientes');
+    Route::middleware( 'autenticacao')
+        ->get('/fornecedores', 'FornecedorController@index')
+        ->name('app.fornecedores');
+    Route::middleware( 'autenticacao')
+        ->get('/produtos', function () {return 'Produtos';})
+        ->name('app.produtos');
+});
+```
+
+```
+php artisan route:list
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+| Domain | Method   | URI                   | Name             | Action                                             | Middleware   |
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+|        | GET|HEAD | /                     | site.index       | App\Http\Controllers\PrincipalController@principal | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        | GET|HEAD | api/user              |                  | Closure                                            | api          |
+|        |          |                       |                  |                                                    | auth:api     |
+|        | GET|HEAD | app/clientes          | app.clientes     | Closure                                            | web          |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | app/fornecedores      | app.fornecedores | App\Http\Controllers\FornecedorController@index    | web          |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | app/produtos          | app.produtos     | Closure                                            | web          |
+|        |          |                       |                  |                                                    | autenticacao |
+|        | GET|HEAD | contato               | site.contato     | App\Http\Controllers\ContatoController@contato     | web          |
+|        | POST     | contato               | site.contato     | App\Http\Controllers\ContatoController@salvar      | web          |
+|        | GET|HEAD | login                 | site.login       | App\Http\Controllers\ContatoController@contato     | web          |
+|        | GET|HEAD | sobre-nos             | site.sobrenos    | App\Http\Controllers\SobrenosController@sobrenos   | web          |
+|        |          |                       |                  |                                                    | log.acesso   |
+|        | GET|HEAD | teste/{p1}/{p2}       | teste            | App\Http\Controllers\TesteController@teste         | web          |
+|        | GET|HEAD | {fallbackPlaceholder} |                  | Closure                                            | web          |
++--------+----------+-----------------------+------------------+----------------------------------------------------+--------------+
+```
+
 - 142 Adicionando middlewares a um grupo de rotas
 - 143 Passando parâmetros para o middleware
 - 144 Manipulando a resposta de uma requisição via middleware

@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class SobrenosController extends Controller
 {
-    public function __construct()
+/*    public function __construct()
     {
         $this->middleware(LogAcessMiddleware::class);
-    }
+    }*/
 
     public function sobrenos()
     {

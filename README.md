@@ -2666,6 +2666,26 @@ class SobrenosController extends Controller
 
 
 - 139 Implementando um middleware para todas as rotas
+
+```php
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
+
+class Kernel extends HttpKernel
+{
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LogAcessMiddleware::class // <<<------------------------
+        ],
+
+```
+
 - 140 Apelidando middlewares
 - 141 Encadeamento de middlewares (criando um middleware de autenticação)
 - 142 Adicionando middlewares a um grupo de rotas

@@ -26,10 +26,11 @@ Route::get('/sobre-nos', function () {
 /*Route::get('/', 'PrincipalController@principal')
     ->name('site.index')
     ->middleware(LogAcessoMiddleware::class);*/
-Route::middleware(LogAcessMiddleware::class)
+/*Route::middleware(LogAcessMiddleware::class)
     ->get('/', 'PrincipalController@principal')
+    ->name('site.index');*/
+Route::get('/', 'PrincipalController@principal')
     ->name('site.index');
-
 
 Route::get('/sobre-nos', 'SobrenosController@sobrenos')->name('site.sobrenos');
 

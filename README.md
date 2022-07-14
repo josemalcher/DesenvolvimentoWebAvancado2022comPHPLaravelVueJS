@@ -2599,6 +2599,53 @@ class LogAcessMiddleware
 
 
 - 137 Criando o model LogAcesso e sua migration
+
+```
+$ php artisan make:model LogAcesso -m
+Model created successfully.
+Created Migration: 2022_07_14_184449_create_log_acessos_table
+
+```
+
+```php
+class CreateLogAcessosTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('log_acessos', function (Blueprint $table) {
+            $table->id();
+            $table->string('log', 200);
+            $table->timestamps();
+        });
+    }
+```
+
+```php
+class LogAcesso extends Model
+{
+    protected $fillable = ['log'];
+}
+```
+
+```php
+class LogAcessMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        // $request - Manipular
+
+        // return $next($request);
+        //response - Manipular
+        // dd($request);
+        $ip = $request->server->get('REMOTE_ADDR');
+        $rota = $request->getRequestUri();
+        LogAcesso::create(['log'=> "IP $ip requisitou a rorta $rota"]);
+        return Response($ip);
+    }
+}
+```
+
+
 - 138 Implementando middlewares no método construtor dos controllers
 - 139 Implementando um middleware para todas as rotas
 - 140 Apelidando middlewares

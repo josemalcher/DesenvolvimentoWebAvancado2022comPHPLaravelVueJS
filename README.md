@@ -2647,6 +2647,24 @@ class LogAcessMiddleware
 
 
 - 138 Implementando middlewares no método construtor dos controllers
+
+```php
+class SobrenosController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware(LogAcessMiddleware::class);
+    }
+
+    public function sobrenos()
+    {
+        return view('site.sobre-nos');
+    }
+}
+
+```
+
+
 - 139 Implementando um middleware para todas as rotas
 - 140 Apelidando middlewares
 - 141 Encadeamento de middlewares (criando um middleware de autenticação)

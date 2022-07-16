@@ -2961,7 +2961,27 @@ class LogAcessMiddleware
 
 ## <a name="parte11">11 - Autenticação de usuários (revisando e praticando os assuntos abordados)</a>
 
+- 145 Implementando o formulário de Login
 
+```php
+    Route::get('/login',  'LoginController@index')       ->name('site.login');
+    Route::post('/login', 'LoginController@autenticar') ->name('site.login');
+
+```
+
+```
+$ php artisan make:controller LoginController
+Controller created successfully.
+
+```
+
+
+- 146 Recebendo os parâmetros de usuário e senha
+- 147 Validando a existência do usuário e senha no Banco de Dados
+- 148 Redirect com envio de parâmetros - Apresentando mensagem de erro de login
+- 149 Iniciando a Superglobal Session e validando o acesso a rotas protegidas
+- 150 Implementando o menu de opções da área protegida da aplicação
+- 151 Adicionando a função logout
 
 [Voltar ao Índice](#indice)
 
@@ -2970,7 +2990,54 @@ class LogAcessMiddleware
 
 ## <a name="parte12">12 - Finalizando o projeto Super Gestão</a>
 
-
+- 152 Implementando o cadastro de fornecedores parte 1
+- 153 Implementando o cadastro de fornecedores parte 2 (inclusão de registros)
+- 154 Implementando o cadastro de fornecedores parte 3 (pesquisa de registros)
+- 155 Implementando o cadastro de fornecedores parte 4 (atualização de registros)
+- 156 Paginação de registros
+- 157 Paginação de registros - Métodos count(), total(), firstItem() e lastItem()
+- 158 Implementando o cadastro de fornecedores parte 5 (remoção de registros)
+- 159 Controladores com resources
+- 160 Criando rotas associadas aos resources de um controlador
+- 161 Entendo os métodos HTTP Get, Post, Delete, Put e Patch
+- 162 Implementando o cadastro de produtos parte 1 (index)
+- 163 Implementando o cadastro de produtos parte 2 (create)
+- 164 Implementando o cadastro de produtos parte 3 (store)
+- 165 Implementando o cadastro de produtos parte 4 (validando dados)
+- 166 Implementando o cadastro de produtos parte 5 (show)
+- 167 Implementando o cadastro de produtos parte 6 (edit)
+- 168 Implementando o cadastro de produtos parte 7 (update)
+- 169 Implementando o cadastro de produtos parte 8 (delete)
+- 170 Modificando a forma de edição de registros parte 1
+- 171 Modificando a forma de edição de registros parte 2
+- 172 Relacionamentos 1x1, 1xN e NxN com Eloquent ORM
+- 173 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 1
+- 174 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 2
+- 175 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 3
+- 176 Eloquent ORM 1 para 1 - Exibindo os detalhes do produto
+- 177 Eloquent ORM 1 para 1 - Estabelecendo relacionamento 1x1 (hasOne)
+- 178 Eloquent ORM 1 para 1 - Exibindo informações do produto (belongsTo)
+- 179 Eloquent ORM 1 para 1 - Utilizando hasOne e belongsTo com nomes não padronizados
+- 180 Extra - Lazy Loading vs Eager Loading parte 1
+- 181 Extra - Lazy Loading vs Eager Loading parte 2
+- 182 Eloquent ORM 1 para N - Criando o relacionamento entre Fornecedor e Produto
+- 183 Eloquent ORM 1 para N - Exibindo informações do fornecedor (belongsTo)
+- 184 Extra - Exibindo mais informações do fornecedor
+- 185 Eloquent ORM 1 para N - Estabelecendo relacionamento 1xN (hasMany)
+- 186 Eloquent ORM 1 para N - Associando fornecedores a produtos (Store e Update)
+- 187 Eloquent N para N - Implementando os requisitos para o relacionamento
+- 188 Criando os controladores e rotas para clientes, pedidos e pedidos produtos
+- 189 Implementando a tela de listagem de clientes
+- 190 Implementando a tela de cadastro de clientes
+- 191 Implementando a tela de listagem de pedidos
+- 192 Implementando a tela de cadastro de pedidos
+- 193 Implementando a tela de cadastro de produtos para um determinado pedido parte 1
+- 194 Eloquent ORM N para N - Implementando o relacionamento belongsToMany
+- 195 Eloquent ORM N para N - Praticando um pouco mais o relacionamento belongsToMany
+- 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)
+- 197 Relacionamento N para N - Inserindo registros por meio do relacionamento
+- 198 Relacionamento N para N - Removendo o relacionamento
+- 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos
 
 [Voltar ao Índice](#indice)
 
@@ -2979,7 +3046,19 @@ class LogAcessMiddleware
 
 ## <a name="parte13">13 - Autenticação WEB (Session) e Bootstrap (CSS)</a>
 
-
+- 200 Iniciando o projeto Controle de Tarefas
+- 201 [WINDOWS] Instalando o NodeJS e o NPM
+- 202 [LINUX] Instalando o NodeJS e o NPM
+- 203 [OSX] Instalando o NodeJS e o NPM
+- 204 Instalando o Laravel UI
+- 205 Entendendo o pacote UI e iniciando a autenticação WEB nativa do Laravel
+- 206 Configurando a conexão com o banco de dados e executando as migrations padrões
+- 207 Registrando novos usuários e efetuando o login na aplicação
+- 208 Validando campos de confirmação (confirmed) e mudando regras de senhas
+- 209 Entendendo como a rota Home está protegida
+- 210 Criando o Model e o Controller para Tarefa
+- 211 Implementando o middleware auth
+- 212 Verificando se o usuário está logado dentro dos métodos do Controller
 
 [Voltar ao Índice](#indice)
 
@@ -2988,7 +3067,40 @@ class LogAcessMiddleware
 
 ## <a name="parte14">14 - Implementando o envio de e-mails e a exportação de arquivos XLSX, CSV e PDF</a>
 
-
+- 213 Configurando o envio de e-mails (Reset Password) - Parte 1
+- 214 Criando um template de e-mail com Markdown Mailables
+- 215 Enviando e-mails
+- 216 Publicando e customizando o template de e-mail
+- 217 Configurando o envio de e-mails (Reset Password) - Parte 2
+- 218 Ajustando as políticas de senha no reset
+- 219 Verificação de e-mail (MystVerifyEmail)
+- 220 Customizando a view de verificação de e-mail
+- 221 Customizando a mensagem de verificação de e-mail
+- 222 Cadastrando novas tarefas
+- 223 Enviando um e-mail de cadastro de nova tarefa e exibindo os dados da tarefa
+- 224 Associando o usuário a tarefa
+- 225 Listando as tarefas cadastradas
+- 226 Implementando a paginação de registros de tarefas
+- 227 Modificando a rota home da aplicação (redirectTo)
+- 228 Atualizando registros de tarefas
+- 229 Validando se a tarefa pertence ao usuário antes de habilitar a edição
+- 230 Removendo registros de tarefas
+- 231 Melhorando a navegação
+- 232 Verificando na View se o usuário está ou não logado
+- 233 Instalando o pacote Laravel Excel
+- 234 Exportando um arquivo no formato XLSX com a relação de tarefas
+- 235 Refactoring do relacionamento entre Users e Tarefas
+- 236 Exportando um arquivo no formato CSV com a relação de tarefas
+- 237 Exportando um arquivo no formato PDF com a relação de tarefas
+- 238 Definindo títulos na exportação
+- 239 Corrigindo caracteres especiais em exportações CSV
+- 240 Manipulando os dados exportados linha por linha e formatando datas
+- 241 Instalando o pacote DOMPDF
+- 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1
+- 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2
+- 244 Adicionando suporte UTF-8, estilos CSS e quebras de páginas nas Views de PDF
+- 245 Laravel DOMPDF - Download vs Stream
+- 246 Laravel DOMPDF - Definindo o tipo de papel e a orientação da impressão
 
 [Voltar ao Índice](#indice)
 
@@ -2997,7 +3109,7 @@ class LogAcessMiddleware
 
 ## <a name="parte15">15 - Adaptação para o próximo nível no domínio do Framework Laravel</a>
 
-
+- 247 [IMPORTANTE] - Entendendo os próximos passos da nossa jornada
 
 [Voltar ao Índice](#indice)
 

@@ -50,8 +50,8 @@ Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
         ->where('categoria_id', '[0-9+]')
         ->where('nome', '[A-Za-z]+');*/
 
-Route::get('/login',  'LoginController@index')       ->name('site.login');
-Route::post('/login', 'LoginController@autenticar') ->name('site.login');
+Route::get('/login/{erro?}',  'LoginController@index')  ->name('site.login');
+Route::post('/login', 'LoginController@autenticar')     ->name('site.login');
 
 Route::middleware( 'autenticacao:padrao,visitante')->prefix('/app')->group(function () {
     Route::get('/clientes', function () {return 'Clientes';})->name('app.clientes');

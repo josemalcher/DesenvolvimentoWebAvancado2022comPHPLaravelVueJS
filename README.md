@@ -3083,6 +3083,83 @@ class LoginController extends Controller
 ```
 
 - 149 Iniciando a Superglobal Session e validando o acesso a rotas protegidas
+
+```php
+class AutenticacaoMiddleware
+{
+    public function handle($request, Closure $next, $metodo_autenticacao, $perfil)
+    {
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
+            return $next($request);
+        }else{
+            return redirect()->route('site.login', ['erro'=> 2]);
+        }
+    }
+}
+```
+
+```php
+class LoginController extends Controller
+{
+    public function index(Request $request)
+    {
+        $titulo = 'Login do Usuário';
+
+        $erro = '';
+
+        if ($request->get('erro') == 1) {
+            $erro = 'Usuário e/ou senha não existe';
+        }
+        if ($request->get('erro') == 2) {
+            $erro = 'É necessário Fazer o LOGIN...Acesso Negado';
+        }
+
+        return view('site.login', ['titulo'=> $titulo, 'erro'=>$erro]);
+    }
+
+    public function autenticar(Request $request)
+    {
+        // regras de validação
+        $regras = [
+            'usuario' => 'email',
+            'senha' => 'required'
+        ];
+        // as mensagens de feedback de validação
+        $feedback = [
+            'usuario.email' => 'O campo email é obrigatório',
+            'senha.required' => 'O campo senha é obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+
+        // recuperando dados do form
+        $email = $request->get('usuario');
+        $password = $request->get('senha');
+
+        $user = new User();
+
+        $usuario = $user
+            ->where('email', $email)
+            ->where('password', $password)
+            ->get()
+            ->first();
+        if (isset($usuario->name)) {
+            session_start();
+            $_SESSION['nome'] = $usuario->name;
+            $_SESSION['email'] = $usuario->email;
+            // dd($_SESSION);
+
+            return redirect()->route('app.clientes');
+
+        } else {
+            return redirect()->route('site.login', ['erro'=> 1]);
+        }
+    }
+}
+```
+
+
 - 150 Implementando o menu de opções da área protegida da aplicação
 - 151 Adicionando a função logout
 

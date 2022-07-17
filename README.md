@@ -2978,6 +2978,55 @@ Controller created successfully.
 
 - 146 Recebendo os parâmetros de usuário e senha
 - 147 Validando a existência do usuário e senha no Banco de Dados
+
+```php
+class LoginController extends Controller
+{
+    public function index()
+    {
+        $titulo = 'Login do Usuário';
+
+        return view('site.login', compact('titulo'));
+    }
+
+    public function autenticar(Request $request)
+    {
+        // regras de validação
+        $regras = [
+            'usuario' => 'email',
+            'senha' => 'required'
+        ];
+        // as mensagens de feedback de validação
+        $feedback = [
+            'usuario.email' => 'O campo email é obrigatório',
+            'senha.required' => 'O campo senha é obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+
+        // recuperando dados do form
+        $email = $request->get('usuario');
+        $password = $request->get('senha');
+
+        $user = new User();
+
+        $usuario = $user
+                    ->where('email', $email)
+                    ->where('password', $password)
+                    ->get()
+                    ->first();
+        if (isset($usuario->name)) {
+            echo 'Usuário Existe';
+        }else{
+            echo "Usuário NÃO existe";
+        }
+/*        echo '<pre>';
+        print_r($usuario);
+        echo '</pre>';*/
+    }
+}
+```
+
 - 148 Redirect com envio de parâmetros - Apresentando mensagem de erro de login
 - 149 Iniciando a Superglobal Session e validando o acesso a rotas protegidas
 - 150 Implementando o menu de opções da área protegida da aplicação

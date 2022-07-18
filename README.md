@@ -3305,7 +3305,6 @@ public function adicionar(Request $request)
                 </table>
 ```
 
-
 - 155 Implementando o cadastro de fornecedores parte 4 (atualização de registros)
 - 156 Paginação de registros
 - 157 Paginação de registros - Métodos count(), total(), firstItem() e lastItem()

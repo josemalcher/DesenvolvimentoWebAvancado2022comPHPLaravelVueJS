@@ -3161,6 +3161,19 @@ class LoginController extends Controller
 
 
 - 150 Implementando o menu de opções da área protegida da aplicação
+
+```
+$ php artisan make:controller HomeController
+Controller created successfully.
+
+$ php artisan make:controller ClienteController
+Controller created successfully.
+
+$ php artisan make:controller ProdutoController
+Controller created successfully.
+
+```
+
 - 151 Adicionando a função logout
 
 [Voltar ao Índice](#indice)

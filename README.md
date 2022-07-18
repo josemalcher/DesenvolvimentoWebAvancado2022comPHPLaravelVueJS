@@ -3185,6 +3185,83 @@ Controller created successfully.
 
 - 152 Implementando o cadastro de fornecedores parte 1
 - 153 Implementando o cadastro de fornecedores parte 2 (inclusão de registros)
+
+```php
+public function adicionar(Request $request)
+    {
+        $msg = '';
+        if ($request->input('_token')) {
+            //validacao
+            $regras = [
+                'nome' => 'required|min:3|max:40',
+                'site' => 'required',
+                'uf' => 'required|min:2|max:2',
+                'email' => 'email'
+            ];
+            $feedback = [
+                'required' => 'O campo :attribute deve ser preenchido',
+                'nome.min' => 'O campo NOME deve ter no mínimo 3 caracteres',
+                'nome.max' => 'O campo NOME deve ter no maximo 40 caracteres',
+                'uf.min' => 'O campo UF deve ter no mínimo 2 caracteres',
+                'uf.max' => 'O campo UF deve ter no maximo 2 caracteres',
+                'email.email' => 'Email não é válido',
+            ];
+            $request->validate($regras, $feedback);
+
+            $fornecedor = new Fornecedor();
+            $fornecedor->create($request->all());
+
+            // dados retorno
+            $msg = 'Cadastro Realizado com sucesso';
+        }
+
+        return view('app.fornecedor.adicionar', ['msg'=>$msg]);
+    }
+```
+
+```php
+@extends('app.layouts.basico')
+
+@section('titulo', 'Fornecedor - Adicionar')
+
+@section('conteudo')
+
+    <div class="conteudo-pagina">
+        <div class="titulo-pagina-2">
+            <p>Fornecedor - Adicioniar</p>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="{{ route('app.fornecedor.adicionar') }}">Novo</a></li>
+                <li><a href="{{ route('app.fornecedor') }}">Consulta</a></li>
+            </ul>
+        </div>
+        <div class="informacao-pagina">
+            {{ $msg  }}
+            <div style="width: 30%; margin-left: auto; margin-right: auto;" >
+                <form action="{{ route('app.fornecedor.adicionar') }}" method="post">
+                    @csrf
+                    <input value="{{ old('nome') }}" type="text" name="nome" placeholder="Nome" class="borda-preta">
+                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+
+                    <input value="{{ old('site') }}" type="text" name="site" placeholder="Site" class="borda-preta">
+                    {{ $errors->has('site') ? $errors->first('site') : '' }}
+
+                    <input value="{{ old('uf') }}" type="text" name="uf" placeholder="UF" class="borda-preta">
+                    {{ $errors->has('uf') ? $errors->first('uf') : '' }}
+
+                    <input value="{{ old('email') }}" type="text" name="email" placeholder="EMail" class="borda-preta">
+                    {{ $errors->has('email') ? $errors->first('email') : '' }}
+                    <button type="submit" class="borda-preta">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+```
+
 - 154 Implementando o cadastro de fornecedores parte 3 (pesquisa de registros)
 - 155 Implementando o cadastro de fornecedores parte 4 (atualização de registros)
 - 156 Paginação de registros

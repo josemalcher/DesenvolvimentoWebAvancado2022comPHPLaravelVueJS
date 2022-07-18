@@ -15,12 +15,21 @@
             </ul>
         </div>
         <div class="informacao-pagina">
+            {{ $msg  }}
             <div style="width: 30%; margin-left: auto; margin-right: auto;" >
-                <form action="" method="post">
-                    <input type="text" name="nome" placeholder="Nome" class="borda-preta">
-                    <input type="text" name="site" placeholder="Site" class="borda-preta">
-                    <input type="text" name="uf" placeholder="UF" class="borda-preta">
-                    <input type="text" name="email" placeholder="EMail" class="borda-preta">
+                <form action="{{ route('app.fornecedor.adicionar') }}" method="post">
+                    @csrf
+                    <input value="{{ old('nome') }}" type="text" name="nome" placeholder="Nome" class="borda-preta">
+                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+
+                    <input value="{{ old('site') }}" type="text" name="site" placeholder="Site" class="borda-preta">
+                    {{ $errors->has('site') ? $errors->first('site') : '' }}
+
+                    <input value="{{ old('uf') }}" type="text" name="uf" placeholder="UF" class="borda-preta">
+                    {{ $errors->has('uf') ? $errors->first('uf') : '' }}
+
+                    <input value="{{ old('email') }}" type="text" name="email" placeholder="EMail" class="borda-preta">
+                    {{ $errors->has('email') ? $errors->first('email') : '' }}
                     <button type="submit" class="borda-preta">Cadastrar</button>
                 </form>
             </div>

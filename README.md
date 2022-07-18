@@ -3308,6 +3308,22 @@ public function adicionar(Request $request)
 - 155 Implementando o cadastro de fornecedores parte 4 (atualização de registros)
 - 156 Paginação de registros
 - 157 Paginação de registros - Métodos count(), total(), firstItem() e lastItem()
+
+```
+  {{ $fornecedores->appends($request)->links() }}
+  {{--
+  <br>
+  {{ $fornecedores->count() }} - Total de registros por página
+  <br>
+  {{ $fornecedores->total() }} - Total de registros da COnsulta
+  <br>
+  {{ $fornecedores->firstItem() }} - Número do primeiro registro da página
+  <br>
+  {{ $fornecedores->lastItem() }} - Número do ultimo registro da página--}}
+  <br>
+  Exibindo {{ $fornecedores->count() }} fornecedores de {{$fornecedores->total()}} de ({{ $fornecedores->firstItem() }} / {{ $fornecedores->lastItem() }})
+```
+
 - 158 Implementando o cadastro de fornecedores parte 5 (remoção de registros)
 - 159 Controladores com resources
 - 160 Criando rotas associadas aos resources de um controlador

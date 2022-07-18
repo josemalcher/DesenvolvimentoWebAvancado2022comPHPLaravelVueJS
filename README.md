@@ -3326,6 +3326,18 @@ public function adicionar(Request $request)
 
 - 158 Implementando o cadastro de fornecedores parte 5 (remoção de registros)
 - 159 Controladores com resources
+
+```php
+$ php artisan make:controller --resource ProdutoController --model=Produto
+
+ A App\Produto model does not exist. Do you want to generate it? (yes/no) [yes]:
+ > yes
+
+Model created successfully.
+Controller created successfully.
+
+```
+
 - 160 Criando rotas associadas aos resources de um controlador
 - 161 Entendo os métodos HTTP Get, Post, Delete, Put e Patch
 - 162 Implementando o cadastro de produtos parte 1 (index)

@@ -3339,6 +3339,30 @@ Controller created successfully.
 ```
 
 - 160 Criando rotas associadas aos resources de um controlador
+
+
+```php
+Route::resource('produto', 'ProdutoController');
+```
+
+```
+|        | GET|HEAD  | app/produto                       | produto.index            | App\Http\Controllers\ProdutoController@index        | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | POST      | app/produto                       | produto.store            | App\Http\Controllers\ProdutoController@store        | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | GET|HEAD  | app/produto/create                | produto.create           | App\Http\Controllers\ProdutoController@create       | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | GET|HEAD  | app/produto/{produto}             | produto.show             | App\Http\Controllers\ProdutoController@show         | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | PUT|PATCH | app/produto/{produto}             | produto.update           | App\Http\Controllers\ProdutoController@update       | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | DELETE    | app/produto/{produto}             | produto.destroy          | App\Http\Controllers\ProdutoController@destroy      | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+|        | GET|HEAD  | app/produto/{produto}/edit        | produto.edit             | App\Http\Controllers\ProdutoController@edit         | web                           |
+|        |           |                                   |                          |                                                     | autenticacao:padrao,visitante |
+
+```
+
 - 161 Entendo os métodos HTTP Get, Post, Delete, Put e Patch
 - 162 Implementando o cadastro de produtos parte 1 (index)
 - 163 Implementando o cadastro de produtos parte 2 (create)

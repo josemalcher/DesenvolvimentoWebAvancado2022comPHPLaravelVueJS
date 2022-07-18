@@ -3263,6 +3263,49 @@ public function adicionar(Request $request)
 ```
 
 - 154 Implementando o cadastro de fornecedores parte 3 (pesquisa de registros)
+
+```
+ public function listar(Request $request)
+    {
+        $fornecedores = Fornecedor::
+              where('nome', 'like', '%'. $request->input('nome').'%')
+            ->where('site', 'like', '%'. $request->input('site').'%')
+            ->where('uf', 'like', '%'. $request->input('uf').'%')
+            ->where('email', 'like', '%'. $request->input('email').'%')
+            ->get();
+        // dd($fornecedores);
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores]);
+    }
+```
+
+```php
+                <table border="1" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Site</th>
+                        <th>UF</th>
+                        <th>E-Mail</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($fornecedores as $fornecedor)
+                    <tr>
+                        <td> {{ $fornecedor->nome }}</td>
+                        <td> {{ $fornecedor->site }}</td>
+                        <td> {{ $fornecedor->uf }}</td>
+                        <td> {{ $fornecedor->email }}</td>
+                        <td>Editar</td>
+                        <td>Excluir</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+```
+
+
 - 155 Implementando o cadastro de fornecedores parte 4 (atualização de registros)
 - 156 Paginação de registros
 - 157 Paginação de registros - Métodos count(), total(), firstItem() e lastItem()

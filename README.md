@@ -3686,6 +3686,19 @@ public function edit(Produto $produto)
 
 - 172 Relacionamentos 1x1, 1xN e NxN com Eloquent ORM
 - 173 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 1
+
+```
+$ php artisan make:model ProdutoDetalhe
+Model created successfully.
+
+$ php artisan make:controller --resource ProdutoDetalheController
+Controller created successfully.
+```
+
+```php
+    Route::resource('produto-detalhe', 'ProdutoDetalheController');
+```
+
 - 174 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 2
 - 175 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 3
 - 176 Eloquent ORM 1 para 1 - Exibindo os detalhes do produto

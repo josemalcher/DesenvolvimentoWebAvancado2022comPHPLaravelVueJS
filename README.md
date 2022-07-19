@@ -3495,6 +3495,14 @@ public function store(Request $request)
 ```
 
 - 166 Implementando o cadastro de produtos parte 5 (show)
+
+```php
+    public function show(Produto $produto)
+    {
+        return view('app.produto.show', ['produto'=> $produto]);
+    }
+```
+
 - 167 Implementando o cadastro de produtos parte 6 (edit)
 - 168 Implementando o cadastro de produtos parte 7 (update)
 - 169 Implementando o cadastro de produtos parte 8 (delete)

@@ -3434,6 +3434,66 @@ Model created successfully.
 ```
 
 - 165 Implementando o cadastro de produtos parte 4 (validando dados)
+
+```php
+public function store(Request $request)
+    {
+        $regras = [
+            'nome' => 'required|min:3|max:40',
+            'descricao' => 'required|min:3|max:2000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id',
+        ];
+
+        $feedbacks = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres',
+            'nome.max' => 'O campo nome deve ter no máximo 40 caracteres',
+            'descricao.min' => 'O campo descrição deve ter no mínimo 3 caracteres',
+            'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres',
+            'peso.integer' => 'O campo peso deve ser um número inteiro',
+            'unidade_id.exists' => 'A unidade de medida informada não existe'
+        ];
+
+        $request->validate($regras, $feedbacks);
+
+
+        Produto::create($request->all());
+
+        return redirect()->route('produto.index');
+    }
+```
+
+```php
+<div class="informacao-pagina">
+            {{ $msg ?? '' }}
+            <div style="width: 30%; margin-left: auto; margin-right: auto;" >
+                <form action="{{ route('produto.store') }}" method="post">
+                    @csrf
+                    <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
+                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+
+                    <input type="text" name="descricao" value="{{ old('descricao') }}" placeholder="Descrição" class="borda-preta">
+                    {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
+
+                    <input type="text" name="peso" value="{{ old('peso') }}" placeholder="peso" class="borda-preta">
+                    {{ $errors->has('peso') ? $errors->first('peso') : '' }}
+
+                    <select name="unidade_id">
+                        <option>-- Selecione a Unidade de Medida --</option>
+
+                        @foreach ($unidades as $unidade)
+                            <option value="{{ $unidade->id }} {{ old('unidade_id') == $unidade->id ? 'selected' : '' }}">{{ $unidade->descricao }}</option>
+                        @endforeach
+                    </select>
+                    {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
+
+                    <button type="submit" class="borda-preta">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+```
+
 - 166 Implementando o cadastro de produtos parte 5 (show)
 - 167 Implementando o cadastro de produtos parte 6 (edit)
 - 168 Implementando o cadastro de produtos parte 7 (update)

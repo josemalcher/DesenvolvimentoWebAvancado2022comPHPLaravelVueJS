@@ -3651,6 +3651,39 @@ public function edit(Produto $produto)
 ```
 
 - 171 Modificando a forma de edição de registros parte 2
+
+
+```php
+    public function edit(Produto $produto)
+    {
+        $unidades = Unidade::all();
+        return view('app.produto.edit', ['produto'=> $produto, 'unidades'=> $unidades]);
+        // return view('app.produto.create', ['produto'=> $produto, 'unidades'=> $unidades]);
+    }
+```
+
+[app_super_gestao/resources/views/app/produto/_components/form_create_edit.blade.php](app_super_gestao/resources/views/app/produto/_components/form_create_edit.blade.php)
+
+```php
+  <div class="informacao-pagina">
+      <div style="width: 30%; margin-left: auto; margin-right: auto;">
+          @component('app.produto._components.form_create_edit', ['unidades'=> $unidades])
+          @endcomponent
+      </div>
+  </div>
+```
+
+```
+  // --- EDIÇÃO
+  <div class="informacao-pagina">
+            <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                @component('app.produto._components.form_create_edit', ['produto'=> $produto, 'unidades'=> $unidades])
+                @endcomponent
+                </form>
+            </div>
+        </div>
+```
+
 - 172 Relacionamentos 1x1, 1xN e NxN com Eloquent ORM
 - 173 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 1
 - 174 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 2

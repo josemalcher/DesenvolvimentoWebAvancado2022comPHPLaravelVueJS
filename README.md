@@ -3400,6 +3400,28 @@ Model created successfully.
 
 
 - 163 Implementando o cadastro de produtos parte 2 (create)
+
+```php
+    public function create()
+    {
+        $unidades = Unidade::all();
+
+        return view('app.produto.create', ['unidades'=> $unidades]);
+    }
+```
+
+```php
+
+  <select name="unidade_id" id="unidade_id">
+      <option> -- SELECIONE a UNIDADE de MEDIDA</option>
+
+      @foreach($unidades as $unidade)
+          <option value="{{ $unidade->id }}">{{ $unidade->descricao }}</option>
+      @endforeach
+
+  </select>
+```
+
 - 164 Implementando o cadastro de produtos parte 3 (store)
 - 165 Implementando o cadastro de produtos parte 4 (validando dados)
 - 166 Implementando o cadastro de produtos parte 5 (show)

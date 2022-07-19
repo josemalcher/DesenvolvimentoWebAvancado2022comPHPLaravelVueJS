@@ -3543,6 +3543,24 @@ public function edit(Produto $produto)
 ```
 
 - 168 Implementando o cadastro de produtos parte 7 (update)
+
+```php
+    public function update(Request $request, Produto $produto)
+    {
+        $produto->update($request->all());
+
+        return redirect()->route('produto.show', ['produto'=> $produto->id]);
+    }
+```
+
+```php
+<div class="informacao-pagina">
+            <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                <form method="post" action="{{ route('produto.update', ['produto'=>$produto->id]) }}">
+                    @csrf
+                    @method('PUT')
+```
+
 - 169 Implementando o cadastro de produtos parte 8 (delete)
 - 170 Modificando a forma de edição de registros parte 1
 - 171 Modificando a forma de edição de registros parte 2

@@ -99,7 +99,9 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all());
+
+        return redirect()->route('produto.show', ['produto'=> $produto->id]);
     }
 
     /**

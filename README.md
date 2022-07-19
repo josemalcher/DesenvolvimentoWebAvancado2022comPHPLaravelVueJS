@@ -3365,6 +3365,40 @@ Route::resource('produto', 'ProdutoController');
 
 - 161 Entendo os métodos HTTP Get, Post, Delete, Put e Patch
 - 162 Implementando o cadastro de produtos parte 1 (index)
+
+```
+$ php artisan make:model Unidade
+Model created successfully.
+
+```
+
+```
+>>> use App\Unidade;                                                                                                                                                                                                                
+>>> Unidade::create(['unidade'=> 'UN', 'descricao'=> 'Unidade']);                                                                                                                                                                   
+=> App\Unidade {#4353
+     unidade: "UN",
+     descricao: "Unidade",
+     updated_at: "2022-07-19 00:04:00",
+     created_at: "2022-07-19 00:04:00",
+     id: 1,
+   }
+   
+>>> use App\Produto;                                                                                                                                                                                                                
+>>> Produto::create(['nome'=> 'Geladeira', 'descricao'=> 'Geladeira/refrigeradir...tal tal tal ', 'peso'=>60, 'unidade_id'=> 1]);                                                                                                   
+=> App\Produto {#4370
+     nome: "Geladeira",
+     descricao: "Geladeira/refrigeradir...tal tal tal ",
+     peso: 60,
+     unidade_id: 1,
+     updated_at: "2022-07-19 00:06:25",
+     created_at: "2022-07-19 00:06:25",
+     id: 1,
+   }
+
+
+```
+
+
 - 163 Implementando o cadastro de produtos parte 2 (create)
 - 164 Implementando o cadastro de produtos parte 3 (store)
 - 165 Implementando o cadastro de produtos parte 4 (validando dados)

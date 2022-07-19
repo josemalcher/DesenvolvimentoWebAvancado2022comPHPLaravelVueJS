@@ -3423,6 +3423,16 @@ Model created successfully.
 ```
 
 - 164 Implementando o cadastro de produtos parte 3 (store)
+
+```php
+    public function store(Request $request)
+    {
+        Produto::create($request->all());
+
+        return redirect()->route('produto.index');
+    }
+```
+
 - 165 Implementando o cadastro de produtos parte 4 (validando dados)
 - 166 Implementando o cadastro de produtos parte 5 (show)
 - 167 Implementando o cadastro de produtos parte 6 (edit)

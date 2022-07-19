@@ -17,14 +17,14 @@
         <div class="informacao-pagina">
             {{ $msg ?? '' }}
             <div style="width: 30%; margin-left: auto; margin-right: auto;" >
-                <form action="" method="post">
+                <form action="{{ route('produto.store') }}" method="post">
                     @csrf
 
-                    <input value="" type="text" name="nome" placeholder="Nome" class="borda-preta">
+                    <input type="text" name="nome" placeholder="Nome" class="borda-preta">
 
-                    <input value="" type="text" name="descricao" placeholder="Descrição" class="borda-preta">
+                    <input type="text" name="descricao" placeholder="Descrição" class="borda-preta">
 
-                    <input value="" type="text" name="peso" placeholder="Peso" class="borda-preta">
+                    <input type="text" name="peso" placeholder="Peso" class="borda-preta">
 
                     <select name="unidade_id" id="unidade_id">
                         <option> -- SELECIONE a UNIDADE de MEDIDA</option>

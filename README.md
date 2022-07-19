@@ -3562,6 +3562,27 @@ public function edit(Produto $produto)
 ```
 
 - 169 Implementando o cadastro de produtos parte 8 (delete)
+
+```php
+    public function destroy(Produto $produto)
+    {
+        $produto->delete();
+        return redirect()->route('produto.index');
+    }
+```
+
+```php
+<td>
+    <form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto'=>$produto->id]) }}">
+        @csrf
+        @method('DELETE')
+<!--                                    <button type="submit">Excluir</button>-->
+        <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+    </form>
+</td>
+```
+
+
 - 170 Modificando a forma de edição de registros parte 1
 - 171 Modificando a forma de edição de registros parte 2
 - 172 Relacionamentos 1x1, 1xN e NxN com Eloquent ORM

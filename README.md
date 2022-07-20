@@ -3858,7 +3858,7 @@ class Item extends Model
 
     protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
 
-    public function produtoDetalhe()
+    public function itemDetalhe()
     {
         return $this->hasOne('App\ItemDetalhe', 'produto_id', 'id');
     }
@@ -3880,16 +3880,18 @@ class ItemDetalhe extends Model
 ```
 
 ```php
-class ItemDetalhe extends Model
+class ProdutoController extends Controller
 {
-    protected $table = 'produto_detalhes';
-    protected $fillable = ['produto_id', 'comprimento', 'largura', 'altura', 'unidade_id'];
-
-    public function item()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        return $this->belongsTo('App\Item','produto_id', 'id');
+        $produtos = Item::paginate(10);
+        return view('app.produto.index', ['produtos' => $produtos, 'request'=> $request->all()]);
     }
-}
 ```
 
 ```php
@@ -3946,6 +3948,17 @@ class ProdutoDetalheController extends Controller
 ```
 
 - 180 Extra - Lazy Loading vs Eager Loading parte 1
+
+```php
+class ProdutoController extends Controller
+{
+    public function index(Request $request)
+    {
+        $produtos = Item::with(['itemDetalhe'])->paginate(10);
+        return view('app.produto.index', ['produtos' => $produtos, 'request'=> $request->all()]);
+    }
+```
+
 - 181 Extra - Lazy Loading vs Eager Loading parte 2
 - 182 Eloquent ORM 1 para N - Criando o relacionamento entre Fornecedor e Produto
 - 183 Eloquent ORM 1 para N - Exibindo informações do fornecedor (belongsTo)

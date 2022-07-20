@@ -4020,6 +4020,37 @@ Migrated:  2022_07_20_181930_alter_produtos_relacionamento_fornecedores (0.18 se
 ```
 
 - 183 Eloquent ORM 1 para N - Exibindo informações do fornecedor (belongsTo)
+
+![183-diagrama01.png](img/183-diagrama01.png)
+
+```php
+class Item extends Model
+{
+    protected $table = 'produtos'; // Nome da tabela no banco
+
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+
+    public function itemDetalhe()
+    {
+        return $this->hasOne('App\ItemDetalhe', 'produto_id', 'id');
+    }
+
+    public function fornecedor()
+    {
+        return $this->belongsTo('App\Fornecedor');
+    }
+}
+```
+
+```php
+@foreach($produtos as $produto)
+    <tr>
+        <td> {{ $produto->nome }}</td>
+        <td> {{ $produto->descricao }}</td>
+        <td> {{ $produto->fornecedor->uf }} - {{ $produto->fornecedor->nome }}</td>
+        <td> {{ $produto->peso }}</td>
+```
+
 - 184 Extra - Exibindo mais informações do fornecedor
 - 185 Eloquent ORM 1 para N - Estabelecendo relacionamento 1xN (hasMany)
 - 186 Eloquent ORM 1 para N - Associando fornecedores a produtos (Store e Update)

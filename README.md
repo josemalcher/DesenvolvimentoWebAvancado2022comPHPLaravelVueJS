@@ -3809,6 +3809,36 @@ public function index(Request $request)
 
 
 - 178 Eloquent ORM 1 para 1 - Exibindo informações do produto (belongsTo)
+
+```php
+class ProdutoDetalhe extends Model
+{
+    protected $fillable = ['produto_id', 'comprimento', 'largura', 'altura', 'unidade_id'];
+
+    public function produto()
+    {
+        return $this->belongsTo('App\Produto');
+    }
+}
+```
+
+```php
+    <div class="informacao-pagina">
+
+        <h4>Produto</h4>
+        <div>Nome: {{ $produto_detalhe->produto->nome }}</div>
+        <br>
+        <div>Descrição: {{ $produto_detalhe->produto->descricao }}</div>
+        <br>
+
+        <div style="width: 30%; margin-left: auto; margin-right: auto;">
+            @component('app.produto_detalhe._components.form_create_edit', ['produto_detalhe'=> $produto_detalhe, 'unidades'=> $unidades])
+            @endcomponent
+            </form>
+        </div>
+    </div>
+```
+
 - 179 Eloquent ORM 1 para 1 - Utilizando hasOne e belongsTo com nomes não padronizados
 - 180 Extra - Lazy Loading vs Eager Loading parte 1
 - 181 Extra - Lazy Loading vs Eager Loading parte 2

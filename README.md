@@ -3975,6 +3975,50 @@ class ProdutoDetalheController extends Controller
 ```
 
 - 182 Eloquent ORM 1 para N - Criando o relacionamento entre Fornecedor e Produto
+
+![182-diagrama01.png](img/182-diagrama01.png)
+
+```
+$ php artisan make:migration alter_produtos_relacionamento_fornecedores
+Created Migration: 2022_07_20_181930_alter_produtos_relacionamento_fornecedores
+```
+
+```php
+class AlterProdutosRelacionamentoFornecedores extends Migration
+{
+    public function up()
+    {
+        Schema::table('produtos', function (Blueprint $table) {
+
+            // insere um registro de fornecedor para estabelecer o relacionamento
+            $fornecedor_id = DB::table('fornecedores')->insertGetId([
+                'nome' => 'Fornecedor Padrão SG',
+                'site' => 'www.fornecedor.com.br',
+                'uf' => 'SP',
+                'email' => 'contato@fornecedorpadrao.com'
+            ]);
+
+            $table->unsignedBigInteger('fornecedor_id')->default($fornecedor_id)->after('id');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
+        });
+    }
+    public function down()
+    {
+        Schema::table('produtos', function (Blueprint $table) {
+            $table->dropForeign('produtos_fornecedor_id_foreing');
+            $table->dropColumn('fornecedor_id');
+        });
+    }
+}
+```
+
+```
+$ php artisan migrate
+Migrating: 2022_07_20_181930_alter_produtos_relacionamento_fornecedores
+Migrated:  2022_07_20_181930_alter_produtos_relacionamento_fornecedores (0.18 seconds)
+
+```
+
 - 183 Eloquent ORM 1 para N - Exibindo informações do fornecedor (belongsTo)
 - 184 Extra - Exibindo mais informações do fornecedor
 - 185 Eloquent ORM 1 para N - Estabelecendo relacionamento 1xN (hasMany)

@@ -3702,6 +3702,60 @@ Controller created successfully.
 - 174 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 2
 - 175 Eloquent ORM 1 para 1 - Implementando produto detalhes parte 3
 - 176 Eloquent ORM 1 para 1 - Exibindo os detalhes do produto
+
+```php
+    public function index(Request $request)
+    {
+        $produtos = Produto::paginate(10);
+
+        foreach ($produtos as $key => $produto) {
+//            echo "$key -";
+//            print_r($produto->getAttributes());
+//            echo '<br><br>';
+
+            $produDetalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first();
+
+            if (isset($produDetalhe)) {
+                // print_r($produDetalhe->getAttributes());
+
+                $produtos[$key]['comprimento'] = $produDetalhe->comprimento;
+                $produtos[$key]['largura'] = $produDetalhe->largura;
+                $produtos[$key]['altura'] = $produDetalhe->altura;
+            }
+            // echo '<hr>';
+        }
+
+
+        return view('app.produto.index', ['produtos' => $produtos, 'request'=> $request->all()]);
+    }
+```
+
+```php
+                <tbody>
+                @foreach($produtos as $produto)
+                    <tr>
+                        <td> {{ $produto->nome }}</td>
+                        <td> {{ $produto->descricao }}</td>
+                        <td> {{ $produto->peso }}</td>
+                        <td> {{ $produto->unidade_id }}</td>
+                        <td> {{ $produto->comprimento ?? ''}}</td>
+                        <td> {{ $produto->altura  ?? ''}}</td>
+                        <td> {{ $produto->largura  ?? ''}}</td>
+                        <td><a href="{{ route('produto.show', ['produto'=> $produto->id]) }}">Visualizar</a></td>
+                        <td><a href="{{ route('produto.edit', ['produto'=> $produto->id]) }}">Editar</a></td>
+                        <td>
+                            <form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto'=>$produto->id]) }}">
+                                @csrf
+                                @method('DELETE')
+<!--                                    <button type="submit">Excluir</button>-->
+                                <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+```
+
 - 177 Eloquent ORM 1 para 1 - Estabelecendo relacionamento 1x1 (hasOne)
 - 178 Eloquent ORM 1 para 1 - Exibindo informações do produto (belongsTo)
 - 179 Eloquent ORM 1 para 1 - Utilizando hasOne e belongsTo com nomes não padronizados

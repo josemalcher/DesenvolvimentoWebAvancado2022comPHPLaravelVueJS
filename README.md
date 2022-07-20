@@ -4065,6 +4065,59 @@ class ProdutoController extends Controller
 ```
 
 - 185 Eloquent ORM 1 para N - Estabelecendo relacionamento 1xN (hasMany)
+
+![185-diagrama01.png](img/185-diagrama01.png)
+
+```php
+class Fornecedor extends Model
+{
+    use SoftDeletes;
+
+    protected $table = 'fornecedores';
+    protected $fillable = ['nome', 'site', 'uf', 'email'];
+
+    public function produtos()
+    {
+        // return $this->hasMany('App\Item', 'fornecedor_id', 'id'); / modelo se não estivesse no padrão
+        return $this->hasMany('App\Item');
+    }
+}
+```
+
+```php
+ @foreach($fornecedores as $fornecedor)
+    <tr>
+        <td>{{ $fornecedor->nome }}</td>
+        <td>{{ $fornecedor->site }}</td>
+        <td>{{ $fornecedor->uf }}</td>
+        <td>{{ $fornecedor->email }}</td>
+        <td><a href="{{ route('app.fornecedor.excluir', $fornecedor->id) }}">Excluir</a></td>
+        <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <p>Lista de produtos</p>
+            <table border="1" style="margin:20px">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($fornecedor->produtos as $key => $produto)
+                    <tr>
+                        <td>{{ $produto->id}}</td>
+                        <td>{{ $produto->nome}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </td>
+    <tr>
+@endforeach
+```
+
 - 186 Eloquent ORM 1 para N - Associando fornecedores a produtos (Store e Update)
 - 187 Eloquent N para N - Implementando os requisitos para o relacionamento
 - 188 Criando os controladores e rotas para clientes, pedidos e pedidos produtos

@@ -3757,6 +3757,57 @@ Controller created successfully.
 ```
 
 - 177 Eloquent ORM 1 para 1 - Estabelecendo relacionamento 1x1 (hasOne)
+
+```php
+class Produto extends Model
+{
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+
+    public function produtoDetalhe()
+    {
+        return $this->hasOne('App\ProdutoDetalhe');
+
+        // Produto tem 1 produto detalhe
+
+        // 1 registro relacionado em produto_detalhe (fk) -> produto_id
+        // produtos (pk) -> id
+    }
+}
+```
+
+```php
+public function index(Request $request)
+    {
+        $produtos = Produto::paginate(10);
+        return view('app.produto.index', ['produtos' => $produtos, 'request'=> $request->all()]);
+    }
+```
+
+```php
+    @foreach($produtos as $produto)
+        <tr>
+            <td> {{ $produto->nome }}</td>
+            <td> {{ $produto->descricao }}</td>
+            <td> {{ $produto->peso }}</td>
+            <td> {{ $produto->unidade_id }}</td>
+            <td> {{ $produto->produtoDetalhe->comprimento ?? ''}}</td>
+            <td> {{ $produto->produtoDetalhe->altura  ?? ''}}</td>
+            <td> {{ $produto->produtoDetalhe->largura  ?? ''}}</td>
+            <td><a href="{{ route('produto.show', ['produto'=> $produto->id]) }}">Visualizar</a></td>
+            <td><a href="{{ route('produto.edit', ['produto'=> $produto->id]) }}">Editar</a></td>
+            <td>
+                <form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto'=>$produto->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <!--<button type="submit">Excluir</button>-->
+                    <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+```
+
+
 - 178 Eloquent ORM 1 para 1 - Exibindo informações do produto (belongsTo)
 - 179 Eloquent ORM 1 para 1 - Utilizando hasOne e belongsTo com nomes não padronizados
 - 180 Extra - Lazy Loading vs Eager Loading parte 1

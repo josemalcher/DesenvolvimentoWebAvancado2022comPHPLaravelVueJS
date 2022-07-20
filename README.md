@@ -4052,6 +4052,18 @@ class Item extends Model
 ```
 
 - 184 Extra - Exibindo mais informações do fornecedor
+
+```php
+class ProdutoController extends Controller
+{
+    public function index(Request $request)
+    {
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10);
+        return view('app.produto.index', ['produtos' => $produtos, 'request'=> $request->all()]);
+    }
+
+```
+
 - 185 Eloquent ORM 1 para N - Estabelecendo relacionamento 1xN (hasMany)
 - 186 Eloquent ORM 1 para N - Associando fornecedores a produtos (Store e Update)
 - 187 Eloquent N para N - Implementando os requisitos para o relacionamento

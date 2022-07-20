@@ -3960,6 +3960,20 @@ class ProdutoController extends Controller
 ```
 
 - 181 Extra - Lazy Loading vs Eager Loading parte 2
+
+```php
+class ProdutoDetalheController extends Controller
+{
+    // public function edit(ProdutoDetalhe $produtoDetalhe)
+    public function edit($id)
+    {
+        $produtoDetalhe = ItemDetalhe::with(['item'])->find($id);
+
+        $unidades = Unidade::all();
+        return view('app.produto_detalhe.edit', ['produto_detalhe'=> $produtoDetalhe, 'unidades'=> $unidades]);
+    }
+```
+
 - 182 Eloquent ORM 1 para N - Criando o relacionamento entre Fornecedor e Produto
 - 183 Eloquent ORM 1 para N - Exibindo informações do fornecedor (belongsTo)
 - 184 Extra - Exibindo mais informações do fornecedor

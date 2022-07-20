@@ -3840,6 +3840,111 @@ class ProdutoDetalhe extends Model
 ```
 
 - 179 Eloquent ORM 1 para 1 - Utilizando hasOne e belongsTo com nomes não padronizados
+
+![179-diagrama](img/179-diagrama.png)
+
+```
+$ php artisan make:model Item
+Model created successfully.
+
+$ php artisan make:model ItemDetalhe
+Model created successfully.
+```
+
+```php
+class Item extends Model
+{
+    protected $table = 'produtos'; // Nome da tabela no banco
+
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+
+    public function produtoDetalhe()
+    {
+        return $this->hasOne('App\ItemDetalhe', 'produto_id', 'id');
+    }
+}
+```
+
+```php
+class ItemDetalhe extends Model
+{
+    protected $table = 'produto_detalhes';
+
+    protected $fillable = ['produto_id', 'comprimento', 'largura', 'altura', 'unidade_id'];
+
+    public function itemDetalhe()
+    {
+        return $this->belongsTo('App\Item','produto_id', 'id');
+    }
+}
+```
+
+```php
+class ItemDetalhe extends Model
+{
+    protected $table = 'produto_detalhes';
+    protected $fillable = ['produto_id', 'comprimento', 'largura', 'altura', 'unidade_id'];
+
+    public function item()
+    {
+        return $this->belongsTo('App\Item','produto_id', 'id');
+    }
+}
+```
+
+```php
+@foreach($produtos as $produto)
+  <tr>
+      <td> {{ $produto->nome }}</td>
+      <td> {{ $produto->descricao }}</td>
+      <td> {{ $produto->peso }}</td>
+      <td> {{ $produto->unidade_id }}</td>
+      <td> {{ $produto->itemdetalhe->comprimento ?? ''}}</td>
+      <td> {{ $produto->itemdetalhe->altura  ?? ''}}</td>
+      <td> {{ $produto->itemdetalhe->largura  ?? ''}}</td>
+      <td><a href="{{ route('produto.show', ['produto'=> $produto->id]) }}">Visualizar</a></td>
+      <td><a href="{{ route('produto.edit', ['produto'=> $produto->id]) }}">Editar</a></td>
+      <td>
+          <form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto'=>$produto->id]) }}">
+              @csrf
+              @method('DELETE')
+              <!--<button type="submit">Excluir</button>-->
+              <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+          </form>
+      </td>
+  </tr>
+@endforeach
+```
+
+```php
+class ProdutoDetalheController extends Controller
+{
+    // public function edit(ProdutoDetalhe $produtoDetalhe)
+    public function edit($id)
+    {
+        $produtoDetalhe = ItemDetalhe::find($id);
+
+        $unidades = Unidade::all();
+        return view('app.produto_detalhe.edit', ['produto_detalhe'=> $produtoDetalhe, 'unidades'=> $unidades]);
+    }
+```
+
+```php
+ <div class="informacao-pagina">
+
+            <h4>Produto</h4>
+            <div>Nome: {{ $produto_detalhe->item->nome }}</div>
+            <br>
+            <div>Descrição: {{ $produto_detalhe->item->descricao }}</div>
+            <br>
+
+            <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                @component('app.produto_detalhe._components.form_create_edit', ['produto_detalhe'=> $produto_detalhe, 'unidades'=> $unidades])
+                @endcomponent
+                </form>
+            </div>
+```
+
 - 180 Extra - Lazy Loading vs Eager Loading parte 1
 - 181 Extra - Lazy Loading vs Eager Loading parte 2
 - 182 Eloquent ORM 1 para N - Criando o relacionamento entre Fornecedor e Produto

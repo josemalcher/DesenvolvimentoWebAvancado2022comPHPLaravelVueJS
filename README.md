@@ -4252,6 +4252,38 @@ class ClienteController extends Controller
 
 
 - 190 Implementando a tela de cadastro de clientes
+
+```php
+class ClienteController extends Controller
+{
+    public function create()
+    {
+        return view('app.cliente.create');
+    }
+
+    public function store(Request $request)
+    {
+        $regras = [
+            'nome' => 'required|min:3|max:40'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'nome.min' => 'O campo nome de ter no mínimo 3 caracteres',
+            'nome.max' => 'O campo nome de ter no máximo 40 caracteres',
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $cliente = new Cliente();
+        $cliente->nome = $request->get('nome');
+        $cliente->save();
+
+        return redirect()->route('cliente.index');
+    }
+
+```
+
 - 191 Implementando a tela de listagem de pedidos
 - 192 Implementando a tela de cadastro de pedidos
 - 193 Implementando a tela de cadastro de produtos para um determinado pedido parte 1

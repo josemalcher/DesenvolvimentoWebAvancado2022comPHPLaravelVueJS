@@ -4120,6 +4120,67 @@ class Fornecedor extends Model
 
 - 186 Eloquent ORM 1 para N - Associando fornecedores a produtos (Store e Update)
 - 187 Eloquent N para N - Implementando os requisitos para o relacionamento
+
+![187-diagrama01.png](img/187-diagrama01.png)
+
+```
+$ php artisan make:model Cliente
+Model created successfully.
+
+$ php artisan make:model Pedido
+Model created successfully.
+
+$ php artisan make:model PedidoProduto
+Model created successfully.
+```
+
+```
+$ php artisan make:migration create_clientes_pedidos_pedidoprocutos
+Created Migration: 2022_07_21_000612_create_clientes_pedidos_pedidoprocutos
+```
+
+```php
+class CreateClientesPedidosPedidoprocutos extends Migration
+{
+    public function up()
+    {
+        Schema::create('clientes', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome', 50);
+            $table->timestamps();
+        });
+
+        Schema::create('pedidos', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('cliente_id');
+            $table->timestamps();
+
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+        });
+
+        Schema::create('pedidos_produtos', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('pedido_id');
+            $table->unsignedBigInteger('produto_id');
+            $table->timestamps();
+
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreign('produto_id')->references('id')->on('produtos');
+        });
+    }
+    public function down()
+    {
+        Schema::disableForeignKeyConstraints();
+
+        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedidos_produtos');
+
+        Schema::enableForeignKeyConstraints();
+    }
+}
+```
+
 - 188 Criando os controladores e rotas para clientes, pedidos e pedidos produtos
 - 189 Implementando a tela de listagem de clientes
 - 190 Implementando a tela de cadastro de clientes

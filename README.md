@@ -4285,6 +4285,47 @@ class ClienteController extends Controller
 ```
 
 - 191 Implementando a tela de listagem de pedidos
+
+```php
+    public function index(Request $request)
+    {
+        $pedidos = Pedido::paginate(10);
+        return view('app.pedido.index', ['pedidos' => $pedidos, 'request' => $request->all()] );
+    }
+```
+
+```php
+<table border="1" width="100%">
+  <thead>
+  <tr>
+      <th>ID Pedido</th>
+      <th>Cliente</th>
+      <th></th>
+      <th></th>
+  </tr>
+  </head>
+
+  <tbody>
+  @foreach($pedidos as $pedido)
+      <tr>
+          <td>{{ $pedido->id }}</td>
+          <td>{{ $pedido->cliente_id }}</td>
+          <td><a href="{{ route('pedido.show', ['pedido' => $pedido->id ]) }}">Visualizar</a></td>
+          <td>
+              <form id="form_{{$pedido->id}}" method="post" action="{{ route('pedido.destroy', ['pedido' => $pedido->id]) }}">
+                  @method('DELETE')
+                  @csrf
+                  <!--<button type="submit">Excluir</button>-->
+                  <a href="#" onclick="document.getElementById('form_{{$pedido->id}}').submit()">Excluir</a>
+              </form>
+          </td>
+          <td><a href="{{ route('pedido.edit', ['pedido' => $pedido->id ]) }}">Editar</a></td>
+      </tr>
+  @endforeach
+  </tbody>
+</table>
+```
+
 - 192 Implementando a tela de cadastro de pedidos
 - 193 Implementando a tela de cadastro de produtos para um determinado pedido parte 1
 - 194 Eloquent ORM N para N - Implementando o relacionamento belongsToMany

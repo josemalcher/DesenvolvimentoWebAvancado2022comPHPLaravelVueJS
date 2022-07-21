@@ -4182,6 +4182,25 @@ class CreateClientesPedidosPedidoprocutos extends Migration
 ```
 
 - 188 Criando os controladores e rotas para clientes, pedidos e pedidos produtos
+
+```
+$ php artisan make:controller --resource ClienteController
+Controller created successfully.
+
+$ php artisan make:controller --resource PedidoController
+Controller created successfully.
+
+$ php artisan make:controller --resource PedidoProdudoController
+Controller created successfully.
+
+```
+
+```php
+    Route::resource('cliente', 'ClienteController');
+    Route::resource('pedido', 'PedidoController');
+    Route::resource('pedido-produto', 'PedidoProdutoController');
+```
+
 - 189 Implementando a tela de listagem de clientes
 - 190 Implementando a tela de cadastro de clientes
 - 191 Implementando a tela de listagem de pedidos

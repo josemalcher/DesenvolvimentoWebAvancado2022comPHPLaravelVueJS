@@ -4327,7 +4327,77 @@ class ClienteController extends Controller
 ```
 
 - 192 Implementando a tela de cadastro de pedidos
+
+![192-diagrama01.png](img/192-diagrama01.png)
+
 - 193 Implementando a tela de cadastro de produtos para um determinado pedido parte 1
+
+```php
+    // Route::resource('pedido-produto', 'PedidoProdutoController');
+    Route::get( 'pedido-produto/create/{pedido}', 'PedidoProdudoController@create')->name('pedido-produto.create');
+    Route::post('pedido-produto/store/{pedido}',  'PedidoProdudoController@store') ->name('pedido-produto.store');
+```
+
+```php
+class PedidoProdudoController extends Controller
+{
+    public function create(Pedido $pedido)
+    {
+        $produtos = Produto::all();
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
+    }
+
+    public function store(Request $request, Pedido $pedido)
+    {
+        echo '<pre>';
+        print_r($pedido);
+        echo '</pre>';
+        echo '<hr>';
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+    }
+
+```
+
+- [app_super_gestao/resources/views/app/pedido_produto/create.blade.php]app_super_gestao/resources/views/app/pedido_produto/create.blade.php)
+
+```php
+@extends('app.layouts.basico')
+
+@section('titulo', 'Pedido Produto')
+
+@section('conteudo')
+
+    <div class="conteudo-pagina">
+
+        <div class="titulo-pagina-2">
+            <p>Adicionar Produtos ao Pedido</p>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="{{ route('pedido.index') }}">Voltar</a></li>
+                <li><a href="">Consulta</a></li>
+            </ul>
+        </div>
+
+        <div class="informacao-pagina">
+            <h4>Detalhes do pedido</h4>
+            <p>ID do pedido: {{ $pedido->id }}</p>
+            <p>Cliente: {{ $pedido->cliente_id }}</p>
+
+            <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                @component('app.pedido_produto._components.form_create', ['pedido' => $pedido, 'produtos' => $produtos])
+                @endcomponent
+            </div>
+        </div>
+
+    </div>
+
+@endsection
+```
+
 - 194 Eloquent ORM N para N - Implementando o relacionamento belongsToMany
 - 195 Eloquent ORM N para N - Praticando um pouco mais o relacionamento belongsToMany
 - 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)

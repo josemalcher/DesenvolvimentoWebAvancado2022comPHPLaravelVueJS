@@ -4399,6 +4399,63 @@ class PedidoProdudoController extends Controller
 ```
 
 - 194 Eloquent ORM N para N - Implementando o relacionamento belongsToMany
+
+```php
+class PedidoProdudoController extends Controller
+{
+    public function create(Pedido $pedido)
+    {
+        $produtos = Produto::all();
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
+    }
+
+    public function store(Request $request, Pedido $pedido)
+    {
+        $regras = [
+            'produto_id' => 'exists:produtos,id'
+        ];
+
+        $feedback = [
+            'produto_id.exists' => 'O produto informado não existe'
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $pedidoProduto = new PedidoProduto();
+        $pedidoProduto->pedido_id = $pedido->id;
+        $pedidoProduto->produto_id = $request->get('produto_id');
+        $pedidoProduto->save();
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+    }****
+```
+
+```php
+class Pedido extends Model
+{
+    public function produtos()
+    {
+        // return $this->belongsToMany('App\Produto', 'pedidos_produtos');
+        return $this->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id');
+        /*
+            1 - Modelo do relacionamento NxN em relação o Modelo que estamos implementando
+            2 - É a tabela auxiliar que armazena os registros de relacionamento
+            3 - Representa o nome da FK da tabela mapeada pelo modelo na tabela de relacionamento
+            4 - Representa o nome da FK da tabela mapelada pelo model utilizado no relacionamento que estamos implementando
+        */
+    }
+}
+```
+
+```
+ @foreach($pedido->produtos as $produto)
+    <tr>
+        <td>{{ $produto->id }}</td>
+        <td>{{ $produto->nome }}</td>
+    </tr>
+@endforeach
+```
+
 - 195 Eloquent ORM N para N - Praticando um pouco mais o relacionamento belongsToMany
 - 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)
 - 197 Relacionamento N para N - Inserindo registros por meio do relacionamento

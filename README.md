@@ -4506,6 +4506,43 @@ class Item extends Model
 
 
 - 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)
+
+![img/196-diagrama01.png](img/196-diagrama01.png)
+
+![196-diagrama02.png](img/196-diagrama02.png)
+
+```php
+class Pedido extends Model
+{
+    public function produtos()
+    {
+        // return $this->belongsToMany('App\Produto', 'pedidos_produtos');
+        return $this
+            ->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id')
+            ->withPivot('created_at');
+        /*
+            1 - Modelo do relacionamento NxN em relação o Modelo que estamos implementando
+            2 - É a tabela auxiliar que armazena os registros de relacionamento
+            3 - Representa o nome da FK da tabela mapeada pelo modelo na tabela de relacionamento
+            4 - Representa o nome da FK da tabela mapelada pelo model utilizado no relacionamento que estamos implementando
+        */
+    }
+}
+
+```
+
+-[app_super_gestao/resources/views/app/pedido_produto/create.blade.php](app_super_gestao/resources/views/app/pedido_produto/create.blade.php)
+
+```php
+    @foreach($pedido->produtos as $produto)
+        <tr>
+            <td>{{ $produto->id }}</td>
+            <td>{{ $produto->nome }}</td>
+            <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
+        </tr>
+    @endforeach
+```
+
 - 197 Relacionamento N para N - Inserindo registros por meio do relacionamento
 - 198 Relacionamento N para N - Removendo o relacionamento
 - 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos

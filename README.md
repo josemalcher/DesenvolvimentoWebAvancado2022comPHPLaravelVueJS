@@ -4544,6 +4544,89 @@ class Pedido extends Model
 ```
 
 - 197 Relacionamento N para N - Inserindo registros por meio do relacionamento
+
+```
+$ php artisan make:migration alter_pedidos_produtos_add_quantidade
+Created Migration: 2022_07_23_010218_alter_pedidos_produtos_add_quantidade
+
+```
+
+```php
+class AlterPedidosProdutosAddQuantidade extends Migration
+{
+    public function up()
+    {
+        Schema::table('pedidos_produtos', function (Blueprint $table){
+            $table->integer('quantidade');
+        });
+    }
+    public function down()
+    {
+        Schema::table('pedidos_produtos', function (Blueprint $table){
+            $table->dropColumn('quantidade');
+        });
+    }
+}
+```
+
+```php
+class PedidoProdudoController extends Controller
+{
+    public function store(Request $request, Pedido $pedido)
+    {
+        $regras = [
+            'produto_id' => 'exists:produtos,id',
+            'quantidade' => 'required'
+        ];
+
+        $feedback = [
+            'produto_id.exists' => 'O produto informado não existe',
+            'required' => 'O campo :attribute deve possuir um valor válido'
+        ];
+
+        $request->validate($regras, $feedback);
+
+        /*
+        $pedidoProduto = new PedidoProduto();
+        $pedidoProduto->pedido_id = $pedido->id;
+        $pedidoProduto->produto_id = $request->get('produto_id');
+        $pedidoProduto->quantidade = $request->get('quantidade');
+        $pedidoProduto->save();
+        */
+
+        //$pedido->produtos //os registros do relacionamento
+        /*
+        $pedido->produtos()->attach(
+            $request->get('produto_id'),
+            [
+                'quantidade' => $request->get('quantidade'),
+                'coluna_1' => '',
+                'coluna_2' => '',
+            ]
+        ); //objeto
+        //pedido_id
+        */
+        // OU ...
+        $pedido->produtos()->attach([
+            // $request->get('produto_id') => ['coluna_1' => $request->get('coluna_1')], // mais informações
+            $request->get('produto_id') => ['quantidade' => $request->get('quantidade')]
+        ]);
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+    }
+```
+
+-[app_super_gestao/resources/views/app/pedido_produto/_components/form_create.blade.php](app_super_gestao/resources/views/app/pedido_produto/_components/form_create.blade.php)
+
+```php
+
+    <input type="number" name="quantidade" value="{{ old('quantidade') ? old('quantidade') : '' }}"
+           placeholder="Quantidade" class="borda-preta">
+    {{ $errors->has('quantidade') ? $errors->first('quantidade') : '' }}
+
+```
+
+
 - 198 Relacionamento N para N - Removendo o relacionamento
 - 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos
 

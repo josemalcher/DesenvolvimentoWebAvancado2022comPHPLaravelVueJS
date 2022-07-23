@@ -4457,6 +4457,54 @@ class Pedido extends Model
 ```
 
 - 195 Eloquent ORM N para N - Praticando um pouco mais o relacionamento belongsToMany
+
+```php
+class Item extends Model
+{
+    protected $table = 'produtos'; // Nome da tabela no banco
+
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id', 'fornecedor_id'];
+
+    public function itemDetalhe()
+    {
+        return $this->hasOne('App\ItemDetalhe', 'produto_id', 'id');
+    }
+
+    public function fornecedor()
+    {
+        return $this->belongsTo('App\Fornecedor');
+    }
+
+    public function pedidos() {
+        return $this->belongsToMany('App\Pedido', 'pedidos_produtos', 'produto_id', 'pedido_id');
+
+        /*
+            3 - Representa o nome da FK da tabela mapeada pelo model na tabela de relacionamento
+            4 - Representa o nome da FK da tabela mapeada pelo model utilizado no relacionamento que estamos implementando
+        */
+    }
+}
+```
+
+- [app_super_gestao/resources/views/app/produto/index.blade.php](app_super_gestao/resources/views/app/produto/index.blade.php)
+
+```php
+              <tr>
+              <td colspan="12">
+                  <p>Pedidos</p>
+                  @foreach($produto->pedidos as $pedido)
+                      <a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">
+                          Pedido: {{ $pedido->id }},
+                      </a>
+                  @endforeach
+              </td>
+          </tr>
+      @endforeach
+      </tbody>
+  </table>
+```
+
+
 - 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)
 - 197 Relacionamento N para N - Inserindo registros por meio do relacionamento
 - 198 Relacionamento N para N - Removendo o relacionamento

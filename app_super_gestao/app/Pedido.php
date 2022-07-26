@@ -11,7 +11,7 @@ class Pedido extends Model
         // return $this->belongsToMany('App\Produto', 'pedidos_produtos');
         return $this
             ->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id')
-            ->withPivot('created_at');
+            ->withPivot('created_at', 'id');
         /*
             1 - Modelo do relacionamento NxN em relação o Modelo que estamos implementando
             2 - É a tabela auxiliar que armazena os registros de relacionamento

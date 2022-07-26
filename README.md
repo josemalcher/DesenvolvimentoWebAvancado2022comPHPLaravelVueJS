@@ -4682,6 +4682,80 @@ public function destroy(Pedido $pedido, Produto $produto)
 
 - 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos
 
+![199-diagrama01.png](img/199-diagrama01.png)
+
+```php
+class Pedido extends Model
+{
+    public function produtos()
+    {
+        // return $this->belongsToMany('App\Produto', 'pedidos_produtos');
+        return $this
+            ->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id')
+            ->withPivot('created_at', 'id'); // add 'id'
+        /*
+            1 - Modelo do relacionamento NxN em relação o Modelo que estamos implementando
+            2 - É a tabela auxiliar que armazena os registros de relacionamento
+            3 - Representa o nome da FK da tabela mapeada pelo modelo na tabela de relacionamento
+            4 - Representa o nome da FK da tabela mapelada pelo model utilizado no relacionamento que estamos implementando
+        */
+    }
+}
+```
+
+```php
+                    @foreach($pedido->produtos as $produto)
+                        <tr>
+                            <td>{{ $produto->id }}</td>
+                            <td>{{ $produto->nome }}</td>
+                            <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <form id="form_{{$produto->pivot->id}}" method="post"
+                                      action="{{ route('pedido-produto.destroy', ['pedidoProduto' => $produto->pivot->id , 'pedido_id'=> $pedido->id ])}}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a href="#" onclick="document.getElementById('form_{{$produto->pivot->id}}').submit()">Excluir</a>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+```
+
+```php
+  //Route::delete('pedido-produto/destroy/{pedido}/{produto}',  'PedidoProdudoController@destroy') ->name('pedido-produto.destroy');
+    Route::delete('pedido-produto/destroy/{pedidoProduto}/{pedido_id}',  'PedidoProdudoController@destroy') ->name('pedido-produto.destroy');
+```
+
+```php
+ // public function destroy(Pedido $pedido, Produto $produto)
+    public function destroy(PedidoProduto $pedidoProduto, $pedido_id)
+    {
+        /*
+        print_r($pedido->getAttributes());
+        echo '<hr>';
+        print_r($produto->getAttributes());
+        */
+
+        // Convencional
+//        PedidoProduto::where(
+//            [
+//                'pedido_id'=> $pedido->id,
+//                'produto_id'=> $produto->id
+//            ]
+//        )->delete();
+
+        // detach (delete pelo relacionamento)
+        // $pedido->produtos()->detach($produto->id); // ultima forma
+
+
+        // por meio do Objeto Produto
+        // $produito->pedido()->detach($pedido->id)
+
+        $pedidoProduto->delete();
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido_id]);
+    }
+```
+
 [Voltar ao Índice](#indice)
 
 ---

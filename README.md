@@ -4628,6 +4628,58 @@ class PedidoProdudoController extends Controller
 
 
 - 198 Relacionamento N para N - Removendo o relacionamento
+
+```php
+Route::delete('pedido-produto/destroy/{pedido}/{produto}',  'PedidoProdudoController@destroy') ->name('pedido-produto.destroy');
+```
+
+```php
+public function destroy(Pedido $pedido, Produto $produto)
+    {
+        /*
+        print_r($pedido->getAttributes());
+        echo '<hr>';
+        print_r($produto->getAttributes());
+        */
+
+        // Convencional
+//        PedidoProduto::where(
+//            [
+//                'pedido_id'=> $pedido->id,
+//                'produto_id'=> $produto->id
+//            ]
+//        )->delete();
+
+        // detach (delete pelo relacionamento)
+        $pedido->produtos()->detach($produto->id);
+
+
+        // por meio do Objeto Produto
+        // $produito->pedido()->detach($pedido->id)
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+    }
+```
+
+```php
+                    @foreach($pedido->produtos as $produto)
+                        <tr>
+                            <td>{{ $produto->id }}</td>
+                            <td>{{ $produto->nome }}</td>
+                            <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <form id="form_{{$pedido->id}}_{{$produto->id}}" method="post"
+                                      action="{{ route('pedido-produto.destroy', ['pedido' => $pedido->id, 'produto' => $produto->id])}}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a href="#" onclick="document.getElementById('form_{{$pedido->id}}_{{$produto->id}}').submit()">Excluir</a>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+```
+
+
 - 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos
 
 [Voltar ao Índice](#indice)

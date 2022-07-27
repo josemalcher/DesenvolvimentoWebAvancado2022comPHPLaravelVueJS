@@ -4774,6 +4774,21 @@ $ composer create-project --prefer-dist laravel/laravel app_controle_tarefas "8.
 - 202 [LINUX] Instalando o NodeJS e o NPM
 - 203 [OSX] Instalando o NodeJS e o NPM
 - 204 Instalando o Laravel UI
+
+```
+$ composer require laravel/ui:^3.2
+
+```
+
+```
+$ php artisan list
+
+
+ ui
+  ui:auth               Scaffold basic login and registration views and routes
+  ui:controllers        Scaffold the authentication controllers
+```
+
 - 205 Entendendo o pacote UI e iniciando a autenticação WEB nativa do Laravel
 - 206 Configurando a conexão com o banco de dados e executando as migrations padrões
 - 207 Registrando novos usuários e efetuando o login na aplicação

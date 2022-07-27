@@ -4764,6 +4764,12 @@ class Pedido extends Model
 ## <a name="parte13">13 - Autenticação WEB (Session) e Bootstrap (CSS)</a>
 
 - 200 Iniciando o projeto Controle de Tarefas
+
+```
+$ composer create-project --prefer-dist laravel/laravel app_controle_tarefas "8.5.9"
+
+```
+
 - 201 [WINDOWS] Instalando o NodeJS e o NPM
 - 202 [LINUX] Instalando o NodeJS e o NPM
 - 203 [OSX] Instalando o NodeJS e o NPM

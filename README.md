@@ -4926,6 +4926,24 @@ Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
 ## <a name="parte14">14 - Implementando o envio de e-mails e a exportação de arquivos XLSX, CSV e PDF</a>
 
 - 213 Configurando o envio de e-mails (Reset Password) - Parte 1
+
+```
+Resolvi esse problema com um método de configuração de senha do google, siga esses passos o passo 3 só funciona se fizer o passo 2, ao gerar senha use-a na .env:
+
+*1-Faça login nas configurações da conta do Gmail.
+
+*2-Ative a verificação em duas etapas.
+
+*3-Gere a senha do aplicativo 'https://support.google.com/accounts/answer/185833?hl=en'.
+
+*4-Use a nova senha gerada no lugar de sua senha real do Gmail.
+
+*---Não se esqueça de limpar o cache:
+
+php artisan config:cache.
+php artisan config:clear.
+```
+
 - 214 Criando um template de e-mail com Markdown Mailables
 - 215 Enviando e-mails
 - 216 Publicando e customizando o template de e-mail

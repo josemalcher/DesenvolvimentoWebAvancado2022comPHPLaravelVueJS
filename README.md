@@ -4854,6 +4854,18 @@ class HomeController extends Controller
 ```
 
 - 210 Criando o Model e o Controller para Tarefa
+
+```
+$ php artisan make:controller --resource TarefaController --model=Tarefa
+
+ A App\Models\Tarefa model does not exist. Do you want to generate it? (yes/no) [yes]:
+ > yes
+
+Model created successfully.
+Controller created successfully.
+
+```
+
 - 211 Implementando o middleware auth
 - 212 Verificando se o usuário está logado dentro dos métodos do Controller
 

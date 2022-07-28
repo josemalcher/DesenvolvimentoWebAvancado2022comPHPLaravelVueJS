@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\RedefinirSenhaNotification;
+use App\Notifications\VerificareEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,4 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         // dd('Chegou no sendPasswordResetNotification');
         $this->notify(new RedefinirSenhaNotification($token, $this->email, $this->name));
     }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerificareEmailNotification($this->name));
+    }
+
+
 }

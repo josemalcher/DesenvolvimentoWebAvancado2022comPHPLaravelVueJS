@@ -5120,7 +5120,53 @@ Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
 ```
 
 - 220 Customizando a view de verificação de e-mail
+
+- [app_controle_tarefas/resources/views/auth/verify.blade.php](app_controle_tarefas/resources/views/auth/verify.blade.php)
+
 - 221 Customizando a mensagem de verificação de e-mail
+
+```
+$ php artisan make:notification VerificareEmailNotification
+Notification created successfully.
+
+```
+
+```php
+namespace App\Models;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+      public function sendEmailVerificationNotification()
+    {
+          $this->notify(new VerificareEmailNotification($this->name));
+    }
+```
+
+```php
+namespace App\Notifications;
+
+class VerificarEmailNotification extends Notification
+{
+    public static $createUrlCallback;
+    public $name;
+
+    public static $toMailCallback;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    protected function buildMailMessage($url)
+    {
+        return (new MailMessage)
+            ->subject('Confirmação de e-mail')
+            ->greeting('Olá '.$this->name)
+            ->line('Clique no botão abaixo para validar seu e-mail')
+            ->action('Clique aqui para validar seu e-mail', $url)
+            ->line('Caso você não tenha se cadastrado em nosso sistema, apenas desconsidere essa mensagem');
+    }
+```
+
 - 222 Cadastrando novas tarefas
 - 223 Enviando um e-mail de cadastro de nova tarefa e exibindo os dados da tarefa
 - 224 Associando o usuário a tarefa

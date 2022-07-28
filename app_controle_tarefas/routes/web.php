@@ -24,8 +24,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])->name('tarefa');
 
 Route::get('/mensagem-teste', function (){
-    // return new \App\Mail\MensagemTesteMail();
+    return new \App\Mail\MensagemTesteMail();
 
-    Mail::to('contato@josemalcher.net')->send(new \App\Mail\MensagemTesteMail());
-    return 'Email enviado com sucesso';
+    // Mail::to('contato@josemalcher.net')->send(new \App\Mail\MensagemTesteMail());
+    // return 'Email enviado com sucesso';
 });

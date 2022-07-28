@@ -4980,6 +4980,42 @@ Route::get('/mensagem-teste', function (){
 ```
 
 - 216 Publicando e customizando o template de e-mail
+
+![img/216-diagrama01.png](img/216-diagrama01.png)
+
+```
+$ php artisan vendor:publish
+
+ Which provider or tag's files would you like to publish?:
+  [0 ] Publish files from all providers and tags listed below
+  [1 ] Provider: Facade\Ignition\IgnitionServiceProvider
+  [2 ] Provider: Fideloper\Proxy\TrustedProxyServiceProvider
+  [3 ] Provider: Fruitcake\Cors\CorsServiceProvider
+  [4 ] Provider: Illuminate\Foundation\Providers\FoundationServiceProvider
+  [5 ] Provider: Illuminate\Mail\MailServiceProvider
+  [6 ] Provider: Illuminate\Notifications\NotificationServiceProvider
+  [7 ] Provider: Illuminate\Pagination\PaginationServiceProvider
+  [8 ] Provider: Laravel\Sail\SailServiceProvider
+  [9 ] Provider: Laravel\Tinker\TinkerServiceProvider
+  [10] Tag: cors
+  [11] Tag: flare-config
+  [12] Tag: ignition-config
+  [13] Tag: laravel-errors
+  [14] Tag: laravel-mail
+  [15] Tag: laravel-notifications
+  [16] Tag: laravel-pagination
+  [17] Tag: sail
+  [18] Tag: sail-bin
+  [19] Tag: sail-docker
+ > 14
+14
+
+Copied Directory [\vendor\laravel\framework\src\Illuminate\Mail\resources\views] To [\resources\views\vendor\mail]
+Publishing complete.
+
+
+```
+
 - 217 Configurando o envio de e-mails (Reset Password) - Parte 2
 - 218 Ajustando as políticas de senha no reset
 - 219 Verificação de e-mail (MystVerifyEmail)

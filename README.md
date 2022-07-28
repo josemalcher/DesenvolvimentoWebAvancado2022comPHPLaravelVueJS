@@ -4843,6 +4843,16 @@ class RegisterController extends Controller
 ```
 
 - 209 Entendendo como a rota Home está protegida
+
+```php
+class HomeController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+```
+
 - 210 Criando o Model e o Controller para Tarefa
 - 211 Implementando o middleware auth
 - 212 Verificando se o usuário está logado dentro dos métodos do Controller

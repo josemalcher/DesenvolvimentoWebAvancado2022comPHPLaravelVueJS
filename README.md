@@ -4820,6 +4820,9 @@ Migrated:  2019_08_19_000000_create_failed_jobs_table (26.97ms)
 ```
 
 - 207 Registrando novos usuários e efetuando o login na aplicação
+
+![207-diagrama01.png](img/207-diagrama01.png)
+
 - 208 Validando campos de confirmação (confirmed) e mudando regras de senhas
 - 209 Entendendo como a rota Home está protegida
 - 210 Criando o Model e o Controller para Tarefa

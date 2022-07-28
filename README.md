@@ -4895,6 +4895,29 @@ Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
 
 - 212 Verificando se o usuário está logado dentro dos métodos do Controller
 
+```php
+    public function index()
+    {
+        /*if (auth()->check()) {
+            $id = auth()->user()->id;
+            $name = auth()->user()->name;
+            $email = auth()->user()->email;
+            return "LOGADO NO SISTEMA - ID: $id - NOME: $name - EMail: $email";
+        } else {
+            return 'NÃO LOGADO NO SISTEMA';
+        }*/
+        // OU ...
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $email = Auth::user()->email;
+            return "LOGADO NO SISTEMA - ID: $id - NOME: $name - EMail: $email";
+        } else {
+            return 'NÃO LOGADO NO SISTEMA';
+        }
+    }
+```
+
 [Voltar ao Índice](#indice)
 
 ---

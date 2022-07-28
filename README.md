@@ -4806,6 +4806,19 @@ $npm run dev
 ```
 
 - 206 Configurando a conexão com o banco de dados e executando as migrations padrões
+
+```
+$ php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (31.06ms)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (25.64ms)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (26.97ms)
+
+```
+
 - 207 Registrando novos usuários e efetuando o login na aplicação
 - 208 Validando campos de confirmação (confirmed) e mudando regras de senhas
 - 209 Entendendo como a rota Home está protegida

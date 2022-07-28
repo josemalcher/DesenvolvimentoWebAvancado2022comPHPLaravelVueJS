@@ -5016,7 +5016,69 @@ Publishing complete.
 
 ```
 
-- 217 Configurando o envio de e-mails (Reset Password) - Parte 2
+- 217 Configurando o envio de e-mails (Reset Password) - Parte 
+ 
+![217-diagrama01.png](img/217-diagrama01.png)
+
+```php
+namespace App\Models;
+class User extends Authenticatable
+{
+    public function sendPasswordResetNotification($token)
+    {
+        // dd('Chegou no sendPasswordResetNotification');
+        $this->notify(new RedefinirSenhaNotification($token, $this->email, $this->name));
+    }
+```
+
+```
+$ php artisan make:notification RedefinirSenhaNotification
+Notification created successfully.
+```
+
+```
+namespace App\Notifications;
+class User extends Authenticatable
+{
+    public function sendPasswordResetNotification($token)
+    {
+        // dd('Chegou no sendPasswordResetNotification');
+        $this->notify(new RedefinirSenhaNotification($token, $this->email, $this->name));
+    }
+```
+
+```php
+class RedefinirSenhaNotification extends Notification
+{
+    use Queueable;
+    public $token;
+    public $email;
+    public $name;
+    
+    public function __construct($token, $email, $name)
+    {
+        $this->token = $token;
+        $this->email = $email;
+        $this->name = $name;
+    }
+
+    public function toMail($notifiable)
+    {
+        $url = 'http://localhost:8000/password/reset/'.$this->token.'?email='.$this->email;
+        $minutos = config('auth.passwords.'.config('auth.defaults.passwords').'.expire');
+        $saudacao = 'Olá '.$this->name;
+
+        return (new MailMessage)
+            ->subject('Atualização de senha')
+            ->greeting($saudacao)
+            ->line('Esqueceu a senha? Sem problemas, vamos resolver isso!!!')
+            ->action('Clique aqui para modificar a senha', $url)
+            ->line('O link acima expira em '.$minutos.' minutos')
+            ->line('Caso você não tenha requisitado a alteração de senha, então nenhuma ação é necessária.')
+            ->salutation('Até breve!');
+    }
+```
+ 
 - 218 Ajustando as políticas de senha no reset
 - 219 Verificação de e-mail (MystVerifyEmail)
 - 220 Customizando a view de verificação de e-mail

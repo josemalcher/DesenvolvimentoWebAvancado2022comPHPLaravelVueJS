@@ -4945,6 +4945,22 @@ php artisan config:clear.
 ```
 
 - 214 Criando um template de e-mail com Markdown Mailables
+
+```
+$ php artisan make:mail MensagemTesteMail --markdown email.mensagem-teste
+Mail created successfully.
+
+```
+
+```php
+// TESTE para ver a mensagem
+
+Route::get('/mensagem-teste', function (){
+    return new \App\Mail\MensagemTesteMail();
+});
+
+```
+
 - 215 Enviando e-mails
 - 216 Publicando e customizando o template de e-mail
 - 217 Configurando o envio de e-mails (Reset Password) - Parte 2

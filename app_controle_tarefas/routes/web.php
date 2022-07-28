@@ -21,3 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])->name('tarefa');
+
+Route::get('/mensagem-teste', function (){
+    return new \App\Mail\MensagemTesteMail();
+});

@@ -5098,6 +5098,27 @@ class ResetPasswordController extends Controller
 ```
 
 - 219 Verificação de e-mail (MystVerifyEmail)
+
+```php
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+```
+
+```php
+Auth::routes(['verify'=> true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('verified');
+Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
+    ->name('tarefa')
+    ->middleware('verified');
+
+```
+
 - 220 Customizando a view de verificação de e-mail
 - 221 Customizando a mensagem de verificação de e-mail
 - 222 Cadastrando novas tarefas

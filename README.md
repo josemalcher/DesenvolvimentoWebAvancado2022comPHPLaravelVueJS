@@ -4867,6 +4867,32 @@ Controller created successfully.
 ```
 
 - 211 Implementando o middleware auth
+
+```php
+Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])->name('tarefa');
+```
+
+```php
+class TarefaController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return 'Chegou na tarefa';
+    }
+```
+
+```php
+// ou passando na rota
+Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
+    ->name('tarefa')
+    ->middleware('auth');
+```
+
 - 212 Verificando se o usuário está logado dentro dos métodos do Controller
 
 [Voltar ao Índice](#indice)

@@ -4962,6 +4962,23 @@ Route::get('/mensagem-teste', function (){
 ```
 
 - 215 Enviando e-mails
+
+```php
+Route::get('/mensagem-teste', function (){
+    // return new \App\Mail\MensagemTesteMail();
+
+    Mail::to('contato@josemalcher.net')->send(new \App\Mail\MensagemTesteMail());
+    return 'Email enviado com sucesso';
+});
+```
+
+```
+>>> use App\Mail\MensagemTesteMail;                                                                                                                                                                      
+>>> Mail::to('contato@josemalcher.net')->send(new \App\Mail\MensagemTesteMail());                                                                                                                        
+=> null
+
+```
+
 - 216 Publicando e customizando o template de e-mail
 - 217 Configurando o envio de e-mails (Reset Password) - Parte 2
 - 218 Ajustando as políticas de senha no reset

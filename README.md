@@ -4790,6 +4790,21 @@ $ php artisan list
 ```
 
 - 205 Entendendo o pacote UI e iniciando a autenticação WEB nativa do Laravel
+
+![205-diagrama](img/205-diagrama01.png)
+
+![205-diagrama](img/205-diagrama02.png)
+
+```
+$ php artisan ui bootstrap --auth
+Bootstrap scaffolding installed successfully.
+Please run "npm install && npm run dev" to compile your fresh scaffolding.
+Authentication scaffolding generated successfully.
+
+$npm install
+$npm run dev
+```
+
 - 206 Configurando a conexão com o banco de dados e executando as migrations padrões
 - 207 Registrando novos usuários e efetuando o login na aplicação
 - 208 Validando campos de confirmação (confirmed) e mudando regras de senhas

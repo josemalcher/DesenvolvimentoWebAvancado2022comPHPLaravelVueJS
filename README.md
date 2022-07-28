@@ -4824,6 +4824,24 @@ Migrated:  2019_08_19_000000_create_failed_jobs_table (26.97ms)
 ![207-diagrama01.png](img/207-diagrama01.png)
 
 - 208 Validando campos de confirmação (confirmed) e mudando regras de senhas
+
+```php
+class RegisterController extends Controller
+{
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'], // password_confirmation
+        ]);
+    }
+```
+
+```php
+<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+```
+
 - 209 Entendendo como a rota Home está protegida
 - 210 Criando o Model e o Controller para Tarefa
 - 211 Implementando o middleware auth

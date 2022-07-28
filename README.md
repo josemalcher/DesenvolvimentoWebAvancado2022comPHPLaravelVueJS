@@ -5080,6 +5080,23 @@ class RedefinirSenhaNotification extends Notification
 ```
  
 - 218 Ajustando as políticas de senha no reset
+
+```php
+class ResetPasswordController extends Controller
+{
+    use ResetsPasswords;
+
+    protected function rules() // sobreescrita
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => ['required', 'confirmed', 'min:4'],
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ];
+    }
+```
+
 - 219 Verificação de e-mail (MystVerifyEmail)
 - 220 Customizando a view de verificação de e-mail
 - 221 Customizando a mensagem de verificação de e-mail

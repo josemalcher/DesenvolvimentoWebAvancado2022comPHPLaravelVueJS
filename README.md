@@ -5168,6 +5168,54 @@ class VerificarEmailNotification extends Notification
 ```
 
 - 222 Cadastrando novas tarefas
+
+```php
+//Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
+//    ->name('tarefa')
+//    ->middleware('verified');
+
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
+    ->middleware('verified');
+
+```
+
+```php
+class TarefaController extends Controller
+{
+    public function create()
+    {
+        return view('tarefa.create');
+    }
+
+  public function store(Request $request)
+    {
+        // dd($request->all());
+        $tarefa = Tarefa::create($request->all());
+        return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
+    }
+
+    public function show(Tarefa $tarefa)
+    {
+        dd($tarefa->getAttributes());
+        /*
+         array:5 [▼
+                "id" => 3
+                "created_at" => "2022-07-29 14:32:48"
+                "updated_at" => "2022-07-29 14:32:48"
+                "tarefa" => "Tarefa 3"
+                "data_limite_conclusao" => "2022-08-04"
+              ]
+         * */
+    }
+```
+
+```
+$ php artisan make:migration create_tarefas_table
+Created Migration: 2022_07_29_140051_create_tarefas_table
+
+```
+
+
 - 223 Enviando um e-mail de cadastro de nova tarefa e exibindo os dados da tarefa
 - 224 Associando o usuário a tarefa
 - 225 Listando as tarefas cadastradas

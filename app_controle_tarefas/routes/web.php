@@ -23,9 +23,13 @@ Auth::routes(['verify'=> true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home')
     ->middleware('verified');
-Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
-    ->name('tarefa')
+//Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
+//    ->name('tarefa')
+//    ->middleware('verified');
+
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
     ->middleware('verified');
+
 
 Route::get('/mensagem-teste', function (){
     return new \App\Mail\MensagemTesteMail();

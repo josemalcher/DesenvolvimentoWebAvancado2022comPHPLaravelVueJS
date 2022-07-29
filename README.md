@@ -5316,6 +5316,32 @@ Att,<br>
 ```
 
 - 224 Associando o usuário a tarefa
+
+```
+$ php artisan make:migration alter_table_tarefas_relacionamento_users
+Created Migration: 2022_07_29_185744_alter_table_tarefas_relacionamento_users
+
+```
+
+```php
+    public function store(Request $request)
+    {
+        // dd($request->all());
+
+        $dados = $request->all('tarefa', 'data_limite_conclusao');
+        $dados['user_id'] = auth()->user()->id; //     protected $fillable = ['tarefa', 'data_limite_conclusao', 'user_id'];
+
+        // dd($dados);
+
+        $tarefa = Tarefa::create($dados);
+
+        $destinatario = auth()->user()->email; // email do usuário logado (autenticado)
+        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+
+        return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
+    }
+```
+
 - 225 Listando as tarefas cadastradas
 - 226 Implementando a paginação de registros de tarefas
 - 227 Modificando a rota home da aplicação (redirectTo)

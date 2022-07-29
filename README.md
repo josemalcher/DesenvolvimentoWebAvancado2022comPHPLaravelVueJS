@@ -5217,6 +5217,104 @@ Created Migration: 2022_07_29_140051_create_tarefas_table
 
 
 - 223 Enviando um e-mail de cadastro de nova tarefa e exibindo os dados da tarefa
+
+```
+$ php artisan make:mail NovaTarefaMail --markdown emails.nova-tarefa
+Mail created successfully.
+
+```
+
+```php
+class NovaTarefaMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $tarefa;
+    public $data_limite_conclusao;
+    public $url;
+
+    public function __construct(Tarefa $tarefa)
+    {
+        $this->tarefa = $tarefa->tarefa;
+        $this->data_limite_conclusao = date('d/m/Y', strtotime($tarefa->data_limite_conclusao));
+        $this->url = 'http://127.0.0.1:8000/tarefa/' . $tarefa->id;
+    }
+    public function build()
+    {
+        return $this->markdown('emails.nova-tarefa')
+            ->subject('Nova Tarefa Criada');
+    }
+}
+```
+
+```php
+class TarefaController extends Controller
+{
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $tarefa = Tarefa::create($request->all());
+
+        $destinatario = auth()->user()->email; // email do usuário logado (autenticado)
+        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+
+        return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
+    }
+
+    public function show(Tarefa $tarefa)
+    {
+        //dd($tarefa->getAttributes());
+        return view('tarefa.show', ['tarefa'=> $tarefa]);
+    }
+```
+
+```php
+@component('mail::message')
+# {{ $tarefa }}
+
+Data Limite de conclusão: {{ $data_limite_conclusao }}
+
+@component('mail::button', ['url' => $url])
+Click aqui para ver a tarefa
+@endcomponent
+
+Att,<br>
+{{ config('app.name') }}
+@endcomponent
+
+```
+
+```php
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ $tarefa->tarefa }}</div>
+                    <fieldset disabled>
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <label class="form-label">Data limite conclusão</label>
+                                <input type="date" class="form-control" value="{{ $tarefa->data_limite_conclusao }}">
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+```
+
 - 224 Associando o usuário a tarefa
 - 225 Listando as tarefas cadastradas
 - 226 Implementando a paginação de registros de tarefas

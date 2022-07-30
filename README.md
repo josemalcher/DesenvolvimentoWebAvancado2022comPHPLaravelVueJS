@@ -5343,6 +5343,28 @@ Created Migration: 2022_07_29_185744_alter_table_tarefas_relacionamento_users
 ```
 
 - 225 Listando as tarefas cadastradas
+
+```php
+class TarefaController extends Controller
+{
+    public function index()
+    {
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        return view('tarefa.index', ['tarefas'=>$tarefas]);
+    }
+```
+
+```php
+@foreach($tarefas as $key => $t)
+    <tr>
+        <th scope="row">{{ $t['id'] }}</th>
+        <td>{{ $t['tarefa'] }}</td>
+        <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
+    </tr>
+@endforeach
+```
+
 - 226 Implementando a paginação de registros de tarefas
 - 227 Modificando a rota home da aplicação (redirectTo)
 - 228 Atualizando registros de tarefas

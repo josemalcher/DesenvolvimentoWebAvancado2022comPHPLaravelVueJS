@@ -31,14 +31,20 @@ class TarefaController extends Controller
             return 'NÃO LOGADO NO SISTEMA';
         }*/
         // OU ...
-        if (Auth::check()) {
+        /*if (Auth::check()) {
             $id = Auth::user()->id;
             $name = Auth::user()->name;
             $email = Auth::user()->email;
             return "LOGADO NO SISTEMA - ID: $id - NOME: $name - EMail: $email";
         } else {
             return 'NÃO LOGADO NO SISTEMA';
-        }
+        }*/
+
+        $user_id = auth()->user()->id;
+
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+
+        return view('tarefa.index', ['tarefas'=>$tarefas]);
     }
 
     /**

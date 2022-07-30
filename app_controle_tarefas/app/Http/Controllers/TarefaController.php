@@ -42,7 +42,7 @@ class TarefaController extends Controller
 
         $user_id = auth()->user()->id;
 
-        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
 
         return view('tarefa.index', ['tarefas'=>$tarefas]);
     }
@@ -74,8 +74,8 @@ class TarefaController extends Controller
 
         $tarefa = Tarefa::create($dados);
 
-        $destinatario = auth()->user()->email; // email do usuário logado (autenticado)
-        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+        // $destinatario = auth()->user()->email; // email do usuário logado (autenticado)
+        // Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
 
         return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
     }

@@ -5439,7 +5439,23 @@ class TarefaController extends Controller
 
 ## <a name="parte20">20 - Armazenamento em memória com Redis (Laravel Cache)</a>
 
+- 392 O que é o Redis?
 
+![img/392-diagrama01.png](img/392-diagrama01.png)
+
+- 393 [WINDOWS] - Instalando o Redis
+- 394 [LINUX] - Instalando o Redis
+- 395 [OSX] - Instalando o Redis
+- 396 Extra - Atualizando o Composer
+- 397 Iniciando o projeto Portal de Notícias
+- 398 Iniciando o banco de dados e as migrations
+- 399 Implementando a Factory e a Seeder para popular a tabela de notícias
+- 400 Implementando a consulta e a visualização das notícias
+- 401 Instalando o pacote Debugbar para monitorar o tempo de execução das querys
+- 402 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
+- 403 Armazenando consultas em cache parte 1
+- 404 Armazenando consultas em cache parte 2
+- 405 Cache remember
 
 [Voltar ao Índice](#indice)
 

@@ -5396,6 +5396,29 @@ class TarefaController extends Controller
 
 
 - 227 Modificando a rota home da aplicação (redirectTo)
+
+[app_controle_tarefas/app/Providers/RouteServiceProvider.php](app_controle_tarefas/app/Providers/RouteServiceProvider.php)
+
+```php
+class RouteServiceProvider extends ServiceProvider
+{
+    /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/tarefa';
+
+```
+
+```php
+/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('verified');*/
+```
+
 - 228 Atualizando registros de tarefas
 - 229 Validando se a tarefa pertence ao usuário antes de habilitar a edição
 - 230 Removendo registros de tarefas

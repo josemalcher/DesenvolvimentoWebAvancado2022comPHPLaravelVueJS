@@ -15,7 +15,8 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data limite conclusão</th>
-                                <th scope="col">Ações</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
 
@@ -26,6 +27,16 @@
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
                                     <td><a href="{{ route('tarefa.edit', $t['id']) }}">Editar</a></td>
+                                    <td>
+                                        <form id="form_{{$t['id']}}"
+                                              method="post"
+                                              action="{{ route('tarefa.destroy', ['tarefa'=> $t['id']]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                        <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
+
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -33,7 +44,8 @@
 
                         <nav>
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="{{ $tarefas->previousPageUrl() }}">Voltar</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $tarefas->previousPageUrl() }}">Voltar</a>
+                                </li>
 
                                 @for($i = 1; $i <= $tarefas->lastPage(); $i++)
                                     <li class="page-item {{ $tarefas->currentPage() == $i ? 'active' : '' }}">
@@ -41,7 +53,8 @@
                                     </li>
                                 @endfor
 
-                                <li class="page-item"><a class="page-link" href="{{ $tarefas->nextPageUrl() }}">Avançar</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ $tarefas->nextPageUrl() }}">Avançar</a></li>
                             </ul>
                         </nav>
                     </div>

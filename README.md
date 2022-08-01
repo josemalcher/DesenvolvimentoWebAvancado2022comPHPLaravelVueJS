@@ -5479,6 +5479,44 @@ public function edit(Tarefa $tarefa)
 ```
 
 - 230 Removendo registros de tarefas
+
+```
+class TarefaController extends Controller
+{
+    public function destroy(Tarefa $tarefa)
+    {
+        if (!$tarefa->user_id == auth()->user()->id) {
+            return view('acesso-negado');
+        }
+
+        $tarefa->delete();
+        return redirect()->route('tarefa.index');
+    }
+```
+
+```php
+    <tbody>
+    @foreach($tarefas as $key => $t)
+        <tr>
+            <th scope="row">{{ $t['id'] }}</th>
+            <td>{{ $t['tarefa'] }}</td>
+            <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
+            <td><a href="{{ route('tarefa.edit', $t['id']) }}">Editar</a></td>
+            <td>
+                <form id="form_{{$t['id']}}"
+                      method="post"
+                      action="{{ route('tarefa.destroy', ['tarefa'=> $t['id']]) }}">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
+
+            </td>
+        </tr>
+    @endforeach
+    </tbody>
+```
+
 - 231 Melhorando a navegação
 - 232 Verificando na View se o usuário está ou não logado
 - 233 Instalando o pacote Laravel Excel

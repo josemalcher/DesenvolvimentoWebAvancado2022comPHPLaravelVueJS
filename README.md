@@ -5454,6 +5454,30 @@ class TarefaController extends Controller
 ```
 
 - 229 Validando se a tarefa pertence ao usuário antes de habilitar a edição
+
+```php
+public function edit(Tarefa $tarefa)
+    {
+
+        $user_id = auth()->user()->id;
+
+        if ($tarefa->user_id == $user_id) {
+            return view('tarefa.edit', ['tarefa' => $tarefa]);
+        }
+
+        return view('acesso-negado');
+
+    }
+    public function update(Request $request, Tarefa $tarefa)
+    {
+        if (!$tarefa->user_id == auth()->user()->id) {
+            return view('acesso-negado');
+        }
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
+    }
+```
+
 - 230 Removendo registros de tarefas
 - 231 Melhorando a navegação
 - 232 Verificando na View se o usuário está ou não logado

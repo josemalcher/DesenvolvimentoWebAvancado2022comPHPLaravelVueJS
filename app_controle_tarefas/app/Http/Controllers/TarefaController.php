@@ -44,7 +44,7 @@ class TarefaController extends Controller
 
         $tarefas = Tarefa::where('user_id', $user_id)->paginate(2);
 
-        return view('tarefa.index', ['tarefas'=>$tarefas]);
+        return view('tarefa.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -77,7 +77,7 @@ class TarefaController extends Controller
         // $destinatario = auth()->user()->email; // email do usuário logado (autenticado)
         // Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
 
-        return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
     /**
@@ -88,7 +88,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        return view('tarefa.show', ['tarefa'=> $tarefa]);
+        return view('tarefa.show', ['tarefa' => $tarefa]);
     }
 
     /**
@@ -99,7 +99,15 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        return view('tarefa.edit', ['tarefa' => $tarefa]);
+
+        $user_id = auth()->user()->id;
+
+        if ($tarefa->user_id == $user_id) {
+            return view('tarefa.edit', ['tarefa' => $tarefa]);
+        }
+
+        return view('acesso-negado');
+
     }
 
     /**
@@ -112,6 +120,10 @@ class TarefaController extends Controller
     public function update(Request $request, Tarefa $tarefa)
     {
         // sem validação!
+
+        if (!$tarefa->user_id == auth()->user()->id) {
+            return view('acesso-negado');
+        }
         $tarefa->update($request->all());
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }

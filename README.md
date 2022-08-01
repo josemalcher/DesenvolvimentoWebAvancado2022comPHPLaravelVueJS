@@ -5420,6 +5420,39 @@ class RouteServiceProvider extends ServiceProvider
 ```
 
 - 228 Atualizando registros de tarefas
+
+```php
+class TarefaController extends Controller
+{
+    public function edit(Tarefa $tarefa)
+    {
+        return view('tarefa.edit', ['tarefa' => $tarefa]);
+    }
+    public function update(Request $request, Tarefa $tarefa)
+    {
+        // sem validação!
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
+    }
+
+```
+
+```php
+  <form method="post" action="{{ route('tarefa.update', ['tarefa' => $tarefa->id]) }}">
+      @csrf
+      @method('PUT')
+      <div class="mb-3">
+          <label class="form-label">Tarefa</label>
+          <input type="text" class="form-control" name="tarefa" value="{{$tarefa->tarefa}}">
+      </div>
+      <div class="mb-3">
+          <label class="form-label">Data limite conclusão</label>
+          <input type="date" class="form-control" name="data_limite_conclusao" value="{{$tarefa->data_limite_conclusao}}">
+      </div>
+      <button type="submit" class="btn btn-primary">Atualizar</button>
+  </form>
+```
+
 - 229 Validando se a tarefa pertence ao usuário antes de habilitar a edição
 - 230 Removendo registros de tarefas
 - 231 Melhorando a navegação

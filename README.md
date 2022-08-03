@@ -5546,6 +5546,36 @@ $ composer require maatwebsite/excel=^3.1.0
 ```
 
 - 234 Exportando um arquivo no formato XLSX com a relação de tarefas
+
+[https://docs.laravel-excel.com/3.1/exports/](https://docs.laravel-excel.com/3.1/exports/)
+
+```
+$ php artisan make:export TarefasExport --model=Tarefa
+Export created successfully.
+
+```
+
+```php
+Route::get('tarefa/exportacao', 'App\Http\Controllers\TarefaController@exportacao')->name('tarefa.exportacao');
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
+
+```
+
+```php
+<?php
+use App\Exports\TarefasExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+class TarefaController extends Controller
+{
+    public function exportacao()
+    {
+        return Excel::download(new TarefasExport, 'tarefas.xlsx');
+    }
+}
+
+```
+
 - 235 Refactoring do relacionamento entre Users e Tarefas
 - 236 Exportando um arquivo no formato CSV com a relação de tarefas
 - 237 Exportando um arquivo no formato PDF com a relação de tarefas

@@ -5577,6 +5577,40 @@ class TarefaController extends Controller
 ```
 
 - 235 Refactoring do relacionamento entre Users e Tarefas
+
+```php
+class User extends Authenticatable implements MustVerifyEmail
+{
+    public function tarefas()
+    {
+        //hasmany - tem muitos
+        return $this->hasMany('App\Models\Tarefa');
+    }
+```
+
+```php
+class Tarefa extends Model
+{
+    public function user()
+    {
+        // belongTo (pertence a)
+        return $this->belongsTo('App\Models\User');
+    }
+}
+```
+
+```php
+class TarefasExport implements FromCollection
+{
+    public function collection()
+    {
+        // return Tarefa::all();
+        // dd(auth()->user()->tarefas()->get());
+        return auth()->user()->tarefas()->get();
+    }
+}
+```
+
 - 236 Exportando um arquivo no formato CSV com a relação de tarefas
 - 237 Exportando um arquivo no formato PDF com a relação de tarefas
 - 238 Definindo títulos na exportação

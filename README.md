@@ -5519,6 +5519,23 @@ class TarefaController extends Controller
 
 - 231 Melhorando a navegação
 - 232 Verificando na View se o usuário está ou não logado
+
+```php
+Site da aplicação
+
+@auth
+    <h1>Usuário autenticado</h1>
+    <p>{{ Auth::user()->id }}</p>
+    <p>{{ Auth::user()->name }}</p>
+    <p>{{ Auth::user()->email }}</p>
+@endauth
+
+@guest
+    <p>Olá visitante, tudo ok?</p>
+@endguest
+
+```
+
 - 233 Instalando o pacote Laravel Excel
 - 234 Exportando um arquivo no formato XLSX com a relação de tarefas
 - 235 Refactoring do relacionamento entre Users e Tarefas

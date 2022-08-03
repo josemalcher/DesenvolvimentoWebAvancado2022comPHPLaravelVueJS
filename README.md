@@ -5537,6 +5537,14 @@ Site da aplicação
 ```
 
 - 233 Instalando o pacote Laravel Excel
+
+[https://docs.laravel-excel.com/3.1/getting-started/installation.html](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
+
+```
+$ composer require maatwebsite/excel=^3.1.0
+
+```
+
 - 234 Exportando um arquivo no formato XLSX com a relação de tarefas
 - 235 Refactoring do relacionamento entre Users e Tarefas
 - 236 Exportando um arquivo no formato CSV com a relação de tarefas

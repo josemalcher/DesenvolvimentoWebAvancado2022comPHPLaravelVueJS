@@ -5938,7 +5938,42 @@ class TarefaController extends Controller
 
 ## <a name="parte16">16 - Vue.JS para iniciantes</a>
 
+- 248 Introdução ao Vue.JS
+- 249 Instalando as ferramentas de desenvolvimento
+- 250 Iniciando o nosso primeiro front-end com Vue
 
+[vuejs](vuejs)
+
+- 251 Primeiro App em Vue (instância de Vue e o double mustache)
+- 252 Explorando um pouco mais a propriedade data
+- 253 Methods - Adicionando os nossos primeiros métodos a instância Vue
+- 254 Methods - Recuperando atributos do data
+- 255 Methods - O contexto léxico das arrow functions e o conflito de nomes
+- 256 Diretiva V-Bind - Realizando o bind de atributos de tags HTML
+- 257 Diretiva V-Bind - Sintaxe sugar e a sobreposição/encadeamento de valores
+- 258 Utilizando expressões no data binding
+- 259 Diretiva V-On - Manipulando eventos
+- 260 Methods - Passando parâmetros para os métodos
+- 261 Diretiva V-On - Capturando os dados do evento ($event)
+- 262 Hands on - Praticando com data, methods, template string, v-bind e v-on
+- 263 Diretiva V-On - Implementando modificadores
+- 264 Selecionando elementos HTML e suas propriedades por ID
+- 265 Diretiva V-If - Renderização condicional de elementos HTML
+- 266 Diretiva V-Show - Exibição condicional de elementos HTML
+- 267 Diretiva V-HTML - Injetando elementos HTML
+- 268 Diretiva V-Text - Injetando textos
+- 269 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente
+- 270 Diretiva V-For - Implementando laços de repetição parte 1
+- 271 Diretiva V-For - Implementando laços de repetição parte 2
+- 272 Renderização de listas com o atributo Key
+- 273 Diretiva V-For - Implementando laços de repetição parte 3
+- 274 Diretiva V-For - Implementando laços de repetição parte 4
+- 275 Trabalhando com a tag Template para renderização condicional e listas
+- 276 Trabalhando com propriedades computadas (computed) parte 1
+- 277 Trabalhando com propriedades computadas (computed) parte 2
+- 278 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
+- 279 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
+- 280 Trabalhando com propriedades observadoras (watch)
 
 [Voltar ao Índice](#indice)
 

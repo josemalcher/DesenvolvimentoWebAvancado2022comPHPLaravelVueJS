@@ -5732,6 +5732,13 @@ class TarefasExport implements FromCollection, WithHeadings, WithMapping
 ```
 
 - 241 Instalando o pacote DOMPDF
+
+[https://github.com/barryvdh/laravel-dompdf/tree/v0.9.0](https://github.com/barryvdh/laravel-dompdf/tree/v0.9.0)
+
+```
+$ composer require barryvdh/laravel-dompdf=^0.9.0
+```
+
 - 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1
 - 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2
 - 244 Adicionando suporte UTF-8, estilos CSS e quebras de páginas nas Views de PDF

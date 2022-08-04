@@ -9,7 +9,8 @@
                         <a href="{{ route('tarefa.create') }}" class="float-right">Criar</a> |
                         <a href="{{ route('tarefa.exportacao', ['extensao'=> 'xlsx']) }}" class="float-right">XLSX</a> |
                         <a href="{{ route('tarefa.exportacao', ['extensao'=> 'csv']) }}" class="float-right">CSV</a> |
-                        <a href="{{ route('tarefa.exportacao', ['extensao'=> 'pdf']) }}" class="float-right">PDF</a>
+                        <a href="{{ route('tarefa.exportacao', ['extensao'=> 'pdf']) }}" class="float-right">PDF</a> |
+                        <a href="{{ route('tarefa.exportacao')}}" class="float-right">PDF v2</a>
                     </div>
 
                     <div class="card-body">

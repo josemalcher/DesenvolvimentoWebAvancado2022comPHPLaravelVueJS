@@ -29,6 +29,10 @@ Auth::routes(['verify'=> true]);
 
 Route::get('tarefa/exportacao/{extensao}', 'App\Http\Controllers\TarefaController@exportacao')
 ->name('tarefa.exportacao');
+
+Route::get('tarefa/exportacao', 'App\Http\Controllers\TarefaController@exportar')
+    ->name('tarefa.exportacao');
+
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
 
 

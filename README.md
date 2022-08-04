@@ -5740,6 +5740,38 @@ $ composer require barryvdh/laravel-dompdf=^0.9.0
 ```
 
 - 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1
+
+```php
+Route::get('tarefa/exportacao/{extensao}', 'App\Http\Controllers\TarefaController@exportacao')
+->name('tarefa.exportacao');
+
+Route::get('tarefa/exportacao', 'App\Http\Controllers\TarefaController@exportar')
+    ->name('tarefa.exportacao');
+```
+
+```php
+<?php
+
+use PDF;
+
+class TarefaController extends Controller
+{
+    public function exportar()
+    {
+        $pdf = PDF::loadView('tarefa.pdf', []);
+        return $pdf->download('lista_de_tarafas.pdf');
+    }
+}
+
+```
+
+[app_controle_tarefas/resources/views/tarefa/pdf.blade.php](app_controle_tarefas/resources/views/tarefa/pdf.blade.php)
+
+```php
+<a href="{{ route('tarefa.exportacao')}}" class="float-right">PDF v2</a>
+```
+
+
 - 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2
 - 244 Adicionando suporte UTF-8, estilos CSS e quebras de páginas nas Views de PDF
 - 245 Laravel DOMPDF - Download vs Stream

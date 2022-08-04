@@ -5903,6 +5903,25 @@ class TarefaController extends Controller
 
 - 246 Laravel DOMPDF - Definindo o tipo de papel e a orientação da impressão
 
+```php
+    public function exportar()
+    {
+        $tarefas = auth()->user()->tarefas()->get();
+
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas'=>$tarefas]);
+
+        $pdf->setPaper('a4', 'landscape');
+        // tipo de papel: a4, letter
+        // orientação: landscape (paisagem), portrait( retrato)
+        
+
+        // return $pdf->download('lista_de_tarafas.pdf');
+        return $pdf->stream('lista_de_tarafas.pdf');
+    }
+```
+
+
+
 [Voltar ao Índice](#indice)
 
 ---

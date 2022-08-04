@@ -5694,6 +5694,17 @@ class TarefasExport implements FromCollection, WithHeadings
 ```
 
 - 239 Corrigindo caracteres especiais em exportações CSV
+
+[app_controle_tarefas/config/excel.php](app_controle_tarefas/config/excel.php)
+
+```php
+        'csv'                    => [
+            'delimiter'              => ',',
+            'enclosure'              => '"',
+            'line_ending'            => PHP_EOL,
+            'use_bom'                => true,
+```
+
 - 240 Manipulando os dados exportados linha por linha e formatando datas
 - 241 Instalando o pacote DOMPDF
 - 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1

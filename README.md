@@ -5612,6 +5612,34 @@ class TarefasExport implements FromCollection
 ```
 
 - 236 Exportando um arquivo no formato CSV com a relação de tarefas
+
+```php
+Route::get('tarefa/exportacao/{extensao}', 'App\Http\Controllers\TarefaController@exportacao')
+->name('tarefa.exportacao');
+```
+
+```php
+public function exportacao($extensao)
+    {
+        $nomeDoArquivo = 'lista_de_tarefas';
+
+        if ($extensao == 'xlsx') {
+            $nomeDoArquivo .= '.' . $extensao;
+        } else if($extensao == 'csv') {
+            $nomeDoArquivo .= '.' . $extensao;
+        }else{
+            return redirect()->route('tarefa.index');
+        }
+
+        return Excel::download(new TarefasExport, $nomeDoArquivo);
+    }
+```
+
+```php
+<a href="{{ route('tarefa.exportacao', ['extensao'=> 'xlsx']) }}" class="float-right">XLSX</a> |
+<a href="{{ route('tarefa.exportacao', ['extensao'=> 'csv']) }}" class="float-right">CSV</a>
+```
+
 - 237 Exportando um arquivo no formato PDF com a relação de tarefas
 - 238 Definindo títulos na exportação
 - 239 Corrigindo caracteres especiais em exportações CSV

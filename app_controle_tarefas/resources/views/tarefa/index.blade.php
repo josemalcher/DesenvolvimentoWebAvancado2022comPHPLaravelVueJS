@@ -7,7 +7,8 @@
                 <div class="card">
                     <div class="card-header">Tarefas |
                         <a href="{{ route('tarefa.create') }}" class="float-right">Criar</a> |
-                        <a href="{{ route('tarefa.exportacao') }}" class="float-right">XLSX</a>
+                        <a href="{{ route('tarefa.exportacao', ['extensao'=> 'xlsx']) }}" class="float-right">XLSX</a> |
+                        <a href="{{ route('tarefa.exportacao', ['extensao'=> 'csv']) }}" class="float-right">CSV</a>
                     </div>
 
                     <div class="card-body">

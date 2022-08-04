@@ -5676,6 +5676,23 @@ class TarefaController extends Controller
 ```
 
 - 238 Definindo títulos na exportação
+
+```php
+class TarefasExport implements FromCollection, WithHeadings
+{
+    public function headings(): array
+    {
+        return [
+            'ID da Tarefa',
+            'ID Usuário',
+            'Data Criação',
+            'Atualizado em',
+            'Tarefa',
+            'Data Limite',
+        ];
+    }
+```
+
 - 239 Corrigindo caracteres especiais em exportações CSV
 - 240 Manipulando os dados exportados linha por linha e formatando datas
 - 241 Instalando o pacote DOMPDF

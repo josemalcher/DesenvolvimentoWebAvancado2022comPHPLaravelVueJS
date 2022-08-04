@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Tarefa;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TarefasExport implements FromCollection
+class TarefasExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -16,5 +17,17 @@ class TarefasExport implements FromCollection
         // dd(auth()->user()->tarefas()->get());
         return auth()->user()->tarefas()->get();
 
+    }
+
+    public function headings(): array
+    {
+        return [
+            'ID da Tarefa',
+            'ID Usuário',
+            'Data Criação',
+            'Atualizado em',
+            'Tarefa',
+            'Data Limite',
+        ];
     }
 }

@@ -5641,6 +5641,40 @@ public function exportacao($extensao)
 ```
 
 - 237 Exportando um arquivo no formato PDF com a relação de tarefas
+
+```
+$ composer require mpdf/mpdf=^8.0.10
+
+```
+
+[app_controle_tarefas/config/excel.php](app_controle_tarefas/config/excel.php)
+
+```php
+  /*
+        |--------------------------------------------------------------------------
+        | PDF Extension
+        |--------------------------------------------------------------------------
+        |
+        | Configure here which Pdf driver should be used by default.
+        | Available options: Excel::MPDF | Excel::TCPDF | Excel::DOMPDF
+        |
+        */
+        'pdf'      => Excel::MPDF,
+    ],
+```
+
+```php
+class TarefaController extends Controller
+{
+    public function exportacao($extensao)
+    {
+        if(in_array($extensao, ['xlxs', 'csv', 'pdf'])){
+            return Excel::download(new TarefasExport, "lista_de_tarefas.". $extensao);
+        }
+        return redirect()->route('tarefa.index');
+    }
+```
+
 - 238 Definindo títulos na exportação
 - 239 Corrigindo caracteres especiais em exportações CSV
 - 240 Manipulando os dados exportados linha por linha e formatando datas

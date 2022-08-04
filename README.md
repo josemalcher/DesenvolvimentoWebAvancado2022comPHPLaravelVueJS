@@ -5885,6 +5885,22 @@ class TarefaController extends Controller
 ```
 
 - 245 Laravel DOMPDF - Download vs Stream
+
+```php
+    public function exportar()
+    {
+        $tarefas = auth()->user()->tarefas()->get();
+
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas'=>$tarefas]);
+        // return $pdf->download('lista_de_tarafas.pdf');
+        return $pdf->stream('lista_de_tarafas.pdf');
+    }
+```
+
+```php
+<a href="{{ route('tarefa.exportacao')}}" class="float-right" target="_blank">PDF v2</a>
+```
+
 - 246 Laravel DOMPDF - Definindo o tipo de papel e a orientação da impressão
 
 [Voltar ao Índice](#indice)

@@ -5773,6 +5773,52 @@ class TarefaController extends Controller
 
 
 - 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2
+
+```php
+<?php
+
+use PDF;
+
+class TarefaController extends Controller
+{
+    public function exportar()
+    {
+        $tarefas = auth()->user()->tarefas()->get();
+
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas'=>$tarefas]);
+        return $pdf->download('lista_de_tarafas.pdf');
+    }
+}
+
+```
+
+[app_controle_tarefas/resources/views/tarefa/pdf.blade.php](app_controle_tarefas/resources/views/tarefa/pdf.blade.php)
+
+```php
+<h2>Lista de tarefas</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tarefa</th>
+        <th>Data limite conclusão</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach($tarefas as $key => $tarefa)
+        <tr>
+            <td>{{ $tarefa->id }}</td>
+            <td>{{ $tarefa->tarefa }}</td>
+            <td>{{ date('d/m/Y', strtotime($tarefa->data_limite_conclusao)) }}</td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
+
+```
+
 - 244 Adicionando suporte UTF-8, estilos CSS e quebras de páginas nas Views de PDF
 - 245 Laravel DOMPDF - Download vs Stream
 - 246 Laravel DOMPDF - Definindo o tipo de papel e a orientação da impressão

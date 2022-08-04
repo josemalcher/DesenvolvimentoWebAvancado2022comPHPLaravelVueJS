@@ -159,7 +159,9 @@ class TarefaController extends Controller
 
     public function exportar()
     {
-        $pdf = PDF::loadView('tarefa.pdf', []);
+        $tarefas = auth()->user()->tarefas()->get();
+
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas'=>$tarefas]);
         return $pdf->download('lista_de_tarafas.pdf');
     }
 }

@@ -5706,6 +5706,31 @@ class TarefasExport implements FromCollection, WithHeadings
 ```
 
 - 240 Manipulando os dados exportados linha por linha e formatando datas
+
+```php
+class TarefasExport implements FromCollection, WithHeadings, WithMapping
+{
+    public function headings(): array
+    {
+        return [
+            'ID da Tarefa',
+            'Tarefa',
+            'Data Limite',
+        ];
+    }
+
+    public function map($linha): array
+    {
+        return [
+            $linha->id,
+            $linha->tarefa,
+            date('d/m/Y', strtotime($linha->data_limite_conclusao)),
+            'xyz'
+        ];
+    }
+}
+```
+
 - 241 Instalando o pacote DOMPDF
 - 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1
 - 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2

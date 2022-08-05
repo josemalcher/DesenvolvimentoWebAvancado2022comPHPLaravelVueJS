@@ -5945,6 +5945,36 @@ class TarefaController extends Controller
 [vuejs](vuejs)
 
 - 251 Primeiro App em Vue (instância de Vue e o double mustache)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    {{ mensagem }}
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            mensagem: 'Primeiro template controlado pelo Vue'
+        }
+    })
+
+</script>
+</body>
+</html>
+```
+
 - 252 Explorando um pouco mais a propriedade data
 - 253 Methods - Adicionando os nossos primeiros métodos a instância Vue
 - 254 Methods - Recuperando atributos do data

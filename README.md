@@ -5977,6 +5977,51 @@ class TarefaController extends Controller
 
 - 252 Explorando um pouco mais a propriedade data
 - 253 Methods - Adicionando os nossos primeiros métodos a instância Vue
+
+```html
+<div id="app">
+    {{ mensagem }}<br>
+    Valor total: {{ valorTotal }}<br>
+    Logado: {{ logado }}<br>
+    Hobbie: {{ hobbies[3] }}<br>
+    Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }}
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            mensagem: 'Primeiro template controlado pelo Vue', //string
+            valorTotal: 150.47, //número
+            logado: false, //booleano
+            hobbies: [
+                'Dormir',
+                'Colecionar vídeo games antigos',
+                'Correr',
+                'Trilhas'
+            ],
+            perfil: {
+                nome: 'Jorge Sant Ana',
+                site: 'jorgesantana.net.br',
+                idade: 32,
+                cursos: [
+                    {
+                        nome: 'Laravel',
+                        cargaHoraria: '50 horas'
+                    },
+                    {
+                        nome: 'Bancos de Dados Relacionais',
+                        cargaHoraria: '40 horas'
+                    }
+                ]
+            }
+        }
+    })
+
+</script>
+```
+
 - 254 Methods - Recuperando atributos do data
 - 255 Methods - O contexto léxico das arrow functions e o conflito de nomes
 - 256 Diretiva V-Bind - Realizando o bind de atributos de tags HTML

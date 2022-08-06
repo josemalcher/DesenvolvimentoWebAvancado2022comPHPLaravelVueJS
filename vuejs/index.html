@@ -10,14 +10,18 @@
         .verde {
             color:green
         }
+
+        .negrito {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 <div id="app">
-    <a v-bind:href="site">Site</a>
-    <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
-    <input type="text" v-bind:placeholder="instrucaoDePreenchimento" v-bind:value="valor">
-    <input type="checkbox" v-bind:checked="check">
+    <a :href="site">Site</a>
+    <p class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
+    <input type="text" :placeholder="instrucaoDePreenchimento" :value="valor">
+    <input type="checkbox" :checked="check">
 </div>
 
 <script>

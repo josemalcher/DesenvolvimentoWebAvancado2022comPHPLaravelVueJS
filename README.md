@@ -6126,6 +6126,41 @@ class TarefaController extends Controller
 ```
 
 - 258 Utilizando expressões no data binding
+
+```html
+    <style>
+        .verde {
+            color:green
+        }
+
+        .negrito {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a :href="site">Site</a>
+    <p class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
+    <input type="text" :placeholder="instrucaoDePreenchimento" :value="valor">
+    <input type="checkbox" :checked="check">
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            site: 'https://jorgesantana.net.br',
+            cor: 'verde',
+            instrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+            valor: 'Entendendo a diretiva v-bind',
+            check: true
+        },
+        methods: {}
+    })
+</script>
+```
+
 - 259 Diretiva V-On - Manipulando eventos
 - 260 Methods - Passando parâmetros para os métodos
 - 261 Diretiva V-On - Capturando os dados do evento ($event)

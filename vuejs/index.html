@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./vue.js"></script>
     <title>Document</title>
+    <style>
+        .verde {
+            color:green
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    {{ somar() }}<br>
-    {{ subtrair() }}<br>
-    {{ multiplicar() }}<br>
-    {{ dividir() }}<br>
+    <a v-bind:href="site">Site</a>
+    <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+    <input type="text" v-bind:placeholder="instrucaoDePreenchimento" v-bind:value="valor">
+    <input type="checkbox" v-bind:checked="check">
 </div>
 
 <script>
@@ -20,23 +25,13 @@
     const vm = new Vue({
         el: '#app',
         data: {
-            n1: 10,
-            n2: 5
+            site: 'https://jorgesantana.net.br',
+            cor: 'verde',
+            instrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+            valor: 'Entendendo a diretiva v-bind',
+            check: true
         },
-        methods: {
-            somar: function somar() { //convencional
-                return this.n1 + this.n2;
-            },
-            subtrair: function() { //anônima
-                return this.n1 - this.n2;
-            },
-            multiplicar: () => { //arrow function
-                return this.n1 * this.n2; //contexto léxico
-            },
-            dividir() { //forma enxuta de definir os pares de chave/valor
-                return this.n1 / this.n2;
-            }
-        }
+        methods: {}
     })
 
 </script>

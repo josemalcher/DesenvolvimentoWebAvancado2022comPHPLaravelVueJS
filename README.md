@@ -6099,6 +6099,32 @@ class TarefaController extends Controller
 
 - 256 Diretiva V-Bind - Realizando o bind de atributos de tags HTML
 - 257 Diretiva V-Bind - Sintaxe sugar e a sobreposição/encadeamento de valores
+
+```html
+<div id="app">
+    <a v-bind:href="site">Site</a>
+    <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+    <input type="text" v-bind:placeholder="instrucaoDePreenchimento" v-bind:value="valor">
+    <input type="checkbox" v-bind:checked="check">
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            site: 'https://jorgesantana.net.br',
+            cor: 'verde',
+            instrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+            valor: 'Entendendo a diretiva v-bind',
+            check: true
+        },
+        methods: {}
+    })
+
+</script>
+```
+
 - 258 Utilizando expressões no data binding
 - 259 Diretiva V-On - Manipulando eventos
 - 260 Methods - Passando parâmetros para os métodos

@@ -9,41 +9,33 @@
 </head>
 <body>
 <div id="app">
-    {{ mensagem }}<br>
-    Valor total: {{ valorTotal }}<br>
-    Logado: {{ logado }}<br>
-    Hobbie: {{ hobbies[3] }}<br>
-    Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }}
+    {{ somar() }}<br>
+    {{ subtrair() }}<br>
+    {{ multiplicar() }}<br>
+    {{ dividir() }}<br>
+    {{ numeroAleatorio() }}<br>
 </div>
 
 <script>
 
     const vm = new Vue({
         el: '#app',
-        data: {
-            mensagem: 'Primeiro template controlado pelo Vue', //string
-            valorTotal: 150.47, //número
-            logado: false, //booleano
-            hobbies: [
-                'Dormir',
-                'Colecionar vídeo games antigos',
-                'Correr',
-                'Trilhas'
-            ],
-            perfil: {
-                nome: 'Jorge Sant Ana',
-                site: 'jorgesantana.net.br',
-                idade: 32,
-                cursos: [
-                    {
-                        nome: 'Laravel',
-                        cargaHoraria: '50 horas'
-                    },
-                    {
-                        nome: 'Bancos de Dados Relacionais',
-                        cargaHoraria: '40 horas'
-                    }
-                ]
+        data: {},
+        methods: {
+            somar: function somar() { //convencional
+                return 4 + 2;
+            },
+            subtrair: function() { //anônima
+                return 4 - 2;
+            },
+            multiplicar: () => { //arrow function
+                return 4 * 2;
+            },
+            dividir() { //forma enxuta de definir os pares de chave/valor
+                return 4 / 2;
+            },
+            numeroAleatorio: function numeroAleatorio() {
+                return Math.random();
             }
         }
     })

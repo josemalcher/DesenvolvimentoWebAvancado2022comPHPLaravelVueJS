@@ -6023,6 +6023,43 @@ class TarefaController extends Controller
 ```
 
 - 254 Methods - Recuperando atributos do data
+
+```html
+<div id="app">
+    {{ somar() }}<br>
+    {{ subtrair() }}<br>
+    {{ multiplicar() }}<br>
+    {{ dividir() }}<br>
+    {{ numeroAleatorio() }}<br>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            somar: function somar() { // convencional
+                return 4 + 2;
+            },
+            subtrair: function() { // anônima
+                return 4 - 2;
+            },
+            multiplicar: () => { // arrow function
+                return 4 * 2;
+            },
+            dividir() { // forma enxuta de definir os pares de chave/valor
+                return 4 / 2;
+            },
+            numeroAleatorio: function numeroAleatorio() {
+                return Math.random();
+            }
+        }
+    })
+
+</script>
+```
+
 - 255 Methods - O contexto léxico das arrow functions e o conflito de nomes
 - 256 Diretiva V-Bind - Realizando o bind de atributos de tags HTML
 - 257 Diretiva V-Bind - Sintaxe sugar e a sobreposição/encadeamento de valores

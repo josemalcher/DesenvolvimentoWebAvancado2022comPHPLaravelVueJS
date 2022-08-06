@@ -6162,6 +6162,41 @@ class TarefaController extends Controller
 ```
 
 - 259 Diretiva V-On - Manipulando eventos
+
+```html
+<style>
+        .verde {
+            background-color:green
+        }
+
+        .azul {
+            background-color:blue
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    {{ 2 + 2 }}
+    <input :value="2 + 2" :class="teste ? 'verde' : estilo">
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            mensagem: 'Expressão',
+            estilo: 'azul',
+            teste: true
+        },
+        methods: {}
+    })
+
+</script>
+
+```
+
 - 260 Methods - Passando parâmetros para os métodos
 - 261 Diretiva V-On - Capturando os dados do evento ($event)
 - 262 Hands on - Praticando com data, methods, template string, v-bind e v-on

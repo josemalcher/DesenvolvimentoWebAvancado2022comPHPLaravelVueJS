@@ -6061,6 +6061,42 @@ class TarefaController extends Controller
 ```
 
 - 255 Methods - O contexto léxico das arrow functions e o conflito de nomes
+
+```html
+<div id="app">
+    {{ somar() }}<br>
+    {{ subtrair() }}<br>
+    {{ multiplicar() }}<br>
+    {{ dividir() }}<br>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            somar: function somar() { //convencional
+                return this.n1 + this.n2;
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2;
+            },
+            multiplicar: () => { //arrow function
+                return this.n1 * this.n2; //contexto léxico
+            },
+            dividir() { //forma enxuta de definir os pares de chave/valor
+                return this.n1 / this.n2;
+            }
+        }
+    })
+
+</script>
+```
+
 - 256 Diretiva V-Bind - Realizando o bind de atributos de tags HTML
 - 257 Diretiva V-Bind - Sintaxe sugar e a sobreposição/encadeamento de valores
 - 258 Utilizando expressões no data binding

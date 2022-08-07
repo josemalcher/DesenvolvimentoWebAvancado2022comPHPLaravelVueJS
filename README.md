@@ -6198,6 +6198,46 @@ class TarefaController extends Controller
 ```
 
 - 260 Methods - Passando parâmetros para os métodos
+
+[img/260-diagrama01.png](img/260-diagrama01.png)
+
+```html
+    <style>
+        .verde {
+            background-color:green
+        }
+
+        .azul {
+            background-color:blue
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keyup="imprimirTexto()">
+    <button @click="mensagemAlerta()">Botão</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            imprimirTexto() {
+                console.log('Teste')
+            },
+            mensagemAlerta() {
+                alert('Mensagem de alerta')
+            }
+        }
+    })
+
+</script>
+```
+
+
 - 261 Diretiva V-On - Capturando os dados do evento ($event)
 - 262 Hands on - Praticando com data, methods, template string, v-bind e v-on
 - 263 Diretiva V-On - Implementando modificadores

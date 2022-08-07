@@ -6299,6 +6299,82 @@ class TarefaController extends Controller
 ```
 
 - 263 Diretiva V-On - Implementando modificadores
+
+```html
+<style>
+        .verde {
+            background-color:green
+        }
+        .branco {
+            background-color:white
+        }
+
+        .azul {
+            background-color:blue
+        }
+
+        .vermelho {
+            background-color:red
+        }
+
+        .borda {
+            border:1px solid
+        }
+
+        .div-principal {
+            width:200px;
+            height:200px
+        }
+
+        .div-comum {
+            width:50px;
+            height:50px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="borda div-principal" :class="cor">
+        Cor: {{ cor }}
+        <br>
+        Posição X do Mouse: {{ posicaoX }}
+        Posição Y do Mouse: {{ posicaoY }}
+    </div>
+    <hr>
+    <div @click="mudarCor('verde')" class="borda div-comum"></div>
+    <div
+            class="borda div-comum"
+            @mouseover="mudarCor('azul')"
+            @mouseout="mudarCor('vermelho')">
+    </div>
+    <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            cor: 'branco',
+            posicaoX: 0,
+            posicaoY: 0
+        },
+        methods: {
+            mudarCor(c) {
+                this.cor = c
+            },
+            coordenadas(e) {
+                this.posicaoX = e.clientX
+                this.posicaoY = e.clientY
+            }
+        }
+    })
+
+</script>
+```
+
 - 264 Selecionando elementos HTML e suas propriedades por ID
 - 265 Diretiva V-If - Renderização condicional de elementos HTML
 - 266 Diretiva V-Show - Exibição condicional de elementos HTML

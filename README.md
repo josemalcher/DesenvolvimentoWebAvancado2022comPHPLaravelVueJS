@@ -6239,6 +6239,35 @@ class TarefaController extends Controller
 
 
 - 261 Diretiva V-On - Capturando os dados do evento ($event)
+
+```html
+<div id="app">
+    <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)">
+    <button @click="mensagemAlerta()">Botão</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            xyz: true
+        },
+        methods: {
+            imprimirTexto(t, n) {
+                console.log(t)
+                console.log(n)
+                console.log(this.xyz)
+            },
+            mensagemAlerta() {
+                alert('Mensagem de alerta')
+            }
+        }
+    })
+
+</script>
+```
+
 - 262 Hands on - Praticando com data, methods, template string, v-bind e v-on
 - 263 Diretiva V-On - Implementando modificadores
 - 264 Selecionando elementos HTML e suas propriedades por ID

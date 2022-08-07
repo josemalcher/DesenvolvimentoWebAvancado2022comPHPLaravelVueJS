@@ -6269,6 +6269,35 @@ class TarefaController extends Controller
 ```
 
 - 262 Hands on - Praticando com data, methods, template string, v-bind e v-on
+
+```html
+<div id="app">
+    <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)">
+    <button @click="mensagemAlerta('texto', $event, 100)">Botão</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            xyz: true
+        },
+        methods: {
+            imprimirTexto(t, n) {
+                console.log(t)
+                console.log(n)
+                console.log(this.xyz)
+            },
+            mensagemAlerta(p1, evento, p2) {
+                console.log(evento, p1, p2)
+            }
+        }
+    })
+
+</script>
+```
+
 - 263 Diretiva V-On - Implementando modificadores
 - 264 Selecionando elementos HTML e suas propriedades por ID
 - 265 Diretiva V-If - Renderização condicional de elementos HTML

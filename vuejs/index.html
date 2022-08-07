@@ -20,7 +20,7 @@
 <body>
 <div id="app">
     <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)">
-    <button @click="mensagemAlerta()">Botão</button>
+    <button @click="mensagemAlerta('texto', $event, 100)">Botão</button>
 </div>
 
 <script>
@@ -36,8 +36,8 @@
                 console.log(n)
                 console.log(this.xyz)
             },
-            mensagemAlerta() {
-                alert('Mensagem de alerta')
+            mensagemAlerta(p1, evento, p2) {
+                console.log(evento, p1, p2)
             }
         }
     })

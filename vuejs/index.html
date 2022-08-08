@@ -7,83 +7,35 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
-        .verde {
-            background-color:green
-        }
-        .branco {
-            background-color:white
-        }
-
-        .azul {
-            background-color:blue
-        }
-
-        .vermelho {
-            background-color:red
-        }
-
-        .borda {
-            border:1px solid
-        }
-
-        .div-principal {
-            width:200px;
-            height:200px
-        }
-
-        .div-comum {
-            width:50px;
-            height:50px;
-            display: inline-block;
-        }
-
     </style>
 </head>
 <body>
 <div id="app">
-    <a href="https://jorgesantana.net.br"
-       target="_blank"
-       @click.prevent="prevenirComportamentoPadrao()"
-    >
-        Link
-    </a>
+    <input type="text" id="inputTexto">
     <br>
-    Mensagem: {{ msg }}
-    <hr>
-    <button @click.once="executarUmaVez()">Botão</button>
-    <p>Cliques: {{ cliques }} </p>
-    <hr>
-    <form @submit.prevent.once="prevenirUmaVez()">
-        <button type="submit">Enviar</button>
-    </form>
-    <p>Formulário: {{ formulario }}</p>
-    <hr>
-    <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
-    <p>Teclas: {{ teclas }}</p>
+    <select id="opcoes">
+        <option value="A">Opção 1</option>
+        <option value="B">Opção 2</option>
+        <option value="C">Opção 3</option>
+    </select>
+    <br>
+    <p id="paragrafo" style="color:green">Parágrafo</p>
+    <div id="bloco">Conteúdo interno da div</div>
+    <br>
+    <button @click="selecionarElementoFilho()">Botão</button>
 </div>
 
 <script>
 
     const vm = new Vue({
         el: '#app',
-        data: {
-            msg: '',
-            cliques: 0,
-            formulario: '',
-            teclas: ''
-        },
+        data: {},
         methods: {
-            prevenirComportamentoPadrao() {
-                this.msg = 'Comportamento padrão ativado'
-            },
-            executarUmaVez() {
-                this.cliques++
-            },
-            prevenirUmaVez() {
-                this.formulario = 'Prevenindo o comportamento padrão'
-            },
-            capturandoTeclas(event) {
-                this.teclas = 'Modificadores encadeados com sucesso!'
+            selecionarElementoFilho() {
+                //console.log(inputTexto.value)
+                //console.log(opcoes.value)
+                //console.log(paragrafo.style.color)
+                console.log(bloco.innerHTML)
             }
         }
     })

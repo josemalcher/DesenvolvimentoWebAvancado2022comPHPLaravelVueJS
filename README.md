@@ -6430,6 +6430,41 @@ class TarefaController extends Controller
 ```
 
 - 265 Diretiva V-If - Renderização condicional de elementos HTML
+
+```html
+<div id="app">
+    <input type="text" id="inputTexto">
+    <br>
+    <select id="opcoes">
+        <option value="A">Opção 1</option>
+        <option value="B">Opção 2</option>
+        <option value="C">Opção 3</option>
+    </select>
+    <br>
+    <p id="paragrafo" style="color:green">Parágrafo</p>
+    <div id="bloco">Conteúdo interno da div</div>
+    <br>
+    <button @click="selecionarElementoFilho()">Botão</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            selecionarElementoFilho() {
+                //console.log(inputTexto.value)
+                //console.log(opcoes.value)
+                //console.log(paragrafo.style.color)
+                console.log(bloco.innerHTML)
+            }
+        }
+    })
+
+</script>
+```
+
 - 266 Diretiva V-Show - Exibição condicional de elementos HTML
 - 267 Diretiva V-HTML - Injetando elementos HTML
 - 268 Diretiva V-Text - Injetando textos

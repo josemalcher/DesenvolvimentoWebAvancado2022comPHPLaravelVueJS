@@ -6376,6 +6376,59 @@ class TarefaController extends Controller
 ```
 
 - 264 Selecionando elementos HTML e suas propriedades por ID
+
+```html
+<div id="app">
+    <a href="https://jorgesantana.net.br"
+       target="_blank"
+       @click.prevent="prevenirComportamentoPadrao()"
+    >
+        Link
+    </a>
+    <br>
+    Mensagem: {{ msg }}
+    <hr>
+    <button @click.once="executarUmaVez()">Botão</button>
+    <p>Cliques: {{ cliques }} </p>
+    <hr>
+    <form @submit.prevent.once="prevenirUmaVez()">
+        <button type="submit">Enviar</button>
+    </form>
+    <p>Formulário: {{ formulario }}</p>
+    <hr>
+    <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+    <p>Teclas: {{ teclas }}</p>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '',
+            cliques: 0,
+            formulario: '',
+            teclas: ''
+        },
+        methods: {
+            prevenirComportamentoPadrao() {
+                this.msg = 'Comportamento padrão ativado'
+            },
+            executarUmaVez() {
+                this.cliques++
+            },
+            prevenirUmaVez() {
+                this.formulario = 'Prevenindo o comportamento padrão'
+            },
+            capturandoTeclas(event) {
+                this.teclas = 'Modificadores encadeados com sucesso!'
+            }
+        }
+    })
+
+</script>
+```
+
 - 265 Diretiva V-If - Renderização condicional de elementos HTML
 - 266 Diretiva V-Show - Exibição condicional de elementos HTML
 - 267 Diretiva V-HTML - Injetando elementos HTML

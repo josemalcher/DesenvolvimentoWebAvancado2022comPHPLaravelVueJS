@@ -6466,6 +6466,56 @@ class TarefaController extends Controller
 ```
 
 - 266 Diretiva V-Show - Exibição condicional de elementos HTML
+
+```html
+<div id="app">
+    <!-- v-if simples -->
+    <button @click="exibirSaldo = !exibirSaldo">
+        <span v-if="!exibirSaldo">Exibir Saldo</span>
+        <span v-if="exibirSaldo">Ocultar Saldo</span>
+    </button> <!-- toggle -->
+    <p>Saldo: <span v-if="exibirSaldo">R$ {{ saldo }}</span></p>
+    <hr>
+
+    <!-- v-if e v-else -->
+    Idade: <input type="text" id="inputIdade" @blur="setIdade()">
+    <p v-if="idade < 18">Menor de idade <a><span></span></a></p>
+    <p v-else>Maior de idade</p>
+    <hr>
+
+    <!-- v-if, v-else-if e v-else -->
+    Nota: <input type="text" id="inputNota" @blur="setNota()">
+    <p v-if="nota == ''">Digite a nota do aluno</p>
+    <p v-else-if="nota >= 7 && nota <= 10">Aluno aprovado</p>
+    <p v-else-if="nota >= 5 && nota < 7">Aluno em recuperação</p>
+    <p v-else-if="nota >= 0 && nota < 5">Aluno reprovado</p>
+    <p v-else>A nota informada é inválida</p>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            saldo: 4570.17,
+            exibirSaldo: false,
+            idade: 0,
+            nota: 0
+        },
+        methods: {
+            setIdade() {
+                this.idade = inputIdade.value
+            },
+            setNota() {
+                this.nota = inputNota.value
+                console.log(this.nota)
+            }
+        }
+    })
+
+</script>
+```
+
 - 267 Diretiva V-HTML - Injetando elementos HTML
 - 268 Diretiva V-Text - Injetando textos
 - 269 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente

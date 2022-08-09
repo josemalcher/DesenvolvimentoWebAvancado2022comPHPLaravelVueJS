@@ -7132,6 +7132,57 @@ class TarefaController extends Controller
 [app_locadora_carros](app_locadora_carros)
 
 - 286 Criando os models, controllers e migrations
+
+```
+$ php artisan make:model --migration --controller --resource Marca
+Model created successfully.
+Created Migration: 2022_08_09_230833_create_marcas_table
+Controller created successfully.
+```
+
+```
+$ php artisan make:model -mcr Modelo
+Model created successfully.
+Created Migration: 2022_08_09_231056_create_modelos_table
+Controller created successfully.
+```
+
+```
+$ php artisan make:model --all Carro
+Model created successfully.
+Factory created successfully.
+Created Migration: 2022_08_09_231214_create_carros_table
+Seeder created successfully.
+Request created successfully.
+Request created successfully.
+Controller created successfully.
+Policy created successfully.
+```
+
+```
+$ php artisan make:model -a Cliente
+Model created successfully.
+Factory created successfully.
+Created Migration: 2022_08_09_231334_create_clientes_table
+Seeder created successfully.
+Request created successfully.
+Request created successfully.
+Controller created successfully.
+Policy created successfully.
+```
+
+```
+$ php artisan make:model -a Locacao
+Model created successfully.
+Factory created successfully.
+Created Migration: 2022_08_09_231419_create_locacaos_table
+Seeder created successfully.
+Request created successfully.
+Request created successfully.
+Controller created successfully.
+Policy created successfully.
+```
+
 - 287 Configurando a conexão com o banco de dados e implementando as migrations
 - 288 Entendendo o grupo de rotas Web e API e a importância do Content-Type
 - 289 Rotas e a diferença entre Route::resource e Route::apiResource

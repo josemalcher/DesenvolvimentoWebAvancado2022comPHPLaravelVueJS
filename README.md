@@ -6582,6 +6582,36 @@ class TarefaController extends Controller
 ```
 
 - 270 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente
+
+```html
+<div id="app">
+    <p v-once>Saldo inicial: {{ saldo }}</p>
+    <p>Saldo atualizado: {{ saldo }}</p>
+    <input type="text" id="valor">
+    <button @click="creditar()">Creditar</button>
+    <button @click="debitar()">Debitar</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            saldo: 1100
+        },
+        methods: {
+            creditar() {
+                this.saldo += parseFloat(valor.value)
+            },
+            debitar() {
+                this.saldo -= parseFloat(valor.value)
+            }
+        }
+    })
+
+</script>
+```
+
 - 271 Diretiva V-For - Implementando laços de repetição parte 1
 - 272 Diretiva V-For - Implementando laços de repetição parte 2
 - 273 Renderização de listas com o atributo Key

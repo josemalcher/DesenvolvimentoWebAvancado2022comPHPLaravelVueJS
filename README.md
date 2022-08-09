@@ -7273,6 +7273,30 @@ $ php artisan route:list
 ```
 
 - 290 Extra (fix da aula anterior) - Atributo $namespace de RouteServiceProvide
+
+```php
+class RouteServiceProvider extends ServiceProvider
+{
+    /**
+     * The controller namespace for the application.
+     *
+     * When present, controller route declarations will automatically be prefixed with this namespace.
+     *
+     * @var string|null
+     */
+    protected $namespace = 'App\\Http\\Controllers';
+
+```
+
+```php
+Route::apiResource('cliente', 'ClienteController');
+Route::apiResource('carro', 'CarroController');
+Route::apiResource('locacao', 'LocacaoController');
+Route::apiResource('marca', 'MarcaController');
+Route::apiResource('modelo', 'ModeloController');
+
+```
+
 - 291 Criando registros via POST
 - 292 Selecionando registros via GET
 - 293 Atualizando registros via PUT e PATCH

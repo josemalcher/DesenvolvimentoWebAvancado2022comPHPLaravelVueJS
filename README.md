@@ -6635,6 +6635,54 @@ class TarefaController extends Controller
 ```
 
 - 272 Diretiva V-For - Implementando laços de repetição parte 2
+
+```html
+<div id="app">
+    <ul>
+        <li v-for="(curso, chave) in cursos" v-text="chave +' - '+ curso"></li>
+    </ul>
+    <hr>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="({titulo, descricao}, chave) in cursos2"> <!-- destructuring assignment -->
+            <td>{{chave}}</td>
+            <td>{{titulo}}</td>
+            <td>{{descricao}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
+            cursos2: {
+                1000: {
+                    titulo: 'Laravel',
+                    descricao: 'Domine o framework PHP mais poderoso do mundo'
+                },
+                1001: {
+                    titulo: 'Banco de Dados',
+                    descricao: 'Aprenda os principais BDs relacionais do mercado'
+                }
+            }
+        },
+        methods: {}
+    })
+
+</script>
+```
+
 - 273 Renderização de listas com o atributo Key
 - 274 Diretiva V-For - Implementando laços de repetição parte 3
 - 275 Diretiva V-For - Implementando laços de repetição parte 4

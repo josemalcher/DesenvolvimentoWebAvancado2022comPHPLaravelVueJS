@@ -6950,6 +6950,64 @@ class TarefaController extends Controller
 ```
 
 - 278 Trabalhando com propriedades computadas (computed) parte 2
+
+```html
+<div id="app">
+    <h4>Adicionar pacientes</h4>
+    <span>Nome: </span><input type="text" id="inputNome"><br>
+    <span>Idade: </span><input type="text" id="inputIdade"><br>
+    <span>Plano: </span><input type="text" id="inputPlano"><br>
+    <button @click="adicionarPaciente()">Adicionar</button>
+    <hr>
+    <h4>Último paciente cadastrado</h4>
+    <p v-if="pacientes.length > 0">
+        {{ ultimoPaciente }}
+    </p>
+    <hr>
+    <h4>Pacientes do plano Ouro</h4>
+    <p v-for="p in pacientesPlanoOuro">{{ p.nome }}</p>
+    <hr>
+
+    <h4>Pacientes cadastrados</h4>
+    <p v-for="p in pacientes">{{p.nome}}</p>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            pacientes: []
+        },
+        methods: {
+            adicionarPaciente() {
+                this.pacientes.push({
+                    nome: inputNome.value,
+                    idade: inputIdade.value,
+                    plano: inputPlano.value
+                })
+            }
+        },
+        computed: {
+            ultimoPaciente() {
+                let key = this.pacientes.length - 1
+                let txt = ''
+
+                txt += 'Paciente ' + this.pacientes[key].nome
+                txt += ', idade ' + this.pacientes[key].idade
+                txt += ', plano ' + this.pacientes[key].plano
+
+                return txt.toUpperCase()
+            },
+            pacientesPlanoOuro() {
+                return this.pacientes.filter(item => item.plano == 'Ouro')
+            }
+        }
+    })
+
+</script>
+```
+
 - 279 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
 - 280 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
 - 281 Trabalhando com propriedades observadoras (watch)

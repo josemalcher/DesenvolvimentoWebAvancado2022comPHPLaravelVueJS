@@ -7124,7 +7124,53 @@ class TarefaController extends Controller
 
 ## <a name="parte17">17 - APIs, WebServices e Rest</a>
 
+- 282 O que é uma API?
+- 283 Entendendo os princípios do REST
+- 284 [WINDOWS, LINUX e OSX] Instalando o Postman
+- 285 Iniciando o projeto Locadora de Carros
 
+[app_locadora_carros](app_locadora_carros)
+
+- 286 Criando os models, controllers e migrations
+- 287 Configurando a conexão com o banco de dados e implementando as migrations
+- 288 Entendendo o grupo de rotas Web e API e a importância do Content-Type
+- 289 Rotas e a diferença entre Route::resource e Route::apiResource
+- 290 Extra (fix da aula anterior) - Atributo $namespace de RouteServiceProvide
+- 291 Criando registros via POST
+- 292 Selecionando registros via GET
+- 293 Atualizando registros via PUT e PATCH
+- 294 Removendo registros via DELETE
+- 295 Extra - Entendendo o conceito de endpoint (URL, URN e URI)
+- 296 Injetando a instância do Model no Controller e como lidar com o Type Hinting
+- 297 Validações parte 1 - Controle de fluxos
+- 298 Validações parte 2 - Status Code HTTP
+- 299 Validações parte 3 - Validando parâmetros e a importância do Accept
+- 300 Implementando as regras de validação (Rules) no Model
+- 301 Validações parte 4 - Regras de validação no Update - Lidando com o Unique
+- 302 Validações parte 5 - Regras de validação no Update - Lidando com o PUT/PATCH
+- 303 Upload de arquivos - Implementando o upload de imagens parte 1
+- 304 Upload de arquivos - Implementando o upload de imagens parte 2
+- 305 Upload de arquivos - Implementando o upload de imagens parte 3
+- 306 Upload de arquivos - Criando um link simbólico para o disco public
+- 307 [IMPORTANTE] - Correção do link simbólico do projeto
+- 308 Upload de arquivos - Atualizando imagens
+- 309 Upload de arquivos - Removendo imagens
+- 310 API WebService Rest para o Resource Modelo
+- 311 Testando os endpoints de modelo
+- 312 Adicionando o relacionamento entre modelos e marcas
+- 313 Refactoring do endpoint update de marca e modelo
+- 314 Filtros - Selecionando os atributos de retorno
+- 315 Filtros - Obtendo colunas específicas com a instrução with()
+- 316 Filtros - Aplicando condições nas pesquisas parte 1
+- 317 Filtros - Aplicando condições nas pesquisas parte 2
+- 318 Filtros - Aplicando os filtros ao resource Marca
+- 319 Repository Design Pattern - Introdução
+- 320 Repository Design Pattern - Implementando um Repository para Marca
+- 321 Repository Design Pattern - Implementando um Repository para Modelo
+- 322 Repository Design Pattern - Implementando um Abstract Repository
+- 323 API WebService Rest para o Resource Carro
+- 324 API WebService Rest para o Resource Cliente
+- 325 API WebService Rest para o Resource Locacoes
 
 [Voltar ao Índice](#indice)
 

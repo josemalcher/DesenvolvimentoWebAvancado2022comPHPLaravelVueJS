@@ -6904,6 +6904,51 @@ class TarefaController extends Controller
 ```
 
 - 277 Trabalhando com propriedades computadas (computed) parte 1
+
+```html
+<div id="app">
+    <h4>Adicionar pacientes</h4>
+    <span>Nome: </span><input type="text" id="inputNome"><br>
+    <span>Idade: </span><input type="text" id="inputIdade"><br>
+    <span>Plano: </span><input type="text" id="inputPlano"><br>
+    <button @click="adicionarPaciente()">Adicionar</button>
+    <hr>
+    <h4>Último paciente cadastrado</h4>
+    <p v-if="pacientes.length > 0">
+        Paciente {{ pacientes[pacientes.length - 1].nome }},
+        idade {{ pacientes[pacientes.length - 1].idade }},
+        plano {{ pacientes[pacientes.length - 1].plano }}
+    </p>
+    <hr>
+    <h4>Pacientes do plano Ouro</h4>
+    <p v-for="p in pacientes">{{ p.plano == 'Ouro' ? p.nome : '' }}</p>
+    <hr>
+
+    <h4>Pacientes cadastrados</h4>
+    <p v-for="p in pacientes">{{p.nome}}</p>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            pacientes: []
+        },
+        methods: {
+            adicionarPaciente() {
+                this.pacientes.push({
+                    nome: inputNome.value,
+                    idade: inputIdade.value,
+                    plano: inputPlano.value
+                })
+            }
+        }
+    })
+
+</script>
+```
+
 - 278 Trabalhando com propriedades computadas (computed) parte 2
 - 279 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
 - 280 Diretiva V-Model - Praticando um pouco mais o two-way-data binding

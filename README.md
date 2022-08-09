@@ -6560,18 +6560,39 @@ class TarefaController extends Controller
 </script>
 ```
 
-- 269 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente
-- 270 Diretiva V-For - Implementando laços de repetição parte 1
-- 271 Diretiva V-For - Implementando laços de repetição parte 2
-- 272 Renderização de listas com o atributo Key
-- 273 Diretiva V-For - Implementando laços de repetição parte 3
-- 274 Diretiva V-For - Implementando laços de repetição parte 4
-- 275 Trabalhando com a tag Template para renderização condicional e listas
-- 276 Trabalhando com propriedades computadas (computed) parte 1
-- 277 Trabalhando com propriedades computadas (computed) parte 2
-- 278 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
-- 279 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
-- 280 Trabalhando com propriedades observadoras (watch)
+- 269 Diretiva V-Text - Injetando textos
+
+```html
+<div id="app">
+    <div v-html="elementosHTML">Texto de <b>exemplo</b></div>
+    <div v-text="elementosHTML">Texto de exemplo</div>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            elementosHTML: '<p><b>Site</b></p><a href="https://jorgesantana.net.br">Jorge Sant Ana</a>'
+        },
+        methods: {}
+    })
+
+</script>
+```
+
+- 270 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente
+- 271 Diretiva V-For - Implementando laços de repetição parte 1
+- 272 Diretiva V-For - Implementando laços de repetição parte 2
+- 273 Renderização de listas com o atributo Key
+- 274 Diretiva V-For - Implementando laços de repetição parte 3
+- 275 Diretiva V-For - Implementando laços de repetição parte 4
+- 276 Trabalhando com a tag Template para renderização condicional e listas
+- 277 Trabalhando com propriedades computadas (computed) parte 1
+- 278 Trabalhando com propriedades computadas (computed) parte 2
+- 279 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
+- 280 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
+- 281 Trabalhando com propriedades observadoras (watch)
 
 [Voltar ao Índice](#indice)
 

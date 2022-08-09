@@ -6877,6 +6877,32 @@ class TarefaController extends Controller
 ```
 
 - 276 Trabalhando com a tag Template para renderização condicional e listas
+
+```html
+<div id="app">
+    <template v-if="saudacao"> <!-- renderização condicional -->
+        <h1>Boas-vindas</h1>
+        <p>Conteúdo da tag <strong>template</strong></p>
+    </template>
+
+    <template v-for="n in 10">
+        <p>2 x {{n}} = {{ 2*n }}</p>
+    </template>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            saudacao: true
+        },
+        methods: {}
+    })
+
+</script>
+```
+
 - 277 Trabalhando com propriedades computadas (computed) parte 1
 - 278 Trabalhando com propriedades computadas (computed) parte 2
 - 279 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)

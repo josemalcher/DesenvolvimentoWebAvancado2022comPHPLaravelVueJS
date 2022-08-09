@@ -6613,6 +6613,27 @@ class TarefaController extends Controller
 ```
 
 - 271 Diretiva V-For - Implementando laços de repetição parte 1
+
+```html
+<div id="app">
+    <ul>
+        <li v-for="(curso, chave) in cursos" v-text="chave +' - '+ curso"></li>
+    </ul>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular']
+        },
+        methods: {}
+    })
+
+</script>
+```
+
 - 272 Diretiva V-For - Implementando laços de repetição parte 2
 - 273 Renderização de listas com o atributo Key
 - 274 Diretiva V-For - Implementando laços de repetição parte 3

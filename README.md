@@ -7009,6 +7009,28 @@ class TarefaController extends Controller
 ```
 
 - 279 Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)
+
+```html
+<div id="app">
+    {{ paciente }}<br>
+    <!--<input type="text" :value="paciente" @keyup="paciente = $event.target.value">-->
+    <input type="text" v-model="paciente">
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            paciente: 'João da Silva'
+        },
+        methods: {},
+        computed: {}
+    })
+
+</script>
+```
+
 - 280 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
 - 281 Trabalhando com propriedades observadoras (watch)
 

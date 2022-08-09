@@ -11,23 +11,9 @@
 </head>
 <body>
 <div id="app">
-    <h4>Adicionar pacientes</h4>
-    <span>Nome: </span><input type="text" id="inputNome"><br>
-    <span>Idade: </span><input type="text" id="inputIdade"><br>
-    <span>Plano: </span><input type="text" id="inputPlano"><br>
-    <button @click="adicionarPaciente()">Adicionar</button>
-    <hr>
-    <h4>Último paciente cadastrado</h4>
-    <p v-if="pacientes.length > 0">
-        {{ ultimoPaciente }}
-    </p>
-    <hr>
-    <h4>Pacientes do plano Ouro</h4>
-    <p v-for="p in pacientesPlanoOuro">{{ p.nome }}</p>
-    <hr>
-
-    <h4>Pacientes cadastrados</h4>
-    <p v-for="p in pacientes">{{p.nome}}</p>
+    {{ paciente }}<br>
+    <!--<input type="text" :value="paciente" @keyup="paciente = $event.target.value">-->
+    <input type="text" v-model="paciente">
 </div>
 
 <script>
@@ -35,32 +21,10 @@
     const vm = new Vue({
         el: '#app',
         data: {
-            pacientes: []
+            paciente: 'João da Silva'
         },
-        methods: {
-            adicionarPaciente() {
-                this.pacientes.push({
-                    nome: inputNome.value,
-                    idade: inputIdade.value,
-                    plano: inputPlano.value
-                })
-            }
-        },
-        computed: {
-            ultimoPaciente() {
-                let key = this.pacientes.length - 1
-                let txt = ''
-
-                txt += 'Paciente ' + this.pacientes[key].nome
-                txt += ', idade ' + this.pacientes[key].idade
-                txt += ', plano ' + this.pacientes[key].plano
-
-                return txt.toUpperCase()
-            },
-            pacientesPlanoOuro() {
-                return this.pacientes.filter(item => item.plano == 'Ouro')
-            }
-        }
+        methods: {},
+        computed: {}
     })
 
 </script>

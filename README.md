@@ -7192,6 +7192,86 @@ Policy created successfully.
 ![img/288-diagrama01.png](img/288-diagrama01.png)
 
 - 289 Rotas e a diferença entre Route::resource e Route::apiResource
+
+![img/289-diagrama01.png](img/289-diagrama01.png)
+
+```php
+Route::resource('cliente', 'App\Http\Controllers\ClienteController');
+```
+
+```
+$ php artisan route:list
++--------+-----------+----------------------------+-----------------+------------------------------------------------+------------+
+| Domain | Method    | URI                        | Name            | Action                                         | Middleware |
++--------+-----------+----------------------------+-----------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                          |                 | Closure                                        | web        |
+|        | GET|HEAD  | api/cliente                | cliente.index   | App\Http\Controllers\ClienteController@index   | api        |
+|        | POST      | api/cliente                | cliente.store   | App\Http\Controllers\ClienteController@store   | api        |
+|        | GET|HEAD  | api/cliente/create         | cliente.create  | App\Http\Controllers\ClienteController@create  | api        |
+|        | GET|HEAD  | api/cliente/{cliente}      | cliente.show    | App\Http\Controllers\ClienteController@show    | api        |
+|        | PUT|PATCH | api/cliente/{cliente}      | cliente.update  | App\Http\Controllers\ClienteController@update  | api        |
+|        | DELETE    | api/cliente/{cliente}      | cliente.destroy | App\Http\Controllers\ClienteController@destroy | api        |
+|        | GET|HEAD  | api/cliente/{cliente}/edit | cliente.edit    | App\Http\Controllers\ClienteController@edit    | api        |
+|        | GET|HEAD  | api/user                   |                 | Closure                                        | api        |
+|        |           |                            |                 |                                                | auth:api   |
++--------+-----------+----------------------------+-----------------+------------------------------------------------+------------+
+
+```
+
+```php
+Route::apiResource('cliente', 'App\Http\Controllers\ClienteController');
+```
+
+```
+$ php artisan route:list
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+| Domain | Method    | URI                   | Name            | Action                                         | Middleware |
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                     |                 | Closure                                        | web        |
+|        | GET|HEAD  | api/cliente           | cliente.index   | App\Http\Controllers\ClienteController@index   | api        |
+|        | POST      | api/cliente           | cliente.store   | App\Http\Controllers\ClienteController@store   | api        |
+|        | GET|HEAD  | api/cliente/{cliente} | cliente.show    | App\Http\Controllers\ClienteController@show    | api        |
+|        | PUT|PATCH | api/cliente/{cliente} | cliente.update  | App\Http\Controllers\ClienteController@update  | api        |
+|        | DELETE    | api/cliente/{cliente} | cliente.destroy | App\Http\Controllers\ClienteController@destroy | api        |
+|        | GET|HEAD  | api/user              |                 | Closure                                        | api        |
+|        |           |                       |                 |                                                | auth:api   |
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+
+```
+
+```php
+Route::apiResource('cliente', 'App\Http\Controllers\ClienteController');
+Route::apiResource('carro', 'App\Http\Controllers\CarroController');
+Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController');
+Route::apiResource('marca', 'App\Http\Controllers\MarcaController');
+Route::apiResource('modelo', 'App\Http\Controllers\ModeloController');
+```
+
+```
+$ php artisan route:list
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+| Domain | Method    | URI                   | Name            | Action                                         | Middleware |
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                     |                 | Closure                                        | web        |
+|        | GET|HEAD  | api/carro             | carro.index     | App\Http\Controllers\CarroController@index     | api        |
+|        | PUT|PATCH | api/locacao/{locacao} | locacao.update  | App\Http\Controllers\LocacaoController@update  | api        |
+|        | DELETE    | api/locacao/{locacao} | locacao.destroy | App\Http\Controllers\LocacaoController@destroy | api        |
+|        | GET|HEAD  | api/marca             | marca.index     | App\Http\Controllers\MarcaController@index     | api        |
+|        | POST      | api/marca             | marca.store     | App\Http\Controllers\MarcaController@store     | api        |
+|        | GET|HEAD  | api/marca/{marca}     | marca.show      | App\Http\Controllers\MarcaController@show      | api        |
+|        | PUT|PATCH | api/marca/{marca}     | marca.update    | App\Http\Controllers\MarcaController@update    | api        |
+|        | DELETE    | api/marca/{marca}     | marca.destroy   | App\Http\Controllers\MarcaController@destroy   | api        |
+|        | GET|HEAD  | api/modelo            | modelo.index    | App\Http\Controllers\ModeloController@index    | api        |
+|        | POST      | api/modelo            | modelo.store    | App\Http\Controllers\ModeloController@store    | api        |
+|        | GET|HEAD  | api/modelo/{modelo}   | modelo.show     | App\Http\Controllers\ModeloController@show     | api        |
+|        | PUT|PATCH | api/modelo/{modelo}   | modelo.update   | App\Http\Controllers\ModeloController@update   | api        |
+|        | DELETE    | api/modelo/{modelo}   | modelo.destroy  | App\Http\Controllers\ModeloController@destroy  | api        |
+|        | GET|HEAD  | api/user              |                 | Closure                                        | api        |
+|        |           |                       |                 |                                                | auth:api   |
++--------+-----------+-----------------------+-----------------+------------------------------------------------+------------+
+
+```
+
 - 290 Extra (fix da aula anterior) - Atributo $namespace de RouteServiceProvide
 - 291 Criando registros via POST
 - 292 Selecionando registros via GET

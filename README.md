@@ -6541,6 +6541,25 @@ class TarefaController extends Controller
 ```
 
 - 268 Diretiva V-Text - Injetando textos
+
+```html
+<div id="app">
+    <div v-html="elementosHTML">Texto de <b>exemplo</b></div>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            elementosHTML: '<p><b>Site</b></p><a href="https://jorgesantana.net.br">Jorge Sant Ana</a>'
+        },
+        methods: {}
+    })
+
+</script>
+```
+
 - 269 Diretiva V-Once - Evitando que elementos HTML sejam renderizados novamente
 - 270 Diretiva V-For - Implementando laços de repetição parte 1
 - 271 Diretiva V-For - Implementando laços de repetição parte 2

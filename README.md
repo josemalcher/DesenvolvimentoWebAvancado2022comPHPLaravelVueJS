@@ -6768,6 +6768,114 @@ class TarefaController extends Controller
 ```
 
 - 275 Diretiva V-For - Implementando laços de repetição parte 4
+
+```html
+<div id="app">
+    <ul>
+        <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
+    </ul>
+    <button @click="adicionarElemento()">Adicionar</button>
+    <button @click="removerElemento()">Remover</button>
+    <button @click="modificarElemento()">Atualizar</button>
+    <hr>
+
+    <ul>
+        <li v-for="n in numero">{{n}}</li>
+    </ul>
+    <ul>
+        <li v-for="(curso, chave) in cursos" v-text="chave +' - '+ curso"></li>
+    </ul>
+    <hr>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="({titulo, descricao}, chave) in cursos2"> <!-- destructuring assignment -->
+            <td>{{chave}}</td>
+            <td>{{titulo}}</td>
+            <td>{{descricao}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <ul>
+        <li v-for="p in publicacoes" style="border: solid 1px; margin-bottom:10px" :key="p.id">
+            <div>
+                {{ p.publicacao }}
+                <hr>
+                <input type="text">
+            </div>
+        </li>
+    </ul>
+    <button @click="misturarArray()">Misturar publicações</button>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            comentarios: [
+                { id: 1, comentario: 'Comentário 1' },
+                { id: 2, comentario: 'Comentário 2' },
+                { id: 3, comentario: 'Comentário 3' },
+            ],
+            numero: 5,
+            cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
+            cursos2: {
+                1000: {
+                    titulo: 'Laravel',
+                    descricao: 'Domine o framework PHP mais poderoso do mundo'
+                },
+                1001: {
+                    titulo: 'Banco de Dados',
+                    descricao: 'Aprenda os principais BDs relacionais do mercado'
+                }
+            },
+            publicacoes: [
+                { id: 1, publicacao: 'Publicações 1' },
+                { id: 2, publicacao: 'Publicações 2' },
+                { id: 3, publicacao: 'Publicações 3' },
+            ]
+        },
+        methods: {
+            misturarArray() {
+                let misturado = []
+
+                misturado[0] = this.publicacoes[2]
+                misturado[1] = this.publicacoes[0]
+                misturado[2] = this.publicacoes[1]
+
+                this.publicacoes = misturado
+            },
+            adicionarElemento() {
+                //this.comentarios[3] = { id: 4, comentario: 'Novo comentário'}
+                //console.log(this.comentarios)
+                this.comentarios.push({ id: 4, comentario: 'Novo comentário'})
+            },
+            removerElemento() {
+                this.comentarios.pop()
+            },
+            modificarElemento() {
+                //this.comentarios[1] = { id: 2, comentario: 'Comentário 2 atualizado' }
+                //console.log(this.comentarios)
+                this.$set(
+                    this.comentarios,
+                    1,
+                    { id: 2, comentario: 'Comentário 2 atualizado' }
+                )
+            }
+        }
+    })
+
+</script>
+```
+
 - 276 Trabalhando com a tag Template para renderização condicional e listas
 - 277 Trabalhando com propriedades computadas (computed) parte 1
 - 278 Trabalhando com propriedades computadas (computed) parte 2

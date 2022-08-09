@@ -6759,6 +6759,14 @@ class TarefaController extends Controller
 ```
 
 - 274 Diretiva V-For - Implementando laços de repetição parte 3
+
+```html
+<div id="app">
+    <ul>
+        <li v-for="n in numero">{{n}}</li>
+    </ul>
+```
+
 - 275 Diretiva V-For - Implementando laços de repetição parte 4
 - 276 Trabalhando com a tag Template para renderização condicional e listas
 - 277 Trabalhando com propriedades computadas (computed) parte 1

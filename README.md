@@ -7188,6 +7188,9 @@ Policy created successfully.
 ![img/287-diagrama01.png](/img/287-diagrama01.png)
 
 - 288 Entendendo o grupo de rotas Web e API e a importância do Content-Type
+
+![img/288-diagrama01.png](img/288-diagrama01.png)
+
 - 289 Rotas e a diferença entre Route::resource e Route::apiResource
 - 290 Extra (fix da aula anterior) - Atributo $namespace de RouteServiceProvide
 - 291 Criando registros via POST

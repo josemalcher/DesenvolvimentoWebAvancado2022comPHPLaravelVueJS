@@ -7080,6 +7080,43 @@ class TarefaController extends Controller
 
 - 281 Trabalhando com propriedades observadoras (watch)
 
+```html
+<div id="app">
+    <span>Paciente: </span><input type="text" v-model="paciente">
+    <br>
+    <ul>
+        <li v-for="p in lista">{{p.nome}}, {{p.idade}}</li>
+    </ul>
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            paciente: '',
+            pacientes: [
+                { nome: 'Jorge Sant Ana', idade: 32 },
+                { nome: 'João Santos', idade: 45},
+                { nome: 'José Auguto', idade: 18 },
+                { nome: 'Júnior Silva', idade: 20 },
+                { nome: 'Julho Nogueira', idade: 50},
+            ],
+            lista: []
+        },
+        methods: {},
+        computed: {},
+        watch: {
+            paciente(valorNovo) {
+                console.log(valorNovo)
+                this.lista = this.pacientes.filter(p => p.nome.match(valorNovo))
+            }
+        }
+    })
+
+</script>
+```
+
 [Voltar ao Índice](#indice)
 
 ---

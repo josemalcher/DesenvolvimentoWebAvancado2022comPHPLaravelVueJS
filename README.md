@@ -7032,6 +7032,52 @@ class TarefaController extends Controller
 ```
 
 - 280 Diretiva V-Model - Praticando um pouco mais o two-way-data binding
+
+```html
+<div id="app">
+    {{ paciente }}<br>
+    <!--<input type="text" :value="paciente" @keyup="paciente = $event.target.value">-->
+    <input type="text" v-model="paciente">
+    <hr>
+    <input type="radio" value="f" v-model="sexo">Feminino
+    <input type="radio" value="m" v-model="sexo">Masculino
+    <br> {{ sexo }}
+    <hr>
+    <select v-model="plano">
+        <option value="" disabled>Selecione um plano</option>
+        <option value="1">Básico 1</option>
+        <option value="2">Básico 2</option>
+        <option value="3">Master</option>
+    </select>
+    <br> {{ plano }}
+    <hr>
+    <input type="checkbox" value="100" v-model="doencas">Asma
+    <input type="checkbox" value="101" v-model="doencas">Diabetes tipo 1
+    <input type="checkbox" value="102" v-model="doencas">Rinite
+    <br> {{ doencas }}
+    <hr>
+    <textarea v-model="diagnostico"></textarea>
+    <br> {{ diagnostico }}
+</div>
+
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            paciente: 'João da Silva',
+            sexo: '',
+            plano: '',
+            doencas: [],
+            diagnostico: ''
+        },
+        methods: {},
+        computed: {}
+    })
+
+</script>
+```
+
 - 281 Trabalhando com propriedades observadoras (watch)
 
 [Voltar ao Índice](#indice)

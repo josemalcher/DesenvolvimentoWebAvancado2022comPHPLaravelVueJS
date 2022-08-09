@@ -7184,6 +7184,9 @@ Policy created successfully.
 ```
 
 - 287 Configurando a conexão com o banco de dados e implementando as migrations
+
+![img/287-diagrama01.png](/img/287-diagrama01.png)
+
 - 288 Entendendo o grupo de rotas Web e API e a importância do Content-Type
 - 289 Rotas e a diferença entre Route::resource e Route::apiResource
 - 290 Extra (fix da aula anterior) - Atributo $namespace de RouteServiceProvide

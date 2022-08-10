@@ -7319,6 +7319,60 @@ class MarcaController extends Controller
 ![img/295-diagrama01.png](img/295-diagrama01.png)
 
 - 296 Injetando a instância do Model no Controller e como lidar com o Type Hinting
+
+![img/296-diagrama01.png](img/296-diagrama01.png)
+
+```php
+class MarcaController extends Controller
+{
+    public function __construct(Marca $marca)
+    {
+        $this->marca = $marca;
+    }
+
+    public function index()
+    {
+        // $marcas = Marca::all();
+        $marcas = $this->marca->all();
+        return $marcas;
+    }
+
+    public function store(Request $request)
+    {
+        // $marca = Marca::create($request->all());
+        //dd($request->all());
+        // dd($marca);
+        $marca = $this->marca->create($request->all());
+        return $marca;
+    }
+
+    public function show($id)
+    {
+        $marca = $this->marca->find($id);
+        return $marca;
+    }
+
+    public function update(Request $request, $id)
+    {
+//        print_r($request->all()); // dados atualizados
+//        echo '<hr>';
+//        print_r($marca->getAttributes()); // dados antigos
+
+        // $marca->update($request->all());
+        $marca = $this->marca->find($id);
+        $marca->update($request->all());
+        return $marca;
+    }
+
+    public function destroy($id)
+    {
+        //$marca->delete();
+        $marca = $this->marca->find($id);
+        $marca->delete();
+        return ['msg', 'Marca removida com sucesso'];
+    }
+```
+
 - 297 Validações parte 1 - Controle de fluxos
 - 298 Validações parte 2 - Status Code HTTP
 - 299 Validações parte 3 - Validando parâmetros e a importância do Accept

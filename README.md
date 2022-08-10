@@ -7315,6 +7315,9 @@ class MarcaController extends Controller
 - 293 Atualizando registros via PUT e PATCH
 - 294 Removendo registros via DELETE
 - 295 Extra - Entendendo o conceito de endpoint (URL, URN e URI)
+
+![img/295-diagrama01.png](img/295-diagrama01.png)
+
 - 296 Injetando a instância do Model no Controller e como lidar com o Type Hinting
 - 297 Validações parte 1 - Controle de fluxos
 - 298 Validações parte 2 - Status Code HTTP

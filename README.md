@@ -7474,6 +7474,40 @@ class MarcaController extends Controller
 
 
 - 300 Implementando as regras de validação (Rules) no Model
+
+```php
+class Marca extends Model
+{
+    public function rules()
+    {
+           return [
+               'nome' => 'required|unique:marcas|min:3',
+               'imagem' => 'required'
+           ];
+    }
+
+    public function feedback()
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório',
+            'nome.unique' => 'O nome da marca já existe',
+            'nome.min' => 'O nome deve ter no mínimo 3 caracteres'
+        ];
+    }
+```
+
+```php
+class MarcaController extends Controller
+{
+    public function store(Request $request)
+    {
+        $request->validate($this->marca->rules(), $this->marca->feedback());
+
+        $marca = $this->marca->create($request->all());
+        return response()->json($marca, 201);
+    }
+```
+
 - 301 Validações parte 4 - Regras de validação no Update - Lidando com o Unique
 - 302 Validações parte 5 - Regras de validação no Update - Lidando com o PUT/PATCH
 - 303 Upload de arquivos - Implementando o upload de imagens parte 1

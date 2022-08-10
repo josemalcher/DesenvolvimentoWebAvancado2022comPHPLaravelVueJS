@@ -7445,6 +7445,34 @@ class MarcaController extends Controller
 ```
 
 - 299 Validações parte 3 - Validando parâmetros e a importância do Accept
+
+
+```php
+class MarcaController extends Controller
+{
+    public function store(Request $request)
+    {
+        $regras = [
+            'nome' => 'required|unique:marcas',
+            'imagem' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute é obrigatório',
+            'nome.unique' => 'O nome da marca já existe'
+        ];
+
+        $request->validate($regras, $feedback);
+        //stateless
+
+        $marca = $this->marca->create($request->all());
+        return response()->json($marca, 201);
+    }
+```
+
+![img/299-diagrama01.png](img/299-diagrama01.png)
+
+
 - 300 Implementando as regras de validação (Rules) no Model
 - 301 Validações parte 4 - Regras de validação no Update - Lidando com o Unique
 - 302 Validações parte 5 - Regras de validação no Update - Lidando com o PUT/PATCH

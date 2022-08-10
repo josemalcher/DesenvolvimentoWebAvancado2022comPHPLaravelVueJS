@@ -104,6 +104,8 @@ class MarcaController extends Controller
             return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
         }
 
+        $request->validate($marca->rules(), $marca->feedback());
+
         $marca->update($request->all());
         return response()->json($marca, 200);;
     }

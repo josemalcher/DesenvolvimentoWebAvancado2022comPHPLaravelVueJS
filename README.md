@@ -7509,6 +7509,41 @@ class MarcaController extends Controller
 ```
 
 - 301 Validações parte 4 - Regras de validação no Update - Lidando com o Unique
+
+```php
+class Marca extends Model
+{
+    public function rules()
+    {
+           return [
+               'nome' => 'required|unique:marcas,nome, '.$this->id.'|min:3',
+               'imagem' => 'required'
+           ];
+           /*
+           unique:marcas,nome, '.$this->id.'
+           1) tabela
+           2) nome da coluna que será pesqusada na tabela
+           3) id do registro que será desconsiderado na pesquisa
+            */
+    }
+```
+
+```php
+public function update(Request $request, $id)
+    {
+        $marca = $this->marca->find($id);
+
+        if ($marca === null) {
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
+        }
+
+        $request->validate($marca->rules(), $marca->feedback());
+
+        $marca->update($request->all());
+        return response()->json($marca, 200);;
+    }
+```
+
 - 302 Validações parte 5 - Regras de validação no Update - Lidando com o PUT/PATCH
 - 303 Upload de arquivos - Implementando o upload de imagens parte 1
 - 304 Upload de arquivos - Implementando o upload de imagens parte 2

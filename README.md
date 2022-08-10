@@ -7377,12 +7377,28 @@ class MarcaController extends Controller
 
 ![img/297-diagrama01.png](img/297-diagrama01.png)
 
+
+- 298 Validações parte 2 - Status Code HTTP
+
+[https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)
+
 ```php
 class MarcaController extends Controller
 {
-    public function __construct(Marca $marca)
+    public function index()
     {
-        $this->marca = $marca;
+        // $marcas = Marca::all();
+        $marcas = $this->marca->all();
+        return response()->json($marcas, 200);
+    }
+
+    public function store(Request $request)
+    {
+        // $marca = Marca::create($request->all());
+        //dd($request->all());
+        // dd($marca);
+        $marca = $this->marca->create($request->all());
+        return response()->json($marca, 201);
     }
 
     public function show($id)
@@ -7390,10 +7406,10 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe'];
+            return response()->json(['error' => 'Recurso Não Existe'], 404);
         }
 
-        return $marca;
+        return response()->json($marca, 200);
     }
 
     public function update(Request $request, $id)
@@ -7406,11 +7422,12 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe para ser Atualizado!'];
+
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
         }
 
         $marca->update($request->all());
-        return $marca;
+        return response()->json($marca, 200);;
     }
 
     public function destroy($id)
@@ -7419,15 +7436,14 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe para ser Deletado!'];
+            return response()->json(['error' => 'Recurso Não Existe para ser DELETADO!'], 404);
         }
 
         $marca->delete();
-        return ['msg', 'Marca removida com sucesso'];
+        return response()->json(['msg'=> 'Marca removida com sucesso'], 200);
     }
 ```
 
-- 298 Validações parte 2 - Status Code HTTP
 - 299 Validações parte 3 - Validando parâmetros e a importância do Accept
 - 300 Implementando as regras de validação (Rules) no Model
 - 301 Validações parte 4 - Regras de validação no Update - Lidando com o Unique

@@ -21,7 +21,7 @@ class MarcaController extends Controller
     {
         // $marcas = Marca::all();
         $marcas = $this->marca->all();
-        return $marcas;
+        return response()->json($marcas, 200);
     }
 
     /**
@@ -46,7 +46,7 @@ class MarcaController extends Controller
         //dd($request->all());
         // dd($marca);
         $marca = $this->marca->create($request->all());
-        return $marca;
+        return response()->json($marca, 201);
     }
 
     /**
@@ -60,10 +60,10 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe'];
+            return response()->json(['error' => 'Recurso Não Existe'], 404);
         }
 
-        return $marca;
+        return response()->json($marca, 200);
     }
 
     /**
@@ -94,11 +94,12 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe para ser Atualizado!'];
+
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
         }
 
         $marca->update($request->all());
-        return $marca;
+        return response()->json($marca, 200);;
     }
 
     /**
@@ -113,10 +114,10 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return ['error' => 'Recurso Não Existe para ser Deletado!'];
+            return response()->json(['error' => 'Recurso Não Existe para ser DELETADO!'], 404);
         }
 
         $marca->delete();
-        return ['msg', 'Marca removida com sucesso'];
+        return response()->json(['msg'=> 'Marca removida com sucesso'], 200);
     }
 }

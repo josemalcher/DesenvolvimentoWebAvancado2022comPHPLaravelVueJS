@@ -7298,6 +7298,19 @@ Route::apiResource('modelo', 'ModeloController');
 ```
 
 - 291 Criando registros via POST
+
+```php
+class MarcaController extends Controller
+{
+    public function store(Request $request)
+    {
+        $marca = Marca::create($request->all());
+        //dd($request->all());
+        // dd($marca);
+        return $marca;
+    }
+```
+
 - 292 Selecionando registros via GET
 - 293 Atualizando registros via PUT e PATCH
 - 294 Removendo registros via DELETE

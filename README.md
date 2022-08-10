@@ -7374,6 +7374,59 @@ class MarcaController extends Controller
 ```
 
 - 297 Validações parte 1 - Controle de fluxos
+
+![img/297-diagrama01.png](img/297-diagrama01.png)
+
+```php
+class MarcaController extends Controller
+{
+    public function __construct(Marca $marca)
+    {
+        $this->marca = $marca;
+    }
+
+    public function show($id)
+    {
+        $marca = $this->marca->find($id);
+
+        if ($marca === null) {
+            return ['error' => 'Recurso Não Existe'];
+        }
+
+        return $marca;
+    }
+
+    public function update(Request $request, $id)
+    {
+//        print_r($request->all()); // dados atualizados
+//        echo '<hr>';
+//        print_r($marca->getAttributes()); // dados antigos
+
+        // $marca->update($request->all());
+        $marca = $this->marca->find($id);
+
+        if ($marca === null) {
+            return ['error' => 'Recurso Não Existe para ser Atualizado!'];
+        }
+
+        $marca->update($request->all());
+        return $marca;
+    }
+
+    public function destroy($id)
+    {
+        //$marca->delete();
+        $marca = $this->marca->find($id);
+
+        if ($marca === null) {
+            return ['error' => 'Recurso Não Existe para ser Deletado!'];
+        }
+
+        $marca->delete();
+        return ['msg', 'Marca removida com sucesso'];
+    }
+```
+
 - 298 Validações parte 2 - Status Code HTTP
 - 299 Validações parte 3 - Validando parâmetros e a importância do Accept
 - 300 Implementando as regras de validação (Rules) no Model

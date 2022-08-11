@@ -7545,6 +7545,40 @@ public function update(Request $request, $id)
 ```
 
 - 302 Validações parte 5 - Regras de validação no Update - Lidando com o PUT/PATCH
+
+```php
+public function update(Request $request, $id)
+    {
+        $marca = $this->marca->find($id);
+
+        if ($marca === null) {
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
+        }
+
+        if($request->method() === 'PATCH') {
+
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($marca->rules() as $input => $regra) {
+
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $marca->feedback());
+
+        } else {
+            $request->validate($marca->rules(), $marca->feedback());
+        }
+
+        $marca->update($request->all());
+        return response()->json($marca, 200);;
+    }
+```
+
 - 303 Upload de arquivos - Implementando o upload de imagens parte 1
 - 304 Upload de arquivos - Implementando o upload de imagens parte 2
 - 305 Upload de arquivos - Implementando o upload de imagens parte 3

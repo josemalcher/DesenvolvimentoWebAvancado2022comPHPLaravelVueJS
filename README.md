@@ -7603,6 +7603,21 @@ public function store(Request $request)
 ```
 
 - 304 Upload de arquivos - Implementando o upload de imagens parte 2
+
+![img/304-diagrama01.png](img/304-diagrama01.png)
+
+```php
+    public function store(Request $request)
+    {
+        $request->validate($this->marca->rules(), $this->marca->feedback());
+        $image = $request->file('imagem');
+        // $image->store('imagens/x/y/z', 'public');
+        $image->store('imagens', 'public');
+       
+        // app_locadora_carros/storage/app/public/imagens/ru40QWOxB4jH59MEP0gtGBSaPYAAOr1IOc42Vz7B.png
+```
+
+
 - 305 Upload de arquivos - Implementando o upload de imagens parte 3
 - 306 Upload de arquivos - Criando um link simbólico para o disco public
 - 307 [IMPORTANTE] - Correção do link simbólico do projeto

@@ -7580,6 +7580,28 @@ public function update(Request $request, $id)
 ```
 
 - 303 Upload de arquivos - Implementando o upload de imagens parte 1
+
+```php
+public function store(Request $request)
+    {
+        //$marca = Marca::create($request->all());
+        //nome
+        //imagem
+        $request->validate($this->marca->rules(), $this->marca->feedback());
+        //stateless
+
+        //dd($request->nome);
+        //dd($request->get('nome'));
+        //dd($request->input('nome'));
+
+        //dd($request->imagem);
+        dd($request->file('imagem'));
+
+        //$marca = $this->marca->create($request->all());
+        return response()->json($marca, 201);
+    }
+```
+
 - 304 Upload de arquivos - Implementando o upload de imagens parte 2
 - 305 Upload de arquivos - Implementando o upload de imagens parte 3
 - 306 Upload de arquivos - Criando um link simbólico para o disco public

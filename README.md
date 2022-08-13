@@ -7667,6 +7667,15 @@ class Marca extends Model
 ```
 
 - 306 Upload de arquivos - Criando um link simbólico para o disco public
+
+```
+$ php artisan storage:link
+The [C:\Users\josem\Documents\workspaces\DesenvolvimentoWebAvancado2022comPHPLaravelVueJS\app_locadora_carros\public\storage] link has been connected to [C:\Users\josem\Documents\workspaces\DesenvolvimentoWebAvancado2022comPHPLaravelVueJS\app_locadora_carros\storage\app/public].
+The links have been created.
+
+```
+
+
 - 307 [IMPORTANTE] - Correção do link simbólico do projeto
 - 308 Upload de arquivos - Atualizando imagens
 - 309 Upload de arquivos - Removendo imagens

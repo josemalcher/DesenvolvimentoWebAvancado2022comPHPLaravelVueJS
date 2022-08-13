@@ -7619,6 +7619,53 @@ public function store(Request $request)
 
 
 - 305 Upload de arquivos - Implementando o upload de imagens parte 3
+
+```php
+public function store(Request $request)
+    {
+       $request->validate($this->marca->rules(), $this->marca->feedback());
+
+        $image = $request->file('imagem');
+        $image_uri = $image->store('imagens', 'public');
+        // dd($image_uri); // "imagens/8UM1FA1QVjkp9BGHqx2Tr87rrqTqYcfkvm6QHGLJ.png"
+
+
+//        $marca->nome = $request->nome;
+//        $marca->imagem = $image_uri;
+//        $marca->save();
+        $marca = $this->marca->create([
+            'nome'   => $request->nome,
+            'imagem' => $image_uri
+        ]);
+
+        //$marca = $this->marca->create($request->all());
+        return response()->json($marca, 201);
+    }
+```
+
+```php
+class Marca extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['nome', 'imagem'];
+
+    public function rules()
+    {
+           return [
+               'nome'   => 'required|unique:marcas,nome, '.$this->id.'|min:3',
+               'imagem' => 'required|file|mimes:png,jpg'
+           ];
+           /*
+           unique:marcas,nome, '.$this->id.'
+           1) tabela
+           2) nome da coluna que será pesqusada na tabela
+           3) id do registro que será desconsiderado na pesquisa
+            */
+
+    }
+```
+
 - 306 Upload de arquivos - Criando um link simbólico para o disco public
 - 307 [IMPORTANTE] - Correção do link simbólico do projeto
 - 308 Upload de arquivos - Atualizando imagens

@@ -7678,6 +7678,47 @@ The links have been created.
 
 - 307 [IMPORTANTE] - Correção do link simbólico do projeto
 - 308 Upload de arquivos - Atualizando imagens
+
+```php
+public function update(Request $request, $id)
+    {
+        $marca = $this->marca->find($id);
+        if ($marca === null) {
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
+        }
+
+        if($request->method() === 'PATCH') {
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($marca->rules() as $input => $regra) {
+
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+            $request->validate($regrasDinamicas, $marca->feedback());
+
+        } else {
+            $request->validate($marca->rules(), $marca->feedback());
+        }
+
+        $image = $request->file('imagem');
+        $image_uri = $image->store('imagens', 'public');
+
+        $marca->update([
+            'nome'   => $request->nome,
+            'imagem' => $image_uri
+        ]);
+        return response()->json($marca, 200);;
+    }
+```
+
+![img/308-diagrama01.png](img/308-diagrama01.png)
+
+
+
 - 309 Upload de arquivos - Removendo imagens
 - 310 API WebService Rest para o Resource Modelo
 - 311 Testando os endpoints de modelo

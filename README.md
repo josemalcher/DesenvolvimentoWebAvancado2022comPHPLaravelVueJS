@@ -7720,6 +7720,27 @@ public function update(Request $request, $id)
 
 
 - 309 Upload de arquivos - Removendo imagens
+
+```php
+public function update(Request $request, $id)
+    {
+        // (...)
+        // REMOVE o arquivo antigo caso um novo arquivo tenha sido
+        // enviado no REQUEST
+        if ($request->file('imagem')) {
+            Storage::disk('public')->delete($marca->imagem);
+        }
+```
+
+```php
+public function destroy($id)
+    {
+        // (...)
+        // REMOVE o arquivo antigo 
+        Storage::disk('public')->delete($marca->imagem);
+    }
+```
+
 - 310 API WebService Rest para o Resource Modelo
 - 311 Testando os endpoints de modelo
 - 312 Adicionando o relacionamento entre modelos e marcas

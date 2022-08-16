@@ -7744,6 +7744,68 @@ public function destroy($id)
 - 310 API WebService Rest para o Resource Modelo
 - 311 Testando os endpoints de modelo
 - 312 Adicionando o relacionamento entre modelos e marcas
+
+```php
+class Modelo extends Model
+{
+    public function marca()
+    {
+        return $this->belongsTo('App\Models\Marca');
+    }
+}
+```
+
+```php
+class Marca extends Model
+{
+    public function modelo()
+    {
+        return $this->hasMany('App\Models\Modelo');
+    }
+}
+```
+
+```php
+class ModeloController extends Controller
+{
+    public function index()
+    {
+        return response()->json($this->modelo->with('marca')->get(), 200);
+
+        // all() -> criando um objeto de consulta + get()  =  collection
+        // get() -> modificar a consulta -> collection
+
+    }
+    public function show($id)
+    {
+        $modelo = $this->modelo->with('marca')->find($id);
+        if($modelo === null) {
+            return response()->json(['erro' => 'Recurso pesquisado não existe'], 404) ;
+        }
+        return response()->json($modelo, 200);
+    }
+```
+
+```php
+class MarcaController extends Controller
+{
+    public function index()
+    {
+        // $marcas = Marca::all();
+        $marcas = $this->marca->with('modelo')->get();
+        return response()->json($marcas, 200);
+    }
+    public function show($id)
+    {
+        $marca = $this->marca->with('modelo')->find($id);
+
+        if ($marca === null) {
+            return response()->json(['error' => 'Recurso Não Existe'], 404);
+        }
+        return response()->json($marca, 200);
+    }
+```
+
 - 313 Refactoring do endpoint update de marca e modelo
 - 314 Filtros - Selecionando os atributos de retorno
 - 315 Filtros - Obtendo colunas específicas com a instrução with()

@@ -30,6 +30,20 @@ class ModeloController extends Controller
             $modelos = $this->modelo->with('marca');
         }
 
+        if ($request->has('filtro')) {
+            // dd($request->filtro);// "nome:=:Ford KA 1.0"
+            // dd(explode(':',$request->filtro));
+            /*
+             array:3 [
+                      0 => "nome"
+                      1 => "="
+                      2 => "Ford KA 1.0"
+                    ]
+            */
+            $condicoes = explode(':', $request->filtro);
+            $modelos = $modelos->where($condicoes[0], $condicoes[1], $condicoes[2]);
+        }
+
         if ($request->has('atributos')) {
             $atributos = $request->atributos;
             $modelos = $modelos->selectRaw($atributos)->get();

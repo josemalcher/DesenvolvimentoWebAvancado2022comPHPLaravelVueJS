@@ -7900,6 +7900,27 @@ class ModeloController extends Controller
 ```
 
 - 314 Filtros - Selecionando os atributos de retorno
+
+```php
+class ModeloController extends Controller
+{
+    public function index(Request $request)
+    {
+        $modelos = array();
+
+        if ($request->has('atributos')) {
+            // dd($request->atributos); // "id,nome,imagem"
+            $atributos = $request->atributos;
+
+            $modelos = $this->modelo->selectRaw($atributos)->with('marca')->get();
+            // http://localhost:8000/api/modelo?atributos=id,nome,imagem,marca_id
+        } else {
+            $modelos = $this->modelo->with('marca')->get();
+        }
+        return response()->json($modelos, 200);
+    }
+```
+
 - 315 Filtros - Obtendo colunas específicas com a instrução with()
 - 316 Filtros - Aplicando condições nas pesquisas parte 1
 - 317 Filtros - Aplicando condições nas pesquisas parte 2

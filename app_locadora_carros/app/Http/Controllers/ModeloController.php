@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class ModeloController extends Controller
 {
 
-    public function __construct(Modelo $modelo) {
+    public function __construct(Modelo $modelo)
+    {
         $this->modelo = $modelo;
     }
 
@@ -18,13 +19,23 @@ class ModeloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json($this->modelo->with('marca')->get(), 200);
+        $modelos = array();
 
+        if ($request->has('atributos')) {
+            // dd($request->atributos); // "id,nome,imagem"
+            $atributos = $request->atributos;
+            $modelos = $this->modelo->selectRaw($atributos)->with('marca')->get();
+            // http://localhost:8000/api/modelo?atributos=id,nome,imagem,marca_id
+
+        } else {
+            $modelos = $this->modelo->with('marca')->get();
+        }
+        // $this->modelo->with('marca')->get()
+        return response()->json($modelos, 200);
         // all() -> criando um objeto de consulta + get()  =  collection
         // get() -> modificar a consulta -> collection
-
     }
 
     /**
@@ -40,7 +51,7 @@ class ModeloController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -66,14 +77,14 @@ class ModeloController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Modelo  $modelo
+     * @param \App\Models\Modelo $modelo
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $modelo = $this->modelo->with('marca')->find($id);
-        if($modelo === null) {
-            return response()->json(['erro' => 'Recurso pesquisado não existe'], 404) ;
+        if ($modelo === null) {
+            return response()->json(['erro' => 'Recurso pesquisado não existe'], 404);
         }
 
         return response()->json($modelo, 200);
@@ -82,7 +93,7 @@ class ModeloController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Modelo  $modelo
+     * @param \App\Models\Modelo $modelo
      * @return \Illuminate\Http\Response
      */
     public function edit(Modelo $modelo)
@@ -93,26 +104,26 @@ class ModeloController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Modelo  $modelo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Modelo $modelo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $modelo = $this->modelo->find($id);
-        if($modelo === null) {
+        if ($modelo === null) {
             return response()->json(['erro' => 'Impossível realizar a atualização. O recurso solicitado não existe'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
 
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($modelo->rules() as $input => $regra) {
+            foreach ($modelo->rules() as $input => $regra) {
 
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -124,7 +135,7 @@ class ModeloController extends Controller
         }
 
         //remove o arquivo antigo caso um novo arquivo tenha sido enviado no request
-        if($request->file('imagem')) {
+        if ($request->file('imagem')) {
             Storage::disk('public')->delete($modelo->imagem);
         }
 
@@ -151,14 +162,14 @@ class ModeloController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Modelo  $modelo
+     * @param \App\Models\Modelo $modelo
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $modelo = $this->modelo->find($id);
 
-        if($modelo === null) {
+        if ($modelo === null) {
             return response()->json(['erro' => 'Impossível realizar a exclusão. O recurso solicitado não existe'], 404);
         }
 

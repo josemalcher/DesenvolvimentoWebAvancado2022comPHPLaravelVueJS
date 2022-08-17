@@ -7994,6 +7994,52 @@ class ModeloController extends Controller
 ```
 
 - 317 Filtros - Aplicando condições nas pesquisas parte 2
+
+```php
+class ModeloController extends Controller
+{
+    public function index(Request $request)
+    {
+        $modelos = array();
+
+        if ($request->has('atributos_marca')) {
+            $atributos_marca = $request->atributos_marca;
+            $modelos = $this->modelo->with('marca:id,'.$atributos_marca);
+        }else{
+            $modelos = $this->modelo->with('marca');
+        }
+
+        if ($request->has('filtro')) {
+            // dd($request->filtro);// "nome:=:Ford KA 1.0"
+            // dd(explode(':',$request->filtro));
+            /*
+             array:3 [
+                      0 => "nome"
+                      1 => "="
+                      2 => "Ford KA 1.0"
+                    ]
+            */
+            // dd($request->filtro); // "nome:=:HB 20;nome:like:Ford%;abs:=:1"
+
+            $filtros = explode(';', $request->filtro);
+            foreach ($filtros as $key => $condicao) {
+                $c = explode(':', $condicao);
+                $modelos = $modelos->where($c[0], $c[1], $c[2]);
+            }
+        }
+
+        if ($request->has('atributos')) {
+            $atributos = $request->atributos;
+            $modelos = $modelos->selectRaw($atributos)->get();
+        } else {
+            //$modelos = $this->modelo->with('marca')->get();
+            $modelos = $modelos->get();
+        }
+
+        return response()->json($modelos, 200);
+    }
+```
+
 - 318 Filtros - Aplicando os filtros ao resource Marca
 - 319 Repository Design Pattern - Introdução
 - 320 Repository Design Pattern - Implementando um Repository para Marca

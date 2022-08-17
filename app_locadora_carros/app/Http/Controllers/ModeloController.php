@@ -40,8 +40,13 @@ class ModeloController extends Controller
                       2 => "Ford KA 1.0"
                     ]
             */
-            $condicoes = explode(':', $request->filtro);
-            $modelos = $modelos->where($condicoes[0], $condicoes[1], $condicoes[2]);
+            // dd($request->filtro); // "nome:=:HB 20;nome:like:Ford%;abs:=:1"
+
+            $filtros = explode(';', $request->filtro);
+            foreach ($filtros as $key => $condicao) {
+                $c = explode(':', $condicao);
+                $modelos = $modelos->where($c[0], $c[1], $c[2]);
+            }
         }
 
         if ($request->has('atributos')) {

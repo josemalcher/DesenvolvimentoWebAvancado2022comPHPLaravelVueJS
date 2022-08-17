@@ -7922,6 +7922,33 @@ class ModeloController extends Controller
 ```
 
 - 315 Filtros - Obtendo colunas específicas com a instrução with()
+
+```php
+class ModeloController extends Controller
+{
+    public function index(Request $request)
+    {
+        $modelos = array();
+
+        if ($request->has('atributos_marca')) {
+            $atributos_marca = $request->atributos_marca;
+            $modelos = $this->modelo->with('marca:id,'.$atributos_marca);
+        }else{
+            $modelos = $this->modelo->with('marca');
+        }
+
+        if ($request->has('atributos')) {
+            $atributos = $request->atributos;
+            $modelos = $modelos->selectRaw($atributos)->get();
+        } else {
+            //$modelos = $this->modelo->with('marca')->get();
+            $modelos = $modelos->get();
+        }
+
+        return response()->json($modelos, 200);
+    }
+```
+
 - 316 Filtros - Aplicando condições nas pesquisas parte 1
 - 317 Filtros - Aplicando condições nas pesquisas parte 2
 - 318 Filtros - Aplicando os filtros ao resource Marca

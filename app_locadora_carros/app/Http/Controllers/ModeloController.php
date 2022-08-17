@@ -23,16 +23,21 @@ class ModeloController extends Controller
     {
         $modelos = array();
 
-        if ($request->has('atributos')) {
-            // dd($request->atributos); // "id,nome,imagem"
-            $atributos = $request->atributos;
-            $modelos = $this->modelo->selectRaw($atributos)->with('marca')->get();
-            // http://localhost:8000/api/modelo?atributos=id,nome,imagem,marca_id
-
-        } else {
-            $modelos = $this->modelo->with('marca')->get();
+        if ($request->has('atributos_marca')) {
+            $atributos_marca = $request->atributos_marca;
+            $modelos = $this->modelo->with('marca:id,'.$atributos_marca);
+        }else{
+            $modelos = $this->modelo->with('marca');
         }
-        // $this->modelo->with('marca')->get()
+
+        if ($request->has('atributos')) {
+            $atributos = $request->atributos;
+            $modelos = $modelos->selectRaw($atributos)->get();
+        } else {
+            //$modelos = $this->modelo->with('marca')->get();
+            $modelos = $modelos->get();
+        }
+
         return response()->json($modelos, 200);
         // all() -> criando um objeto de consulta + get()  =  collection
         // get() -> modificar a consulta -> collection

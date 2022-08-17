@@ -8078,6 +8078,9 @@ class MarcaController extends Controller
 ```
 
 - 319 Repository Design Pattern - Introdução
+
+![img/319-diagrama01.png](img/319-diagrama01.png)
+
 - 320 Repository Design Pattern - Implementando um Repository para Marca
 - 321 Repository Design Pattern - Implementando um Repository para Modelo
 - 322 Repository Design Pattern - Implementando um Abstract Repository

@@ -38,12 +38,12 @@ class MarcaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-       $request->validate($this->marca->rules(), $this->marca->feedback());
+        $request->validate($this->marca->rules(), $this->marca->feedback());
 
         $image = $request->file('imagem');
         $image_uri = $image->store('imagens', 'public');
@@ -54,7 +54,7 @@ class MarcaController extends Controller
 //        $marca->imagem = $image_uri;
 //        $marca->save();
         $marca = $this->marca->create([
-            'nome'   => $request->nome,
+            'nome' => $request->nome,
             'imagem' => $image_uri
         ]);
 
@@ -65,7 +65,7 @@ class MarcaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Integer
+     * @param Integer
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -82,7 +82,7 @@ class MarcaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param \App\Models\Marca $marca
      * @return \Illuminate\Http\Response
      */
     public function edit(Marca $marca)
@@ -93,8 +93,8 @@ class MarcaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Integer
+     * @param \Illuminate\Http\Request $request
+     * @param Integer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -111,19 +111,16 @@ class MarcaController extends Controller
             return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
         }
 
-        if($request->method() === 'PATCH') {
-
+        if ($request->method() === 'PATCH') {
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($marca->rules() as $input => $regra) {
-
+            foreach ($marca->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
-
             $request->validate($regrasDinamicas, $marca->feedback());
 
         } else {
@@ -139,17 +136,25 @@ class MarcaController extends Controller
         $image = $request->file('imagem');
         $image_uri = $image->store('imagens', 'public');
 
+        //preencher o objeto $marca com os dados do request
+        $marca->fill($request->all());
+        $marca->imagem = $image_uri;
+
+        //dd($marca->getAttributes());
+        $marca->save();
+        /*
         $marca->update([
-            'nome'   => $request->nome,
+            'nome' => $request->nome,
             'imagem' => $image_uri
-        ]);
+        ]);*/
+
         return response()->json($marca, 200);;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Integer
+     * @param Integer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -165,6 +170,6 @@ class MarcaController extends Controller
         Storage::disk('public')->delete($marca->imagem);
 
         $marca->delete();
-        return response()->json(['msg'=> 'Marca removida com sucesso'], 200);
+        return response()->json(['msg' => 'Marca removida com sucesso'], 200);
     }
 }

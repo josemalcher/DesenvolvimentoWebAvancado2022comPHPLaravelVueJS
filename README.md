@@ -7807,6 +7807,98 @@ class MarcaController extends Controller
 ```
 
 - 313 Refactoring do endpoint update de marca e modelo
+
+```php
+class MarcaController extends Controller
+{
+    public function update(Request $request, $id)
+    {
+        $marca = $this->marca->with('modelo')->find($id);
+        if ($marca === null) {
+            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
+        }
+
+        if ($request->method() === 'PATCH') {
+            $regrasDinamicas = array();
+            //percorrendo todas as regras definidas no Model
+            foreach ($marca->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if (array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+            $request->validate($regrasDinamicas, $marca->feedback());
+        } else {
+            $request->validate($marca->rules(), $marca->feedback());
+        }
+
+        // REMOVE o arquivo antigo caso um novo arquivo tenha sido
+        // enviado no REQUEST
+        if ($request->file('imagem')) {
+            Storage::disk('public')->delete($marca->imagem);
+        }
+
+        $image = $request->file('imagem');
+        $image_uri = $image->store('imagens', 'public');
+
+        //preencher o objeto $marca com os dados do request
+        $marca->fill($request->all());
+        $marca->imagem = $image_uri;
+        $marca->save();
+        return response()->json($marca, 200);;
+    }
+```
+
+```php
+class ModeloController extends Controller
+{
+    public function update(Request $request, $id)
+    {
+        $modelo = $this->modelo->find($id);
+        if($modelo === null) {
+            return response()->json(['erro' => 'Impossível realizar a atualização. O recurso solicitado não existe'], 404);
+        }
+        if($request->method() === 'PATCH') {
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($modelo->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+            $request->validate($regrasDinamicas);
+        } else {
+            $request->validate($modelo->rules());
+        }
+
+        //remove o arquivo antigo caso um novo arquivo tenha sido enviado no request
+        if($request->file('imagem')) {
+            Storage::disk('public')->delete($modelo->imagem);
+        }
+
+        $imagem = $request->file('imagem');
+        $imagem_urn = $imagem->store('imagens/modelos', 'public');
+
+        $modelo->fill($request->all());
+        $modelo->imagem = $imagem_urn;
+        $modelo->save();
+
+        /*$modelo->update([
+            'marca_id' => $request->marca_id,
+            'nome' => $request->nome,
+            'imagem' => $imagem_urn,
+            'numero_portas' => $request->numero_portas,
+            'lugares' => $request->lugares,
+            'air_bag' => $request->air_bag,
+            'abs' => $request->abs
+        ]);*/
+
+        return response()->json($modelo, 200);
+    }
+```
+
 - 314 Filtros - Selecionando os atributos de retorno
 - 315 Filtros - Obtendo colunas específicas com a instrução with()
 - 316 Filtros - Aplicando condições nas pesquisas parte 1

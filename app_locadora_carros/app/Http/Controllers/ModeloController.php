@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modelo;
+use App\Repositories\ModeloRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,45 +22,24 @@ class ModeloController extends Controller
      */
     public function index(Request $request)
     {
-        $modelos = array();
+        $modeloRepository = new ModeloRepository($this->modelo);
 
-        if ($request->has('atributos_marca')) {
-            $atributos_marca = $request->atributos_marca;
-            $modelos = $this->modelo->with('marca:id,'.$atributos_marca);
-        }else{
-            $modelos = $this->modelo->with('marca');
-        }
-
-        if ($request->has('filtro')) {
-            // dd($request->filtro);// "nome:=:Ford KA 1.0"
-            // dd(explode(':',$request->filtro));
-            /*
-             array:3 [
-                      0 => "nome"
-                      1 => "="
-                      2 => "Ford KA 1.0"
-                    ]
-            */
-            // dd($request->filtro); // "nome:=:HB 20;nome:like:Ford%;abs:=:1"
-
-            $filtros = explode(';', $request->filtro);
-            foreach ($filtros as $key => $condicao) {
-                $c = explode(':', $condicao);
-                $modelos = $modelos->where($c[0], $c[1], $c[2]);
-            }
-        }
-
-        if ($request->has('atributos')) {
-            $atributos = $request->atributos;
-            $modelos = $modelos->selectRaw($atributos)->get();
+        if($request->has('atributos_marca')) {
+            $atributos_marca = 'marca:id,'.$request->atributos_marca;
+            $modeloRepository->selectAtributosRegistrosRelacionamentos($atributos_marca);
         } else {
-            //$modelos = $this->modelo->with('marca')->get();
-            $modelos = $modelos->get();
+            $modeloRepository->selectAtributosRegistrosRelacionamentos('marca');
         }
 
-        return response()->json($modelos, 200);
-        // all() -> criando um objeto de consulta + get()  =  collection
-        // get() -> modificar a consulta -> collection
+        if($request->has('filtro')) {
+            $modeloRepository->filtro($request->filtro);
+        }
+
+        if($request->has('atributos')) { // atributos:id,nome, imagem
+            $modeloRepository->selectAtributos($request->atributos);
+        }
+
+        return response()->json($modeloRepository->getResultado(), 200);
     }
 
     /**

@@ -8082,6 +8082,101 @@ class MarcaController extends Controller
 ![img/319-diagrama01.png](img/319-diagrama01.png)
 
 - 320 Repository Design Pattern - Implementando um Repository para Marca
+
+```php
+class MarcaRepository
+{
+
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
+    public function selectAtributosRegistrosRelacionamentos($atributos)
+    {
+        $this->model = $this->model->with($atributos);
+        // a query está sendo montada
+    }
+
+    public function filtro($filtros)
+    {
+        $filtros = explode(';', $filtros);
+
+        foreach($filtros as $key => $condicao) {
+            $c = explode(':', $condicao);
+            $this->model = $this->model->where($c[0], $c[1], $c[2]);
+            // a query está sendo montada
+        }
+    }
+
+    public function selectAtributos($atributos)
+    {
+        $this->model = $this->model->selectRaw($atributos);
+    }
+
+    public function getResultado()
+    {
+        return $this->model->get();
+    }
+}
+```
+
+```php
+class MarcaController extends Controller
+{
+    public function index(Request $request)
+    {
+
+        $marcaRepository = new MarcaRepository($this->marca);
+
+        if($request->has('atributos_modelos')) {
+            $atributos_modelos = 'modelo:id,'.$request->atributos_modelos;
+            $marcaRepository->selectAtributosRegistrosRelacionamentos($atributos_modelos);
+        } else {
+            $marcaRepository->selectAtributosRegistrosRelacionamentos('modelo');
+        }
+
+        if($request->has('filtro')) {
+            $marcaRepository->filtro($request->filtro);
+        }
+
+        if($request->has('atributos')) { // atributos:id,nome, imagem
+            $marcaRepository->selectAtributos($request->atributos);
+        }
+
+        // ------------------------------------------
+       /*
+        $marcas = array();
+        if($request->has('atributos_modelos')) {
+            $atributos_modelos = $request->atributos_modelos;
+            $marcas = $this->marca->with('modelo:id,'.$atributos_modelos);
+        } else {
+            $marcas = $this->marca->with('modelo');
+        }
+
+        if($request->has('filtro')) {
+            $filtros = explode(';', $request->filtro);
+            foreach($filtros as $key => $condicao) {
+                $c = explode(':', $condicao);
+                $marcas = $marcas->where($c[0], $c[1], $c[2]);
+            }
+        }
+
+        if($request->has('atributos')) { // atributos:id,nome, imagem
+            $atributos = $request->atributos;
+            $marcas = $marcas->selectRaw($atributos)->get();
+        } else {
+            $marcas = $marcas->get();
+        }
+       */
+
+        //$marcas = Marca::all();
+        //$marcas = $this->marca->with('modelos')->get();
+        //return response()->json($marcas, 200);
+        return response()->json($marcaRepository->getResultado(), 200);
+    }
+
+```
 - 321 Repository Design Pattern - Implementando um Repository para Modelo
 - 322 Repository Design Pattern - Implementando um Abstract Repository
 - 323 API WebService Rest para o Resource Carro

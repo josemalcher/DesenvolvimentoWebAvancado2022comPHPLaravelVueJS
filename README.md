@@ -8353,7 +8353,22 @@ Route::apiResource('modelo', 'App\Http\Controllers\ModeloController')->middlewar
 ```
 
 - 334 Criando um grupo de rotas protegidas com um prefix de versionamento
+
+```php
+Route::prefix('v1')->middleware('jwt.auth')->group(function (){
+    Route::apiResource('cliente', 'App\Http\Controllers\ClienteController')->middleware('jwt.auth');
+    Route::apiResource('carro', 'App\Http\Controllers\CarroController')->middleware('jwt.auth');
+    Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController')->middleware('jwt.auth');
+    Route::apiResource('marca', 'App\Http\Controllers\MarcaController')->middleware('jwt.auth');
+    Route::apiResource('modelo', 'App\Http\Controllers\ModeloController')->middleware('jwt.auth');
+});
+
+```
+
 - 335 Enviando o JWT de autorização nas requisições (Authorization Bearer)
+
+![img/335-diagrama01.png](img/335-diagrama01.png)
+
 - 336 Recuperando os dados do usuário autenticado com base no JWT
 - 337 Atualizando o JWT (renovando a autorização)
 - 338 Invalidando o JWT (revogando a autorização)

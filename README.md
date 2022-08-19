@@ -8273,6 +8273,38 @@ $ composer require tymon/jwt-auth:"dev-develop"
 ![img/330-diagrama01.png](img/330-diagrama01.png)
 
 - 331 Inserindo um usuário no banco de dados
+
+```
+$ php artisan tinker
+Psy Shell v0.11.8 (PHP 8.0.16 — cli) by Justin Hileman
+>>> $user  = new App\Models\User();                                                                                                                                                                                                     
+=> App\Models\User {#4518}
+
+>>> $user->name = 'Jose Malcher jr'                                                                                                                                                                                                     
+=> "Jose Malcher jr"
+
+>>> $user->email = 'teste@jose.com'                                                                                                                                                                                                     
+=> "teste@jose.com"
+
+>>> $user->password = bcrypt('1234')                                                                                                                                                                                                    
+=> "$2y$10$BWDXVMvJze2h5z13h.spNutyVab3NH6PUgCeP1bOi86RRd9yBOX8C"
+
+>>> var_dump($user->getAttributes())                                                                                                                                                                                                    
+array(3) {
+  ["name"]=>
+  string(15) "Jose Malcher jr"
+  ["email"]=>
+  string(14) "teste@jose.com"
+  ["password"]=>
+  string(60) "$2y$10$BWDXVMvJze2h5z13h.spNutyVab3NH6PUgCeP1bOi86RRd9yBOX8C"
+}
+=> null
+
+>>> $user->save()                                                                                                                                                                                                                       
+=> true
+
+```
+
 - 332 Implementando o método de login (autenticação) e o JWT (autorização)
 - 333 Configurando rotas protegidas por autorização
 - 334 Criando um grupo de rotas protegidas com um prefix de versionamento

@@ -8331,6 +8331,27 @@ class AuthController extends Controller
 ```
 
 - 333 Configurando rotas protegidas por autorização
+
+![img/333-diagrama01.png](img/333-diagrama01.png)
+
+```php
+
+// app_locadora_carros/app/Http/Kernel.php
+
+    protected $routeMiddleware = [
+        'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+    ];
+```
+
+```php
+Route::apiResource('cliente', 'App\Http\Controllers\ClienteController')->middleware('jwt.auth');
+Route::apiResource('carro', 'App\Http\Controllers\CarroController')->middleware('jwt.auth');
+Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController')->middleware('jwt.auth');
+Route::apiResource('marca', 'App\Http\Controllers\MarcaController')->middleware('jwt.auth');
+Route::apiResource('modelo', 'App\Http\Controllers\ModeloController')->middleware('jwt.auth');
+
+```
+
 - 334 Criando um grupo de rotas protegidas com um prefix de versionamento
 - 335 Enviando o JWT de autorização nas requisições (Authorization Bearer)
 - 336 Recuperando os dados do usuário autenticado com base no JWT

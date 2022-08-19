@@ -8356,11 +8356,11 @@ Route::apiResource('modelo', 'App\Http\Controllers\ModeloController')->middlewar
 
 ```php
 Route::prefix('v1')->middleware('jwt.auth')->group(function (){
-    Route::apiResource('cliente', 'App\Http\Controllers\ClienteController')->middleware('jwt.auth');
-    Route::apiResource('carro', 'App\Http\Controllers\CarroController')->middleware('jwt.auth');
-    Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController')->middleware('jwt.auth');
-    Route::apiResource('marca', 'App\Http\Controllers\MarcaController')->middleware('jwt.auth');
-    Route::apiResource('modelo', 'App\Http\Controllers\ModeloController')->middleware('jwt.auth');
+    Route::apiResource('cliente', 'App\Http\Controllers\ClienteController');
+    Route::apiResource('carro', 'App\Http\Controllers\CarroController');
+    Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController');
+    Route::apiResource('marca', 'App\Http\Controllers\MarcaController');
+    Route::apiResource('modelo', 'App\Http\Controllers\ModeloController');
 });
 
 ```
@@ -8368,6 +8368,27 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
 - 335 Enviando o JWT de autorização nas requisições (Authorization Bearer)
 
 ![img/335-diagrama01.png](img/335-diagrama01.png)
+
+```php
+Route::prefix('v1')->middleware('jwt.auth')->group(function (){
+    Route::post('me',    'App\Http\Controllers\AuthController@me');
+
+    Route::apiResource('cliente', 'App\Http\Controllers\ClienteController');
+    Route::apiResource('carro', 'App\Http\Controllers\CarroController');
+    Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController');
+    Route::apiResource('marca', 'App\Http\Controllers\MarcaController');
+    Route::apiResource('modelo', 'App\Http\Controllers\ModeloController');
+});
+
+```
+
+```php
+    public function me()
+    {
+        return response()->json(auth()->user());
+    }
+```
+
 
 - 336 Recuperando os dados do usuário autenticado com base no JWT
 - 337 Atualizando o JWT (renovando a autorização)

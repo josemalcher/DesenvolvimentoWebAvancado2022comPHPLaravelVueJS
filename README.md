@@ -8306,6 +8306,30 @@ array(3) {
 ```
 
 - 332 Implementando o método de login (autenticação) e o JWT (autorização)
+
+```php
+class AuthController extends Controller
+{
+    public function login(Request $request)
+    {
+        $credenciais = $request->all(['email', 'password']);
+
+        $token = auth('api')->attempt($credenciais);
+
+        if ($token) {
+            return response()->json([
+                'token' => $token,
+            ], 200);
+        }else{
+            return response()->json([
+                'erro' => 'usuário ou sernha invalido!'
+            ], 403);
+            // 403 forbidden -> proibido - login invalido
+            // 401 Unauthorized -> não autorizado
+        }
+    }
+```
+
 - 333 Configurando rotas protegidas por autorização
 - 334 Criando um grupo de rotas protegidas com um prefix de versionamento
 - 335 Enviando o JWT de autorização nas requisições (Authorization Bearer)

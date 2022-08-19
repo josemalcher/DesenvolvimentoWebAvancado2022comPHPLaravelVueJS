@@ -8253,6 +8253,11 @@ class ModeloRepository extends AbstractRepository
 
 
 - 327 Instalando o pacote JWT-Auth
+
+```
+$ composer require tymon/jwt-auth:"dev-develop"
+```
+
 - 328 Configurando o JWT-Auth no projeto
 - 329 Implementando a interface JWTSubject no model User e o Auth Guard API Driver JWT
 - 330 Criando as rotas de autenticação e autorização e o AuthController

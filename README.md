@@ -8265,6 +8265,9 @@ $ composer require tymon/jwt-auth:"dev-develop"
 [https://jwt-auth.readthedocs.io/en/develop/](https://jwt-auth.readthedocs.io/en/develop/)
 
 - 329 Implementando a interface JWTSubject no model User e o Auth Guard API Driver JWT
+
+![img/329-diagrama01.png](img/329-diagrama01.png)
+
 - 330 Criando as rotas de autenticação e autorização e o AuthController
 - 331 Inserindo um usuário no banco de dados
 - 332 Implementando o método de login (autenticação) e o JWT (autorização)

@@ -8269,6 +8269,9 @@ $ composer require tymon/jwt-auth:"dev-develop"
 ![img/329-diagrama01.png](img/329-diagrama01.png)
 
 - 330 Criando as rotas de autenticação e autorização e o AuthController
+
+![img/330-diagrama01.png](img/330-diagrama01.png)
+
 - 331 Inserindo um usuário no banco de dados
 - 332 Implementando o método de login (autenticação) e o JWT (autorização)
 - 333 Configurando rotas protegidas por autorização

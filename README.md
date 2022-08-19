@@ -8244,7 +8244,28 @@ class ModeloRepository extends AbstractRepository
 
 ## <a name="parte18">18 - Autenticação API - Autorização JWT (JSON Web Token)</a>
 
+- 326 Introdução ao JWT (Json Web Token)
 
+![img/326-diagrama01.png](img/326-diagrama01.png)
+
+![img/326-diagrama02.png](img/326-diagrama02.png)
+
+
+
+- 327 Instalando o pacote JWT-Auth
+- 328 Configurando o JWT-Auth no projeto
+- 329 Implementando a interface JWTSubject no model User e o Auth Guard API Driver JWT
+- 330 Criando as rotas de autenticação e autorização e o AuthController
+- 331 Inserindo um usuário no banco de dados
+- 332 Implementando o método de login (autenticação) e o JWT (autorização)
+- 333 Configurando rotas protegidas por autorização
+- 334 Criando um grupo de rotas protegidas com um prefix de versionamento
+- 335 Enviando o JWT de autorização nas requisições (Authorization Bearer)
+- 336 Recuperando os dados do usuário autenticado com base no JWT
+- 337 Atualizando o JWT (renovando a autorização)
+- 338 Invalidando o JWT (revogando a autorização)
+- 339 Anatomia do JWT (Json Web Token)
+- 340 Expirando o JWT por tempo limite
 
 [Voltar ao Índice](#indice)
 
@@ -8253,7 +8274,58 @@ class ModeloRepository extends AbstractRepository
 
 ## <a name="parte19">19 - Aplicação Full Stack Back-end API Laravel com Front-end Vue.JS</a>
 
-
+- 341 Configurando o Vue.JS no Laravel
+- 342 [IMPORTANTE] - Evitando erros com o projeto da seção
+- 343 Convertendo a view login em um componente Vue
+- 344 Gerando o build da aplicação front com o npm run watch
+- 345 Vue Props - Encaminhando o token csrf para o componente Login
+- 346 Implementando a autenticação web (sessão) e API (JWT)
+- 347 Convertendo a view home em um componente Vue
+- 348 Criando o menu de navegação da aplicação
+- 349 Criando a rota, a view e o componente marcas
+- 350 Criando o card de busca de registros
+- 351 Criando um componente Vue para encapsular inputs
+- 352 Criando o card de listagem de registros
+- 353 Criando um componente Vue para tables
+- 354 Criando um componente Vue para cards
+- 355 Extra - Adicionando um breadcrumb
+- 356 Criando um modal para inclusão de registros de marcas
+- 357 Adicionando os inputs no modal de registros de marcas
+- 358 Cadastrando marcas
+- 359 Entendendo como o token de autorização é anexado as requisições
+- 360 [IMPORTANTE] - Adicionando o token de autorização ao cabeçalho das requisições
+- 361 Corrigindo o erro de inclusão do popper.js.map
+- 362 Configurando os alertas de sucesso e erro do cadastro de marcas parte 1
+- 363 Configurando os alertas de sucesso e erro do cadastro de marcas parte 2
+- 364 Extra - Evitando dependências nos componentes Vue
+- 365 Recuperando os registros de marcas
+- 366 [IMPORTANTE] - Adicionando os cabeçalhos na requisição de marcas
+- 367 Listando os registros de marcas
+- 368 Extra - Evitando dependências no componente Table
+- 369 Extra - Adicionando metadados aos títulos da listagem
+- 370 Adicionando a paginação de registros parte 1
+- 371 Corrigindo o atributo marcas
+- 372 Adicionando a paginação de registros parte 2
+- 373 Adicionando a paginação de registros parte 3
+- 374 Buscando registros parte 1
+- 375 Buscando registros parte 2
+- 376 Adicionando os botões para visualização, atualização e remoção de registros
+- 377 Implementando o modal de visualização da marca parte 1
+- 378 Implementando o modal de visualização da marca parte 2
+- 379 Instalando e configurando o Vuex no projeto
+- 380 Implementando o modal de visualização da marca parte 3
+- 381 Implementando o modal de remoção de registros parte 1
+- 382 Implementando o modal de remoção de registros parte 2
+- 383 Implementando o modal de remoção de registros parte 3
+- 384 Implementando o modal de atualização de registros parte 1
+- 385 Implementando o modal de atualização de registros parte 2
+- 386 Refactoring do update de marca do lado do back-end
+- 387 Implementando o modal de atualização de registros parte 3
+- 388 Adicionando filtros para formatação de datas
+- 389 Axios - Interceptando requisições e respostas HTTP
+- 390 Axios - Interceptando o request e configurando os headers
+- 391 Axios - Interceptando o response e realizando um auto refresh do JWT
+- 392 Considerações finais sobre a seção e o projeto prático
 
 [Voltar ao Índice](#indice)
 

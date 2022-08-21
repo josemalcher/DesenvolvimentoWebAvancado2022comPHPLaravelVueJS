@@ -8391,6 +8391,21 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
 
 
 - 336 Recuperando os dados do usuário autenticado com base no JWT
+
+```php
+Route::prefix('v1')->middleware('jwt.auth')->group(function (){
+    Route::post('me',    'App\Http\Controllers\AuthController@me');
+    Route::post('refresh',  'App\Http\Controllers\AuthController@refresh');
+```
+
+```php
+    public function refresh()
+    {
+        $token = auth('api')->refresh(); // cliente encaminhe um JWT válido
+        return response()->json(['token' => $token]);
+    }
+```
+
 - 337 Atualizando o JWT (renovando a autorização)
 - 338 Invalidando o JWT (revogando a autorização)
 - 339 Anatomia do JWT (Json Web Token)

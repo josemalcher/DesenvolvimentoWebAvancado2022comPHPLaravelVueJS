@@ -8471,8 +8471,6 @@ Authentication scaffolding generated successfully.
 
 - 342 [IMPORTANTE] - Evitando erros com o projeto da seção
 - 343 Convertendo a view login em um componente Vue
-
-
 - 344 Gerando o build da aplicação front com o npm run watch
 - 345 Vue Props - Encaminhando o token csrf para o componente Login
 - 346 Implementando a autenticação web (sessão) e API (JWT)

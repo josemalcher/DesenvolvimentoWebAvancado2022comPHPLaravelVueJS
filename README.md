@@ -8391,6 +8391,7 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
 
 
 - 336 Recuperando os dados do usuário autenticado com base no JWT
+- 337 Atualizando o JWT (renovando a autorização)
 
 ```php
 Route::prefix('v1')->middleware('jwt.auth')->group(function (){
@@ -8406,9 +8407,21 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
     }
 ```
 
-- 337 Atualizando o JWT (renovando a autorização)
 - 338 Invalidando o JWT (revogando a autorização)
+
+```php
+
+    public function logout()
+    {
+        auth('api')->logout();
+        return response()->json(['msg' => 'logout foi realizado com sucesso']);
+    }
+```
+
 - 339 Anatomia do JWT (Json Web Token)
+
+[https://jwt.io/](https://jwt.io/)
+
 - 340 Expirando o JWT por tempo limite
 
 [Voltar ao Índice](#indice)

@@ -8455,8 +8455,24 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
 ## <a name="parte19">19 - Aplicação Full Stack Back-end API Laravel com Front-end Vue.JS</a>
 
 - 341 Configurando o Vue.JS no Laravel
+
+![img/341-diagrama01.png](img/341-diagrama01.png)
+
+```
+$ composer require laravel/ui:3.2.1
+(...)
+
+$ php artisan ui vue --auth
+Vue scaffolding installed successfully.
+Please run "npm install && npm run dev" to compile your fresh scaffolding.
+Authentication scaffolding generated successfully.
+
+```
+
 - 342 [IMPORTANTE] - Evitando erros com o projeto da seção
 - 343 Convertendo a view login em um componente Vue
+
+
 - 344 Gerando o build da aplicação front com o npm run watch
 - 345 Vue Props - Encaminhando o token csrf para o componente Login
 - 346 Implementando a autenticação web (sessão) e API (JWT)

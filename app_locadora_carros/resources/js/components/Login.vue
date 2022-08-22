@@ -2,12 +2,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                {{csrf_token}}
                 <div class="card">
                     <div class="card-header">Login component VUE</div>
 
                     <div class="card-body">
                         <form method="POST" action="">
 
+                            <input type="hidden" name="_token" :value="csrf_token">
 
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
@@ -58,7 +60,10 @@
 
 <script>
 export default {
-    name: "Login"
+    name: "Login",
+    props: [
+        'csrf_token'
+    ]
 }
 </script>
 

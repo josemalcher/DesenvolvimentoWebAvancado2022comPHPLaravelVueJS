@@ -2085,7 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Login"
+  name: "Login",
+  props: ['csrf_token']
 });
 
 /***/ }),
@@ -2148,20 +2149,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "row justify-content-center"
   }, [_c("div", {
     staticClass: "col-md-8"
-  }, [_c("div", {
+  }, [_vm._v("\n            " + _vm._s(_vm.csrf_token) + "\n            "), _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-header"
@@ -2172,7 +2166,22 @@ var staticRenderFns = [function () {
       method: "POST",
       action: ""
     }
-  }, [_c("div", {
+  }, [_c("input", {
+    attrs: {
+      type: "hidden",
+      name: "_token"
+    },
+    domProps: {
+      value: _vm.csrf_token
+    }
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])])])])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -2192,7 +2201,12 @@ var staticRenderFns = [function () {
       autocomplete: "email",
       autofocus: ""
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -2210,7 +2224,12 @@ var staticRenderFns = [function () {
       required: "",
       autocomplete: "current-password"
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "form-group row"
   }, [_c("div", {
     staticClass: "col-md-6 offset-md-4"
@@ -2228,7 +2247,12 @@ var staticRenderFns = [function () {
     attrs: {
       "for": "remember"
     }
-  }, [_vm._v("\n                                        Me mantenha conectado\n                                    ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Me mantenha conectado\n                                    ")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "form-group row mb-0"
   }, [_c("div", {
     staticClass: "col-md-8 offset-md-4"
@@ -2242,7 +2266,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: ""
     }
-  }, [_vm._v("\n                                    Esqueci minha senha\n                                ")])])])])])])])])]);
+  }, [_vm._v("\n                                    Esqueci minha senha\n                                ")])])]);
 }];
 render._withStripped = true;
 

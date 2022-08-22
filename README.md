@@ -8473,6 +8473,36 @@ Authentication scaffolding generated successfully.
 - 343 Convertendo a view login em um componente Vue
 - 344 Gerando o build da aplicação front com o npm run watch
 - 345 Vue Props - Encaminhando o token csrf para o componente Login
+
+![img/345-diagrama01.png](img/345-diagrama01.png)
+
+
+```php
+// app_locadora_carros/resources/views/auth/login.blade.php
+
+@extends('layouts.app')
+
+@section('content')
+<login-component csrf_token="{{@csrf_token()}}"></login-component>
+@endsection
+
+```
+
+```vue
+ <form method="POST" action="">
+        <input type="hidden" name="_token" :value="csrf_token">
+
+<script>
+export default {
+    name: "Login",
+    props: [
+        'csrf_token'
+    ]
+}
+</script>
+```
+
+
 - 346 Implementando a autenticação web (sessão) e API (JWT)
 - 347 Convertendo a view home em um componente Vue
 - 348 Criando o menu de navegação da aplicação

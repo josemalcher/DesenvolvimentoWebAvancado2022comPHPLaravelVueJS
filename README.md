@@ -8504,6 +8504,46 @@ export default {
 
 
 - 346 Implementando a autenticação web (sessão) e API (JWT)
+ 
+```js
+<script>
+export default {
+    name: "Login",
+    props: [
+        'csrf_token'
+    ],
+    data(){
+      return{
+          email: '',
+          password: ''
+      }
+    },
+    methods:{
+        login(e) {
+            let url = 'http://localhost:8000/api/login'
+            let configuracao = {
+                method: 'post',
+                body: new URLSearchParams( {
+                    'email': this.email,
+                    'password': this.password
+                })
+            }
+
+            fetch(url, configuracao)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.token) {
+                        document.cookie = 'token='+data.token+';SameSite=Lax'
+                        e.target.submit()
+                    }
+                })
+
+        },
+    }
+}
+</script>
+```
+ 
 - 347 Convertendo a view home em um componente Vue
 - 348 Criando o menu de navegação da aplicação
 - 349 Criando a rota, a view e o componente marcas

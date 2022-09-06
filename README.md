@@ -8545,6 +8545,9 @@ export default {
 ```
  
 - 347 Convertendo a view home em um componente Vue
+
+![img/347-diagrama01.png](img/347-diagrama01.png)
+
 - 348 Criando o menu de navegação da aplicação
 - 349 Criando a rota, a view e o componente marcas
 - 350 Criando o card de busca de registros

@@ -24,6 +24,7 @@ Vue.component('login-component', require('./components/Login.vue').default);
 Vue.component('home-component', require('./components/Home.vue').default);
 Vue.component('marcas-component', require('./components/Marcas.vue').default);
 Vue.component('input-container-component', require('./components/InputContainer.vue').default);
+Vue.component('table-component', require('./components/Table.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

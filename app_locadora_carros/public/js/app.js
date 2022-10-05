@@ -2644,7 +2644,65 @@ var render = function render() {
     attrs: {
       id: "modalMarca",
       titulo: "Adicionar marca"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "conteudo",
+      fn: function fn() {
+        return [_c("div", {
+          staticClass: "form-group"
+        }, [_c("input-container-component", {
+          attrs: {
+            titulo: "Nome da marca",
+            id: "novoNome",
+            "id-help": "novoNomeHelp",
+            "texto-ajuda": "Informe o nome da marca"
+          }
+        }, [_c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "novoNome",
+            "aria-describedby": "novoNomeHelp",
+            placeholder: "Nome da marca"
+          }
+        })])], 1), _vm._v(" "), _c("div", {
+          staticClass: "form-group"
+        }, [_c("input-container-component", {
+          attrs: {
+            titulo: "Imagem",
+            id: "novoImagem",
+            "id-help": "novoImagemHelp",
+            "texto-ajuda": "Selecione uma imagem no formato PNG"
+          }
+        }, [_c("input", {
+          staticClass: "form-control-file",
+          attrs: {
+            type: "file",
+            id: "novoImagem",
+            "aria-describedby": "novoImagemHelp",
+            placeholder: "Selecione uma imagem"
+          }
+        })])], 1)];
+      },
+      proxy: true
+    }, {
+      key: "rodape",
+      fn: function fn() {
+        return [_c("button", {
+          staticClass: "btn btn-secondary",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal"
+          }
+        }, [_vm._v("Fechar")]), _vm._v(" "), _c("button", {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button"
+          }
+        }, [_vm._v("Salvar")])];
+      },
+      proxy: true
+    }])
   })], 1);
 };
 
@@ -2691,7 +2749,9 @@ var render = function render() {
     }
   }, [_vm._v(_vm._s(_vm.titulo))]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
-  }, [_vm._v("\n                ...\n            ")]), _vm._v(" "), _vm._m(1)])])]);
+  }, [_vm._t("conteudo")], 2), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer"
+  }, [_vm._t("rodape")], 2)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2710,24 +2770,6 @@ var staticRenderFns = [function () {
       "aria-hidden": "true"
     }
   }, [_vm._v("×")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "modal-footer"
-  }, [_c("button", {
-    staticClass: "btn btn-secondary",
-    attrs: {
-      type: "button",
-      "data-dismiss": "modal"
-    }
-  }, [_vm._v("Fechar")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "button"
-    }
-  }, [_vm._v("Salvar")])]);
 }];
 render._withStripped = true;
 

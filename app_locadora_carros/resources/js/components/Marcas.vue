@@ -50,8 +50,14 @@
         <modal-component id="modalMarca" titulo="Adicionar marca">
 
             <template v-slot:alertas>
-                <alert-component tipo="success"></alert-component>
-                <alert-component tipo="danger"></alert-component>
+                <alert-component tipo="success"
+                                 :detalhes="transacaoDetalhes"
+                                 titulo="Cadastro Realizado com Sucesso"
+                                 v-if="transacaoStatus == 'adicionado'"></alert-component>
+                <alert-component tipo="danger"
+                                 :detalhes="transacaoDetalhes"
+                                 titulo="Erro ao Casdastrar a marca"
+                                 v-if="transacaoStatus == 'erro'"></alert-component>
             </template>
 
             <template v-slot:conteudo>
@@ -103,7 +109,9 @@ export default {
         return{
             urlBase: 'http://127.0.0.1:8000/api/v1/marca',
             nomeMarca: '',
-            arquivoImagem: []
+            arquivoImagem: [],
+            transacaoStatus: '',
+            transacaoDetalhes: []
         }
     },
     methods: {
@@ -128,10 +136,13 @@ export default {
 
             axios.post(this.urlBase, formData, config)
                 .then(response => {
-                    console.log(response)
+                    this.transacaoStatus = 'adicionado'
+                    this.transacaoDetalhes = response
+
                 })
                 .catch(errors => {
-                    console.log(errors)
+                    this.transacaoStatus = 'erro'
+                    this.transacaoDetalhes = errors.response // errors.response.data.message
                 })
 
 

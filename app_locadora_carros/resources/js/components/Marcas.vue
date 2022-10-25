@@ -116,10 +116,23 @@ export default {
             nomeMarca: '',
             arquivoImagem: [],
             transacaoStatus: '',
-            transacaoDetalhes: {}
+            transacaoDetalhes: {},
+            marcas: []
         }
     },
     methods: {
+
+        carregarLista() {
+            axios.get(this.urlBase)
+                .then(response => {
+                    this.marcas = response.data
+                    console.log(this.marcas)
+                })
+                .catch(errors => {
+                    console.log(errors)
+                })
+        },
+
         carregarImagem(e) {
             this.arquivoImagem = e.target.files
         },
@@ -155,9 +168,10 @@ export default {
                         dados: errors.response.data.errors
                     }
                 })
-
-
         }
+    },
+    mounted() {
+        this.carregarLista()
     }
 }
 </script>

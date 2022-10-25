@@ -62,21 +62,25 @@
 
             <template v-slot:conteudo>
                 <div class="form-group">
-                    <input-container-component titulo="Nome da marca" id="novoNome" id-help="novoNomeHelp" texto-ajuda="Informe o nome da marca">
+                    <input-container-component titulo="Nome da marca" id="novoNome" id-help="novoNomeHelp"
+                                               texto-ajuda="Informe o nome da marca">
                         <input
                             v-model="nomeMarca"
-                            type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome da marca">
+                            type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp"
+                            placeholder="Nome da marca">
                     </input-container-component>
-                    {{nomeMarca}}
+                    {{ nomeMarca }}
                 </div>
 
                 <div class="form-group">
-                    <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
+                    <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp"
+                                               texto-ajuda="Selecione uma imagem no formato PNG">
                         <input
                             @change="carregarImagem($event)"
-                            type="file" class="form-control-file" id="novoImagem" aria-describedby="novoImagemHelp" placeholder="Selecione uma imagem">
+                            type="file" class="form-control-file" id="novoImagem" aria-describedby="novoImagemHelp"
+                            placeholder="Selecione uma imagem">
                     </input-container-component>
-                    {{arquivoImagem}}
+                    {{ arquivoImagem }}
                 </div>
             </template>
 
@@ -84,7 +88,8 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button
                     @click="salvar()"
-                    type="button" class="btn btn-primary">Salvar</button>
+                    type="button" class="btn btn-primary">Salvar
+                </button>
             </template>
         </modal-component>
     </div>
@@ -92,7 +97,7 @@
 
 <script>
 export default {
-    computed:{
+    computed: {
         token() {
 
             let token = document.cookie.split(';').find(indice => {
@@ -105,21 +110,21 @@ export default {
             return token
         }
     },
-    data(){
-        return{
+    data() {
+        return {
             urlBase: 'http://127.0.0.1:8000/api/v1/marca',
             nomeMarca: '',
             arquivoImagem: [],
             transacaoStatus: '',
-            transacaoDetalhes: []
+            transacaoDetalhes: {}
         }
     },
     methods: {
-        carregarImagem(e){
+        carregarImagem(e) {
             this.arquivoImagem = e.target.files
         },
-        salvar(){
-            console.log(this.nomeMarca , this.arquivoImagem)
+        salvar() {
+            console.log(this.nomeMarca, this.arquivoImagem)
 
             let formData = new FormData()
 
@@ -137,12 +142,18 @@ export default {
             axios.post(this.urlBase, formData, config)
                 .then(response => {
                     this.transacaoStatus = 'adicionado'
-                    this.transacaoDetalhes = response
+                    this.transacaoDetalhes = {
+                        mensagem: 'ID do Registro: ' + response.data.id
+                    }
 
                 })
                 .catch(errors => {
                     this.transacaoStatus = 'erro'
-                    this.transacaoDetalhes = errors.response // errors.response.data.message
+                    // this.transacaoDetalhes = errors.response // errors.response.data.message
+                    this.transacaoDetalhes = {
+                        mensagem: errors.response.data.message,
+                        dados: errors.response.data.errors
+                    }
                 })
 
 

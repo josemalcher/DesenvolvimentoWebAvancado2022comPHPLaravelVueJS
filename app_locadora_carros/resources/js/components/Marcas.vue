@@ -125,7 +125,7 @@ export default {
             arquivoImagem: [],
             transacaoStatus: '',
             transacaoDetalhes: {},
-            marcas: []
+            marcas: {data:[]}
         }
     },
     methods: {

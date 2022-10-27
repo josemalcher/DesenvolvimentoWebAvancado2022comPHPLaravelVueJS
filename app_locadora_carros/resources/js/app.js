@@ -16,6 +16,15 @@ window.Vue = require('vue').default;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+ /* Importando e configurando o vuex */
+import Vuex from 'Vuex'
+Vue.use(Vuex)
+const store = new Vuex.Store({
+    state:{
+        teste: 'Teeste de recuperação do valor da STORE do VUEX',
+    }
+})
+
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
@@ -38,4 +47,5 @@ Vue.component('paginate-component', require('./components/Paginate.vue').default
 
 const app = new Vue({
     el: '#app',
+    store
 });

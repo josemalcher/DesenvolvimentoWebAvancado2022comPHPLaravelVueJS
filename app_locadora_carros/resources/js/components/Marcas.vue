@@ -138,7 +138,21 @@
         <modal-component id="modalMarcaViasualizar" titulo="Visualiar Marca">
             <template v-slot:alertas></template>
             <template v-slot:conteudo>
-                TESTE
+                <input-container-component titulo="ID">
+                    <input type="text" class="form-control" :value="$store.state.item.id" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Nome da marca">
+                    <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Imagem">
+                    <img :src="'storage/'+$store.state.item.imagem" v-if="$store.state.item.imagem">
+                </input-container-component>
+
+                <input-container-component titulo="Data de criação">
+                    <input type="text" class="form-control" :value="$store.state.item.created_at" disabled>
+                </input-container-component>
             </template>
             <template v-slot:rodape>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -181,7 +195,7 @@ export default {
             let filtro = ''
             for (let chave in this.busca) {
 
-                if(this.busca[chave]){
+                if (this.busca[chave]) {
                     if (filtro != '') {
                         filtro += ';'
                     }
@@ -190,8 +204,8 @@ export default {
             }
             if (filtro != '') {
                 this.urlPaginacao = 'page=1'
-                this.urlFiltro = '&filtro='+filtro
-            }else{
+                this.urlFiltro = '&filtro=' + filtro
+            } else {
                 this.urlFiltro = ''
             }
             this.carregarLista()

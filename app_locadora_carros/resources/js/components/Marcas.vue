@@ -82,6 +82,7 @@
                 <!-- fim do card de listagem de marcas -->
             </div>
         </div>
+        <!--   Inicio do modal de inclusão de marca     -->
         <modal-component id="modalMarca" titulo="Adicionar marca">
 
             <template v-slot:alertas>
@@ -127,6 +128,19 @@
                 </button>
             </template>
         </modal-component>
+        <!--   FINAL do modal de inclusão de marca     -->
+
+        <!--   INICIO do modal de visualização de marca     -->
+        <modal-component id="modalMarcaViasualizar" titulo="Visualiar Marca">
+            <template v-slot:alertas></template>
+            <template v-slot:conteudo>
+                TESTE
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </template>
+        </modal-component>
+        <!--   FINAL do modal de visualização de marca     -->
     </div>
 </template>
 

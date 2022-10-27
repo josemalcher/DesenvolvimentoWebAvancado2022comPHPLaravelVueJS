@@ -1,75 +1,65 @@
 # Desenvolvimento Web Avançado 2022 com PHP, Laravel e Vue.JS
 
-https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/
+<https://www.udemy.com/course/curso-completo-do-desenvolvedor-laravel/>
 
 ## <a name="indice">Índice</a>
 
-1. [Introdução](#parte1)     
-2. [[WINDOWS] - Preparando-se para o desenvolvimento](#parte2)     
-3. [[LINUX] - Preparando-se para o desenvolvimento](#parte3)     
-4. [[OSX] - Preparando-se para o desenvolvimento](#parte4)     
-5. [Introdução as Rotas, Controllers e Views](#parte5)     
-6. [Avançando com Rotas (Routes)](#parte6)     
-7. [Avançando com Controladores (Controllers) e Visualizações (Views)](#parte7)     
-8. [Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM](#parte8)     
-9. [Trabalhando com formulários](#parte9)     
-10. [Middlewares](#parte10)     
-11. [Autenticação de usuários (revisando e praticando os assuntos abordados)](#parte11)     
-12. [Finalizando o projeto Super Gestão](#parte12)     
-13. [Autenticação WEB (Session) e Bootstrap (CSS)](#parte13)     
-14. [Implementando o envio de e-mails e a exportação de arquivos XLSX, CSV e PDF](#parte14)     
-15. [Adaptação para o próximo nível no domínio do Framework Laravel](#parte15)     
-16. [Vue.JS para iniciantes](#parte16)     
-17. [APIs, WebServices e Rest](#parte17)     
-18. [Autenticação API - Autorização JWT (JSON Web Token)](#parte18)     
-19. [Aplicação Full Stack Back-end API Laravel com Front-end Vue.JS](#parte19)     
-20. [Armazenamento em memória com Redis (Laravel Cache)](#parte20)     
+1. [Introdução](#parte1)
+2. [[WINDOWS] - Preparando-se para o desenvolvimento](#parte2)
+3. [[LINUX] - Preparando-se para o desenvolvimento](#parte3)
+4. [[OSX] - Preparando-se para o desenvolvimento](#parte4)
+5. [Introdução as Rotas, Controllers e Views](#parte5)
+6. [Avançando com Rotas (Routes)](#parte6)
+7. [Avançando com Controladores (Controllers) e Visualizações (Views)](#parte7)
+8. [Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM](#parte8)
+9. [Trabalhando com formulários](#parte9)
+10. [Middlewares](#parte10)
+11. [Autenticação de usuários (revisando e praticando os assuntos abordados)](#parte11)
+12. [Finalizando o projeto Super Gestão](#parte12)
+13. [Autenticação WEB (Session) e Bootstrap (CSS)](#parte13)
+14. [Implementando o envio de e-mails e a exportação de arquivos XLSX, CSV e PDF](#parte14)
+15. [Adaptação para o próximo nível no domínio do Framework Laravel](#parte15)
+16. [Vue.JS para iniciantes](#parte16)
+17. [APIs, WebServices e Rest](#parte17)
+18. [Autenticação API - Autorização JWT (JSON Web Token)](#parte18)
+19. [Aplicação Full Stack Back-end API Laravel com Front-end Vue.JS](#parte19)
+20. [Armazenamento em memória com Redis (Laravel Cache)](#parte20)
+
 ---
 
-
 ## <a name="parte1">1 - Introdução</a>
-
-
 
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte2">2 - [WINDOWS] - Preparando-se para o desenvolvimento</a>
 
 7. Iniciando um projeto Laravel (Via Composer)
 
 ```
-$ composer config -g repo.packagists composer https://packagist.org
+composer config -g repo.packagists composer https://packagist.org
 
-$ composer config -g github-protocols https ssh
+composer config -g github-protocols https ssh
 
-$ composer global require laravel/installer
+composer global require laravel/installer
 ```
 
 [Voltar ao Índice](#indice)
 
 ---
 
-
 ## <a name="parte3">3 - [LINUX] - Preparando-se para o desenvolvimento</a>
-
-
 
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte4">4 - [OSX] - Preparando-se para o desenvolvimento</a>
 
-
-
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte5">5 - Introdução as Rotas, Controllers e Views</a>
 
@@ -91,7 +81,6 @@ $ composer global require laravel/installer
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte6">6 - Avançando com Rotas (Routes)</a>
 
@@ -206,11 +195,9 @@ Route::fallback(function () {
 
 ```
 
-
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte7">7 - Avançando com Controladores (Controllers) e Visualizações (Views)</a>
 
@@ -253,7 +240,6 @@ class TesteController extends Controller
 <p>SOMA = {{$p1 + $p2}}</p>
 ```
 
-
 - 42 Sintaxe Blade
 - 43 Blade - Incluíndo comentários e blocos PHP puros
 
@@ -273,7 +259,7 @@ class TesteController extends Controller
     '
 @endphp
 
-``` 
+```
 
 - 44 Extra - Adicionando a extensão VSCode Laravel-Blade
 - 45 Blade - @if/@else
@@ -286,8 +272,8 @@ class TesteController extends Controller
 @else
     <h3>Nenhum fornecedor Cadastrados</h3>
 @endif
-``` 
- 
+```
+
 - 46 Blade - @unless
 
 ```php
@@ -339,7 +325,6 @@ class FornecedorController extends Controller
 @endisset
 
 ```
-
 
 - 48 Blade - @empty
 
@@ -550,7 +535,6 @@ class FornecedorController extends Controller
 
 ---
 
-
 ## <a name="parte8">8 - Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM</a>
 
 - 70 Criando o Model SiteContato
@@ -640,7 +624,6 @@ $ php artisan make:migration create_fornecedores_table
 Created Migration: 2022_07_07_181055_create_fornecedores_table
 ```
 
-
 ```php
 class CreateFornecedoresTable extends Migration
 {
@@ -680,7 +663,6 @@ Migrating: 2022_07_07_181950_alter_fornecedores_novas_colunas
 Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.03 seconds)
 
 ```
-
 
 - 82 Migration - Métodos up e down
 
@@ -730,7 +712,6 @@ class CreateProdutosTable extends Migration
         });
     }
 ```
-
 
 - 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
 
@@ -935,18 +916,20 @@ $ php artisan migrate:status
 Comamando que apaga todo o banco, rollback de todas as migrações:
 
 ```
-$ php artisan migrate:reset
+php artisan migrate:reset
 ```
 
-Comando faz roolback e em seguida migrate. Recriar 
+Comando faz roolback e em seguida migrate. Recriar
+
 ```
-$ php artisan migrate:refresh
+php artisan migrate:refresh
 
 ```
 
 Faz o DROP de todos os objetos do DB + o migrate para recriar os objetos
+
 ```
-$ php artisan migrate:fresh
+php artisan migrate:fresh
 
 ```
 
@@ -1030,7 +1013,6 @@ Array
 => true
 
 ```
-
 
 - 93 Eloquent - Inserindo registros com Create e Fillable
 
@@ -1315,7 +1297,6 @@ Array
 
 ```
 
-
 - 99 Eloquent - Selecionando registros com dois ou mais Wheres
 
 ```
@@ -1383,7 +1364,6 @@ Array
 
 
 ```
-
 
 - 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
 
@@ -1483,7 +1463,6 @@ Array
 
 ```
 
-
 - 103 Eloquent - Selecionando registros com whereColumn()
 
 ```
@@ -1513,7 +1492,6 @@ b
    }
 
 ```
-
 
 - 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
 
@@ -1645,7 +1623,6 @@ b
 // .....
 ```
 
-
 - 108 Eloquent - Collection toArray e toJson
 
 ```
@@ -1671,7 +1648,6 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
  a op\u00e7\u00e3o de listar todos os produtos"},
  // .....
 ```
-
 
 - 109 Eloquent - Collection pluck
 
@@ -1718,7 +1694,7 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 - 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 
-    - [https://laravel.com/docs/7.x/collections](https://laravel.com/docs/7.x/collections)
+  - [https://laravel.com/docs/7.x/collections](https://laravel.com/docs/7.x/collections)
 
 - 111 Eloquent - Atualizando registros (save)
 
@@ -1801,7 +1777,6 @@ class Fornecedor extends Model
 }
 ```
 
-
 - 113 Eloquent - Atualizando registros (where e update)
 
 ```
@@ -1867,7 +1842,6 @@ class Fornecedor extends Model
 => 1
 
 ```
-
 
 - 115 Eloquent - Deletando registros com SoftDelete
 
@@ -1936,7 +1910,6 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 ```
 >>> $fornecedor->forceDelete();  // força o delete, apagar o registro
 ```
-
 
 - 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
 
@@ -2031,7 +2004,6 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 
 
 ```
-
 
 - 117 Seeders parte 1
 
@@ -2188,11 +2160,9 @@ Database seeding completed successfully.
 
 ```
 
-
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte9">9 - Trabalhando com formulários</a>
 
@@ -2388,7 +2358,6 @@ class ContatoController extends Controller
     </select>
 ```
 
-
 - 128 Refactoring do projeto Super Gestão parte 2
 
 ```
@@ -2558,7 +2527,6 @@ public function salvar(Request $request)
 
 ---
 
-
 ## <a name="parte10">10 - Middlewares</a>
 
 - 135 Introdução aos Middlewares
@@ -2596,7 +2564,6 @@ class LogAcessMiddleware
     }
 }
 ```
-
 
 - 137 Criando o model LogAcesso e sua migration
 
@@ -2645,7 +2612,6 @@ class LogAcessMiddleware
 }
 ```
 
-
 - 138 Implementando middlewares no método construtor dos controllers
 
 ```php
@@ -2663,7 +2629,6 @@ class SobrenosController extends Controller
 }
 
 ```
-
 
 - 139 Implementando um middleware para todas as rotas
 
@@ -2740,7 +2705,6 @@ class SobrenosController extends Controller
         $this->middleware('log.acesso');
     }
 ```
-
 
 - 141 Encadeamento de middlewares (criando um middleware de autenticação)
 
@@ -2926,7 +2890,6 @@ class AutenticacaoMiddleware
 }
 ```
 
-
 - 144 Manipulando a resposta de uma requisição via middleware
 
 ```php
@@ -2958,7 +2921,6 @@ class LogAcessMiddleware
 
 ---
 
-
 ## <a name="parte11">11 - Autenticação de usuários (revisando e praticando os assuntos abordados)</a>
 
 - 145 Implementando o formulário de Login
@@ -2974,7 +2936,6 @@ $ php artisan make:controller LoginController
 Controller created successfully.
 
 ```
-
 
 - 146 Recebendo os parâmetros de usuário e senha
 - 147 Validando a existência do usuário e senha no Banco de Dados
@@ -3159,7 +3120,6 @@ class LoginController extends Controller
 }
 ```
 
-
 - 150 Implementando o menu de opções da área protegida da aplicação
 
 ```
@@ -3179,7 +3139,6 @@ Controller created successfully.
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte12">12 - Finalizando o projeto Super Gestão</a>
 
@@ -3340,7 +3299,6 @@ Controller created successfully.
 
 - 160 Criando rotas associadas aos resources de um controlador
 
-
 ```php
 Route::resource('produto', 'ProdutoController');
 ```
@@ -3397,7 +3355,6 @@ Model created successfully.
 
 
 ```
-
 
 - 163 Implementando o cadastro de produtos parte 2 (create)
 
@@ -3582,7 +3539,6 @@ public function edit(Produto $produto)
 </td>
 ```
 
-
 - 170 Modificando a forma de edição de registros parte 1
 
 ```php
@@ -3651,7 +3607,6 @@ public function edit(Produto $produto)
 ```
 
 - 171 Modificando a forma de edição de registros parte 2
-
 
 ```php
     public function edit(Produto $produto)
@@ -3806,7 +3761,6 @@ public function index(Request $request)
         </tr>
     @endforeach
 ```
-
 
 - 178 Eloquent ORM 1 para 1 - Exibindo informações do produto (belongsTo)
 
@@ -4250,7 +4204,6 @@ class ClienteController extends Controller
             </div>
 ```
 
-
 - 190 Implementando a tela de cadastro de clientes
 
 ```php
@@ -4504,7 +4457,6 @@ class Item extends Model
   </table>
 ```
 
-
 - 196 Relacionamento N para N - Colunas pivô da tabela de relacionamento (Pivot)
 
 ![img/196-diagrama01.png](img/196-diagrama01.png)
@@ -4626,7 +4578,6 @@ class PedidoProdudoController extends Controller
 
 ```
 
-
 - 198 Relacionamento N para N - Removendo o relacionamento
 
 ```php
@@ -4678,7 +4629,6 @@ public function destroy(Pedido $pedido, Produto $produto)
                         </tr>
                     @endforeach
 ```
-
 
 - 199 Extra - Removendo o relacionamento pela PK de pedidos_produtos
 
@@ -4760,13 +4710,12 @@ class Pedido extends Model
 
 ---
 
-
 ## <a name="parte13">13 - Autenticação WEB (Session) e Bootstrap (CSS)</a>
 
 - 200 Iniciando o projeto Controle de Tarefas
 
 ```
-$ composer create-project --prefer-dist laravel/laravel app_controle_tarefas "8.5.9"
+composer create-project --prefer-dist laravel/laravel app_controle_tarefas "8.5.9"
 
 ```
 
@@ -4776,7 +4725,7 @@ $ composer create-project --prefer-dist laravel/laravel app_controle_tarefas "8.
 - 204 Instalando o Laravel UI
 
 ```
-$ composer require laravel/ui:^3.2
+composer require laravel/ui:^3.2
 
 ```
 
@@ -4922,7 +4871,6 @@ Route::get('/tarefa', [App\Http\Controllers\TarefaController::class, 'index'])
 
 ---
 
-
 ## <a name="parte14">14 - Implementando o envio de e-mails e a exportação de arquivos XLSX, CSV e PDF</a>
 
 - 213 Configurando o envio de e-mails (Reset Password) - Parte 1
@@ -5016,8 +4964,8 @@ Publishing complete.
 
 ```
 
-- 217 Configurando o envio de e-mails (Reset Password) - Parte 
- 
+- 217 Configurando o envio de e-mails (Reset Password) - Parte
+
 ![217-diagrama01.png](img/217-diagrama01.png)
 
 ```php
@@ -5078,7 +5026,7 @@ class RedefinirSenhaNotification extends Notification
             ->salutation('Até breve!');
     }
 ```
- 
+
 - 218 Ajustando as políticas de senha no reset
 
 ```php
@@ -5214,7 +5162,6 @@ $ php artisan make:migration create_tarefas_table
 Created Migration: 2022_07_29_140051_create_tarefas_table
 
 ```
-
 
 - 223 Enviando um e-mail de cadastro de nova tarefa e exibindo os dados da tarefa
 
@@ -5394,7 +5341,6 @@ class TarefaController extends Controller
 </nav>
 ```
 
-
 - 227 Modificando a rota home da aplicação (redirectTo)
 
 [app_controle_tarefas/app/Providers/RouteServiceProvider.php](app_controle_tarefas/app/Providers/RouteServiceProvider.php)
@@ -5541,7 +5487,7 @@ Site da aplicação
 [https://docs.laravel-excel.com/3.1/getting-started/installation.html](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
 
 ```
-$ composer require maatwebsite/excel=^3.1.0
+composer require maatwebsite/excel=^3.1.0
 
 ```
 
@@ -5643,7 +5589,7 @@ public function exportacao($extensao)
 - 237 Exportando um arquivo no formato PDF com a relação de tarefas
 
 ```
-$ composer require mpdf/mpdf=^8.0.10
+composer require mpdf/mpdf=^8.0.10
 
 ```
 
@@ -5736,7 +5682,7 @@ class TarefasExport implements FromCollection, WithHeadings, WithMapping
 [https://github.com/barryvdh/laravel-dompdf/tree/v0.9.0](https://github.com/barryvdh/laravel-dompdf/tree/v0.9.0)
 
 ```
-$ composer require barryvdh/laravel-dompdf=^0.9.0
+composer require barryvdh/laravel-dompdf=^0.9.0
 ```
 
 - 242 Exportando um arquivo no formato PDF com o DOMPDF parte 1
@@ -5770,7 +5716,6 @@ class TarefaController extends Controller
 ```php
 <a href="{{ route('tarefa.exportacao')}}" class="float-right">PDF v2</a>
 ```
-
 
 - 243 Exportando um arquivo no formato PDF com o DOMPDF parte 2
 
@@ -5920,12 +5865,9 @@ class TarefaController extends Controller
     }
 ```
 
-
-
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte15">15 - Adaptação para o próximo nível no domínio do Framework Laravel</a>
 
@@ -5934,7 +5876,6 @@ class TarefaController extends Controller
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte16">16 - Vue.JS para iniciantes</a>
 
@@ -6236,7 +6177,6 @@ class TarefaController extends Controller
 
 </script>
 ```
-
 
 - 261 Diretiva V-On - Capturando os dados do evento ($event)
 
@@ -7121,7 +7061,6 @@ class TarefaController extends Controller
 
 ---
 
-
 ## <a name="parte17">17 - APIs, WebServices e Rest</a>
 
 - 282 O que é uma API?
@@ -7377,7 +7316,6 @@ class MarcaController extends Controller
 
 ![img/297-diagrama01.png](img/297-diagrama01.png)
 
-
 - 298 Validações parte 2 - Status Code HTTP
 
 [https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)
@@ -7446,7 +7384,6 @@ class MarcaController extends Controller
 
 - 299 Validações parte 3 - Validando parâmetros e a importância do Accept
 
-
 ```php
 class MarcaController extends Controller
 {
@@ -7471,7 +7408,6 @@ class MarcaController extends Controller
 ```
 
 ![img/299-diagrama01.png](img/299-diagrama01.png)
-
 
 - 300 Implementando as regras de validação (Rules) no Model
 
@@ -7617,7 +7553,6 @@ public function store(Request $request)
         // app_locadora_carros/storage/app/public/imagens/ru40QWOxB4jH59MEP0gtGBSaPYAAOr1IOc42Vz7B.png
 ```
 
-
 - 305 Upload de arquivos - Implementando o upload de imagens parte 3
 
 ```php
@@ -7675,7 +7610,6 @@ The links have been created.
 
 ```
 
-
 - 307 [IMPORTANTE] - Correção do link simbólico do projeto
 - 308 Upload de arquivos - Atualizando imagens
 
@@ -7716,8 +7650,6 @@ public function update(Request $request, $id)
 ```
 
 ![img/308-diagrama01.png](img/308-diagrama01.png)
-
-
 
 - 309 Upload de arquivos - Removendo imagens
 
@@ -8177,6 +8109,7 @@ class MarcaController extends Controller
     }
 
 ```
+
 - 321 Repository Design Pattern - Implementando um Repository para Modelo
 - 322 Repository Design Pattern - Implementando um Abstract Repository
 
@@ -8241,7 +8174,6 @@ class ModeloRepository extends AbstractRepository
 
 ---
 
-
 ## <a name="parte18">18 - Autenticação API - Autorização JWT (JSON Web Token)</a>
 
 - 326 Introdução ao JWT (Json Web Token)
@@ -8250,12 +8182,10 @@ class ModeloRepository extends AbstractRepository
 
 ![img/326-diagrama02.png](img/326-diagrama02.png)
 
-
-
 - 327 Instalando o pacote JWT-Auth
 
 ```
-$ composer require tymon/jwt-auth:"dev-develop"
+composer require tymon/jwt-auth:"dev-develop"
 ```
 
 - 328 Configurando o JWT-Auth no projeto
@@ -8389,7 +8319,6 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
     }
 ```
 
-
 - 336 Recuperando os dados do usuário autenticado com base no JWT
 - 337 Atualizando o JWT (renovando a autorização)
 
@@ -8451,14 +8380,13 @@ Route::prefix('v1')->middleware('jwt.auth')->group(function (){
 
 ---
 
-
 ## <a name="parte19">19 - Aplicação Full Stack Back-end API Laravel com Front-end Vue.JS</a>
 
 - 341 Configurando o Vue.JS no Laravel
 
 ![img/341-diagrama01.png](img/341-diagrama01.png)
 
-```
+```bash
 $ composer require laravel/ui:3.2.1
 (...)
 
@@ -8476,7 +8404,6 @@ Authentication scaffolding generated successfully.
 
 ![img/345-diagrama01.png](img/345-diagrama01.png)
 
-
 ```php
 // app_locadora_carros/resources/views/auth/login.blade.php
 
@@ -8488,7 +8415,7 @@ Authentication scaffolding generated successfully.
 
 ```
 
-```vue
+```js
  <form method="POST" action="">
         <input type="hidden" name="_token" :value="csrf_token">
 
@@ -8502,10 +8429,9 @@ export default {
 </script>
 ```
 
-
 - 346 Implementando a autenticação web (sessão) e API (JWT)
- 
-```js
+
+```vue
 <script>
 export default {
     name: "Login",
@@ -8543,7 +8469,7 @@ export default {
 }
 </script>
 ```
- 
+
 - 347 Convertendo a view home em um componente Vue
 
 ![img/347-diagrama01.png](img/347-diagrama01.png)
@@ -8598,7 +8524,6 @@ export default {
 
 ---
 
-
 ## <a name="parte20">20 - Armazenamento em memória com Redis (Laravel Cache)</a>
 
 - 392 O que é o Redis?
@@ -8622,4 +8547,3 @@ export default {
 [Voltar ao Índice](#indice)
 
 ---
-

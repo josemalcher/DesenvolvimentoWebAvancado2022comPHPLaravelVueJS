@@ -12,21 +12,29 @@
                                 <input-container-component titulo="ID" id="inputId" id-help="idHelp"
                                                            texto-ajuda="Opcional. Informe o ID da marca">
                                     <input type="number" class="form-control" id="inputId" aria-describedby="idHelp"
-                                           placeholder="ID">
+                                           placeholder="ID"
+                                           v-model="busca.id"
+                                    >
                                 </input-container-component>
                             </div>
                             <div class="col mb-3">
                                 <input-container-component titulo="Nome da marca" id="inputNome" id-help="nomeHelp"
                                                            texto-ajuda="Opcional. Informe o nome da marca">
                                     <input type="text" class="form-control" id="inputNome" aria-describedby="nomeHelp"
-                                           placeholder="Nome da marca">
+                                           placeholder="Nome da marca"
+                                           v-model="busca.nome"
+                                    >
                                 </input-container-component>
                             </div>
                         </div>
                     </template>
 
                     <template v-slot:rodape>
-                        <button type="submit" class="btn btn-primary btn-sm float-right">Pesquisar</button>
+                        <button type="submit" class="btn btn-primary btn-sm float-right"
+                                @click="pesquisar()"
+                        >
+                            Pesquisar
+                        </button>
                     </template>
                 </card-component>
                 <!-- fim do card de busca -->
@@ -61,7 +69,9 @@
                             </div>
 
                             <div class="col">
-                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalMarca">Adicionar</button>
+                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
+                                        data-target="#modalMarca">Adicionar
+                                </button>
                             </div>
                         </div>
                     </template>
@@ -139,12 +149,27 @@ export default {
             arquivoImagem: [],
             transacaoStatus: '',
             transacaoDetalhes: {},
-            marcas: {data:[]}
+            marcas: {data: []},
+            busca: {id: '', nome: ''}
         }
     },
     methods: {
+        pesquisar() {
+            let filtro = ''
+            for (let chave in this.busca) {
+
+                if(this.busca[chave]){
+                    if (filtro != '') {
+                        filtro += ';'
+                    }
+                    filtro += chave + ':like:' + this.busca[chave]
+                }
+            }
+            console.log(filtro)
+
+        },
         paginacao(l) {
-            if(l.url){
+            if (l.url) {
                 this.urlBase = l.url // ajustando a url de consulta com o parâmetro da página
                 this.carregarLista() // requisitando novamente os dados para nossa API
             }

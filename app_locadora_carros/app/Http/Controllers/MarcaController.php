@@ -24,46 +24,46 @@ class MarcaController extends Controller
 
         $marcaRepository = new MarcaRepository($this->marca);
 
-        if($request->has('atributos_modelos')) {
-            $atributos_modelos = 'modelo:id,'.$request->atributos_modelos;
+        if ($request->has('atributos_modelos')) {
+            $atributos_modelos = 'modelo:id,' . $request->atributos_modelos;
             $marcaRepository->selectAtributosRegistrosRelacionamentos($atributos_modelos);
         } else {
             $marcaRepository->selectAtributosRegistrosRelacionamentos('modelo');
         }
 
-        if($request->has('filtro')) {
+        if ($request->has('filtro')) {
             $marcaRepository->filtro($request->filtro);
         }
 
-        if($request->has('atributos')) { // atributos:id,nome, imagem
+        if ($request->has('atributos')) { // atributos:id,nome, imagem
             $marcaRepository->selectAtributos($request->atributos);
         }
 
         // ------------------------------------------
-       /*
-        $marcas = array();
-        if($request->has('atributos_modelos')) {
-            $atributos_modelos = $request->atributos_modelos;
-            $marcas = $this->marca->with('modelo:id,'.$atributos_modelos);
-        } else {
-            $marcas = $this->marca->with('modelo');
-        }
+        /*
+         $marcas = array();
+         if($request->has('atributos_modelos')) {
+             $atributos_modelos = $request->atributos_modelos;
+             $marcas = $this->marca->with('modelo:id,'.$atributos_modelos);
+         } else {
+             $marcas = $this->marca->with('modelo');
+         }
 
-        if($request->has('filtro')) {
-            $filtros = explode(';', $request->filtro);
-            foreach($filtros as $key => $condicao) {
-                $c = explode(':', $condicao);
-                $marcas = $marcas->where($c[0], $c[1], $c[2]);
-            }
-        }
+         if($request->has('filtro')) {
+             $filtros = explode(';', $request->filtro);
+             foreach($filtros as $key => $condicao) {
+                 $c = explode(':', $condicao);
+                 $marcas = $marcas->where($c[0], $c[1], $c[2]);
+             }
+         }
 
-        if($request->has('atributos')) { // atributos:id,nome, imagem
-            $atributos = $request->atributos;
-            $marcas = $marcas->selectRaw($atributos)->get();
-        } else {
-            $marcas = $marcas->get();
-        }
-       */
+         if($request->has('atributos')) { // atributos:id,nome, imagem
+             $atributos = $request->atributos;
+             $marcas = $marcas->selectRaw($atributos)->get();
+         } else {
+             $marcas = $marcas->get();
+         }
+        */
 
         //$marcas = Marca::all();
         //$marcas = $this->marca->with('modelos')->get();
@@ -210,13 +210,13 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         if ($marca === null) {
-            return response()->json(['error' => 'Recurso Não Existe para ser DELETADO!'], 404);
+            return response()->json(['erro' => 'Impossível realizar a exclusão. O recurso solicitado não existe'], 404);
         }
 
         // REMOVE o arquivo antigo
         Storage::disk('public')->delete($marca->imagem);
 
         $marca->delete();
-        return response()->json(['msg' => 'Marca removida com sucesso'], 200);
+        return response()->json(['msg' => 'A marca foi removida com sucesso!'], 200);
     }
 }

@@ -47,7 +47,8 @@ export default {
     props: ['dados', 'titulos', 'atualizar', 'visualizar', 'remover'],
     methods: {
         setStore(obj) {
-            console.log(obj)
+            this.$store.state.transacao.status = ''
+            this.$store.state.transacao.mensagem = ''
             this.$store.state.item = obj
         }
     },

@@ -151,51 +151,46 @@ class MarcaController extends Controller
 //        print_r($marca->getAttributes()); // dados antigos
 
         // $marca->update($request->all());
-        $marca = $this->marca->with('modelo')->find($id);
+        $marca = $this->marca->find($id);
 
-        if ($marca === null) {
-
-            return response()->json(['error' => 'Recurso Não Existe para ser Atualizado!'], 404);
+        if($marca === null) {
+            return response()->json(['erro' => 'Impossível realizar a atualização. O recurso solicitado não existe'], 404);
         }
 
-        if ($request->method() === 'PATCH') {
+        if($request->method() === 'PATCH') {
+
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach ($marca->rules() as $input => $regra) {
+            foreach($marca->rules() as $input => $regra) {
+
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if (array_key_exists($input, $request->all())) {
+                if(array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
+
             $request->validate($regrasDinamicas, $marca->feedback());
 
         } else {
             $request->validate($marca->rules(), $marca->feedback());
         }
 
-        // REMOVE o arquivo antigo caso um novo arquivo tenha sido
-        // enviado no REQUEST
-        if ($request->file('imagem')) {
+        //preenchendo o objeto $marca com todos os dados do request
+        $marca->fill($request->all());
+
+        //se a imagem foi encaminhada na requisição
+        if($request->file('imagem')) {
+            //remove o arquivo antigo
             Storage::disk('public')->delete($marca->imagem);
+
+            $imagem = $request->file('imagem');
+            $imagem_urn = $imagem->store('imagens', 'public');
+            $marca->imagem = $imagem_urn;
         }
 
-        $image = $request->file('imagem');
-        $image_uri = $image->store('imagens', 'public');
-
-        //preencher o objeto $marca com os dados do request
-        $marca->fill($request->all());
-        $marca->imagem = $image_uri;
-
-        //dd($marca->getAttributes());
         $marca->save();
-        /*
-        $marca->update([
-            'nome' => $request->nome,
-            'imagem' => $image_uri
-        ]);*/
-
-        return response()->json($marca, 200);;
+        return response()->json($marca, 200);
     }
 
     /**

@@ -213,16 +213,22 @@
 
             <template v-slot:conteudo>
                 <div class="form-group">
-                    <input-container-component titulo="Nome da marca" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome da marca">
-                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome da marca" v-model="nomeMarca">
+                    <input-container-component titulo="Nome da marca" id="atualizarNome" id-help="atualizarNomeHelp"
+                                               texto-ajuda="Informe o nome da marca">
+                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp"
+                               placeholder="Nome da marca" v-model="$store.state.item.nome">
                     </input-container-component>
                 </div>
 
                 <div class="form-group">
-                    <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
-                        <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
+                    <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp"
+                                               texto-ajuda="Selecione uma imagem no formato PNG">
+                        <input type="file" class="form-control-file" id="atualizarImagem"
+                               aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem"
+                               @change="carregarImagem($event)">
                     </input-container-component>
                 </div>
+                {{ $store.state.item }}
             </template>
 
             <template v-slot:rodape>
@@ -264,7 +270,35 @@ export default {
     },
     methods: {
         atualizar() {
-            console.log(this.$store.state.item)
+
+            let formData = new FormData();
+            formData.append('_method', 'patch')
+            formData.append('nome', this.$store.state.item.nome)
+
+            if(this.arquivoImagem[0]) {
+                formData.append('imagem', this.arquivoImagem[0])
+            }
+
+            let url = this.urlBase + '/' + this.$store.state.item.id
+
+            let config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Accept': 'application/json',
+                    'Autorization': this.token
+                }
+            }
+
+            axios.post(url, formData, config)
+                .then(response => {
+                    console.log('Atualizado', response)
+                    //limpar o campo de seleção de arquivos
+                    atualizarImagem.value = ''
+                    this.carregarLista()
+                })
+                .catch(errors => {
+                    console.log('Erro de atualização', errors.response)
+                })
         },
         remover() {
 

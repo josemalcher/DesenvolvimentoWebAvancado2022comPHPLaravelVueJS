@@ -8640,6 +8640,18 @@ Use composer self-update --rollback to return to version 2.3.7
 - 400 Implementando a consulta e a visualização das notícias
 - 401 Implementando a consulta e a visualização das notícias
 - 402 Instalando o pacote Debugbar para monitorar o tempo de execução das querys
+
+```
+$ composer require barryvdh/laravel-debugbar=v3.6.2 --dev
+
+```
+
+```php
+'aliases' => [
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    ],
+```
+
 - 403 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
 - 404 Armazenando consultas em cache parte 1
 - 405 Armazenando consultas em cache parte 2

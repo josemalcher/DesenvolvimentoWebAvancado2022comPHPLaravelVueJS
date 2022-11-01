@@ -8638,11 +8638,12 @@ Use composer self-update --rollback to return to version 2.3.7
 - 398 Iniciando o banco de dados e as migrations
 - 399 Implementando a Factory e a Seeder para popular a tabela de notícias
 - 400 Implementando a consulta e a visualização das notícias
-- 401 Instalando o pacote Debugbar para monitorar o tempo de execução das querys
-- 402 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
-- 403 Armazenando consultas em cache parte 1
-- 404 Armazenando consultas em cache parte 2
-- 405 Cache remember
+- 401 Implementando a consulta e a visualização das notícias
+- 402 Instalando o pacote Debugbar para monitorar o tempo de execução das querys
+- 403 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
+- 404 Armazenando consultas em cache parte 1
+- 405 Armazenando consultas em cache parte 2
+- 406 Cache remember
 
 [Voltar ao Índice](#indice)
 

@@ -8516,6 +8516,35 @@ export default {
 - 387 Implementando o modal de atualização de registros parte 3
 - 388 Adicionando filtros para formatação de datas
 - 389 Axios - Interceptando requisições e respostas HTTP
+
+- [app_locadora_carros/resources/js/bootstrap.js](app_locadora_carros/resources/js/bootstrap.js)
+
+```js
+/* interceptar os requests da aplicação */
+axios.interceptors.request.use(
+    config => {
+        console.log('Interceptando o request antes do envio', config)
+        return config
+    },
+    error => {
+        console.log('Erro na requisição: ', error)
+        return Promise.reject(error)
+    }
+)
+
+/* interceptar os responses da aplicação */
+axios.interceptors.response.use(
+    response => {
+        console.log('Interceptando a resposta antes da aplicação', response)
+        return response
+    },
+    error => {
+        console.log('Erro na resposta: ', error)
+        return Promise.reject(error)
+    }
+)
+```
+
 - 390 Axios - Interceptando o request e configurando os headers
 - 391 Axios - Interceptando o response e realizando um auto refresh do JWT
 - 392 Considerações finais sobre a seção e o projeto prático

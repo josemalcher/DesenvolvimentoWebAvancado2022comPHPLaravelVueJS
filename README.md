@@ -8653,6 +8653,21 @@ $ composer require barryvdh/laravel-debugbar=v3.6.2 --dev
 ```
 
 - 403 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
+
+```
+$ composer require predis/predis=v1.1.7
+
+```
+
+```env
+CACHE_DRIVER=redis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+REDIS_CLIENT=predis
+```
+
 - 404 Armazenando consultas em cache parte 1
 - 405 Armazenando consultas em cache parte 2
 - 406 Cache remember

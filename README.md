@@ -8616,10 +8616,25 @@ axios.interceptors.response.use(
 ![img/392-diagrama01.png](img/392-diagrama01.png)
 
 - 393 [WINDOWS] - Instalando o Redis
+
+- [https://github.com/microsoftarchive/redis/releases](https://github.com/microsoftarchive/redis/releases)
+
 - 394 [LINUX] - Instalando o Redis
 - 395 [OSX] - Instalando o Redis
 - 396 Extra - Atualizando o Composer
+
+```
+$ composer self-update
+Upgrading to version 2.4.4 (stable channel).
+
+Use composer self-update --rollback to return to version 2.3.7
+
+```
+
 - 397 Iniciando o projeto Portal de Notícias
+
+- [app_portal_noticias](app_portal_noticias)
+
 - 398 Iniciando o banco de dados e as migrations
 - 399 Implementando a Factory e a Seeder para popular a tabela de notícias
 - 400 Implementando a consulta e a visualização das notícias

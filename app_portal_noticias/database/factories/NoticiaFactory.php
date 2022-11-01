@@ -22,7 +22,8 @@ class NoticiaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'titulo' => $this->faker->text(rand(10, 40)),
+            'noticia' => $this->faker->text(rand(200, 400))
         ];
     }
 }

@@ -8654,6 +8654,8 @@ $ composer require barryvdh/laravel-debugbar=v3.6.2 --dev
 
 - 403 Instalando e configurando o pacote Predis para conectar o Laravel com o Redis
 
+![/img/403-diagrama01.png](/img/403-diagrama01.png)
+
 ```
 $ composer require predis/predis=v1.1.7
 
@@ -8670,6 +8672,32 @@ REDIS_CLIENT=predis
 
 - 404 Armazenando consultas em cache parte 1
 - 405 Armazenando consultas em cache parte 2
+
+```php
+public function index()
+    {
+        //criar um dado dentro do bd Redis
+        //Cache::put('site', 'jorgesantana.net.br', 10);
+        //chave, valor, tempo em segundos para expirar o dado em memória
+
+        //recuperar um dado dentro do bd Redis
+        //$site = Cache::get('site');
+        //echo $site;
+
+        $noticias = [];
+
+
+        if(Cache::has('dez_primeiras_noticias')) {
+            $noticias = Cache::get('dez_primeiras_noticias');
+        } else {
+            $noticias = Noticia::orderByDesc('created_at')->limit(10)->get();
+            Cache::put('dez_primeiras_noticias', $noticias, 15);
+        }
+
+        return view('noticia', ['noticias' => $noticias]);
+    }
+```
+
 - 406 Cache remember
 
 [Voltar ao Índice](#indice)

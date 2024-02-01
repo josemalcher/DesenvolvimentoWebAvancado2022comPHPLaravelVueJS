@@ -63,7 +63,7 @@ composer global require laravel/installer
 
 ## <a name="parte5">5 - Introdução as Rotas, Controllers e Views</a>
 
-- 23 Iniciando o projeto
+- 25 Iniciando o projeto
 
 ```
  composer create-project --prefer-dist laravel/laravel:^7.0 app_super_gestao
@@ -74,13 +74,76 @@ composer global require laravel/installer
 curl -s "https://laravel.build/example-app?with=mysql" | bash
 ```
 
-- 24 Produtividade com Artisan Console
-- 25 Rotas (Routes) - Introdução
-- 26 Super Gestão - Implementando as rotas principal, sobre-nos e contato
-- 27 Controladores (Controllers) - Introdução
-- 28 Super Gestão - Implementando os controladores principal, sobre-nos e contato
-- 29 Visualizações (Views) - Introdução
-- 30 Super Gestão - Implementando as visualizações principal, sobre-nos e contato
+- 26 Produtividade com Artisan Console
+
+```
+$ sail php artisan                       
+Laravel Framework 10.43.0
+
+Usage:
+  command [options] [arguments]
+
+Options:
+  -h, --help            Display help for the given command. When no command is given display help for the list command
+  -q, --quiet           Do not output any message
+  -V, --version         Display this application version
+      --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+  -n, --no-interaction  Do not ask any interactive question
+      --env[=ENV]       The environment the command should run under
+  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Available commands:
+  about                   Display basic information about your application
+  clear-compiled          Remove the compiled class file
+  completion              Dump the shell completion script
+  db                      Start a new database CLI session
+  docs                    Access the Laravel documentation
+  down                    Put the application into maintenance / demo mode
+  env                     Display the current framework environment
+  help                    Display help for a command
+  inspire                 Display an inspiring quote
+  list                    List commands
+  migrate                 Run the database migrations
+  optimize                Cache the framework bootstrap files
+  serve                   Serve the application on the PHP development server
+  test                    Run the application tests
+  tinker                  Interact with your application
+  up                      Bring the application out of maintenance mode
+(...)
+```
+
+- 27 Rotas (Routes) - Introdução
+- 28 Super Gestão - Implementando as rotas principal, sobre-nos e contato
+- 29 Controladores (Controllers) - Introdução
+- 30 Super Gestão - Implementando os controladores principal, sobre-nos e contato
+
+```
+$ sail php artisan make:controller PrincipalController
+
+   INFO  Controller [app/Http/Controllers/PrincipalController.php] created successfully.  
+
+
+$ sail php artisan make:controller SobreNosController
+
+   INFO  Controller [app/Http/Controllers/SobreNosController.php] created successfully.
+
+
+$ sail php artisan make:controller ContatoController
+
+   INFO  Controller [app/Http/Controllers/ContatoController.php] created successfully.
+
+
+```
+
+```php
+Route::get('/', [PrincipalController::class, 'principal']);
+Route::get('/sobre', [SobreNosController::class, 'sobre']);
+Route::get('/contato', [ContatoController::class, 'contato']);
+
+```
+
+- 31 Visualizações (Views) - Introdução
+- 32 Super Gestão - Implementando as visualizações principal, sobre-nos e contato
 
 [Voltar ao Índice](#indice)
 
@@ -88,9 +151,9 @@ curl -s "https://laravel.build/example-app?with=mysql" | bash
 
 ## <a name="parte6">6 - Avançando com Rotas (Routes)</a>
 
-- 31 Enviando parâmetros
-- 32 Parâmetros opcionais e valores padrões
-- 33 Tratando parâmetros de rotas com expressões regulares
+- 33 Enviando parâmetros
+- 34 Parâmetros opcionais e valores padrões
+- 35 Tratando parâmetros de rotas com expressões regulares
 
 ```php
 Route::get(
@@ -106,7 +169,7 @@ Route::get(
 
 ```
 
-- 34 Super Gestão - Criando o menu de navegação
+- 36 Super Gestão - Criando o menu de navegação
 
 ```
 $ php artisan route:list

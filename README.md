@@ -145,6 +145,8 @@ Route::get('/contato', [ContatoController::class, 'contato']);
 - 31 Visualizações (Views) - Introdução
 - 32 Super Gestão - Implementando as visualizações principal, sobre-nos e contato
 
+
+
 [Voltar ao Índice](#indice)
 
 ---

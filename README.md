@@ -70,6 +70,10 @@ composer global require laravel/installer
 
 ```
 
+```
+curl -s "https://laravel.build/example-app?with=mysql" | bash
+```
+
 - 24 Produtividade com Artisan Console
 - 25 Rotas (Routes) - Introdução
 - 26 Super Gestão - Implementando as rotas principal, sobre-nos e contato

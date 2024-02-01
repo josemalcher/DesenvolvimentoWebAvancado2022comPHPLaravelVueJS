@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_controle_tarefas/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_locadora_carros/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests/Unit" isTestSource="true" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

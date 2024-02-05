@@ -154,6 +154,14 @@ Route::get('/contato', [ContatoController::class, 'contato']);
 ## <a name="parte6">6 - Avançando com Rotas (Routes)</a>
 
 - 33 Enviando parâmetros
+
+```php
+Route::get('/contato/{primeiro}/{segundo}', function (string $primeiro, string $segundo) {
+    echo 'Estamos aqui: ' . $primeiro . ' - ' .$segundo;
+});
+
+```
+
 - 34 Parâmetros opcionais e valores padrões
 - 35 Tratando parâmetros de rotas com expressões regulares
 
@@ -189,8 +197,8 @@ $ php artisan route:list
 
 ```
 
-- 35 Super Gestão - Implementando as rotas login, clientes, fornecedores e produtos
-- 36 Agrupando rotas
+- 37 Super Gestão - Implementando as rotas login, clientes, fornecedores e produtos
+- 38 Agrupando rotas
 
 ```php
 Route::prefix('/app')->group(function () {
@@ -201,7 +209,7 @@ Route::prefix('/app')->group(function () {
 });
 ```
 
-- 37 Nomeando rotas
+- 39 Nomeando rotas
 
 ```php
 Route::get('/', 'PrincipalController@principal')->name('site.index');
@@ -232,7 +240,7 @@ Route::prefix('/app')->group(function () {
 
 ```
 
-- 38 Redirecionamento de rotas
+- 40 Redirecionamento de rotas
 
 ```php
 Route::get('/rota1', function (){
@@ -255,7 +263,7 @@ Route::get('/rota2', function (){
 })->name('site.rota2');
 ```
 
-- 39 Rota de contingência (fallback)
+- 41 Rota de contingência (fallback)
 
 ```
 Route::fallback(function () {

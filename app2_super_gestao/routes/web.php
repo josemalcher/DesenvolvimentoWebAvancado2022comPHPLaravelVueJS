@@ -18,3 +18,7 @@ Route::get('/', [PrincipalController::class, 'principal']);
 Route::get('/sobre', [SobreNosController::class, 'sobre']);
 Route::get('/contato', [ContatoController::class, 'contato']);
 
+Route::get('/contato/{primeiro}/{segundo}', function (string $primeiro, string $segundo) {
+    echo 'Estamos aqui: ' . $primeiro . ' - ' .$segundo;
+});
+

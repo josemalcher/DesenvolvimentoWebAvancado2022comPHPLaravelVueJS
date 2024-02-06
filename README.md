@@ -306,7 +306,7 @@ Route::fallback(function () {
 
 ## <a name="parte7">7 - Avançando com Controladores (Controllers) e Visualizações (Views)</a>
 
-- 40 Encaminhando parâmetros da rota para o controlador
+- 42 Encaminhando parâmetros da rota para o controlador
 
 ```php
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
@@ -322,7 +322,7 @@ class TesteController extends Controller
 }
 ```
 
-- 41 Encaminhando parâmetros do controlador para visualização
+- 43 Encaminhando parâmetros do controlador para visualização
 
 ```php
 class TesteController extends Controller
@@ -345,8 +345,8 @@ class TesteController extends Controller
 <p>SOMA = {{$p1 + $p2}}</p>
 ```
 
-- 42 Sintaxe Blade
-- 43 Blade - Incluíndo comentários e blocos PHP puros
+- 44 Sintaxe Blade
+- 45 Blade - Incluíndo comentários e blocos PHP puros
 
 ```php
 
@@ -366,8 +366,8 @@ class TesteController extends Controller
 
 ```
 
-- 44 Extra - Adicionando a extensão VSCode Laravel-Blade
-- 45 Blade - @if/@else
+- 46 Extra - Adicionando a extensão VSCode Laravel-Blade
+- 47 Blade - @if/@else
 
 ```php
 @if(count($fornecedores) > 0 && count($fornecedores) < 10)
@@ -379,7 +379,7 @@ class TesteController extends Controller
 @endif
 ```
 
-- 46 Blade - @unless
+- 48 Blade - @unless
 
 ```php
 <p>Fornecedor: {{$fornecedores[0]['nome']}}</p>
@@ -394,7 +394,7 @@ class TesteController extends Controller
 
 ```
 
-- 47 Blade - @isset
+- 49 Blade - @isset
 
 ```php
 class FornecedorController extends Controller
@@ -431,7 +431,7 @@ class FornecedorController extends Controller
 
 ```
 
-- 48 Blade - @empty
+- 50 Blade - @empty
 
 ```php
 @isset($fornecedores)
@@ -448,13 +448,13 @@ class FornecedorController extends Controller
 @endisset
 ```
 
-- 49 Extra - Operador condicional ternário
+- 51 Extra - Operador condicional ternário
 
 ```php
  isset($fornecedores[0]['cnpj']) ? 'CNPJ INFORMADO' : 'CNPJ não Informado';
 ```
 
-- 50 Blade - Operador condicional de valor default (??)
+- 52 Blade - Operador condicional de valor default (??)
 
 ```php
     <p>CNPJ: {{$fornecedores[1]['cnpj'] ?? 'Dado não preenchido' }}</p>
@@ -465,7 +465,7 @@ class FornecedorController extends Controller
  -->
 ```
 
-- 51 Blade - @switch/case
+- 53 Blade - @switch/case
 
 ```php
     <p>Telefones: {{$fornecedores[1]['ddd'] ?? ''}} {{$fornecedores[1]['telefone'] ?? ''}}</p>
@@ -487,7 +487,7 @@ class FornecedorController extends Controller
 
 ```
 
-- 52 Blade - @for
+- 54 Blade - @for
 
 ```php
     @for($i = 0; isset($fornecedores[$i]); $i++)
@@ -499,7 +499,7 @@ class FornecedorController extends Controller
     @endfor
 ```
 
-- 53 Blade - @while
+- 55 Blade - @while
 
 ```php
  @php $i = 0 @endphp
@@ -513,7 +513,7 @@ class FornecedorController extends Controller
     @endwhile
 ```
 
-- 54 Blade - @foreach
+- 56 Blade - @foreach
 
 ```php
     @foreach($fornecedores as $indice => $fornecedor)
@@ -525,7 +525,7 @@ class FornecedorController extends Controller
     @endforeach
 ```
 
-- 55 Blade - @forelse
+- 57 Blade - @forelse
 
 ```php
     @forelse($fornecedores as $indice => $fornecedor)
@@ -539,13 +539,13 @@ class FornecedorController extends Controller
     @endforelse
 ```
 
-- 56 Blade - Escapando a tag de impressão do Blade
+- 58 Blade - Escapando a tag de impressão do Blade
 
 ```php
      <p>Fornecedor: @{{$fornecedor['nome']}}</p>
 ```
 
-- 57 Blade - Variável loop
+- 59 Blade - Variável loop
 
 ```bash
 {#280 ▼
@@ -585,18 +585,18 @@ class FornecedorController extends Controller
     @endforelse
 ```
 
-- 58 Super Gestão - Melhorando o visual
-- 59 O que são assets?
-- 60 Adicionando assets as views (helper asset)
-- 61 Adicionando arquivos CSS externos as páginas web
-- 62 Blade - Template com @extends, @section e @yield parte 1
-- 63 Blade - Template com @extends, @section e @yield parte 2
-- 64 Blade - Realizando include de views (@include)
-- 65 Super Gestão - Enviando o formulário de contato
-- 66 Enviando o formulário de contato via POST
-- 67 Entendendo o token @csrf
-- 68 Blade - Componentes (@component)
-- 69 Blade - Enviando parâmetros para componentes
+- 60 Super Gestão - Melhorando o visual
+- 61 O que são assets?
+- 62 Adicionando assets as views (helper asset)
+- 63 Adicionando arquivos CSS externos as páginas web
+- 64 Blade - Template com @extends, @section e @yield parte 1
+- 65 Blade - Template com @extends, @section e @yield parte 2
+- 66 Blade - Realizando include de views (@include)
+- 67 Super Gestão - Enviando o formulário de contato
+- 68 Enviando o formulário de contato via POST
+- 69 Entendendo o token @csrf
+- 70 Blade - Componentes (@component)
+- 71 Blade - Enviando parâmetros para componentes
 
 ```php
 {{$slot}}
@@ -642,7 +642,7 @@ class FornecedorController extends Controller
 
 ## <a name="parte8">8 - Models, Migrations, Seeders, Factories, Banco de Dados, Tinker e Eloquent ORM</a>
 
-- 70 Criando o Model SiteContato
+- 72 Criando o Model SiteContato
 
 ```
 $ php artisan make:model SiteContato -m
@@ -651,7 +651,7 @@ Created Migration: 2022_07_07_131143_create_site_contatos_table
 
 ```
 
-- 71 Implementando a migration SiteContato
+- 73 Implementando a migration SiteContato
 
 ```php
 class CreateSiteContatosTable extends Migration

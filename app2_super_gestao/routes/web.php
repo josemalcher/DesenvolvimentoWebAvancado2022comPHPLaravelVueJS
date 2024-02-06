@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{PrincipalController, SobreNosController, ContatoController};
+use App\Http\Controllers\{PrincipalController, SobreNosController, ContatoController, TesteController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,15 +27,15 @@ Route::prefix('/app')->group(function () {
 
 });
 
-Route::get('/rota1', function (){
-    echo 'ROTA 1';
-})->name('site.rota1');
+//Route::get('/teste', function (){
+//    echo 'ROTA 1';
+//})->name('site.rota1');
 
 //Route::get('/rota2', function (){
 //    return redirect()->route('site.rota1');
 //})->name('site.rota2');
 
-Route::redirect('/rota2', '/rota1');
+//Route::redirect('/rota2', '/rota1');
 
 /*
  Route::get('/contato/{nome}/{categoria_id}',
@@ -48,6 +48,9 @@ Route::redirect('/rota2', '/rota1');
     ->where('categoria_id', '[0-9+]')
     ->where('nome', '[A-Za-z]+');
 */
+
+Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
+
 Route::fallback(function () {
     echo 'A Rota não existe - <a href="'. route('site.index') .'">Voltar</a>';
 });

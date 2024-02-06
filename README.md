@@ -163,6 +163,14 @@ Route::get('/contato/{primeiro}/{segundo}', function (string $primeiro, string $
 ```
 
 - 34 Parâmetros opcionais e valores padrões
+
+```php
+Route::get('/contato/{primeiro}/{segundo?}', function (string $primeiro, string $segundo = 'Não Informado') {
+    echo 'Estamos aqui: ' . $primeiro . ' - ' .$segundo;
+});
+
+```
+
 - 35 Tratando parâmetros de rotas com expressões regulares
 
 ```php
@@ -170,7 +178,7 @@ Route::get(
     '/contato/{nome}/{categoria_id}',
     function (
         string $nome = 'Desconhecido',
-        int    $categoria_id = 1 // 1- 'informação'
+        int    $categoria_id = 1 // 1 - 'informação'
     ) {
         echo "Nome: " . $nome . ' Categoria = ' . $categoria_id;
     })
@@ -182,17 +190,17 @@ Route::get(
 - 36 Super Gestão - Criando o menu de navegação
 
 ```
-$ php artisan route:list
-+--------+----------+-------------------------------+------+----------------------------------------------------+------------+
-| Domain | Method   | URI                           | Name | Action                                             | Middleware |
-+--------+----------+-------------------------------+------+----------------------------------------------------+------------+
-|        | GET|HEAD | /                             |      | App\Http\Controllers\PrincipalController@principal | web        |
-|        | GET|HEAD | api/user                      |      | Closure                                            | api        |
-|        |          |                               |      |                                                    | auth:api   |
-|        | GET|HEAD | contato                       |      | App\Http\Controllers\ContatoController@contato     | web        |
-|        | GET|HEAD | contato/{nome}/{categoria_id} |      | Closure                                            | web        |
-|        | GET|HEAD | sobre-nos                     |      | App\Http\Controllers\SobrenosController@sobrenos   | web        |
-+--------+----------+-------------------------------+------+----------------------------------------------------+------------+
+$ sail php artisan route:list     
+
+  GET|HEAD   / ....................................................................................... PrincipalController@principal
+  POST       _ignition/execute-solution .............. ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
+  GET|HEAD   _ignition/health-check .......................... ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController
+  POST       _ignition/update-config ....................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController
+  GET|HEAD   api/user .............................................................................................................. 
+  GET|HEAD   contato ..................................................................................... ContatoController@contato  
+  GET|HEAD   sanctum/csrf-cookie ................................. sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show  
+  GET|HEAD   sobre ........................................................................................ SobreNosController@sobre  
+
 
 
 ```
@@ -207,6 +215,25 @@ Route::prefix('/app')->group(function () {
     Route::get('/produtos',  function (){return 'Produtos';});
 
 });
+```
+
+```
+$ sail php artisan route:list
+
+  GET|HEAD   / ............................................................................... PrincipalController@principal  
+  POST       _ignition/execute-solution ...... ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController  
+  GET|HEAD   _ignition/health-check .................. ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController  
+  POST       _ignition/update-config ............... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController  
+  GET|HEAD   api/user ......................................................................................................  
+  GET|HEAD   app/clientes ..................................................................................................  
+  GET|HEAD   app/fornecedores ..............................................................................................  
+  GET|HEAD   app/produtos ..................................................................................................  
+  GET|HEAD   contato ............................................................................. ContatoController@contato  
+  GET|HEAD   sanctum/csrf-cookie ......................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show  
+  GET|HEAD   sobre ................................................................................ SobreNosController@sobre  
+
+                                                   Showing [11] routes  
+
 ```
 
 - 39 Nomeando rotas

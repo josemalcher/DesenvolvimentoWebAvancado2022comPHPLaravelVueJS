@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\{PrincipalController, SobreNosController, ContatoController, TesteController, FornecedorController};
+use App\Http\Controllers\{
+    PrincipalController,
+    SobreNosController,
+    ContatoController,
+    TesteController,
+    FornecedorController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
-Route::get('/sobre', [SobreNosController::class, 'sobre'])->name('site.sobrenos');
-Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
+Route::get('/',         [PrincipalController::class, 'principal'])->name('site.index');
+Route::get('/sobre',    [SobreNosController::class, 'sobre'])     ->name('site.sobrenos');
+Route::get('/contato',  [ContatoController::class, 'contato'])    ->name('site.contato');
 
 Route::get('/login', function (){return 'Clientes';})->name('site.login');
 
@@ -49,7 +54,7 @@ Route::prefix('/app')->group(function () {
     ->where('nome', '[A-Za-z]+');
 */
 
-Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
+// Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
 
 Route::fallback(function () {
     echo 'A Rota não existe - <a href="'. route('site.index') .'">Voltar</a>';

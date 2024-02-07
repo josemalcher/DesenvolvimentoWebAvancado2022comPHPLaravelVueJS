@@ -451,7 +451,7 @@ class FornecedorController extends Controller
 - 51 Extra - Operador condicional ternário
 
 ```php
- isset($fornecedores[0]['cnpj']) ? 'CNPJ INFORMADO' : 'CNPJ não Informado';
+    isset($fornecedores[0]['cnpj']) ? 'CNPJ INFORMADO' : 'CNPJ não Informado';
 ```
 
 - 52 Blade - Operador condicional de valor default (??)
@@ -490,13 +490,15 @@ class FornecedorController extends Controller
 - 54 Blade - @for
 
 ```php
+@isset($fornecedores)
     @for($i = 0; isset($fornecedores[$i]); $i++)
-    <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
-    <p>Status: {{$fornecedores[$i]['status']}}</p>
-    <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
-    <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
-    <hr>
+        <p>Fornecedor: {{$fornecedores[$i]['nome']}}</p>
+        <p>Status: {{$fornecedores[$i]['status']}}</p>
+        <p>CNPJ: {{$fornecedores[$i]['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedores[$i]['ddd'] ?? ''}} {{$fornecedores[$i]['telefone'] ?? ''}}</p>
+        <hr>
     @endfor
+@endisset
 ```
 
 - 55 Blade - @while

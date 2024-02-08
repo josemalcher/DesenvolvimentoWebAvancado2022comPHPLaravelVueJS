@@ -1,5 +1,7 @@
 @extends('site.layouts.basico')
 
+@section('title', $titulo)
+
 @section('conteudo')
     <div class="topo">
 

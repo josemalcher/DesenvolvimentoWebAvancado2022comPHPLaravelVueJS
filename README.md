@@ -845,14 +845,14 @@ $ sail php artisan migrate
   2024_02_09_183551_create_fornecedores_table .................... 21ms DONE
   2024_02_09_184116_alter_fornecedores_novas_colunas ............. 20ms DONE
 
-
 ```
 
 - 85 Migration - Modificadores Nullable e Default
 
 ```
-$ php artisan make:migration create_produtos_table
-Created Migration: 2022_07_07_185435_create_produtos_table
+$ sail php artisan make:migration create_produtos_table     
+
+   INFO  Migration [database/migrations/2024_02_09_185644_create_produtos_table.php] created successfully.
 
 ```
 
@@ -874,6 +874,15 @@ class CreateProdutosTable extends Migration
             $table->timestamps();
         });
     }
+```
+
+```
+$ sail php artisan migrate                             
+
+   INFO  Running migrations.
+
+  2024_02_09_185644_create_produtos_table .......................... 28ms DONE
+
 ```
 
 - 86 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)

@@ -11,7 +11,11 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                @component('site.layouts._components.form_contato')
+                @component('site.layouts._components.form_contato', ['classe'=>'borda-preta'])
+
+                    <p>A nossa equipe vai analisar sua mensagem</p>
+                    <p>Tempo de resposta 48h</p>
+
                 @endcomponent
             </div>
         </div>

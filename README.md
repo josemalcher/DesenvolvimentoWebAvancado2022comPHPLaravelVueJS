@@ -729,13 +729,19 @@ $ sail php artisan migrate
 - 82 Migration - Criando e executando a migration fornecedores
 
 ```bash
-$ php artisan make:model Fornecedor 
-Model created successfully.
+$ sail php artisan make:model Fornecedor                   
+
+   INFO  Model [app/Models/Fornecedor.php] created successfully.  
+
+
 ```
 
 ```bash
-$ php artisan make:migration create_fornecedores_table
-Created Migration: 2022_07_07_181055_create_fornecedores_table
+$ sail php artisan make:migration create_fornecedores_table
+
+   INFO  Migration [database/migrations/2024_02_09_183551_create_fornecedores_table.php] created successfully.
+
+
 ```
 
 ```php
@@ -752,9 +758,13 @@ class CreateFornecedoresTable extends Migration
 ```
 
 ```bash
-$ php artisan migrate
-Migrating: 2022_07_07_181055_create_fornecedores_table
-Migrated:  2022_07_07_181055_create_fornecedores_table (0.02 seconds)
+$ sail php artisan migrate                                                    
+
+   INFO  Running migrations.
+
+  2024_02_09_183551_create_fornecedores_table ............. 29ms DONE
+
+
 ```
 
 - 83 Migration - Adicionando campos a uma tabela

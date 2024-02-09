@@ -647,9 +647,12 @@ class FornecedorController extends Controller
 - 72 Criando o Model SiteContato
 
 ```
-$ php artisan make:model SiteContato -m
-Model created successfully.
-Created Migration: 2022_07_07_131143_create_site_contatos_table
+$ sail php artisan make:model SiteContato -m      
+
+   INFO  Model [app/Models/SiteContato.php] created successfully.
+
+   INFO  Migration [database/migrations/2024_02_09_171601_create_site_contatos_table.php] created successfully.
+
 
 ```
 
@@ -672,7 +675,7 @@ class CreateSiteContatosTable extends Migration
     }
 ```
 
-- 72 Dica - Resolvendo problema do php artisan migrate
+- 74 Dica - Resolvendo problema do php artisan migrate
 
 ```
 Dica importante para próxima aula enviada pelo João Vitor Moraski. A dica se aplica a você caso você esteja utilizando o sistema operacional Linux na distro Ubuntu 20.04:
@@ -688,38 +691,42 @@ sudo apt install php7.4-sqlite3 <- comando para instalar a extensão certa
 Vlw João Moraski.
 ```
 
-- 73 Configurando o BD SQLite e executando as migrations
+- 75 Configurando o BD SQLite e executando as migrations
 
 ```env
 DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
+DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=laravelcursolaravel2022
-DB_USERNAME=root
-DB_PASSWORD=
+DB_DATABASE=app2_super_gestao
+DB_USERNAME=sail
+DB_PASSWORD=password
 ```
 
 ```bash
-$ php artisan migrate
-Migration table created successfully.
-Migrating: 2014_10_12_000000_create_users_table
-Migrated:  2014_10_12_000000_create_users_table (0.03 seconds)
-Migrating: 2014_10_12_100000_create_password_resets_table
-Migrated:  2014_10_12_100000_create_password_resets_table (0.03 seconds)
-Migrating: 2019_08_19_000000_create_failed_jobs_table
-Migrated:  2019_08_19_000000_create_failed_jobs_table (0.02 seconds)
-Migrating: 2022_07_07_131143_create_site_contatos_table
-Migrated:  2022_07_07_131143_create_site_contatos_table (0.02 seconds)
+$ sail php artisan migrate                  
+
+   INFO  Preparing database.
+
+  Creating migration table ........................... 39ms DONE
+
+   INFO  Running migrations.  
+
+  2014_10_12_000000_create_users_table ............................................ 44ms DONE
+  2014_10_12_100000_create_password_reset_tokens_table ............................ 20ms DONE
+  2019_08_19_000000_create_failed_jobs_table ...................................... 41ms DONE
+  2019_12_14_000001_create_personal_access_tokens_table ........................... 68ms DONE
+  2024_02_09_171601_create_site_contatos_table .................................... 24ms DONE
+
 
 ```
 
-- 74 [WINDOWS] SGBD MySQL - Download e Instalação
-- 75 [LINUX] SGBD MySQL - Download e Instalação
-- 76 [OSX] SGBD MySQL - Download e Instalação
-- 77 Conectando-se ao SGBD MySQL via MySQL Workbench
-- 78 Criando a base de dados da aplicação e configurando a conexão (.env)
-- 79 Migration - Executando as migrações
-- 80 Migration - Criando e executando a migration fornecedores
+- 76 [WINDOWS] SGBD MySQL - Download e Instalação
+- 77 [LINUX] SGBD MySQL - Download e Instalação
+- 78 [OSX] SGBD MySQL - Download e Instalação
+- 79 Conectando-se ao SGBD MySQL via MySQL Workbench
+- 80 Criando a base de dados da aplicação e configurando a conexão (.env)
+- 81 Migration - Executando as migrações
+- 82 Migration - Criando e executando a migration fornecedores
 
 ```bash
 $ php artisan make:model Fornecedor 
@@ -750,7 +757,7 @@ Migrating: 2022_07_07_181055_create_fornecedores_table
 Migrated:  2022_07_07_181055_create_fornecedores_table (0.02 seconds)
 ```
 
-- 81 Migration - Adicionando campos a uma tabela
+- 83 Migration - Adicionando campos a uma tabela
 
 ```php
 class AlterFornecedoresNovasColunas extends Migration
@@ -771,7 +778,7 @@ Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.03 seconds)
 
 ```
 
-- 82 Migration - Métodos up e down
+- 84 Migration - Métodos up e down
 
 ```
 Up   - php artisan migrade - Mais antiga para a mais atual
@@ -792,7 +799,7 @@ Rolled back:  2022_07_07_181055_create_fornecedores_table (0.01 seconds)
 
 ````
 
-- 83 Migration - Modificadores Nullable e Default
+- 85 Migration - Modificadores Nullable e Default
 
 ```
 $ php artisan make:migration create_produtos_table
@@ -820,7 +827,7 @@ class CreateProdutosTable extends Migration
     }
 ```
 
-- 84 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
+- 86 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
 
 ```
 $ php artisan make:migration create_produto_detalhes_table
@@ -858,7 +865,7 @@ Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.06 seconds)
 
 ```
 
-- 85 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
+- 87 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
 
 ```php
 class CreateUnidadesTable extends Migration
@@ -906,7 +913,7 @@ class CreateUnidadesTable extends Migration
     }
 ```
 
-- 86 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
+- 88 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
 
 ```
 $ php artisan make:migration ajuste_produtos_filiais
@@ -964,7 +971,7 @@ class AjusteProdutosFiliais extends Migration
 }
 ```
 
-- 87 Migration - Modificador After
+- 89 Migration - Modificador After
 
 ```
 $ php artisan make:migration after_fornecedores_nova_coluna_site_com_after
@@ -998,7 +1005,7 @@ Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.04
 
 ```
 
-- 88 Migration - Comandos Status, Reset, Refresh e Fresh
+- 90 Migration - Comandos Status, Reset, Refresh e Fresh
 
 ```
 $ php artisan migrate:status
@@ -1040,9 +1047,9 @@ php artisan migrate:fresh
 
 ```
 
-- 89 Entendendo o Eloquent ORM
-- 90 Tinker - Introdução
-- 91 Eloquent - Inserindo registros
+- 91 Entendendo o Eloquent ORM
+- 92 Tinker - Introdução
+- 93 Eloquent - Inserindo registros
 
 ```
 >>> $contato = new \App\SiteContato();                                                                                                                                                                                  
@@ -1079,7 +1086,7 @@ Array
 
 ```
 
-- 92 Eloquent - Ajustando o nome da tabela no Model para um correto ORM
+- 94 Eloquent - Ajustando o nome da tabela no Model para um correto ORM
 
 ```php
 // fornecedors
@@ -1121,7 +1128,7 @@ Array
 
 ```
 
-- 93 Eloquent - Inserindo registros com Create e Fillable
+- 95 Eloquent - Inserindo registros com Create e Fillable
 
 ```php
 class Fornecedor extends Model
@@ -1148,7 +1155,7 @@ class Fornecedor extends Model
 
 ```
 
-- 94 Eloquent - Selecionando registros com all()
+- 96 Eloquent - Selecionando registros com all()
 
 ```
 >>> use \App\Fornecedor;                                                                                                                                                                                                
@@ -1209,7 +1216,7 @@ Array
 
 ```
 
-- 95 Eloquent - Selecionando registros com find()
+- 97 Eloquent - Selecionando registros com find()
 
 ```
 >>> use \App\Fornecedor;                                                                                                                                                                                                
@@ -1251,7 +1258,7 @@ Array
 
 ```
 
-- 96 Eloquent - Selecionando registros com where()
+- 98 Eloquent - Selecionando registros com where()
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1314,7 +1321,7 @@ Array
 
 ```
 
-- 97 Eloquent - Selecionando registros com whereIn() e whereNotIn()
+- 99 Eloquent - Selecionando registros com whereIn() e whereNotIn()
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1367,7 +1374,7 @@ Array
 
 ```
 
-- 98 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
+- 100 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1404,7 +1411,7 @@ Array
 
 ```
 
-- 99 Eloquent - Selecionando registros com dois ou mais Wheres
+- 101 Eloquent - Selecionando registros com dois ou mais Wheres
 
 ```
 >>> $contatos = SiteContato::where('nome', '<>', 'Fernando')->whereIn('motivo_contato', [1,2])->whereBetween('created_at', ['2022-07-08 00:00:00', '2020-07-08 00:00:00'])->get();                                      
@@ -1414,7 +1421,7 @@ Array
 
 ```
 
-- 100 Eloquent - Selecionando registros com orWhere()
+- 102 Eloquent - Selecionando registros com orWhere()
 
 ```
 >>> $contatos = SiteContato::where('nome', '<>', 'Fernando')->orWhereIn('motivo_contato', [1,2])->orWhereBetween('created_at', ['2022-07-08 00:00:00', '2020-07-08 00:00:00'])->get();                                  
@@ -1433,7 +1440,7 @@ Array
 // ....
 ```
 
-- 101 Eloquent - Selecionando registros com whereNull() e whereNotNull()
+- 103 Eloquent - Selecionando registros com whereNull() e whereNotNull()
 
 ```
 >>> $contatos = SiteContato::whereNull('updated_at')->get();                                                                                                                                                            
@@ -1472,7 +1479,7 @@ Array
 
 ```
 
-- 102 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
+- 104 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
 
 ```
 >>> $contatos = SiteContato::whereDate('created_at', '2022-07-08')->get()                                                                                                                                               
@@ -1570,7 +1577,7 @@ Array
 
 ```
 
-- 103 Eloquent - Selecionando registros com whereColumn()
+- 105 Eloquent - Selecionando registros com whereColumn()
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1600,7 +1607,7 @@ b
 
 ```
 
-- 104 Eloquent - Selecionando registros aplicando precedência em operações lógicas
+- 106 Eloquent - Selecionando registros aplicando precedência em operações lógicas
 
 ```
 >>> $contatos = SiteContato::where(function($query){$query->where('nome', 'Jorge')->orWhere('nome', 'Ana');})
@@ -1613,7 +1620,7 @@ b
 
 ```
 
-- 105 Eloquent - Ordenando registros
+- 107 Eloquent - Ordenando registros
 
 ```
 >>> use \App\SiteContato;       
@@ -1665,8 +1672,8 @@ b
 // .....
 ```
 
-- 106 Eloquent - Introdução as Collections
-- 107 Eloquent - Collection first, last e reverse
+- 108 Eloquent - Introdução as Collections
+- 109 Eloquent - Collection first, last e reverse
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1730,7 +1737,7 @@ b
 // .....
 ```
 
-- 108 Eloquent - Collection toArray e toJson
+- 110 Eloquent - Collection toArray e toJson
 
 ```
 >>> SiteContato::all()->toArray();                                                                                                                                                                                      
@@ -1756,7 +1763,7 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
  // .....
 ```
 
-- 109 Eloquent - Collection pluck
+- 111 Eloquent - Collection pluck
 
 ```
 >>> SiteContato::all()->pluck('email');                                                                                                                                                                                 
@@ -1799,11 +1806,11 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 ```
 
-- 110 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
+- 112 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 
   - [https://laravel.com/docs/7.x/collections](https://laravel.com/docs/7.x/collections)
 
-- 111 Eloquent - Atualizando registros (save)
+- 113 Eloquent - Atualizando registros (save)
 
 ```
 >>> use \App\Fornecedor;
@@ -1845,7 +1852,7 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 ```
 
-- 112 Eloquent - Atualizando registros (fill e save)
+- 114 Eloquent - Atualizando registros (fill e save)
 
 ```
 >>> $fornecedor2 = Fornecedor::find(2);                                                                                                                                                                                 
@@ -1884,7 +1891,7 @@ class Fornecedor extends Model
 }
 ```
 
-- 113 Eloquent - Atualizando registros (where e update)
+- 115 Eloquent - Atualizando registros (where e update)
 
 ```
 >>> Fornecedor::whereIn('id', [1,2])->get();                                                                                                                                                                            
@@ -1916,7 +1923,7 @@ class Fornecedor extends Model
 
 ```
 
-- 114 Eloquent - Deletando registros (delete e destroy)
+- 116 Eloquent - Deletando registros (delete e destroy)
 
 ```
 >>> use \App\SiteContato;                                                                                                                                                                                               
@@ -1950,7 +1957,7 @@ class Fornecedor extends Model
 
 ```
 
-- 115 Eloquent - Deletando registros com SoftDelete
+- 117 Eloquent - Deletando registros com SoftDelete
 
 ```php
 <?php
@@ -2018,7 +2025,7 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 >>> $fornecedor->forceDelete();  // força o delete, apagar o registro
 ```
 
-- 116 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
+- 118 Eloquent - Selecionando e restaurando registros deletados com SoftDelete
 
 ```
 >>> Fornecedor::withTrashed()->get();                                                                                                                                                                                   
@@ -2112,7 +2119,7 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 
 ```
 
-- 117 Seeders parte 1
+- 119 Seeders parte 1
 
 ```
 $ php artisan migrate:fresh
@@ -2201,7 +2208,7 @@ Database seeding completed successfully.
 
 ```
 
-- 118 Seeders parte 2
+- 120 Seeders parte 2
 
 ```
 $ php artisan make:seeder SiteContatoSeeder
@@ -2231,7 +2238,7 @@ Database seeding completed successfully.
 
 ```
 
-- 119 Factories (semeando tabelas em massa com a dependência Faker)
+- 121 Factories (semeando tabelas em massa com a dependência Faker)
 
 ```
 $ php artisan make:factory SiteContatoFactory --model=SiteContato
@@ -2273,8 +2280,8 @@ Database seeding completed successfully.
 
 ## <a name="parte9">9 - Trabalhando com formulários</a>
 
-- 120 Entendendo o objeto Request
-- 121 Gravando os dados do formulário no banco de dados
+- 122 Entendendo o objeto Request
+- 123 Gravando os dados do formulário no banco de dados
 
 ```php
 class SiteContato extends Model
@@ -2319,8 +2326,8 @@ class ContatoController extends Controller
 
 ```
 
-- 122 Validação de campos obrigatórios (required)
-- 123 Validação de quantidades mínimas e máximas de caracteres (min e max)
+- 124 Validação de campos obrigatórios (required)
+- 125 Validação de quantidades mínimas e máximas de caracteres (min e max)
 
 ```php
 class ContatoController extends Controller
@@ -2340,8 +2347,8 @@ class ContatoController extends Controller
 }
 ```
 
-- 124 Repopulando o formulário (Request Old Input) parte 1
-- 125 Repopulando o formulário (Request Old Input) parte 2
+- 126 Repopulando o formulário (Request Old Input) parte 1
+- 127 Repopulando o formulário (Request Old Input) parte 2
 
 ```php
 {{ $slot }}
@@ -2376,8 +2383,8 @@ class ContatoController extends Controller
 
 ```
 
-- 126 Ajustando o formulário de contato na rota principal
-- 127 Refactoring do projeto Super Gestão parte 1
+- 128 Ajustando o formulário de contato na rota principal
+- 129 Refactoring do projeto Super Gestão parte 1
 
 ```
 $ php artisan make:model MotivoContato -m
@@ -2465,7 +2472,7 @@ class ContatoController extends Controller
     </select>
 ```
 
-- 128 Refactoring do projeto Super Gestão parte 2
+- 130 Refactoring do projeto Super Gestão parte 2
 
 ```
 $ php artisan make:migration alter_table_site_contatos_add_fk_motivo_contatos
@@ -2518,9 +2525,9 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
 
 ```
 
-- 129 Validação de campos e-mail
-- 130 Persistindo dados e redirecionando a rota
-- 131 Validação de campos únicos (unique)
+- 131 Validação de campos e-mail
+- 132 Persistindo dados e redirecionando a rota
+- 133 Validação de campos únicos (unique)
 
 ```php
  public function salvar(Request $request)
@@ -2538,7 +2545,7 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
     }
 ```
 
-- 132 Customizando a apresentação dos erros de validação parte 1
+- 134 Customizando a apresentação dos erros de validação parte 1
 
 ```php
 @if($errors->any())
@@ -2550,7 +2557,7 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
 @endif
 ```
 
-- 133 Customizando a apresentação dos erros de validação parte 2
+- 135 Customizando a apresentação dos erros de validação parte 2
 
 ```php
 {{ $slot }}
@@ -2597,7 +2604,7 @@ Migrated:  2022_07_12_214547_alter_table_site_contatos_add_fk_motivo_contatos (0
 
 ```
 
-- 134 Customizando as mensagens de feedback de validação
+- 136 Customizando as mensagens de feedback de validação
 
 ```php
 public function salvar(Request $request)

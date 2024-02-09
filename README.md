@@ -769,22 +769,44 @@ $ sail php artisan migrate
 
 - 83 Migration - Adicionando campos a uma tabela
 
+```
+$ sail php artisan make:migration alter_fornecedores_novas_colunas                
+
+   INFO  Migration [database/migrations/2024_02_09_184116_alter_fornecedores_novas_colunas.php] created successfully.
+
+
+
+```
+
 ```php
-class AlterFornecedoresNovasColunas extends Migration
-{
-    public function up()
+    public function up(): void
     {
         Schema::table('fornecedores', function (Blueprint $table) {
             $table->string('uf', 2);
             $table->string('email', 150);
         });
     }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->dropColumn('uf');
+            $table->dropColumn('email');
+        });
+    }
 ```
 
 ```
-$ php artisan migrate
-Migrating: 2022_07_07_181950_alter_fornecedores_novas_colunas
-Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.03 seconds)
+$ sail php artisan migrate                                                           
+
+   INFO  Running migrations.
+
+  2024_02_09_184116_alter_fornecedores_novas_colunas ................ 18ms DONE
+
+
 
 ```
 
@@ -796,18 +818,35 @@ DOWN - php artisan migrade:rollback - da mais atual para a mais antiga
 ```
 
 ```
-$ php artisan migrate:rollback
-Rolling back: 2022_07_07_181950_alter_fornecedores_novas_colunas
+$ sail php artisan migrate:rollback                   
+
+   INFO  Rolling back migrations.
+
+  2024_02_09_184116_alter_fornecedores_novas_colunas .................... 38ms DONE
+
 ```
 
-````
-$ php artisan migrate:rollback --step=2
-Rolling back: 2022_07_07_181950_alter_fornecedores_novas_colunas
-Rolled back:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.01 seconds)
-Rolling back: 2022_07_07_181055_create_fornecedores_table
-Rolled back:  2022_07_07_181055_create_fornecedores_table (0.01 seconds)
+```
+$ sail php artisan migrate:rollback --step=2                            
 
-````
+   INFO  Rolling back migrations.
+
+  2024_02_09_183551_create_fornecedores_table .............. 19ms DONE
+  2024_02_09_171601_create_site_contatos_table ............. 13ms DONE
+
+```
+
+```
+$ sail php artisan migrate                                        
+
+   INFO  Running migrations.
+
+  2024_02_09_171601_create_site_contatos_table ................... 27ms DONE
+  2024_02_09_183551_create_fornecedores_table .................... 21ms DONE
+  2024_02_09_184116_alter_fornecedores_novas_colunas ............. 20ms DONE
+
+
+```
 
 - 85 Migration - Modificadores Nullable e Default
 

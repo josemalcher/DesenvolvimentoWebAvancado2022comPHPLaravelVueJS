@@ -888,8 +888,10 @@ $ sail php artisan migrate
 - 86 Migration - Adicionando chaves estrangeiras (Relacionamento um para um)
 
 ```
-$ php artisan make:migration create_produto_detalhes_table
-Created Migration: 2022_07_07_190957_create_produto_detalhes_table
+$ sail php artisan make:migration create_produto_detalhes_table     
+
+   INFO  Migration [database/migrations/2024_02_10_213602_create_produto_detalhes_table.php] created successfully.
+
 
 ```
 
@@ -917,9 +919,13 @@ class CreateProdutoDetalhesTable extends Migration
 ```
 
 ```
-$ php artisan migrate
-Migrating: 2022_07_07_190957_create_produto_detalhes_table
-Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.06 seconds)
+$ sail php artisan migrate
+
+   INFO  Running migrations.
+
+  2024_02_10_213602_create_produto_detalhes_table ..................... 99ms DONE
+
+
 
 ```
 

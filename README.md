@@ -1154,37 +1154,43 @@ php artisan migrate:fresh
 - 93 Eloquent - Inserindo registros
 
 ```
->>> $contato = new \App\SiteContato();                                                                                                                                                                                  
-=> App\SiteContato {#3420}
+$ sail php artisan tinker
+Psy Shell v0.12.0 (PHP 8.3.2-1+ubuntu22.04.1+deb.sury.org+1 — cli) by Justin Hileman
+>
 
->>> $contato->nome = 'Jose';                                                                                                                                                                                            
-=> "Jose"
 
->>> $contato->telefone = '(91) 0000-1111';                                                                                                                                                                              
-=> "(91) 0000-1111"
+> $contato = new App\Models\SiteContato();
+= App\Models\SiteContato {#5000}
 
->>> $contato->email = 'jose@josemalcher.net';                                                                                                                                                                           
-=> "jose@josemalcher.net"
+> $contato->nome = 'Jose';
+= "Jose"
 
->>> $contato->motivo_contato = 1;                                                                                                                                                                                       
-=> 1
+> $contato->telefone = '(91) 0000-1111';
+= "(91) 0000-1111"
 
->>> $contato->mensagem = 'Gostaria de mais informações';                                                                                                                                                                
-=> "Gostaria de mais informações"
+> $contato->email = 'jose@josemalcher.net';
+= "jose@josemalcher.net"
 
->>> print_r($contato->getAttributes());                                                                                                                                                                                 
+> $contato->motivo_contato = 1;
+= 1
+
+> $contato->mensagem = 'Gostaria de mais informações';
+= "Gostaria de mais informa<C3><A7><C3><B5>es"
+
+> print_r($contato->getAttributes());
 Array
 (
     [nome] => Jose
     [telefone] => (91) 0000-1111
     [email] => jose@josemalcher.net
     [motivo_contato] => 1
-    [mensagem] => Gostaria de mais informações
+    [mensagem] => Gostaria de mais informa<C3><A7><C3><B5>es
 )
-=> true
+= true
 
->>> $contato->save();                                                                                                                                                                                                   
-=> true
+> $contato->save();
+= true
+
 
 ```
 

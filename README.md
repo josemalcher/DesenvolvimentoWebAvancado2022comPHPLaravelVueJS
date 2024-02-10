@@ -1000,8 +1000,10 @@ $ sail php artisan migrate
 - 88 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
 
 ```
-$ php artisan make:migration ajuste_produtos_filiais
-Created Migration: 2022_07_08_144404_ajuste_produtos_filiais
+$ sail php artisan make:migration ajuste_produtos_filiais                   
+
+   INFO  Migration [database/migrations/2024_02_10_222309_ajuste_produtos_filiais.php] created successfully.
+
 
 ```
 
@@ -1053,6 +1055,16 @@ class AjusteProdutosFiliais extends Migration
         Schema::dropIfExists('filiais');
     }
 }
+```
+
+```
+$ sail php artisan migrate                               
+
+   INFO  Running migrations.
+
+  2024_02_10_222309_ajuste_produtos_filiais ......................... 159ms DONE
+
+
 ```
 
 - 89 Migration - Modificador After

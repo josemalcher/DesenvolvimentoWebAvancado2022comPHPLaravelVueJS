@@ -1070,8 +1070,10 @@ $ sail php artisan migrate
 - 89 Migration - Modificador After
 
 ```
-$ php artisan make:migration after_fornecedores_nova_coluna_site_com_after
-Created Migration: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
+$ sail php artisan make:migration after_fornecedores_nova_coluna_site_com_after                   
+
+   INFO  Migration [database/migrations/2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after.php] created successfully.
+
 
 ```
 
@@ -1095,31 +1097,35 @@ class AfterFornecedoresNovaColunaSiteComAfter extends Migration
 ```
 
 ```
-$ php artisan migrate
-Migrating: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
-Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.04 seconds)
+$ sail php artisan migrate                                                     
+
+   INFO  Running migrations.
+
+  2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after ............... 24ms DONE
+
+
 
 ```
 
 - 90 Migration - Comandos Status, Reset, Refresh e Fresh
 
 ```
-$ php artisan migrate:status
-+------+-----------------------------------------------------------------+-------+
-| Ran? | Migration                                                       | Batch |
-+------+-----------------------------------------------------------------+-------+
-| Yes  | 2014_10_12_000000_create_users_table                            | 1     |
-| Yes  | 2014_10_12_100000_create_password_resets_table                  | 1     |
-| Yes  | 2019_08_19_000000_create_failed_jobs_table                      | 1     |
-| Yes  | 2022_07_07_131143_create_site_contatos_table                    | 1     |
-| Yes  | 2022_07_07_181055_create_fornecedores_table                     | 2     |
-| Yes  | 2022_07_07_181950_alter_fornecedores_novas_colunas              | 2     |
-| Yes  | 2022_07_07_185435_create_produtos_table                         | 3     |
-| Yes  | 2022_07_07_190957_create_produto_detalhes_table                 | 4     |
-| Yes  | 2022_07_07_194454_create_unidades_table                         | 4     |
-| Yes  | 2022_07_08_144404_ajuste_produtos_filiais                       | 4     |
-| Yes  | 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after | 5     |
-+------+-----------------------------------------------------------------+-------+
+$ sail php artisan migrate:status                   
+
+  Migration name ..................................................... Batch / Status
+  2014_10_12_000000_create_users_table ...................................... [1] Ran
+  2014_10_12_100000_create_password_reset_tokens_table ...................... [1] Ran
+  2019_08_19_000000_create_failed_jobs_table ................................ [1] Ran
+  2019_12_14_000001_create_personal_access_tokens_table ..................... [1] Ran
+  2024_02_09_171601_create_site_contatos_table .............................. [2] Ran
+  2024_02_09_183551_create_fornecedores_table ............................... [2] Ran
+  2024_02_09_184116_alter_fornecedores_novas_colunas ........................ [2] Ran
+  2024_02_09_185644_create_produtos_table ................................... [3] Ran
+  2024_02_10_213602_create_produto_detalhes_table ........................... [4] Ran
+  2024_02_10_220655_create_unidades_table ................................... [5] Ran
+  2024_02_10_222309_ajuste_produtos_filiais ................................. [6] Ran
+  2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after ........... [7] Ran
+
 
 ```
 

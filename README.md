@@ -931,6 +931,15 @@ $ sail php artisan migrate
 
 - 87 Migration - Adicionando chaves estrangeiras (Relacionamento um para muitos)
 
+```
+$ sail php artisan make:migration create_unidades_table        
+
+   INFO  Migration [database/migrations/2024_02_10_220655_create_unidades_table.php] created successfully.
+
+
+```
+
+
 ```php
 class CreateUnidadesTable extends Migration
 {
@@ -976,6 +985,17 @@ class CreateUnidadesTable extends Migration
         Schema::dropIfExists('unidades');
     }
 ```
+
+```
+$ sail php artisan migrate                             
+
+   INFO  Running migrations.
+
+  2024_02_10_220655_create_unidades_table ........... 151ms DONE
+
+
+```
+
 
 - 88 Migration - Adicionando chaves estrangeiras (Relacionamento muitos para muitos)
 

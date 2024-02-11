@@ -1988,30 +1988,32 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 - 114 Eloquent - Atualizando registros (fill e save)
 
 ```
->>> $fornecedor2 = Fornecedor::find(2);                                                                                                                                                                                 
-=> App\Fornecedor {#4364
-     id: 2,
-     nome: "Fornecedor Fill",
-     site: "www.teste.com",
-     created_at: "2022-07-08 21:16:28",
-     updated_at: "2022-07-08 21:16:28",
-     uf: "SP",
-     email: "teste@teste.com",
-   }
+> $fornecedor2 = Fornecedor::find(2);
+= App\Models\Fornecedor {#6434
+    id: 2,
+    nome: "Fornecedor Fill",
+    site: "www.teste.com",
+    created_at: "2024-02-10 23:55:25",
+    updated_at: "2024-02-10 23:55:25",
+    uf: "SP",
+    email: "teste@teste.com",
+  }
 
->>> $fornecedor2->fill(['nome'=> 'FORNECEDOR 321', 'site' => 'www.fornece312.com']);                                                                                                                                    
-=> App\Fornecedor {#4364
-     id: 2,
-     nome: "FORNECEDOR 321",
-     site: "www.fornece312.com",
-     created_at: "2022-07-08 21:16:28",
-     updated_at: "2022-07-08 21:16:28",
-     uf: "SP",
-     email: "teste@teste.com",
-   }
 
->>> $fornecedor2->save();                                                                                                                                                                                               
-=> true
+> $fornecedor2->fill(['nome'=> 'FORNECEDOR 321', 'site' => 'www.fornece312.com']);
+= App\Models\Fornecedor {#6434
+    id: 2,
+    nome: "FORNECEDOR 321",
+    site: "www.fornece312.com",
+    created_at: "2024-02-10 23:55:25",
+    updated_at: "2024-02-10 23:55:25",
+    uf: "SP",
+    email: "teste@teste.com",
+  }
+
+> $fornecedor2->save();
+= true
+
 
 ```
 
@@ -2027,29 +2029,31 @@ class Fornecedor extends Model
 - 115 Eloquent - Atualizando registros (where e update)
 
 ```
->>> Fornecedor::whereIn('id', [1,2])->get();                                                                                                                                                                            
-=> Illuminate\Database\Eloquent\Collection {#4361
-     all: [
-       App\Fornecedor {#4390
-         id: 1,
-         nome: "Fornecedor 123",
-         site: "www.fornecedor123.com",
-         created_at: "2022-07-08 21:10:52",
-         updated_at: "2022-07-11 00:55:31",
-         uf: "PA",
-         email: "fornecedor123@fornecedor123.com",
-       },
-       App\Fornecedor {#3416
-         id: 2,
-         nome: "FORNECEDOR 321",
-         site: "www.fornece312.com",
-         created_at: "2022-07-08 21:16:28",
-         updated_at: "2022-07-11 01:07:26",
-         uf: "SP",
-         email: "teste@teste.com",
-       },
-     ],
-   }
+> Fornecedor::whereIn('id', [1,2])->get();
+= Illuminate\Database\Eloquent\Collection {#6037
+    all: [
+      App\Models\Fornecedor {#6473
+        id: 1,
+        nome: "Fornecedor 123",
+        site: "www.fornecedor123.com",
+        created_at: "2024-02-10 23:46:01",
+        updated_at: "2024-02-11 02:22:19",
+        uf: "PA",
+        email: "fornecedor123@fornecedor123.com",
+      },
+      App\Models\Fornecedor {#6475
+        id: 2,
+        nome: "FORNECEDOR 321",
+        site: "www.fornece312.com",
+        created_at: "2024-02-10 23:55:25",
+        updated_at: "2024-02-11 02:30:01",
+        uf: "SP",
+        email: "teste@teste.com",
+      },
+    ],
+  }
+
+
 
 >>> Fornecedor::whereIn('id', [1,2])->update(['nome'=> 'FORNECEDOR TESTE', 'site'=> 'www.teste.com.br']);                                                                                                               
 => 2
@@ -2059,22 +2063,26 @@ class Fornecedor extends Model
 - 116 Eloquent - Deletando registros (delete e destroy)
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
 
->>> $contato = SiteContato::find(4);                                                                                                                                                                                    
-=> App\SiteContato {#4209
-     id: 4,
-     created_at: null,
-     updated_at: null,
-     nome: "Fernando",
-     telefone: "(11) 94444-5555",
-     email: "fernando@contato.com.br",
-     motivo_contato: 1,
-     mensagem: "Como consigo criar multiplos usuários para minha empresa?",
-   }
+> $contato = SiteContato::find(4);
+= App\Models\SiteContato {#6040
+    id: 4,
+    nome: "Rosa",
+    telefone: "(33) 92222-3333",
+    email: "rosa@contato.com.br",
+    motivo_contato: 1,
+    mensagem: "Quando custa essa aplica<C3><A7><C3><A3>o?",
+    created_at: null,
+    updated_at: null,
+  }
 
->>> $contato->delete();                                                                                                                                                                                                 
-=> true
+
+> $contato->delete();
+= true
+
+> $contato = SiteContato::find(4);
+= null
 
 ```
 
@@ -2082,11 +2090,17 @@ class Fornecedor extends Model
 >>> SiteContato::where('id', 7)->delete();                                                                                                                                                                              
 => 1
 
+> $contato = SiteContato::find(7);
+= null
+
 ```
 
 ```
->>> SiteContato::destroy(5);                                                                                                                                                                                            
-=> 1
+> SiteContato::destroy(5);
+= 1
+
+> $contato = SiteContato::find(5);
+= null
 
 ```
 
@@ -2111,8 +2125,10 @@ class Fornecedor extends Model
 ```
 
 ```
-$ php artisan make:migration alter_fornecedores_nova_coluna_softdelete
-Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
+$ sail php artisan make:migration alter_fornecedores_nova_coluna_softdelete
+
+   INFO  Migration [database/migrations/2024_02_11_030531_alter_fornecedores_nova_coluna_softdelete.php] created successfully.
+
 
 ```
 
@@ -2132,7 +2148,7 @@ Created Migration: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
 ```
 
 ```
->>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> use \App\Models\Fornecedor;                                                                                                                                                                                                
 >>> $fornecedor = Fornecedor::find(2)                                                                                                                                                                                   
 => App\Fornecedor {#3442
      id: 2,

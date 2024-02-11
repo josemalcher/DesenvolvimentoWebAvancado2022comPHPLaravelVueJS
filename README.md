@@ -2287,38 +2287,39 @@ $ sail php artisan make:migration alter_fornecedores_nova_coluna_softdelete
 - 119 Seeders parte 1
 
 ```
-$ php artisan migrate:fresh
-Dropped all tables successfully.
-Migration table created successfully.
-Migrating: 2014_10_12_000000_create_users_table
-Migrated:  2014_10_12_000000_create_users_table (0.03 seconds)
-Migrating: 2014_10_12_100000_create_password_resets_table
-Migrated:  2014_10_12_100000_create_password_resets_table (0.02 seconds)
-Migrating: 2019_08_19_000000_create_failed_jobs_table
-Migrated:  2019_08_19_000000_create_failed_jobs_table (0.01 seconds)
-Migrating: 2022_07_07_131143_create_site_contatos_table
-Migrated:  2022_07_07_131143_create_site_contatos_table (0.01 seconds)
-Migrating: 2022_07_07_181055_create_fornecedores_table
-Migrated:  2022_07_07_181055_create_fornecedores_table (0.01 seconds)
-Migrating: 2022_07_07_181950_alter_fornecedores_novas_colunas
-Migrated:  2022_07_07_181950_alter_fornecedores_novas_colunas (0.02 seconds)
-Migrating: 2022_07_07_185435_create_produtos_table
-Migrated:  2022_07_07_185435_create_produtos_table (0.01 seconds)
-Migrating: 2022_07_07_190957_create_produto_detalhes_table
-Migrated:  2022_07_07_190957_create_produto_detalhes_table (0.05 seconds)
-Migrating: 2022_07_07_194454_create_unidades_table
-Migrated:  2022_07_07_194454_create_unidades_table (0.11 seconds)
-Migrating: 2022_07_08_144404_ajuste_produtos_filiais
-Migrated:  2022_07_08_144404_ajuste_produtos_filiais (0.11 seconds)
-Migrating: 2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after
-Migrated:  2022_07_08_193649_after_fornecedores_nova_coluna_site_com_after (0.02 seconds)
-Migrating: 2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete
-Migrated:  2022_07_11_145643_alter_fornecedores_nova_coluna_softdelete (0.02 seconds)
+$ sail php artisan migrate:fresh
+
+  Dropping all tables ..................................... 156ms DONE
+
+   INFO  Preparing database.
+
+  Creating migration table ............................................ 23ms DONE
+
+   INFO  Running migrations.  
+
+  2014_10_12_000000_create_users_table ........................................... 48ms DONE
+  2014_10_12_100000_create_password_reset_tokens_table ........................ 25ms DONE
+  2019_08_19_000000_create_failed_jobs_table .................................. 35ms DONE
+  2019_12_14_000001_create_personal_access_tokens_table ....................... 65ms DONE
+  2024_02_09_171601_create_site_contatos_table ................................ 23ms DONE
+  2024_02_09_183551_create_fornecedores_table ................................. 23ms DONE
+  2024_02_09_184116_alter_fornecedores_novas_colunas .......................... 13ms DONE
+  2024_02_09_185644_create_produtos_table ..................................... 21ms DONE
+  2024_02_10_213602_create_produto_detalhes_table ............................. 92ms DONE
+  2024_02_10_220655_create_unidades_table .................................... 197ms DONE
+  2024_02_10_222309_ajuste_produtos_filiais .................................. 160ms DONE
+  2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after ............. 15ms DONE
+  2024_02_11_030531_alter_fornecedores_nova_coluna_softdelete ................. 14ms DONE
+
+
 ```
 
 ```
-$ php artisan make:seeder FornecedorSeeder
-Seeder created successfully.
+$ sail php artisan make:seeder FornecedorSeeder
+
+   INFO  Seeder [database/seeders/FornecedorSeeder.php] created successfully.
+
+
 
 ```
 
@@ -2366,10 +2367,13 @@ class DatabaseSeeder extends Seeder
 ```
 
 ```
-$ php artisan db:seed
-Seeding: FornecedorSeeder
-Seeded:  FornecedorSeeder (0.03 seconds)
-Database seeding completed successfully.
+$ sail php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\FornecedorSeeder ...................... RUNNING
+  Database\Seeders\FornecedorSeeder ................... 33 ms DONE  
+
 
 ```
 

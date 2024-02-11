@@ -1206,7 +1206,7 @@ class Fornecedor extends Model
 ```
 
 ```
->>> $f2 = new \App\Fornecedor();                                                                                                                                                                                        
+>>> $f2 = new \App\Models\Fornecedor();                                                                                                                                                                                        
 => App\Fornecedor {#4209}
 
 >>> $f2->nome = 'Fornecedor teste1';                                                                                                                                                                                    
@@ -1232,6 +1232,17 @@ Array
 => true
 
 >>> $f2->save()                                                                                                                                                                                                         
+
+> $f2->save()
+
+   Illuminate\Database\QueryException  SQLSTATE[42S02]: Base table or view not found: 
+   1146 Table 'app2_super_gestao.fornecedors' doesn't exist 
+   (Connection: mysql, SQL: insert into `fornecedors` 
+   (`nome`, `site`, `uf`, `email`, `updated_at`, `created_at`) 
+   values (Fornecedor teste1, www.fornecedor.com, PA, contato@fornecedor.com, 2024-02-10 23:44:07, 2024-02-10 23:44:07)).
+
+
+
 => true
 
 ```
@@ -1249,24 +1260,23 @@ class Fornecedor extends Model
 ```
 
 ```
->>> \App\Fornecedor::create(['nome'=>'Fornecedor Fill', 'site'=> 'www.teste.com', 'uf'=> 'SP', 'email'=> 'teste@teste.com']);                                                                                           
-=> App\Fornecedor {#3425
-     nome: "Fornecedor Fill",
-     site: "www.teste.com",
-     uf: "SP",
-     email: "teste@teste.com",
-     updated_at: "2022-07-08 21:16:28",
-     created_at: "2022-07-08 21:16:28",
-     id: 2,
-   }
-
+>>> \App\Models\Fornecedor::create(['nome'=>'Fornecedor Fill', 'site'=> 'www.teste.com', 'uf'=> 'SP', 'email'=> 'teste@teste.com']);
+= App\Models\Fornecedor {#5040
+    nome: "Fornecedor Fill",
+    site: "www.teste.com",
+    uf: "SP",
+    email: "teste@teste.com",
+    updated_at: "2024-02-10 23:55:25",
+    created_at: "2024-02-10 23:55:25",
+    id: 2,
+  }
 
 ```
 
 - 96 Eloquent - Selecionando registros com all()
 
 ```
->>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> use \App\Models\Fornecedor;                                                                                                                                                                                                
 >>> $fornecedores = Fornecedor::all();                                                                                                                                                                                  
 => Illuminate\Database\Eloquent\Collection {#3433
      all: [
@@ -1327,7 +1337,7 @@ Array
 - 97 Eloquent - Selecionando registros com find()
 
 ```
->>> use \App\Fornecedor;                                                                                                                                                                                                
+>>> use \App\Models\Fornecedor;                                                                                                                                                                                                
 >>> $fornecedores2 = Fornecedor::find(2);                                                                                                                                                                               
 => App\Fornecedor {#3423
      id: 2,
@@ -1369,8 +1379,8 @@ Array
 - 98 Eloquent - Selecionando registros com where()
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
->>> $contatos = SiteContato::where('id', '>', 1);                                                                                                                                                                       
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
+>>> $contatos = SiteContato::where('id', '>=', 1);                                                                                                                                                                       
 => Illuminate\Database\Eloquent\Builder {#3458}
 
 >>> $contatos = SiteContato::where('id', '>', 1)->get();                                                                                                                                                                
@@ -1410,7 +1420,7 @@ Array
      ],
    }
 
->>> $contatos = SiteContato::where('mensagem','like', '%informações%')->get();                                                                                                                                          
+>>> $contatos = SiteContato::where('mensagem','like', '%Gostaria%')->get();                                                                                                                                          
 => Illuminate\Database\Eloquent\Collection {#4327
      all: [
        App\SiteContato {#4384
@@ -1432,7 +1442,7 @@ Array
 - 99 Eloquent - Selecionando registros com whereIn() e whereNotIn()
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
 >>> $contatos = SiteContato::whereIn('motivo_contato', [1,3]);                                                                                                                                                          
 => Illuminate\Database\Eloquent\Builder {#4237}
 
@@ -1485,7 +1495,7 @@ Array
 - 100 Eloquent - Selecionando registros com whereBetween() e whereNotBetween()
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
 >>> $contatos = SiteContato::whereBetween('id', [3,6])->get();                                                                                                                                                          
 => Illuminate\Database\Eloquent\Collection {#4385
      all: [

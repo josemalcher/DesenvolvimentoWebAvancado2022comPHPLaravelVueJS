@@ -1,0 +1,25 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#6145
+    [34mall[39m: [
+      [34;4mApp\Models\SiteContato[39;24m {#6089
+        [34mid[39m: [35m1[39m,
+        [34mnome[39m: "[32mJose[39m",
+        [34mtelefone[39m: "[32m(91) 0000-1111[39m",
+        [34memail[39m: "[32mjose@josemalcher.net[39m",
+        [34mmotivo_contato[39m: [35m1[39m,
+        [34mmensagem[39m: "[32mGostaria de mais informações[39m",
+        [34mcreated_at[39m: "[32m2024-02-10 23:36:19[39m",
+        [34mupdated_at[39m: "[32m2024-02-10 23:36:19[39m",
+      },
+      [34;4mApp\Models\SiteContato[39;24m {#5017
+        [34mid[39m: [35m2[39m,
+        [34mnome[39m: "[32mJose[39m",
+        [34mtelefone[39m: "[32m(91) 0000-1111[39m",
+        [34memail[39m: "[32mteste@josemalcher.net[39m",
+        [34mmotivo_contato[39m: [35m2[39m,
+        [34mmensagem[39m: "[32mMAIS de mais informações[39m",
+        [34mcreated_at[39m: "[32m2024-02-10 23:36:19[39m",
+        [34mupdated_at[39m: "[32m2024-02-10 23:36:19[39m",
+      },
+    ],
+  }
+

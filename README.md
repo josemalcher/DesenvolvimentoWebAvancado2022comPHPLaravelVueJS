@@ -1600,21 +1600,32 @@ Array
 - 104 Eloquent - Selecionando registros com base em parâmetros do tipo data e hora
 
 ```
->>> $contatos = SiteContato::whereDate('created_at', '2022-07-08')->get()                                                                                                                                               
-=> Illuminate\Database\Eloquent\Collection {#4394
-     all: [
-       App\SiteContato {#4382
-         id: 1,
-         created_at: "2022-07-08 21:01:42",
-         updated_at: "2022-07-08 21:01:42",
-         nome: "Jose",
-         telefone: "(91) 0000-1111",
-         email: "jose@josemalcher.net",
-         motivo_contato: 1,
-         mensagem: "Gostaria de mais informações",
-       },
-     ],
-   }
+>>> $contatos = SiteContato::whereDate('created_at', '2024-02-10')->get()
+= Illuminate\Database\Eloquent\Collection {#6004
+    all: [
+      App\Models\SiteContato {#6056
+        id: 1,
+        nome: "Jose",
+        telefone: "(91) 0000-1111",
+        email: "jose@josemalcher.net",
+        motivo_contato: 1,
+        mensagem: "Gostaria de mais informa<C3><A7><C3><B5>es",
+        created_at: "2024-02-10 23:36:19",
+        updated_at: "2024-02-10 23:36:19",
+      },
+      App\Models\SiteContato {#6007
+        id: 2,
+        nome: "Jose",
+        telefone: "(91) 0000-1111",
+        email: "teste@josemalcher.net",
+        motivo_contato: 2,
+        mensagem: "MAIS de mais informa<C3><A7><C3><B5>es",
+        created_at: "2024-02-10 23:36:19",
+        updated_at: "2024-02-10 23:36:19",
+      },
+    ],
+  }
+
 
 ```
 
@@ -1698,7 +1709,7 @@ Array
 - 105 Eloquent - Selecionando registros com whereColumn()
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
 >>> $contatos = SiteContato::whereColumn('created_at', 'updated_at')->get()                                                                                                                                             
 => Illuminate\Database\Eloquent\Collection {#4385
      all: [
@@ -1728,9 +1739,15 @@ b
 - 106 Eloquent - Selecionando registros aplicando precedência em operações lógicas
 
 ```
->>> $contatos = SiteContato::where(function($query){$query->where('nome', 'Jorge')->orWhere('nome', 'Ana');})
-                           ->where(function($query){$query->whereIn('motivo_contato', [1,2])->orWhere('id', [4,6]);})
-                           ->get();         
+>>> $contatos = SiteContato::where(
+  function($query){
+    $query->where('nome', 'Jorge')->orWhere('nome', 'Ana');
+  })
+    ->where(
+    function($query){
+        $query->whereIn('motivo_contato', [1,2])->orWhere('id', [4,6]);
+      })->get();         
+
 => Illuminate\Database\Eloquent\Collection {#4402
      all: [],
    }
@@ -1741,7 +1758,7 @@ b
 - 107 Eloquent - Ordenando registros
 
 ```
->>> use \App\SiteContato;       
+>>> use \App\Models\SiteContato;       
 >>> $contato = SiteContato::all();                                                                                                                                                                                      
 => Illuminate\Database\Eloquent\Collection {#4358
      all: [
@@ -1794,7 +1811,7 @@ b
 - 109 Eloquent - Collection first, last e reverse
 
 ```
->>> use \App\SiteContato;                                                                                                                                                                                               
+>>> use \App\Models\SiteContato;                                                                                                                                                                                               
 >>> $contato = SiteContato::where('id', '>', 3);                                                                                                                                                                        
 => Illuminate\Database\Eloquent\Builder {#4373}
 
@@ -1887,9 +1904,9 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 >>> SiteContato::all()->pluck('email');                                                                                                                                                                                 
 => Illuminate\Support\Collection {#4358
      all: [
-       "jose@josemalcher.net",
-       "joao@contato.com.br",
-       "rosa@contato.com.br",
+       "jose@josmalcher.net",
+       "joao@conato.com.br",
+       "rosa@conato.com.br",
        "fernando@contato.com.br",
        "andre@contato.com.br",
        "ana@contato.com.br",
@@ -1926,23 +1943,22 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 - 112 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 
-  - [https://laravel.com/docs/7.x/collections](https://laravel.com/docs/7.x/collections)
+  - [https://laravel.com/docs/10.x/collections](https://laravel.com/docs/10.x/collections)
 
 - 113 Eloquent - Atualizando registros (save)
 
 ```
->>> use \App\Fornecedor;
-                                                                                                                                                                                                
->>> $fornecedor = Fornecedor::find(1);                                                                                                                                                                                  
-=> App\Fornecedor {#3416
-     id: 1,
-     nome: "Fornecedor teste1",
-     site: "www.fornecedor.com",
-     created_at: "2022-07-08 21:10:52",
-     updated_at: "2022-07-08 21:10:52",
-     uf: "PA",
-     email: "contato@fornecedor.com",
-   }
+> use \App\Models\Fornecedor;
+> $fornecedor = Fornecedor::find(1);
+= App\Models\Fornecedor {#6040
+    id: 1,
+    nome: "Fornecedor teste1",
+    site: "www.fornecedor.com",
+    created_at: "2024-02-10 23:46:01",
+    updated_at: "2024-02-10 23:46:01",
+    uf: "PA",
+    email: "contato@fornecedor.com",
+  }
 
 >>> $fornecedor->nome = 'Fornecedor 123';                                                                                                                                                                               
 => "Fornecedor 123"
@@ -1956,17 +1972,16 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 >>> $fornecedor->save();                                                                                                                                                                                                
 => true
 
->>> $fornecedor = Fornecedor::find(1);                                                                                                                                                                                  
-=> App\Fornecedor {#4375
-     id: 1,
-     nome: "Fornecedor 123",
-     site: "www.fornecedor123.com",
-     created_at: "2022-07-08 21:10:52",
-     updated_at: "2022-07-11 00:55:31",
-     uf: "PA",
-     email: "fornecedor123@fornecedor123.com",
-   }
-
+> $fornecedor = Fornecedor::find(1);
+= App\Models\Fornecedor {#6478
+    id: 1,
+    nome: "Fornecedor 123",
+    site: "www.fornecedor123.com",
+    created_at: "2024-02-10 23:46:01",
+    updated_at: "2024-02-11 02:22:19",
+    uf: "PA",
+    email: "fornecedor123@fornecedor123.com",
+  }
 
 ```
 

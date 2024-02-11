@@ -2380,8 +2380,11 @@ $ sail php artisan db:seed
 - 120 Seeders parte 2
 
 ```
-$ php artisan make:seeder SiteContatoSeeder
-Seeder created successfully.
+$ sail php artisan make:seeder SiteContatoSeeder
+
+   INFO  Seeder [database/seeders/SiteContatoSeeder.php] created successfully.
+
+
 ```
 
 ```php
@@ -2402,8 +2405,11 @@ class SiteContatoSeeder extends Seeder
 ```
 
 ```
-$ php artisan db:seed --class=SiteContatoSeeder
-Database seeding completed successfully.
+$ sail php artisan db:seed --class=SiteContatoSeeder
+
+   INFO  Seeding database.
+
+
 
 ```
 

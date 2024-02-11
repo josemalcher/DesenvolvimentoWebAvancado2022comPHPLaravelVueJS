@@ -2206,64 +2206,80 @@ $ sail php artisan make:migration alter_fornecedores_nova_coluna_softdelete
 ```
 
 ```
->>> Fornecedor::onlyTrashed()->get();                                                                                                                                                                                   
-=> Illuminate\Database\Eloquent\Collection {#3413
-     all: [
-       App\Fornecedor {#3423
-         id: 2,
-         nome: "FORNECEDOR TESTE",
-         site: "www.teste.com.br",
-         created_at: "2022-07-08 21:16:28",
-         updated_at: "2022-07-11 15:01:20",
-         uf: "SP",
-         email: "teste@teste.com",
-         deleted_at: "2022-07-11 15:01:20",
-       },
-     ],
-   }
+> Fornecedor::onlyTrashed()->get();
+= Illuminate\Database\Eloquent\Collection {#5054
+    all: [
+      App\Models\Fornecedor {#5055
+        id: 2,
+        nome: "FORNECEDOR 321",
+        site: "www.fornece312.com",
+        created_at: "2024-02-10 23:55:25",
+        updated_at: "2024-02-11 03:08:00",
+        uf: "SP",
+        email: "teste@teste.com",
+        deleted_at: "2024-02-11 03:08:00",
+      },
+    ],
+  }
+
+
 
 ```
 
 ```
->>> $fornecedor = Fornecedor::withTrashed()->get();                                                                                                                                                                     
-=> Illuminate\Database\Eloquent\Collection {#3430
-     all: [
-       App\Fornecedor {#3439
-         id: 1,
-         nome: "FORNECEDOR TESTE",
-         site: "www.teste.com.br",
-         created_at: "2022-07-08 21:10:52",
-         updated_at: "2022-07-11 01:11:35",
-         uf: "PA",
-         email: "fornecedor123@fornecedor123.com",
-         deleted_at: null,
-       },
-       App\Fornecedor {#3454
-         id: 2,
-         nome: "FORNECEDOR TESTE",
-         site: "www.teste.com.br",
-         created_at: "2022-07-08 21:16:28",
-         updated_at: "2022-07-11 15:01:20",
-         uf: "SP",
-         email: "teste@teste.com",
-         deleted_at: "2022-07-11 15:01:20",
-       },
-// .....
+>>>  $fornecedor = Fornecedor::withTrashed()->get();
+= Illuminate\Database\Eloquent\Collection {#5059
+    all: [
+      App\Models\Fornecedor {#5060
+        id: 1,
+        nome: "Fornecedor 123",
+        site: "www.fornecedor123.com",
+        created_at: "2024-02-10 23:46:01",
+        updated_at: "2024-02-11 02:22:19",
+        uf: "PA",
+        email: "fornecedor123@fornecedor123.com",
+        deleted_at: null,
+      },
+      App\Models\Fornecedor {#5061
+        id: 2,
+        nome: "FORNECEDOR 321",
+        site: "www.fornece312.com",
+        created_at: "2024-02-10 23:55:25",
+        updated_at: "2024-02-11 03:08:00",
+        uf: "SP",
+        email: "teste@teste.com",
+        deleted_at: "2024-02-11 03:08:00",
+      },
+    ],
+  }
 
->>> $fornecedor[1]->restore();                                                                                                                                                                                          
-=> true
 
->>> $fornecedor = Fornecedor::find(2);                                                                                                                                                                                  
-=> App\Fornecedor {#3459
-     id: 2,
-     nome: "FORNECEDOR TESTE",
-     site: "www.teste.com.br",
-     created_at: "2022-07-08 21:16:28",
-     updated_at: "2022-07-11 15:10:49",
-     uf: "SP",
-     email: "teste@teste.com",
-     deleted_at: null,
-   }
+
+> $fornecedor[1]->restore();
+= true
+
+> $fornecedor = Fornecedor::withTrashed()->get();
+= Illuminate\Database\Eloquent\Collection {#5062
+    all: [
+      App\Models\Fornecedor {#5063
+        id: 1,
+        nome: "Fornecedor 123",
+        site: "www.fornecedor123.com",
+        created_at: "2024-02-10 23:46:01",
+        updated_at: "2024-02-11 02:22:19",
+        uf: "PA",
+        email: "fornecedor123@fornecedor123.com",
+        deleted_at: null,
+      },
+      App\Models\Fornecedor {#5064
+        id: 2,
+        nome: "FORNECEDOR 321",
+        site: "www.fornece312.com",
+        created_at: "2024-02-10 23:55:25",
+        updated_at: "2024-02-11 03:12:49",
+        uf: "SP",
+        email: "teste@teste.com",
+        deleted_at: null,
 
 
 ```

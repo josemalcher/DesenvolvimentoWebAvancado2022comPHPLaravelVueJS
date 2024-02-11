@@ -2416,36 +2416,84 @@ $ sail php artisan db:seed --class=SiteContatoSeeder
 - 121 Factories (semeando tabelas em massa com a dependência Faker)
 
 ```
-$ php artisan make:factory SiteContatoFactory --model=SiteContato
-Factory created successfully.
+$ sail php artisan make:factory SiteContatoFactory --model=SiteContato
+
+   INFO  Factory [database/factories/SiteContatoFactory.php] created successfully.
+
+
 
 ```
 
 ```php
-$factory->define(SiteContato::class, function (Faker $faker) {
-    return [
-        'nome' => $faker->name,
-        'telefone' => $faker->tollFreePhoneNumber,
-        'email' => $faker->unique()->email,
-        'motivo_contato' => $faker->numberBetween(1,3),
-        'mensagem' => $faker->text(200)
-    ];
-});
+class SiteContatoFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'nome' => $this->faker->name,
+            'telefone' => $this->faker->tollFreePhoneNumber,
+            'email' => $this->faker->unique()->safeEmail,
+            'motivo_contato' => $this->faker->numberBetween(1, 3),
+            'mensagem' => $this->faker->text(200),
+        ];
+    }
+}
 ```
 
 ```php
 class SiteContatoSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
-        factory(SiteContato::class, 100)->create();
+        /*contato = new SiteContato();
+        $contato->nome = 'Sistema SG';
+        $contato->telefone = '(11) 99999-8888';
+        $contato->email = 'contato@sg.com.br';
+        $contato->motivo_contato = 1;
+        $contato->mensagem = 'Seja bem-vindo ao sistema Super Gestão';
+        $contato->save();*/
+
+        
+        SiteContato::factory()->count(10)->create();
+    }
+}
+```
+
+```php
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        // \App\Models\User::factory(10)->create();
+
+        // $this->call(FornecedorSeeder::class);
+        $this->call(FornecedorSeeder::class);
+        $this->call(SiteContatoSeeder::class);
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }
 ```
 
 ```
-$ php artisan db:seed --class=SiteContatoSeeder
-Database seeding completed successfully.
+$ sail php artisan db:seed --class=SiteContatoSeeder
+
+   INFO  Seeding database.
+
 
 ```
 

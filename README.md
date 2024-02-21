@@ -2504,6 +2504,23 @@ $ sail php artisan db:seed --class=SiteContatoSeeder
 ## <a name="parte9">9 - Trabalhando com formulários</a>
 
 - 122 Entendendo o objeto Request
+
+```php
+ public function contato(Request $request)
+    {
+        // var_dump($_POST);
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        echo '<br>';
+        echo $request->input('name');
+        echo '<br>';
+        echo $request->input('mensage');
+
+        return view('site.contato', ['titulo'=> 'Contato']);
+    }
+```
+
 - 123 Gravando os dados do formulário no banco de dados
 
 ```php

@@ -19,7 +19,6 @@ class ContatoController extends Controller
         echo '<br>';
         echo $request->input('mensage');
 */
-
         $contato = new SiteContato();
         // $contato->fill($request->all());
         // $contato->save();

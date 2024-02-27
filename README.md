@@ -2547,11 +2547,16 @@ class ContatoController extends Controller
 ```
 
 - 124 Validação de campos obrigatórios (required)
-- 125 Validação de quantidades mínimas e máximas de caracteres (min e max)
 
 ```php
 class ContatoController extends Controller
 {
+    public function contato(Request $request)
+    {
+
+        return view('site.contato', ['titulo' => 'Contato (teste)']);
+    }
+
     public function salvar(Request $request)
     {
         //realizar a validação dos dados do formulário recebidos no request
@@ -2565,6 +2570,12 @@ class ContatoController extends Controller
         // SiteContato::create($request->all());
     }
 }
+```
+
+- 125 Validação de quantidades mínimas e máximas de caracteres (min e max)
+
+```php
+
 ```
 
 - 126 Repopulando o formulário (Request Old Input) parte 1

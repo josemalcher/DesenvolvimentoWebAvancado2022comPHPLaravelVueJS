@@ -70,15 +70,17 @@ composer global require laravel/installer
 
 ```
 
+- SAIL 
+
 ```
-curl -s "https://laravel.build/example-app?with=mysql" | bash
+curl -s https://laravel.build/app3_super_gestao | bash  
 ```
 
 - 26 Produtividade com Artisan Console
 
 ```
-$ sail php artisan                       
-Laravel Framework 10.43.0
+~/workspaces/DesenvolvimentoWebAvancado2022comPHPLaravelVueJS/app3_super_gestao (main*) » sail php artisan list                   josemalcher@j0z3M4lch3r
+Laravel Framework 11.30.0
 
 Usage:
   command [options] [arguments]
@@ -93,46 +95,202 @@ Options:
   -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
 Available commands:
-  about                   Display basic information about your application
-  clear-compiled          Remove the compiled class file
-  completion              Dump the shell completion script
-  db                      Start a new database CLI session
-  docs                    Access the Laravel documentation
-  down                    Put the application into maintenance / demo mode
-  env                     Display the current framework environment
-  help                    Display help for a command
-  inspire                 Display an inspiring quote
-  list                    List commands
-  migrate                 Run the database migrations
-  optimize                Cache the framework bootstrap files
-  serve                   Serve the application on the PHP development server
-  test                    Run the application tests
-  tinker                  Interact with your application
-  up                      Bring the application out of maintenance mode
-(...)
+  about                     Display basic information about your application
+  clear-compiled            Remove the compiled class file
+  completion                Dump the shell completion script
+  db                        Start a new database CLI session
+  docs                      Access the Laravel documentation
+  down                      Put the application into maintenance / demo mode
+  env                       Display the current framework environment
+  help                      Display help for a command
+  inspire                   Display an inspiring quote
+  list                      List commands
+  migrate                   Run the database migrations
+  optimize                  Cache framework bootstrap, configuration, and metadata to increase performance
+  pail                      Tails the application logs.
+  serve                     Serve the application on the PHP development server
+  test                      Run the application tests
+  tinker                    Interact with your application
+  up                        Bring the application out of maintenance mode
+ auth
+  auth:clear-resets         Flush expired password reset tokens
+ cache
+  cache:clear               Flush the application cache
+  cache:forget              Remove an item from the cache
+  cache:prune-stale-tags    Prune stale cache tags from the cache (Redis only)
+ channel
+  channel:list              List all registered private broadcast channels
+ config
+  config:cache              Create a cache file for faster configuration loading
+  config:clear              Remove the configuration cache file
+  config:publish            Publish configuration files to your application
+  config:show               Display all of the values for a given configuration file or key
+ db
+  db:monitor                Monitor the number of connections on the specified database
+  db:seed                   Seed the database with records
+  db:show                   Display information about the given database
+  db:table                  Display information about the given database table
+  db:wipe                   Drop all tables, views, and types
+ env
+  env:decrypt               Decrypt an environment file
+  env:encrypt               Encrypt an environment file
+ event
+  event:cache               Discover and cache the application's events and listeners
+  event:clear               Clear all cached events and listeners
+  event:list                List the application's events and listeners
+ install
+  install:api               Create an API routes file and install Laravel Sanctum or Laravel Passport
+  install:broadcasting      Create a broadcasting channel routes file
+ key
+  key:generate              Set the application key
+ lang
+  lang:publish              Publish all language files that are available for customization
+ make
+  make:cache-table          [cache:table] Create a migration for the cache database table
+  make:cast                 Create a new custom Eloquent cast class
+  make:channel              Create a new channel class
+  make:class                Create a new class
+  make:command              Create a new Artisan command
+  make:component            Create a new view component class
+  make:controller           Create a new controller class
+  make:enum                 Create a new enum
+  make:event                Create a new event class
+  make:exception            Create a new custom exception class
+  make:factory              Create a new model factory
+  make:interface            Create a new interface
+  make:job                  Create a new job class
+  make:job-middleware       Create a new job middleware class
+  make:listener             Create a new event listener class
+  make:mail                 Create a new email class
+  make:middleware           Create a new HTTP middleware class
+  make:migration            Create a new migration file
+  make:model                Create a new Eloquent model class
+  make:notification         Create a new notification class
+  make:notifications-table  [notifications:table] Create a migration for the notifications table
+  make:observer             Create a new observer class
+  make:policy               Create a new policy class
+  make:provider             Create a new service provider class
+  make:queue-batches-table  [queue:batches-table] Create a migration for the batches database table
+  make:queue-failed-table   [queue:failed-table] Create a migration for the failed queue jobs database table
+  make:queue-table          [queue:table] Create a migration for the queue jobs database table
+  make:request              Create a new form request class
+  make:resource             Create a new resource
+  make:rule                 Create a new validation rule
+  make:scope                Create a new scope class
+  make:seeder               Create a new seeder class
+  make:session-table        [session:table] Create a migration for the session database table
+  make:test                 Create a new test class
+  make:trait                Create a new trait
+  make:view                 Create a new view
+ migrate
+  migrate:fresh             Drop all tables and re-run all migrations
+  migrate:install           Create the migration repository
+  migrate:refresh           Reset and re-run all migrations
+  migrate:reset             Rollback all database migrations
+  migrate:rollback          Rollback the last database migration
+  migrate:status            Show the status of each migration
+ model
+  model:prune               Prune models that are no longer needed
+  model:show                Show information about an Eloquent model
+ optimize
+  optimize:clear            Remove the cached bootstrap files
+ package
+  package:discover          Rebuild the cached package manifest
+ queue
+  queue:clear               Delete all of the jobs from the specified queue
+  queue:failed              List all of the failed queue jobs
+  queue:flush               Flush all of the failed queue jobs
+  queue:forget              Delete a failed queue job
+  queue:listen              Listen to a given queue
+  queue:monitor             Monitor the size of the specified queues
+  queue:prune-batches       Prune stale entries from the batches database
+  queue:prune-failed        Prune stale entries from the failed jobs table
+  queue:restart             Restart queue worker daemons after their current job
+  queue:retry               Retry a failed queue job
+  queue:retry-batch         Retry the failed jobs for a batch
+  queue:work                Start processing jobs on the queue as a daemon
+ route
+  route:cache               Create a route cache file for faster route registration
+  route:clear               Remove the route cache file
+  route:list                List all registered routes
+ sail
+  sail:add                  Add a service to an existing Sail installation
+  sail:install              Install Laravel Sail's default Docker Compose file
+  sail:publish              Publish the Laravel Sail Docker files
+ schedule
+  schedule:clear-cache      Delete the cached mutex files created by scheduler
+  schedule:interrupt        Interrupt the current schedule run
+  schedule:list             List all scheduled tasks
+  schedule:run              Run the scheduled commands
+  schedule:test             Run a scheduled command
+  schedule:work             Start the schedule worker
+ schema
+  schema:dump               Dump the given database schema
+ storage
+  storage:link              Create the symbolic links configured for the application
+  storage:unlink            Delete existing symbolic links configured for the application
+ stub
+  stub:publish              Publish all stubs that are available for customization
+ vendor
+  vendor:publish            Publish any publishable assets from vendor packages
+ view
+  view:cache                Compile all of the application's Blade templates
+  view:clear                Clear all compiled view files
 ```
 
 - 27 Rotas (Routes) - Introdução
 - 28 Super Gestão - Implementando as rotas principal, sobre-nos e contato
+
+GET: Recupera dados do servidor sem alterar o estado do recurso. Muito utilizado para buscar informações.
+
+POST: Envia dados para o servidor para criar um novo recurso. Utilizado frequentemente em formulários.
+
+PUT: Atualiza um recurso existente no servidor. Se o recurso não existir, ele pode ser criado.
+
+PATCH: Semelhante ao PUT, mas é usado para aplicar atualizações parciais a um recurso existente.
+
+DELETE: Remove um recurso do servidor.
+
+HEAD: Recupera os headers de resposta, mas sem o corpo da resposta. Útil para obter metadados.
+
+OPTIONS: Descreve as opções de comunicação para o recurso de destino. Útil para verificar métodos suportados.
+
+- https://laravel.com/docs/11.x/routing
+
+```php
+use Illuminate\Support\Facades\Route;
+ 
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+```
+
+```php
+use App\Http\Controllers\UserController;
+ 
+Route::get('/user', [UserController::class, 'index']);
+```
+
 - 29 Controladores (Controllers) - Introdução
+
+
+
 - 30 Super Gestão - Implementando os controladores principal, sobre-nos e contato
 
 ```
-$ sail php artisan make:controller PrincipalController
+» sail php artisan make:controller PrincipalController
 
-   INFO  Controller [app/Http/Controllers/PrincipalController.php] created successfully.  
+   INFO  Controller [app/Http/Controllers/PrincipalController.php] created successfully.
 
-
-$ sail php artisan make:controller SobreNosController
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+» sail php artisan make:controller SobreNosController
 
    INFO  Controller [app/Http/Controllers/SobreNosController.php] created successfully.
 
-
-$ sail php artisan make:controller ContatoController
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+» sail php artisan make:controller ContatoController
 
    INFO  Controller [app/Http/Controllers/ContatoController.php] created successfully.
-
-
 ```
 
 ```php
@@ -142,7 +300,12 @@ Route::get('/contato', [ContatoController::class, 'contato']);
 
 ```
 
+- https://laravel.com/docs/11.x/controllers
+
 - 31 Visualizações (Views) - Introdução
+
+- https://laravel.com/docs/11.x/views
+
 - 32 Super Gestão - Implementando as visualizações principal, sobre-nos e contato
 
 

@@ -22,6 +22,13 @@
       <sourceFolder url="file://$MODULE_DIR$/app_portal_noticias/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/app3_super_gestao" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app2_super_gestao/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/app_super_gestao/tests/Unit" isTestSource="true" />
     </content>

@@ -353,18 +353,15 @@ Route::get(
 - 36 Super Gestão - Criando o menu de navegação
 
 ```
-$ sail php artisan route:list     
+ $ sail php artisan route:list                                                                                        josemalcher@j0z3M4lch3r 
 
-  GET|HEAD   / ....................................................................................... PrincipalController@principal
-  POST       _ignition/execute-solution .............. ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
-  GET|HEAD   _ignition/health-check .......................... ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController
-  POST       _ignition/update-config ....................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController
-  GET|HEAD   api/user .............................................................................................................. 
-  GET|HEAD   contato ..................................................................................... ContatoController@contato  
-  GET|HEAD   sanctum/csrf-cookie ................................. sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show  
-  GET|HEAD   sobre ........................................................................................ SobreNosController@sobre  
+  GET|HEAD       / ................................. PrincipalController@principal  
+  GET|HEAD       contato ........................... ContatoController@contato  
+  GET|HEAD       sobre ............................. SobreNosController@sobrenos  
+  GET|HEAD       storage/{path} .................... storage.local  
+  GET|HEAD       up ................................  
 
-
+                                                                                                                   
 
 ```
 
@@ -381,21 +378,18 @@ Route::prefix('/app')->group(function () {
 ```
 
 ```
-$ sail php artisan route:list
+ $ sail php artisan route:list
 
-  GET|HEAD   / ............................................................................... PrincipalController@principal  
-  POST       _ignition/execute-solution ...... ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController  
-  GET|HEAD   _ignition/health-check .................. ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController  
-  POST       _ignition/update-config ............... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController  
-  GET|HEAD   api/user ......................................................................................................  
-  GET|HEAD   app/clientes ..................................................................................................  
-  GET|HEAD   app/fornecedores ..............................................................................................  
-  GET|HEAD   app/produtos ..................................................................................................  
-  GET|HEAD   contato ............................................................................. ContatoController@contato  
-  GET|HEAD   sanctum/csrf-cookie ......................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show  
-  GET|HEAD   sobre ................................................................................ SobreNosController@sobre  
+  GET|HEAD       / ........................................... PrincipalController@principal  
+  GET|HEAD       app/clientes ..............................................................  
+  GET|HEAD       app/fornecedores ..........................................................  
+  GET|HEAD       app/produtos ..............................................................  
+  GET|HEAD       contato ......................................... ContatoController@contato  
+  GET|HEAD       login .....................................................................  
+  GET|HEAD       sobre ......................................... SobreNosController@sobrenos  
+  GET|HEAD       storage/{path} .............................................. storage.local  
+  GET|HEAD       up ........................................................................  
 
-                                                   Showing [11] routes  
 
 ```
 
@@ -456,7 +450,7 @@ Route::get('/rota2', function (){
 
 - 41 Rota de contingência (fallback)
 
-```
+```php
 Route::fallback(function () {
     echo 'A Rota não existe - <a href="'. route('site.index') .'">Voltar</a>';
 });

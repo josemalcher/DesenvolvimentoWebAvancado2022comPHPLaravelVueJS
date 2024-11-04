@@ -5,12 +5,12 @@
       <list>
         <option value="$PROJECT_DIR$/app_super_gestao/tests/Unit" />
         <option value="$PROJECT_DIR$/app_super_gestao/tests/Feature" />
-        <option value="$PROJECT_DIR$/app_portal_noticias/tests/Unit" />
-        <option value="$PROJECT_DIR$/app_portal_noticias/tests/Feature" />
         <option value="$PROJECT_DIR$/app2_super_gestao/tests/Unit" />
         <option value="$PROJECT_DIR$/app2_super_gestao/tests/Feature" />
         <option value="$PROJECT_DIR$/app_controle_tarefas/tests/Unit" />
         <option value="$PROJECT_DIR$/app_controle_tarefas/tests/Feature" />
+        <option value="$PROJECT_DIR$/app_portal_noticias/tests/Unit" />
+        <option value="$PROJECT_DIR$/app_portal_noticias/tests/Feature" />
         <option value="$PROJECT_DIR$/app_locadora_carros/tests/Unit" />
         <option value="$PROJECT_DIR$/app_locadora_carros/tests/Feature" />
       </list>

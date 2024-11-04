@@ -1,0 +1,17 @@
+{
+    "preset": "default",
+    "rules": {
+        "array_syntax": {
+            "syntax": "short"
+        },
+        "braces": {
+            "position_after_functions_and_oop_constructs": "next"
+        },
+        "concat_space": {
+            "spacing": "one"
+        },
+        "ordered_imports": true,
+        "single_quote": true,
+        "trailing_comma_in_multiline": "always"
+    }
+}

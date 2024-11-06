@@ -1,14 +1,26 @@
-
 <h3>FORNECEDOR</h3>
 
-{{-- COMENTARIOS.... --}}
+@isset($fornecedores)
+    @forelse($fornecedores as $indice => $fornecedor)
+        <strong>Total de Interação {{$loop->count}}</strong>
+        <br>
+        <strong>Interação Atual: {{$loop->iteration}}</strong>
 
-{{ 'Texto de teste' }}
+        <p>Fornecedor: {{$fornecedor['nome']}}</p>
+        <p>Status: {{$fornecedor['status']}}</p>
+        <p>CNPJ: {{$fornecedor['cnpj'] ?? 'Dado não preenchido' }}</p>
+        <p>Telefones: {{$fornecedor['ddd'] ?? ''}} {{$fornecedor['telefone'] ?? ''}}</p>
 
-<?= 'Testo de teste igual ao de cima'?>
+        @if($loop->first)
+            Primeira interação do LOOP
+        @endif
+        @if($loop->last)
+            Ultima interação do loop
+        @endif
+        <hr>
+    @empty
+        <p>Não existe fornecedores Cadastrados!!!!</p>
+    @endforelse
+@endisset
 
-@php
-    // comentario vário
-    echo 'Texto dentro do PHP
-    '
-@endphp
+@dd($fornecedores)

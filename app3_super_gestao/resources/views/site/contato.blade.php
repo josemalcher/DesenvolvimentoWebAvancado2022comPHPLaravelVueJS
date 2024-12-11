@@ -12,24 +12,10 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form>
-                    <input type="text" placeholder="Nome" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="Telefone" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="E-mail" class="borda-preta">
-                    <br>
-                    <select class="borda-preta">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="">Dúvida</option>
-                        <option value="">Elogio</option>
-                        <option value="">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea class="borda-preta">Preencha aqui a sua mensagem</textarea>
-                    <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
-                </form>
+                @component('site.layouts._components.form_contato',[ 'classe' => 'borda-preta'])
+                    <p>Nossa equipe analisará a sua resposta e retornaremos em Breve!</p>
+                    <p>tempo de resposata 42h</p>
+                @endcomponent
             </div>
         </div>
     </div>

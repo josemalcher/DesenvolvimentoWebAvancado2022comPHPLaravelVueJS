@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',         [PrincipalController::class, 'principal'])->name('site.index');;
 Route::get('/sobre',    [SobreNosController::class, 'sobrenos'])->name('site.sobrenos');
-Route::get('/contato',  [ContatoController::class, 'contato'])->name('site.contato');
+Route::get( '/contato',  [ContatoController::class, 'contato'])->name('site.contato');
+Route::post('/contato',  [ContatoController::class, 'contato'])->name('site.contato');
 
 Route::get('/login', function () {return 'Login';})->name('site.login');
 

@@ -926,7 +926,7 @@ $ sail php artisan migrate
 
 - 83 Migration - Adicionando campos a uma tabela
 
-```
+```bash
 $ sail php artisan make:migration alter_fornecedores_novas_colunas                
 
    INFO  Migration [database/migrations/2024_02_09_184116_alter_fornecedores_novas_colunas.php] created successfully.

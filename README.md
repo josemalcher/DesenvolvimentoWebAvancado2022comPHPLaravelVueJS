@@ -1227,9 +1227,9 @@ $ sail php artisan migrate
 - 89 Migration - Modificador After
 
 ```
-$ sail php artisan make:migration after_fornecedores_nova_coluna_site_com_after                   
+$ sail php artisan  make:migration after_fornecedores_nova_coluna_site_com_after
 
-   INFO  Migration [database/migrations/2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after.php] created successfully.
+   INFO  Migration [database/migrations/2025_01_13_215333_after_fornecedores_nova_coluna_site_com_after.php] created successfully.
 
 
 ```
@@ -1267,21 +1267,19 @@ $ sail php artisan migrate
 - 90 Migration - Comandos Status, Reset, Refresh e Fresh
 
 ```
-$ sail php artisan migrate:status                   
-
-  Migration name ..................................................... Batch / Status
-  2014_10_12_000000_create_users_table ...................................... [1] Ran
-  2014_10_12_100000_create_password_reset_tokens_table ...................... [1] Ran
-  2019_08_19_000000_create_failed_jobs_table ................................ [1] Ran
-  2019_12_14_000001_create_personal_access_tokens_table ..................... [1] Ran
-  2024_02_09_171601_create_site_contatos_table .............................. [2] Ran
-  2024_02_09_183551_create_fornecedores_table ............................... [2] Ran
-  2024_02_09_184116_alter_fornecedores_novas_colunas ........................ [2] Ran
-  2024_02_09_185644_create_produtos_table ................................... [3] Ran
-  2024_02_10_213602_create_produto_detalhes_table ........................... [4] Ran
-  2024_02_10_220655_create_unidades_table ................................... [5] Ran
-  2024_02_10_222309_ajuste_produtos_filiais ................................. [6] Ran
-  2024_02_10_223915_after_fornecedores_nova_coluna_site_com_after ........... [7] Ran
+$ sail php artisan migrate:status                                   
+  Migration name ...................................................... Batch / Status
+  0001_01_01_000000_create_users_table ....................................... [1] Ran
+  0001_01_01_000001_create_cache_table ....................................... [1] Ran
+  0001_01_01_000002_create_jobs_table ........................................ [1] Ran
+  2024_12_28_223834_create_site_contatos_table ............................... [2] Ran
+  2025_01_07_190825_create_fornecedores_table ................................ [3] Ran
+  2025_01_07_191552_alter_fornecedores_novas_colunas ......................... [4] Ran
+  2025_01_07_192709_create_produtos_table .................................... [5] Ran
+  2025_01_10_090604_create_produto_detalhes_table ............................ [6] Ran
+  2025_01_10_091929_create_unidades_table .................................... [6] Ran
+  2025_01_10_145558_ajuste_produtos_filiais .................................. [6] Ran
+  2025_01_13_215333_after_fornecedores_nova_coluna_site_com_after ............ [7] Ran
 
 
 ```
@@ -2100,7 +2098,7 @@ ais informa\u00e7\u00f5es"},{"id":2,"created_at":null,"updated_at":null,"nome":"
 
 - 112 Eloquent - Um pouco mais sobre os métodos nativos dos objetos Collection
 
-  - [https://laravel.com/docs/10.x/collections](https://laravel.com/docs/10.x/collections)
+  - [https://laravel.com/docs/11.x/eloquent-collections#main-content](https://laravel.com/docs/11.x/eloquent-collections#main-content)
 
 - 113 Eloquent - Atualizando registros (save)
 
